@@ -1,5 +1,6 @@
 package com.test.day02;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -11,14 +12,13 @@ import org.junit.jupiter.api.Test;
  *      long     8个字节       -2^63~2^63-1
  *  开发中根据数据的大小来选择合适的数据类型
  *      在日常开发中，小数用int，大数用long
- * 浮点型（小数型）
- *      float       4个字节
+ * 浮点型（小数型）     这里的字节大小指的是小数部分的
+ *      float       4个字节        这里的float整数部分甚至可以存储100亿
  *      double      8个字节
  * 布尔型
  *      boolean     java规范没有明确占用多少字节
  * 字符型
  *      char    2个字节
- *
  */
 public class Demo02 {
     @Test
@@ -36,6 +36,45 @@ public class Demo02 {
 //        long a = 10000000000;
         //解决办法在这个固定值常量添加L或者l,建议使用大写的L
         long a = 1666666666666666L;
+        System.out.println(a);
+    }
+
+    @Test
+    public void test03(){
+        //3.0000000000000003E-4  3向左边移动4位
+        System.out.println(0.0001+0.0002);
+    }
+
+    @Test
+    public void test04(){
+        /**
+         * 科学计数法
+         */
+        double a = 3.14E-3;
+        double b = 3.14E3;      //因为本省就是一个浮点数，结果也会带上一个小数点
+        double c = 3.14e3;      //建议使用大写的E
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+    }
+
+    @Test
+    public void test05(){
+        /**
+         * 小数类型默认是double类型，当输入的数据是一个float的类型的时候，需要在等号右边进行类型转换，末尾加上F或者f就行，建议大写
+         */
+        double a = 3.14;
+        float b = 3.14f;
+        float c = 3.14F;
+        System.out.println(c);
+    }
+
+    @Test
+    public void test06(){
+        /**
+         * 这里的float整数部分都可以存储超过int类型大小的数据
+         */
+        float a = 10000000000.14F;
         System.out.println(a);
     }
 
