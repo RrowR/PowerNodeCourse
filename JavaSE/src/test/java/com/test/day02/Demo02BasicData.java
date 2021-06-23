@@ -19,8 +19,10 @@ import org.junit.jupiter.api.Test;
  *      boolean     java规范没有明确占用多少字节
  * 字符型
  *      char    2个字节
+ *      包含：char类型只能包含一个字符，多一个少一个都不行
+ *      注意：char类型是一个无符号的类型  0~2^16-1  0~65535
  */
-public class Demo02 {
+public class Demo02BasicData {
     @Test
     public void test1(){
         //不能直接使用二进制固定常量
