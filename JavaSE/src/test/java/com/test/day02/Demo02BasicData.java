@@ -21,6 +21,8 @@ import org.junit.jupiter.api.Test;
  *      char    2个字节
  *      包含：char类型只能包含一个字符，多一个少一个都不行
  *      注意：char类型是一个无符号的类型  0~2^16-1  0~65535
+ * 字符串：任意多个字符
+ *      底层就是一个字符数组
  */
 public class Demo02BasicData {
     @Test
@@ -78,6 +80,12 @@ public class Demo02BasicData {
          */
         float a = 10000000000.14F;
         System.out.println(a);
+    }
+
+    @Test
+    public void test07(){
+        char a1 = '我';
+        char a2 = '2';
     }
 
 
