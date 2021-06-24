@@ -5,6 +5,19 @@ import org.junit.jupiter.api.Test;
 public class Demo06ClassFacesExaminations {
 
     @Test
+    public void test05(){
+        /**
+         * 两减一加
+         */
+        int a = 3;
+        int b = 5;
+        b = b - a;  //2 = 5 - 3;
+        a = b + a;  //5 = 2 + 3;
+        b = a - b;  //3 = 5 - 2;
+        System.out.println("a="+a+" b="+b);
+    }
+
+    @Test
     public void test04(){
         /**
          * 需求，求出两数相加的整数部分
