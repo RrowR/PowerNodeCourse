@@ -5,7 +5,24 @@ import org.junit.jupiter.api.Test;
 public class Demo06ClassFacesExaminations {
 
     @Test
-    public void test05(){
+    public void test06() {
+        /**
+         *  一元运算符
+         */
+        int a = 3;
+        int b = 4;
+        /**
+         * a = 3    4   3   2
+         * b = 4    3   4   5
+         * result = 3/4 + 4*3 + 3+4 + 3+4 = 0.75 + 12 + 7 + 7 = 26.75 = 26
+         */
+        int result = a++ / b + a * --b + --a + ++b + a-- + b++;
+        System.out.println("a="+a+" b="+b);
+        System.out.println(result);
+    }
+
+    @Test
+    public void test05() {
         /**
          * 两减一加
          */
@@ -14,11 +31,11 @@ public class Demo06ClassFacesExaminations {
         b = b - a;  //2 = 5 - 3;
         a = b + a;  //5 = 2 + 3;
         b = a - b;  //3 = 5 - 2;
-        System.out.println("a="+a+" b="+b);
+        System.out.println("a=" + a + " b=" + b);
     }
 
     @Test
-    public void test04(){
+    public void test04() {
         /**
          * 需求，求出两数相加的整数部分
          * 计算的时候一定要注意：
@@ -26,23 +43,23 @@ public class Demo06ClassFacesExaminations {
          */
         float a = 3.75F;
         float b = 2.53F;
-        int c = (int)(a+b);
-        int d = (int)a + (int)b;
+        int c = (int) (a + b);
+        int d = (int) a + (int) b;
         System.out.println(c);
         System.out.println(d);
     }
 
     @Test
-    public void test03(){
+    public void test03() {
         /**
          * 求出2个小数之和，并且结果只保留小数部分
-          */
-        int a = (int)(3.14 + 2.46);
+         */
+        int a = (int) (3.14 + 2.46);
         System.out.println(a);
     }
 
     @Test
-    public void test02(){
+    public void test02() {
         /**
          * 这里将会进行向上转型，结果为最大类型
          */
@@ -53,7 +70,7 @@ public class Demo06ClassFacesExaminations {
     }
 
     @Test
-    public void test01(){
+    public void test01() {
         /**
          * 注意：当数据类型的大小小于int的时候，结果将自动提升为int类型
          */
@@ -63,7 +80,7 @@ public class Demo06ClassFacesExaminations {
         short s2 = 23;
         int i1 = b1 + b2;
         //如果想强制为byte需要进行强制转换
-        byte i11 = (byte)(b1 + b2);
+        byte i11 = (byte) (b1 + b2);
         int i2 = s1 + s2;
         System.out.println(i1);
         System.out.println(i2);
