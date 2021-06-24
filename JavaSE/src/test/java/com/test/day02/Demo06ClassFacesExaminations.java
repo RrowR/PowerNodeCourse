@@ -3,6 +3,31 @@ package com.test.day02;
 import org.junit.jupiter.api.Test;
 
 public class Demo06ClassFacesExaminations {
+
+    @Test
+    public void test04(){
+        /**
+         * 需求，求出两数相加的整数部分
+         * 计算的时候一定要注意：
+         *      明确在强制类型转换的时候，可能会丢失精度，明确取值范围
+         */
+        float a = 3.75F;
+        float b = 2.53F;
+        int c = (int)(a+b);
+        int d = (int)a + (int)b;
+        System.out.println(c);
+        System.out.println(d);
+    }
+
+    @Test
+    public void test03(){
+        /**
+         * 求出2个小数之和，并且结果只保留小数部分
+          */
+        int a = (int)(3.14 + 2.46);
+        System.out.println(a);
+    }
+
     @Test
     public void test02(){
         /**
