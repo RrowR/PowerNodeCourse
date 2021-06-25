@@ -1,4 +1,4 @@
-package Day02;
+package day02;
 
 /**
  * 用不同的变量名进行接收

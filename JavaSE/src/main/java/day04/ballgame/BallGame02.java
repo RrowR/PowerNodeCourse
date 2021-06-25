@@ -1,4 +1,4 @@
-package Day04;
+package day04.ballgame;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;

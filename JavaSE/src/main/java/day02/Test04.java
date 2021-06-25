@@ -1,4 +1,4 @@
-package Day02;
+package day02;
 
 public class Test04 {
     private static double currentDeposit = 0.0035;
