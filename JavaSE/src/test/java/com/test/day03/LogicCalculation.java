@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
  *  结果是一样的，但是&&和||的效率高
  */
 public class LogicCalculation {
-
     @Test
     public void yihuo(){
         /**
