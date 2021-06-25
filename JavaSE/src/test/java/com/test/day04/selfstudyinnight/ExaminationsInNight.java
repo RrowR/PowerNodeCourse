@@ -111,11 +111,11 @@ public class ExaminationsInNight {
         } else {
             //获取当前时间的下一秒
             second++;
-            /*如果second为60秒，那么就将这个秒钟重置为0，并且让minute+1*/
+/*//            如果second为60秒，那么就将这个秒钟重置为0，并且让minute+1
             if (60 == second) {
                 second = 0;
                 minute++;
-                /*如果minute为60，那么就将这个minute重置为0，并且让hour+1*/
+//                如果minute为60，那么就将这个minute重置为0，并且让hour+1
                 if (60 == minute) {
                     minute = 0;
                     hour++;
@@ -123,7 +123,20 @@ public class ExaminationsInNight {
                         hour = 0;
                     }
                 }
+            }*/
+            //这里使不使用嵌套都是可以的
+            if (60 == second){
+                second = 0;
+                minute++;
             }
+            if (60 == minute){
+                minute = 0;
+                hour++;
+            }
+            if (24 == hour){
+                hour = 0;
+            }
+
             String hourStr = "" + hour;
             if (hour < 10) {
                 hourStr = "0" + hour;
