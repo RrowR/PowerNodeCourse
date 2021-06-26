@@ -51,29 +51,21 @@ public class ExaminationsInNight {
          *      工作不满3年（不包含）：发月薪的2倍月薪年终奖；如果月薪大于15000, 那么就是发3倍月薪年终奖。
          *      工作满3年（包含）以上：发月薪的3倍月薪年终奖；如果月薪大于20000, 那么就是发4倍月薪年终奖。
          */
+        double sum;
         Scanner input = new Scanner(System.in);
         System.out.println("请输入您的薪水:");
         double salaries = input.nextDouble();
         System.out.println("请输入工作年限:");
         Double worktime = input.nextDouble();
         if (worktime >= 3.0) {
-            if (salaries > 20000.0) {
-                System.out.println("您的年终奖为" + salaries * 4);
-            } else {
-                System.out.println("您的年终奖为" + salaries * 3);
-            }
+            sum = salaries > 20000.0 ? salaries * 4 : salaries * 3;
+            System.out.println("您的年终奖为:"+sum);
         } else if (worktime >= 1.0) {
-            if (salaries > 15000.0) {
-                System.out.println("您的年终奖为" + salaries * 3);
-            } else {
-                System.out.println("您的年终奖为" + salaries * 2);
-            }
+            sum = salaries > 15000.0 ? salaries * 3 : salaries * 2;
+            System.out.println("您的年终奖为:"+sum);
         } else {
-            if (salaries > 8000) {
-                System.out.println("您的年终奖为" + salaries * 1.2);
-            } else {
-                System.out.println("您的年终奖为" + salaries * 1);
-            }
+                sum = salaries > 8000.0 ? salaries * 1.2 : salaries * 1;
+            System.out.println("您的年终奖为:"+sum);
         }
     }
 
@@ -104,14 +96,15 @@ public class ExaminationsInNight {
         int hour = input.nextInt();
         System.out.print("请输入分钟:");
         int minute = input.nextInt();
-        System.out.println("请输入秒钟:");
+        System.out.print("请输入秒钟:");
         int second = input.nextInt();
         if (hour > 24 || hour < 0 || minute > 60 || minute < 0 || second > 60 || second < 0) {
             System.out.println("您输入的时间有误");
         } else {
             //获取当前时间的下一秒
             second++;
-/*//            如果second为60秒，那么就将这个秒钟重置为0，并且让minute+1
+//            如果second为60秒，那么就将这个秒钟重置为0，并且让minute+1
+            //这里使用嵌套循环也会出现一个问题，当输入的时间是11:60:24  则分钟不会进行进位，但是这种情况一般是不存在的，别人不会这样输入，一定是从秒钟开始进位
             if (60 == second) {
                 second = 0;
                 minute++;
@@ -123,8 +116,8 @@ public class ExaminationsInNight {
                         hour = 0;
                     }
                 }
-            }*/
-            //这里使不使用嵌套都是可以的
+            }
+/*            //这里使不使用嵌套都是可以的，但是这样效率会变低，因为每次都会进行判断是否为60，没进入进位就不需要进入判断
             if (60 == second){
                 second = 0;
                 minute++;
@@ -135,20 +128,12 @@ public class ExaminationsInNight {
             }
             if (24 == hour){
                 hour = 0;
-            }
+            }*/
 
-            String hourStr = "" + hour;
-            if (hour < 10) {
-                hourStr = "0" + hour;
-            }
-            String minuteStr = "" + minute;
-            if (minute < 10) {
-                minuteStr = "0" + minute;
-            }
-            String secondStr = "" + second;
-            if (second < 10) {
-                secondStr = "0" + second;
-            }
+            System.out.println();
+            String hourStr = hour >= 10 ? "" + hour : "0" + hour;
+            String minuteStr = minute >= 10 ? "" + minute : "0" + minute;
+            String secondStr = second >= 10 ? "" + second : "0" + second;
             System.out.println("时间为：" + hourStr + "时" + minuteStr + "分" + secondStr + "秒");
         }
     }
