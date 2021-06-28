@@ -6,7 +6,28 @@ public class Demo01 {
     public static void main(String[] args) {
 //        method01();
 //        method02();
-        method03();
+//        method03();
+        method04();
+    }
+
+    private static void method04() {
+        // 输入一个正整数，然后把该正整数转化为二进制,使用int来进行输出
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入一个数");
+        int number = input.nextInt();
+        int a = 0;
+        while (true){
+            if (number == 0){
+                break;
+            }else {
+                int i = number % 2;
+                System.out.println(i);
+                number /= 2;
+                a += i;
+                i = i * 10;
+            }
+        }
+        System.out.println(a);
     }
 
     private static void method03() {
