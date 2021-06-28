@@ -1,7 +1,13 @@
 package com.test.day05;
 
+import org.junit.jupiter.api.Test;
+
 public class SelfTest {
-    public static void main(String[] args) {
+    @Test
+    public void test01(){
+        /**
+         * 获取各个位数
+         */
         int a = 9876;
         //求个位数
         int b = a % 10;
@@ -15,5 +21,11 @@ public class SelfTest {
         //求千位数
         int e = a / 1000 % 10;
         System.out.println(e);
+    }
+
+    @Test
+    public void test02(){
+        int random = (int)(Math.random()*31) + 30;
+        System.out.println(random);
     }
 }

@@ -83,7 +83,7 @@ public class DemoTest01 {
                 if (j % 5 == 0 && j % 3 == 0){
                     System.out.print(j+"\t");
                     k++;
-                    /*这里的if一定不能写在上一个if循环的外面，如果你这样写，只要k被5整除，for的循环中的k会一直回车
+                    /*这里的if一定不能写在上一个if循环的外面，如果你这样写，只要k被5整除，for的循环中的k会一直回车   
                     *   因为每 15个数 k+1
                     * */
                     if (k % 5 == 0){
@@ -121,13 +121,17 @@ public class DemoTest01 {
     @Test
     public void test07(){
         //编程找出四位整数abcd中满足下述关系的数，(ab+cd)*(ab+cd)=abcd（例如：(20 + 25) * (20 + 25)= 2025）。
+        /*
+        * 可以将千位百位和十位个位看作一个整体：
+        *       2025 / 100       2025 % 100
+        * */
         Scanner input = new Scanner(System.in);
         System.out.println("请输入一个1000~9999之间的数");
         int number = input.nextInt();
         if (number < 1000 || number > 9999){
             System.out.println("您输入的数不符合要求！！！");
         }else {
-            int i = number;
+            /*int i = number;
             for (int j = 1000; j < i; j++) {
                 //求个位数
                 int b = j % 10;
@@ -140,7 +144,30 @@ public class DemoTest01 {
                 if (j == ((e*10 + d)+(c*10 + b))*((e*10 + d)+(c*10 + b))){
                     System.out.println("满足要求的数有："+j);
                 }
-            }
+            }*/
+            int i = number;
+            for (int j = 1000; j < i; j++) {
+            // 求千位百位
+            int a = j / 100;
+            // 求百位十位
+            int b = j % 100;
+            if ((a + b)*(a + b) == j){
+            System.out.println("满足要求的数有："+j);
+        }
+    }
+}
+    }
+
+@Test
+public void test08(){
+        // 输入一个数，判断是奇数还是偶数
+        Scanner input = new Scanner(System.in);
+        System.out.print("请输入一个数：");
+        int i = input.nextInt();
+        if (i % 2 == 0){
+            System.out.println("您输入的数是偶数");
+        }else {
+            System.out.println("您输入的数是奇数");
         }
     }
 }
