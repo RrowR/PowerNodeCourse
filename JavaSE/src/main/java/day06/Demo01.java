@@ -15,19 +15,21 @@ public class Demo01 {
         Scanner input = new Scanner(System.in);
         System.out.println("请输入一个数");
         int number = input.nextInt();
-        int a = 0;
+        int bit = 0;
+        int count = 0;
         while (true){
-            if (number == 0){
+            if (number == 0){       // 下面的number会一直 / 2 直到等于0后 break 退出循环
                 break;
             }else {
                 int i = number % 2;
                 System.out.println(i);
                 number /= 2;
-                a += i;
-                i = i * 10;
+                int pow = (int) Math.pow(10, count);
+                count++;
+                bit += i * pow;
             }
         }
-        System.out.println(a);
+        System.out.println("使用int接收转二进制的值为:"+bit);
     }
 
     private static void method03() {
