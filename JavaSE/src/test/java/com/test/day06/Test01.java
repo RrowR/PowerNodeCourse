@@ -26,4 +26,11 @@ public class Test01 {
         int b = ++a;
         System.out.println(b);
     }
+
+    @Test
+    public void test04(){
+        // 测试开次方的方法
+        double pow = Math.pow(10, 2);
+        System.out.println(pow);
+    }
 }
