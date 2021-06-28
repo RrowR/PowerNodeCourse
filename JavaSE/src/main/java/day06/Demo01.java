@@ -5,7 +5,28 @@ import java.util.Scanner;
 public class Demo01 {
     public static void main(String[] args) {
 //        method01();
-        method02();
+//        method02();
+        method03();
+    }
+
+    private static void method03() {
+        // 输入一个正整数，然后把该正整数转化为二进制
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入一个数");
+        int number = input.nextInt();
+        String str = "";
+        while (true){
+            if (number == 0){
+                break;
+            }else {
+                int i = number % 2;
+                System.out.println(i);
+                number /= 2;
+                // 注意 int 类型要写在左边才是倒序
+                str = i + str;
+            }
+        }
+        System.out.println(str);
     }
 
     // [难]输入一个任意整数，判断它是否为质数，如果是质数就输出“是质数”，否则输出‘不是质数’。质数：除了1和它本身之外,不能被其他数整除的正整数称质数。(质数也称之为素数)
