@@ -10,7 +10,7 @@ import java.util.Scanner;
  *  switch和if的区别：
  *      1.switch适用于固定值匹配，if适用于条件判断来是否执行代码块
  *      2.switch不支持boolean、浮点类型，且 case 里的常量必须是final的
- *      3.来进行固定值匹配的时候，必须使用switch
+ *      3.来进行固定值匹配的时候，必须使用switch    
  */
 public class Demo01Switch {
     public static void main(String[] args) {
