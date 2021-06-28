@@ -1,5 +1,6 @@
 package com.test.day05;
 
+import com.sun.tracing.dtrace.ArgsAttributes;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -181,7 +182,113 @@ public class DemoTest01 {
      */
     @Test
     public void test09() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入您的成绩");
+        double d = input.nextDouble();
+        int score = (int) d / 10;
+        switch (score){
+            case 10 :
+            case 9  :
+                System.out.println("您的成绩为A");
+                break;
+            case 8  :
+                System.out.println("您的成绩为B");
+                break;
+            case 7  :
+                System.out.println("您的成绩为C");
+                break;
+            case 6  :
+                System.out.println("您的成绩为D");
+                break;
+            default:
+                System.out.println("您的成绩为E");
+                break;
+        }
+    }
 
+    @Test
+    public void test10() {
+        // 根据月份，输出对应的季节，并输出至少两个描述该季节的成语和活动
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入月份");
+        int month = input.nextInt();
+        switch (month) {
+            case 12:
+            case 1:
+            case 2:
+                System.out.println("冬季");
+                break;
+            case 3:
+            case 4:
+            case 5:
+                System.out.println("春季");
+                break;
+            case 6:
+            case 7:
+            case 8:
+                System.out.println("夏季");
+                break;
+            case 9:
+            case 10:
+            case 11:
+                System.out.println("秋季");
+                break;
+        }
+    }
+
+    @Test
+    public void test11(){
+        // 判断一个数是否是素数。
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入一个数");
+        int number = input.nextInt();
+        boolean flag = true;
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0){
+                flag = false;
+            }
+        }
+        if (flag == true){
+            System.out.println("这个数是一个素数");
+        }else {
+            System.out.println("这不是一个素数");
+        }
+    }
+
+    @Test
+    public void test12(){
+        // 从键盘输入一个班5个学生的分数，求和并输出。
+        Scanner input = new Scanner(System.in);
+        int sum = 0;
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("请输入学生"+i+"的成绩:");
+            double score = input.nextDouble();
+            sum += score;
+        }
+        System.out.println("总分为："+sum);
+    }
+
+    @Test
+    public void test13(){
+        // 输入一个正整数，然后把该正整数转化为二进制,使用int来进行输出
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入一个数");
+        int number = input.nextInt();
+        int bit = 0;
+        int count = 0;
+        while (true){
+            if (number == 0){       // 下面的number会一直 / 2 直到等于0后 break 退出循环
+                break;
+            }else {
+                int i = number % 2;
+                System.out.println(i);
+                number /= 2;
+                int pow = (int) Math.pow(10, count);
+                count++;
+                bit += i * pow;
+            }
+        }
+        System.out.println("使用int接收转二进制的值为:"+bit);
     }
 
 
