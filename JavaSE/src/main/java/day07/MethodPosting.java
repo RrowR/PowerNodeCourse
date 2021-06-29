@@ -3,7 +3,12 @@ package day07;
 
 public class MethodPosting {
     public static void main(String[] args) {
-        System.out.println(toBineryString(5));
+//        System.out.println(toBineryString(5));
+        System.out.println(addTwoNum(2, 3));
+    }
+
+    private static int addTwoNum(int a,int b) {
+        return a + b;
     }
 
     /**
