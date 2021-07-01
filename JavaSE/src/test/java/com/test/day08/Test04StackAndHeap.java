@@ -14,7 +14,6 @@ public class Test04StackAndHeap {
         System.out.println(arr1[2]); // 输出结果为？？？报错
         System.out.println(arr2[2]); // 输出结果为？？？3
     }
-
     @Test
     public void test02(){
         int[] arr1 = {1, 2, 3, 4, 5};
