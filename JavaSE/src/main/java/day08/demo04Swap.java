@@ -1,5 +1,8 @@
 package day08;
 
+/**
+ * 基本数据类型交换2个元素，是在栈内存中进行交换
+ */
 public class demo04Swap {
     public static void main(String[] args) {
         int a = 1;
