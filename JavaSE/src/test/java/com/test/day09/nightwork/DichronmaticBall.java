@@ -26,6 +26,8 @@ public class DichronmaticBall {
         int[] luckeyBall = {7, 10, 13, 11, 15, 12, 6};
         int red = 0;
         int blue = 0;
+        int cost;
+        int oneTicketCost = 2;
         boolean flag = false;
         do {
             System.out.println("****欢迎来到双色球系统****");
@@ -53,6 +55,8 @@ public class DichronmaticBall {
                             doubleColorBallContain[i] = blue;
                         }
                     }
+                    cost = ticketsCount * oneTicketCost;
+                    System.out.println("您此次的彩票费用为："+ cost + "元");
                     // 选球已经完成的标志
                     flag = true;
                     break;
@@ -66,7 +70,8 @@ public class DichronmaticBall {
                             } else {
                                 blue = resultOfTwoColorBall[i];
                             }
-                            int winNum = red + blue;
+                        }
+                        int winNum = red + blue;
                             switch (winNum) {
                                 case 7:
                                     System.out.println("恭喜您获得一等奖");
@@ -107,7 +112,6 @@ public class DichronmaticBall {
                                     System.out.println("很遗憾您没有中奖");
                                     break;
                             }
-                        }
                     } else {
                         System.out.println("你选的号码还没有完成，请回去重新输入");
                         break;
@@ -131,16 +135,15 @@ public class DichronmaticBall {
         int redMatch = 0;
         int buleMatch = 0;
         int i = 0;
-        int j = 0;
         for (; i < A.length - 1; i++) {
-            for (; j < B.length - 1; j++) {
+            for (int j = 0; j < B.length - 1; j++) {
                 if (A[i] == B[j]) {
                     redMatch++;
                 }
             }
         }
         twoMatchResult[0] = redMatch;
-        if (A[i] == B[j]) {
+        if (A[i] == B[i]) {
             buleMatch++;
         }
         twoMatchResult[1] = buleMatch;
