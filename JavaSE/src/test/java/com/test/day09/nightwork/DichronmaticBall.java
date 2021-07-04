@@ -1,5 +1,7 @@
 package com.test.day09.nightwork;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -23,7 +25,7 @@ public class DichronmaticBall {
         int ticketsCount;
         // 定义存储球的数组（存储7个int类型）
         int[] doubleColorBallContain = new int[7];
-        int[] luckeyBall = {7, 10, 13, 11, 15, 12, 6};
+        int[] luckeyBall = getLuckyBall();
         int red = 0;
         int blue = 0;
         int cost;
@@ -148,5 +150,29 @@ public class DichronmaticBall {
         }
         twoMatchResult[1] = buleMatch;
         return twoMatchResult;
+    }
+
+    public static int[] getLuckyBall(){
+        // 红色球号码区由1-33共33个号码组成，蓝色球号码区由1-16共16个号码组成。投注时选择6个红球号码和1个蓝球号码组成一注进行单式投注，每注金额2元。
+        int[] arr = new int[7];
+        double random = 0;
+        HashSet<Integer> redSet = new HashSet<>();
+        // 这里要去重，使用hashset吧
+        while (true){
+            random = Math.random();
+            redSet.add((int)((random*33)+1));
+            if (redSet.size() == 6){
+                break;
+            }
+        }
+        Iterator<Integer> redIterator = redSet.iterator();
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (redIterator.hasNext()){
+                arr[i] = redIterator.next();
+            }
+        }
+        int blue = (int) ((random * 16) + 1);
+        arr[arr.length - 1] = blue;
+        return arr;
     }
 }
