@@ -58,6 +58,7 @@ public class DichronmaticBall {
                         }
                     }
                     cost = ticketsCount * oneTicketCost;
+                    System.out.println("正在计算费用，请稍等!!!");
                     Thread.sleep(2000);
                     System.out.println("您此次的彩票费用为："+ cost + "元");
                     // 选球已经完成的标志
