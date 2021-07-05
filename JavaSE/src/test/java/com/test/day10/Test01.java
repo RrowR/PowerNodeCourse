@@ -2,6 +2,10 @@ package com.test.day10;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+
 public class Test01 {
     @Test
     public void method01(){
@@ -27,6 +31,30 @@ public class Test01 {
     }
 
     public static void variable(int ...a){
+
+    }
+
+    @Test
+    public void test02(){
+        int i = (int) ((Math.random() * 33) + 1);
+        System.out.println(i);
+    }
+
+    @Test
+    public void test03(){
+        HashSet<String> set = new HashSet<>();
+        String[] arr = {"a","b","c","d","e"};
+        for (String s : arr) {
+            set.add(s);
+            if (set.size() == 3){
+                break;
+            }
+        }
+
+        Iterator<String> iterator = set.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
 
     }
 }

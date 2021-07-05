@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 
 public class DichronmaticBall {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner input = new Scanner(System.in);
         int ticketsCount;
         // 定义存储球的数组（存储7个int类型）
@@ -58,6 +58,7 @@ public class DichronmaticBall {
                         }
                     }
                     cost = ticketsCount * oneTicketCost;
+                    Thread.sleep(2000);
                     System.out.println("您此次的彩票费用为："+ cost + "元");
                     // 选球已经完成的标志
                     flag = true;
@@ -74,46 +75,46 @@ public class DichronmaticBall {
                             }
                         }
                         int winNum = red + blue;
-                            switch (winNum) {
-                                case 7:
-                                    System.out.println("恭喜您获得一等奖");
+                        switch (winNum) {
+                            case 7:
+                                System.out.println("恭喜您获得一等奖");
+                                break;
+                            case 6:
+                                if (red == 6) {
+                                    System.out.println("恭喜您获得二等奖");
                                     break;
-                                case 6:
-                                    if (red == 6) {
-                                        System.out.println("恭喜您获得二等奖");
-                                        break;
-                                    } else {
-                                        System.out.println("恭喜您获得三等奖");
-                                        break;
-                                    }
-                                case 5:
-                                    if (red == 5 || (red == 4 && blue == 1)) {
-                                        System.out.println("恭喜您获得四等奖");
-                                        break;
-                                    } else {
-                                        System.out.println("很遗憾，您没有中奖");
-                                        break;
-                                    }
-                                case 4:
-                                    if (red == 4 || (red == 3 && blue == 1)) {
-                                        System.out.println("恭喜您获得五等奖");
-                                        break;
-                                    } else {
-                                        System.out.println("很遗憾，您没有中奖");
-                                        break;
-                                    }
-                                case 1:
-                                    if (blue == 1) {
-                                        System.out.println("恭喜您获得六等奖");
-                                        break;
-                                    } else {
-                                        System.out.println("很遗憾，您没有中奖");
-                                        break;
-                                    }
-                                default:
-                                    System.out.println("很遗憾您没有中奖");
+                                } else {
+                                    System.out.println("恭喜您获得三等奖");
                                     break;
-                            }
+                                }
+                            case 5:
+                                if (red == 5 || (red == 4 && blue == 1)) {
+                                    System.out.println("恭喜您获得四等奖");
+                                    break;
+                                } else {
+                                    System.out.println("很遗憾，您没有中奖");
+                                    break;
+                                }
+                            case 4:
+                                if (red == 4 || (red == 3 && blue == 1)) {
+                                    System.out.println("恭喜您获得五等奖");
+                                    break;
+                                } else {
+                                    System.out.println("很遗憾，您没有中奖");
+                                    break;
+                                }
+                            case 1:
+                                if (blue == 1) {
+                                    System.out.println("恭喜您获得六等奖");
+                                    break;
+                                } else {
+                                    System.out.println("很遗憾，您没有中奖");
+                                    break;
+                                }
+                            default:
+                                System.out.println("很遗憾您没有中奖");
+                                break;
+                        }
                     } else {
                         System.out.println("你选的号码还没有完成，请回去重新输入");
                         break;
