@@ -1,7 +1,11 @@
 package day11;
 
+/**
+ *
+ */
 public class Person {
     String name;
+
     int age;
     double score;
     void eat(){
