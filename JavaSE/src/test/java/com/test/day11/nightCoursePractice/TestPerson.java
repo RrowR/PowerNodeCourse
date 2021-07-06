@@ -14,7 +14,7 @@ public class TestPerson {
         int gap = person.weight - (person.high - 105);
         if (gap > 10){
             System.out.println("您的体重偏胖");
-        }else if (gap < 10){
+        }else if (gap < -10){
             System.out.println("您的体重偏瘦");
         }else {
             System.out.println("您的体重正常");
