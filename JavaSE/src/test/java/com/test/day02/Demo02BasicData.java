@@ -1,6 +1,5 @@
 package com.test.day02;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.junit.jupiter.api.Test;
 
 /**
