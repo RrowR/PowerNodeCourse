@@ -5,5 +5,5 @@ package day14.com.study;
  * 子类返回值类型 <= 父类
  */
 public class A {
-    protected void write(){}
+    protected A write(){return new A();}
 }

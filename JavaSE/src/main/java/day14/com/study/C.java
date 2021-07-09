@@ -1,10 +1,8 @@
 package day14.com.study;
 
-public class B extends A{
-//    void write(){}
-
+public class C extends B {
     @Override
     protected A write() {
-        return new B();
+        return new C();
     }
 }
