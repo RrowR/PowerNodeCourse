@@ -1,7 +1,6 @@
 package com.test.day12.project03;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Flower {
     private String Number;
@@ -20,6 +19,9 @@ public class Flower {
         this.date = date;
         this.soldName = soldName;
         this.remark = remark;
+    }
+
+    public Flower() {
     }
 
     public String getNumber() {
@@ -79,8 +81,5 @@ public class Flower {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public Flower() {
     }
 }
