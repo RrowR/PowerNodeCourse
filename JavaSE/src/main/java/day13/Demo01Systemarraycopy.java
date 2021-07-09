@@ -12,7 +12,7 @@ public class Demo01Systemarraycopy {
     public static void main(String[] args) {
 //        copyPosition();
         moveBackElement();
-        moveForwardElement();
+//        moveForwardElement();
     }
 
     private static void moveForwardElement() {
