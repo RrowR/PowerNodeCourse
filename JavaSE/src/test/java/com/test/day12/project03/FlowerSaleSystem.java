@@ -1,14 +1,12 @@
 package com.test.day12.project03;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Scanner;
+import com.test.day12.project03.Entity.Flower;
+
+import java.util.*;
 
 public class FlowerSaleSystem {
+    static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
         do {
             System.out.println("=====================欢迎光临\"七彩鲜花\"销售管理系统======================");
             System.out.println("1.查询销售订单");
@@ -20,13 +18,11 @@ public class FlowerSaleSystem {
             ArrayList<Flower> flowers = addFlowers();
             switch (num){
                 case 1:
-                    System.out.println("编号\t鲜花名称\t销售数量\t价格\t销售日期\t销售员\t备注");
-                    for (Flower flower : flowers) {
-                        System.out.println(flower.getNumber()+"\t"+flower.getName()+"\t"+flower.getSaleCount()+"\t"+flower.getPrice()+"\t"+flower.getDate()+"\t"+flower.getName()+"\t"+flower.getRemark());
-                    }
+                    System.out.println("编号\t\t鲜花名称\t\t销售数量\t\t价格\t\t销售日期\t\t销售员\t\t备注");
+                    getFlower(flowers);
                     break;
                 case 2:
-
+                    alterFlower(flowers);
                     break;
                 case 3:
                     break;
@@ -36,8 +32,25 @@ public class FlowerSaleSystem {
         }while (true);
     }
 
-    private static void getAllFlowers(Flower[] arr) {
+    private static void alterFlower(ArrayList<Flower> flowers) {
+        System.out.println("请输入销售编号：");
+        String number = input.next();
+        for (int i = 0; i < flowers.size(); i++) {
+            if (flowers.get(i).getNumber().equals(number)){
+                System.out.println("您修改的详细订单如下:");
+                System.out.println();
+                System.out.println("编号\t\t鲜花名称\t\t销售数量\t\t价格\t\t销售日期\t\t销售员\t\t备注");
+                Flower flower = flowers.get(i);
+                System.out.println();
+            }
+        }
+    }
 
+
+    private static void getFlower(ArrayList<Flower> flowers) {
+        for (Flower flower : flowers) {
+            System.out.println(flower.getNumber()+"\t\t"+flower.getName()+"\t\t"+flower.getSaleCount()+"\t\t"+flower.getPrice()+"\t\t"+flower.getDate()+"\t\t"+flower.getName()+"\t\t"+flower.getRemark());
+        }
     }
 
     public static ArrayList<Flower> addFlowers(){
