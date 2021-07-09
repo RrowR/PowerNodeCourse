@@ -18,6 +18,6 @@ package com.test.day13.nightCourse;
  */
 public class Demo01ArrayList {
     public static void main(String[] args) {
-
+        ArrayByMySelf array = new ArrayByMySelf(5);
     }
 }

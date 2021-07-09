@@ -1,6 +1,5 @@
 package com.test.day05;
 
-import com.sun.tracing.dtrace.ArgsAttributes;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;

@@ -18,13 +18,14 @@ package com.test.day13.nightCourse;
  */
 public class ArrayByMySelf {
     public String[] elementData;
-    public int size;
+    public int size = 0;
 
     /*
         不设置长度时，默认长度为10
      */
     public ArrayByMySelf() {
-       this.elementData = new String[10];
+       int len = 10;
+       this.elementData = new String[len];
     }
 
     /*
@@ -34,6 +35,19 @@ public class ArrayByMySelf {
         this.elementData = new String[cap];
     }
 
+    /*
+        根据初始化的size添加元素到最后一个位置，并且让size+1
+     */
+    public void add(String element){
+        elementData[this.size] = element;
+        this.size++;
+    }
+
+    public void add(int index, String element){
+        if (index > size){
+
+        }
+    }
 
 
 }
