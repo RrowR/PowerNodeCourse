@@ -47,6 +47,7 @@ public class ArrayByMySelf {
                 // 扩容
                 int capacity = size + 1;
                 String[] newArr = new String[capacity];
+                System.arraycopy(elementData,0,newArr,0,elementData.length);
                 elementData = newArr;
                 newArr = null;
             }

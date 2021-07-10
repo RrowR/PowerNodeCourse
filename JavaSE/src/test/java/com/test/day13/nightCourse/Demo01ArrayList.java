@@ -27,24 +27,10 @@ public class Demo01ArrayList {
         array.add("3");
         array.add("4");
         array.add("5");
-        System.out.println(Arrays.toString(array.elementData));
-        array.add(8,"9");
+        array.add("6");
         System.out.println(Arrays.toString(array.elementData));
         System.out.println(array.size);
-        array.add(2,"7");
-        System.out.println(array.size);
-        System.out.println(Arrays.toString(array.elementData));
-        array.add(3,"9");
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println("size值"+array.size);
-        array.add("213");
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println("size值"+array.size);
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println(array.get(5));
-        System.out.println("size值"+array.size);
-        System.out.println("-----------------------------------------------------------------------------------");
-        array.remove(2);
+        array.add(12,"11");
         System.out.println(Arrays.toString(array.elementData));
         System.out.println(array.size);
 
