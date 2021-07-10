@@ -21,6 +21,15 @@ import java.util.Arrays;
  */
 public class Demo01ArrayList {
     public static void main(String[] args) {
+        ArrayByMySelf array = new ArrayByMySelf();
+        array.add("1");
+        array.add("2");
+        array.add("3");
+        array.add("4");
+        array.add("5");
+        array.add("6");
+        System.out.println(Arrays.toString(array.getElementData()));
+        System.out.println(array.getSize());
 
     }
 }

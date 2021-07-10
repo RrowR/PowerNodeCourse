@@ -17,8 +17,9 @@ package com.test.day13.nightCourse;
  *      public void remove(int index) { ... }  // 根据索引删除元素
  */
 public class ArrayByMySelf {
+    // 这2个成员变量私有了，目的是为了让
     private String[] elementData;
-    public int size = 0;
+    private int size;
 
     /*
         不设置长度时，默认长度为10
@@ -28,9 +29,17 @@ public class ArrayByMySelf {
         this.elementData = new String[len];
     }
 
+    public String[] getElementData() {
+        return elementData;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     /*
-        设置指定长度的字符串数组
-     */
+            设置指定长度的字符串数组
+         */
     public ArrayByMySelf(int cap) {
         this.elementData = new String[cap];
     }
