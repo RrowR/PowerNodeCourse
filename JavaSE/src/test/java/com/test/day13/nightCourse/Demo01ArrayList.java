@@ -1,5 +1,8 @@
 package com.test.day13.nightCourse;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
     模拟ArrayList类的实现
 * 分析：ArrayList就是一个集合，其底层维护者一个数组，该数组用于存储集合中的数据，也就是ArrayList对数组做了一层封装。
@@ -19,5 +22,31 @@ package com.test.day13.nightCourse;
 public class Demo01ArrayList {
     public static void main(String[] args) {
         ArrayByMySelf array = new ArrayByMySelf(5);
+        array.add("1");
+        array.add("2");
+        array.add("3");
+        array.add("4");
+        array.add("5");
+        System.out.println(Arrays.toString(array.elementData));
+        array.add(8,"9");
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println(array.size);
+        array.add(2,"7");
+        System.out.println(array.size);
+        System.out.println(Arrays.toString(array.elementData));
+        array.add(3,"9");
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println("size值"+array.size);
+        array.add("213");
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println("size值"+array.size);
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(array.get(5));
+        System.out.println("size值"+array.size);
+        System.out.println("-----------------------------------------------------------------------------------");
+        array.remove(2);
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println(array.size);
+
     }
 }

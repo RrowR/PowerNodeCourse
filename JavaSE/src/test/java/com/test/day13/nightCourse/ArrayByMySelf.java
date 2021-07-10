@@ -24,8 +24,8 @@ public class ArrayByMySelf {
         不设置长度时，默认长度为10
      */
     public ArrayByMySelf() {
-       int len = 10;
-       this.elementData = new String[len];
+        int len = 10;
+        this.elementData = new String[len];
     }
 
     /*
@@ -38,14 +38,71 @@ public class ArrayByMySelf {
     /*
         根据初始化的size添加元素到最后一个位置，并且让size+1
      */
-    public void add(String element){
-        elementData[this.size] = element;
-        this.size++;
+    public void add(String element) {
+        while (true) {
+            if (size < elementData.length) {
+                elementData[size++] = element;
+                break;
+            } else {
+                // 扩容
+                int capacity = size + 1;
+                String[] newArr = new String[capacity];
+                elementData = newArr;
+                newArr = null;
+            }
+        }
     }
 
-    public void add(int index, String element){
-        if (index > size){
+    public void add(int index, String element) {
+        while (true) {
+            if (size < elementData.length && index < elementData.length) {
+                if (elementData[index] == null) {
+                    elementData[index] = element;
+                } else {
+                    System.arraycopy(elementData, index, elementData, index + 1, size - index);
+                    elementData[index] = element;
+                }
+                size++;
+                break;
+            } else {
+                if (index >= elementData.length){
+                    String[] newArr = new String[index + 1];
+                    System.arraycopy(elementData, 0, newArr, 0, elementData.length);
+                    elementData = newArr;
+                    newArr = null;
+                }else if (size >= elementData.length){
+                    String[] newArr = new String[size + 1];
+                    System.arraycopy(elementData, 0, newArr, 0, elementData.length);
+                    elementData = newArr;
+                    newArr = null;
+                }
+            }
+        }
+    }
 
+    public String get(int index) {
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("不在范围内");
+        } else {
+            if (elementData[index] == null) {
+                return "您查找的数不存在";
+            }
+            return elementData[index];
+        }
+    }
+
+    public void remove(int index) {
+        if (index >= elementData.length){
+            throw  new IndexOutOfBoundsException("不在范围内");
+        }else {
+            index++;
+            String[] newArr = new String[size - 1];
+            System.arraycopy(elementData,index,elementData,index - 1,elementData.length - index);
+            elementData[elementData.length - 1] = null;
+            System.arraycopy(elementData,0,newArr,0,elementData.length - 1);
+            elementData = newArr;
+            newArr = null;
+            size--;
         }
     }
 
