@@ -109,13 +109,22 @@ public class ArrayByMySelf {
         if (index >= elementData.length - 1){
             throw new IndexOutOfBoundsException("不在范围内");
         }else {
-            String[] newArr = new String[elementData.length - 1];
-            System.arraycopy(elementData,index + 1,elementData,index,elementData.length - index - 1);
-            elementData[elementData.length - 1] = null;
-            System.arraycopy(elementData,0,newArr,0,elementData.length - 1);
-            elementData = newArr;
-            newArr = null;
-            size--;
+            if (elementData[index] == null){
+                String[] newArr = new String[elementData.length - 1];
+                System.arraycopy(elementData,index + 1,elementData,index,elementData.length - index - 1);
+                elementData[elementData.length - 1] = null;
+                System.arraycopy(elementData,0,newArr,0,elementData.length - 1);
+                elementData = newArr;
+                newArr = null;
+            }else {
+                String[] newArr = new String[elementData.length - 1];
+                System.arraycopy(elementData,index + 1,elementData,index,elementData.length - index - 1);
+                elementData[elementData.length - 1] = null;
+                System.arraycopy(elementData,0,newArr,0,elementData.length - 1);
+                elementData = newArr;
+                newArr = null;
+                size--;
+            }
         }
     }
 
