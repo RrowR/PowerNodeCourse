@@ -21,29 +21,6 @@ import java.util.Arrays;
  */
 public class Demo01ArrayList {
     public static void main(String[] args) {
-        ArrayByMySelf array = new ArrayByMySelf(5);
-        array.add("1");
-        array.add("2");
-        array.add("3");
-        array.add("4");
-        array.add("5");
-        array.add("6");
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println(array.size);
-        array.remove(2);
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println(array.size);
-        array.remove(2);
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println(array.size);
-        array.add("kkk");
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println(array.size);
-        array.add("eee",22);
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println(array.size);
-        array.remove(10);
-        System.out.println(Arrays.toString(array.elementData));
-        System.out.println(array.size);
+
     }
 }

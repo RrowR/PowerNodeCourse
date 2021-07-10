@@ -17,7 +17,7 @@ package com.test.day13.nightCourse;
  *      public void remove(int index) { ... }  // 根据索引删除元素
  */
 public class ArrayByMySelf {
-    public String[] elementData;
+    private String[] elementData;
     public int size = 0;
 
     /*
