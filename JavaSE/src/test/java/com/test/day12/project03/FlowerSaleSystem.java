@@ -2,11 +2,15 @@ package com.test.day12.project03;
 
 import com.test.day12.project03.Entity.Flower;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FlowerSaleSystem {
     static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
+        // 初始化鲜花数组
+        ArrayList<Flower> flowers = addFlowers();
         do {
             System.out.println("=====================欢迎光临\"七彩鲜花\"销售管理系统======================");
             System.out.println("1.查询销售订单");
@@ -15,14 +19,18 @@ public class FlowerSaleSystem {
             System.out.println("4.系统退出");
             // 输入的数匹配switch/case
             int num = input.nextInt();
-            ArrayList<Flower> flowers = addFlowers();
             switch (num){
                 case 1:
-                    System.out.println("编号\t\t鲜花名称\t\t销售数量\t\t价格\t\t销售日期\t\t销售员\t\t备注");
-                    getFlower(flowers);
+                    System.out.println("编号"+"\t\t"+"鲜花名称"+"\t\t"+"销售数量"+"\t\t"+"价格"+"\t\t"+"销售日期"+"\t\t"+"销售员"+"\t\t"+"备注");
+                    findAllFlowers(flowers);
                     break;
                 case 2:
                     alterFlower(flowers);
+                    System.out.println("您确定要修改吗y/n");
+                    String next = input.next();
+                    if (next.equals("y")){
+
+                    }
                     break;
                 case 3:
                     break;
@@ -32,24 +40,53 @@ public class FlowerSaleSystem {
         }while (true);
     }
 
-    private static void alterFlower(ArrayList<Flower> flowers) {
+    private static ArrayList<Flower> alterFlower(ArrayList<Flower> flowers) throws ParseException {
         System.out.println("请输入销售编号：");
         String number = input.next();
-        for (int i = 0; i < flowers.size(); i++) {
-            if (flowers.get(i).getNumber().equals(number)){
-                System.out.println("您修改的详细订单如下:");
-                System.out.println();
-                System.out.println("编号\t\t鲜花名称\t\t销售数量\t\t价格\t\t销售日期\t\t销售员\t\t备注");
-                Flower flower = flowers.get(i);
-                System.out.println();
-            }
+        Flower flower = findFlower(flowers, number);
+        if (flower != null){
+            System.out.println("您要查的信息如下");
+            System.out.println("编号"+"\t\t"+"鲜花名称"+"\t\t"+"销售数量"+"\t\t"+"价格"+"\t\t"+"销售日期"+"\t\t"+"销售员"+"\t\t"+"备注");
+            System.out.println(flower.getNumber()+"\t\t"+flower.getName()+"\t\t"+flower.getSaleCount()+"\t\t"+flower.getPrice()+"\t\t"+flower.getDate()+"\t\t"+flower.getSoldName()+"\t\t"+flower.getRemark());
+            System.out.println("请修改后的鲜花名称");
+            String alterName = input.next();
+            flower.setName(alterName);
+            System.out.println("请输入要修改的数量");
+            int alterNum = input.nextInt();
+            flower.setSaleCount(alterNum);
+            System.out.println("请输入修改后的鲜花价格");
+            double alterprice = input.nextDouble();
+            flower.setPrice(alterprice);
+            System.out.println("请输入修改后的日期\"yyyy-MM-dd\"");
+            String alterDate = input.next();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            // 将字符串类型的日期解析成Date类型
+            Date date = simpleDateFormat.parse(alterDate);
+            flower.setDate(date);
+            System.out.println("请输入修改后的售后员");
+            String alterSolder = input.next();
+            flower.setSoldName(alterSolder);
+            System.out.println("请输入修改后的备注");
+            String alterRemark = input.next();
+            flower.setRemark(alterRemark);
+        }else {
+            System.out.println("您要修改的订单不存在！！！");
         }
+        return flowers;
     }
 
-
-    private static void getFlower(ArrayList<Flower> flowers) {
+    public static Flower findFlower(ArrayList<Flower> flowers,String number) {
         for (Flower flower : flowers) {
-            System.out.println(flower.getNumber()+"\t\t"+flower.getName()+"\t\t"+flower.getSaleCount()+"\t\t"+flower.getPrice()+"\t\t"+flower.getDate()+"\t\t"+flower.getName()+"\t\t"+flower.getRemark());
+            if (flower.getNumber().equals(number)){
+                return flower;
+            }
+        }
+        return null;
+    }
+    
+    public static void findAllFlowers(ArrayList<Flower> flowers){
+        for (Flower flower : flowers) {
+            System.out.println(flower.getNumber()+"\t\t"+flower.getName()+"\t\t"+flower.getSaleCount()+"\t\t"+flower.getPrice()+"\t\t"+flower.getDate()+"\t\t"+flower.getSoldName()+"\t\t"+flower.getRemark());
         }
     }
 
