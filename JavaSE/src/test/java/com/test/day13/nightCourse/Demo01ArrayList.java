@@ -30,7 +30,7 @@ public class Demo01ArrayList {
         array.add("6");
         System.out.println(Arrays.toString(array.elementData));
         System.out.println(array.size);
-        array.add(12,"11");
+        array.remove(2);
         System.out.println(Arrays.toString(array.elementData));
         System.out.println(array.size);
 

@@ -93,12 +93,11 @@ public class ArrayByMySelf {
     }
 
     public void remove(int index) {
-        if (index >= elementData.length){
-            throw  new IndexOutOfBoundsException("不在范围内");
+        if (index >= elementData.length - 1){
+            throw new IndexOutOfBoundsException("不在范围内");
         }else {
-            index++;
-            String[] newArr = new String[size - 1];
-            System.arraycopy(elementData,index,elementData,index - 1,elementData.length - index);
+            String[] newArr = new String[elementData.length - 1];
+            System.arraycopy(elementData,index + 1,elementData,index,elementData.length - index - 1);
             elementData[elementData.length - 1] = null;
             System.arraycopy(elementData,0,newArr,0,elementData.length - 1);
             elementData = newArr;
