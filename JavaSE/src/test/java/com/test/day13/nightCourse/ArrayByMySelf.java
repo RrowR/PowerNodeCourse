@@ -29,19 +29,23 @@ public class ArrayByMySelf {
         this.elementData = new String[len];
     }
 
-    public String[] getElementData() {
-        return elementData;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
     /*
             设置指定长度的字符串数组
          */
     public ArrayByMySelf(int cap) {
         this.elementData = new String[cap];
+    }
+
+    public String[] getElementData() {
+        return elementData;
+    }
+
+    /**
+     * 获得实际添加元素的个数
+     * @return
+     */
+    public int size() {
+        return size;
     }
 
     /*
