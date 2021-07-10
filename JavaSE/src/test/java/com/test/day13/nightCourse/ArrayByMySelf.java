@@ -54,7 +54,7 @@ public class ArrayByMySelf {
         }
     }
 
-    public void add(int index, String element) {
+    public void add(String element, int index) {
         while (true) {
             if (size < elementData.length && index < elementData.length) {
                 if (elementData[index] == null) {

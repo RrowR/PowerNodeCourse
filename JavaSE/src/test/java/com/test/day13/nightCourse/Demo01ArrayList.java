@@ -33,6 +33,17 @@ public class Demo01ArrayList {
         array.remove(2);
         System.out.println(Arrays.toString(array.elementData));
         System.out.println(array.size);
-
+        array.remove(2);
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println(array.size);
+        array.add("kkk");
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println(array.size);
+        array.add("eee",22);
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println(array.size);
+        array.remove(10);
+        System.out.println(Arrays.toString(array.elementData));
+        System.out.println(array.size);
     }
 }
