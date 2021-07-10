@@ -29,7 +29,5 @@ public class Demo01ArrayList {
         array.add("5");
         array.add("6");
         System.out.println(Arrays.toString(array.getElementData()));
-        System.out.println(array.getSize());
-
     }
 }
