@@ -7,10 +7,22 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FlowerSaleSystem {
+    // 设置全局静态变量和标志
     static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) throws ParseException {
+    static boolean isModified = false;
+    public static void main(String[] args) throws ParseException, InterruptedException {
         // 初始化鲜花数组
         ArrayList<Flower> flowers = addFlowers();
+        // 创建一个备用数组，用来存放yes/no的结果
+        ArrayList<Flower> secondFlowers = new ArrayList<>();
+        // 先复制一套原数组内容,注意这里不能使用arraycopy，否则会报错,因为这个是操作数组的，而不是ArrayList
+        /*
+            static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+            从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。
+        */
+        for (Flower flower : flowers) {
+            secondFlowers.add(flower);
+        }
         do {
             System.out.println("=====================欢迎光临\"七彩鲜花\"销售管理系统======================");
             System.out.println("1.查询销售订单");
@@ -25,14 +37,31 @@ public class FlowerSaleSystem {
                     findAllFlowers(flowers);
                     break;
                 case 2:
-                    alterFlower(flowers);
-                    System.out.println("您确定要修改吗y/n");
-                    String next = input.next();
-                    if (next.equals("y")){
-
+                    // 执行修改代码，返回的secondFlowers可能是一个修改过的，也可能是一个没有修改过的
+                    secondFlowers = alterFlower(secondFlowers);
+                    // 当修改成功时才执行下面代码，否则直接break，这里的yes/no是将新数据传入到一个新数组里，直接查询这个新数组
+                    if (isModified == true){
+                        String next = input.next();
+                        if (next.equals("y")){
+                            System.out.println("正在查询...");
+                            Thread.sleep(1234);
+                            System.out.println("修改成功");
+                            System.out.println();
+                            System.out.println("编号"+"\t\t"+"鲜花名称"+"\t\t"+"销售数量"+"\t\t"+"价格"+"\t\t"+"销售日期"+"\t\t"+"销售员"+"\t\t"+"备注");
+                            for (int i = 0; i < secondFlowers.size(); i++) {
+                                flowers.set(i,secondFlowers.get(i));
+                            }
+                            findAllFlowers(flowers);
+                        }else if (next.equals("n")){
+                            System.out.println("未修改...");
+                        }else {
+                            System.out.println("您输入的选择不对，已退出");
+                        }
                     }
                     break;
                 case 3:
+                    System.out.println("请输入要删除的订单号：");
+
                     break;
                 case 4:
                     return;
@@ -45,7 +74,7 @@ public class FlowerSaleSystem {
         String number = input.next();
         Flower flower = findFlower(flowers, number);
         if (flower != null){
-            System.out.println("您要查的信息如下");
+            System.out.println("您要修改的信息如下");
             System.out.println("编号"+"\t\t"+"鲜花名称"+"\t\t"+"销售数量"+"\t\t"+"价格"+"\t\t"+"销售日期"+"\t\t"+"销售员"+"\t\t"+"备注");
             System.out.println(flower.getNumber()+"\t\t"+flower.getName()+"\t\t"+flower.getSaleCount()+"\t\t"+flower.getPrice()+"\t\t"+flower.getDate()+"\t\t"+flower.getSoldName()+"\t\t"+flower.getRemark());
             System.out.println("请修改后的鲜花名称");
@@ -69,9 +98,15 @@ public class FlowerSaleSystem {
             System.out.println("请输入修改后的备注");
             String alterRemark = input.next();
             flower.setRemark(alterRemark);
+            System.out.println("您确定要修改吗y/n");
+            isModified = true;
         }else {
             System.out.println("您要修改的订单不存在！！！");
+            isModified = false;
+    /*        // 这里返回的是没有修改过的flower，主要目的是为了结束程序
+            return flowers;*/
         }
+        // 这里返回被修改过的flowers
         return flowers;
     }
 
@@ -83,7 +118,7 @@ public class FlowerSaleSystem {
         }
         return null;
     }
-    
+
     public static void findAllFlowers(ArrayList<Flower> flowers){
         for (Flower flower : flowers) {
             System.out.println(flower.getNumber()+"\t\t"+flower.getName()+"\t\t"+flower.getSaleCount()+"\t\t"+flower.getPrice()+"\t\t"+flower.getDate()+"\t\t"+flower.getSoldName()+"\t\t"+flower.getRemark());
