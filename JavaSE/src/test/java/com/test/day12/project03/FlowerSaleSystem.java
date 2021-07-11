@@ -14,15 +14,8 @@ public class FlowerSaleSystem {
         // 初始化鲜花数组
         ArrayList<Flower> flowers = addFlowers();
         // 创建一个备用数组，用来存放yes/no的结果
-        ArrayList<Flower> secondFlowers = new ArrayList<>();
-        // 先复制一套原数组内容,注意这里不能使用arraycopy，否则会报错,因为这个是操作数组的，而不是ArrayList
-        /*
-            static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
-            从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。
-        */
-        for (Flower flower : flowers) {
-            secondFlowers.add(flower);
-        }
+        // 格外注意，这里的数据不能遍历出来给另一个arraylist，否则2个对象的地址值一致,到时候操作的时候，如果是遍历进去的会操作2个对象
+        ArrayList<Flower> secondFlowers = addFlowers();
         do {
             System.out.println("=====================欢迎光临\"七彩鲜花\"销售管理系统======================");
             System.out.println("1.查询销售订单");
@@ -49,19 +42,41 @@ public class FlowerSaleSystem {
                             System.out.println();
                             System.out.println("编号"+"\t\t"+"鲜花名称"+"\t\t"+"销售数量"+"\t\t"+"价格"+"\t\t"+"销售日期"+"\t\t"+"销售员"+"\t\t"+"备注");
                             for (int i = 0; i < secondFlowers.size(); i++) {
-                                flowers.set(i,secondFlowers.get(i));
+                                Flower flower = new Flower(secondFlowers.get(i).getNumber(),secondFlowers.get(i).getName(),secondFlowers.get(i).getSaleCount(),secondFlowers.get(i).getPrice(),secondFlowers.get(i).getDate(),secondFlowers.get(i).getSoldName(),secondFlowers.get(i).getRemark());
+                                flowers.set(i,flower);
                             }
                             findAllFlowers(flowers);
                         }else if (next.equals("n")){
                             System.out.println("未修改...");
+                            for (int i = 0; i < flowers.size(); i++) {
+                                Flower flower = new Flower(flowers.get(i).getNumber(), flowers.get(i).getName(), flowers.get(i).getSaleCount(), flowers.get(i).getPrice(), flowers.get(i).getDate(), flowers.get(i).getSoldName(), flowers.get(i).getRemark());
+                                secondFlowers.set(i,flower);
+                            }
                         }else {
                             System.out.println("您输入的选择不对，已退出");
                         }
                     }
                     break;
                 case 3:
+                    System.out.println("当前订单有：");
+                    findAllFlowers(flowers);
+                    System.out.println("------------------分割线-------------------");
                     System.out.println("请输入要删除的订单号：");
-
+                    String number = input.next();
+                    if (findFlower(flowers,number) != null){
+                        deleteFlower(flowers,number);
+                        System.out.println("正在删除，请稍等...");
+                        Thread.sleep(1234);
+                        findAllFlowers(flowers);
+                        // 将删除的代码再次"拷贝"回secondFlowers
+                        for (int i = 0; i < flowers.size(); i++) {
+                            Flower flower = new Flower(flowers.get(i).getNumber(), flowers.get(i).getName(), flowers.get(i).getSaleCount(), flowers.get(i).getPrice(), flowers.get(i).getDate(), flowers.get(i).getSoldName(), flowers.get(i).getRemark());
+                            secondFlowers.set(i,flower);
+                        }
+                        secondFlowers.remove(secondFlowers.size()-1);
+                    }else {
+                        System.out.println("您输入的不对，请重新再来");
+                    }
                     break;
                 case 4:
                     return;
@@ -103,11 +118,15 @@ public class FlowerSaleSystem {
         }else {
             System.out.println("您要修改的订单不存在！！！");
             isModified = false;
-    /*        // 这里返回的是没有修改过的flower，主要目的是为了结束程序
-            return flowers;*/
         }
-        // 这里返回被修改过的flowers
+        // 这里返回被修改过的flowers,也可能没有被修改过
         return flowers;
+    }
+
+    private static void deleteFlower(ArrayList<Flower> flowers,String number){
+
+        Flower flower = findFlower(flowers, number);
+        flowers.remove(flower);
     }
 
     public static Flower findFlower(ArrayList<Flower> flowers,String number) {
