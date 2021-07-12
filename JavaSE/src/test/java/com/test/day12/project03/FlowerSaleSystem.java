@@ -26,6 +26,8 @@ public class FlowerSaleSystem {
             int num = input.nextInt();
             switch (num){
                 case 1:
+                    System.out.println("正在查询...");
+                    Thread.sleep(1234);
                     System.out.println("编号"+"\t\t"+"鲜花名称"+"\t\t"+"销售数量"+"\t\t"+"价格"+"\t\t"+"销售日期"+"\t\t"+"销售员"+"\t\t"+"备注");
                     findAllFlowers(flowers);
                     break;
