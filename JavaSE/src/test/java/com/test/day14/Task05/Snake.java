@@ -1,22 +1,11 @@
 package com.test.day14.Task05;
 
 public class Snake extends Monster {
-    private String attackWays;
-
     public Snake() {
     }
 
-    public Snake(String attackWays, String name, int blood, int aggressivity, String moveWay) {
-        super(name, blood, aggressivity, moveWay);
-        this.attackWays = attackWays;
-    }
-
-    public String getAttackWays() {
-        return attackWays;
-    }
-
-    public void setAttackWays(String attackWays) {
-        this.attackWays = attackWays;
+    public Snake(String name, int blood, int aggressivity, String moveWay, String attackWays) {
+        super(name, blood, aggressivity, moveWay, attackWays);
     }
 
     public void addBlood() throws InterruptedException {
@@ -24,13 +13,8 @@ public class Snake extends Monster {
         if (blood < 10) {
             super.setBlood(blood + 20);
         }
-        System.out.print("实施大蛇补血术..." + ",当前生命值为:");
-        Thread.sleep(3000);
-        System.out.println(super.getBlood());
-    }
-
-    public void show(){
-        String move = super.getMove();
-        System.out.println(move);
+        System.out.print("实施大蛇补血术...");
+        Thread.sleep(1234);
+        System.out.println(",当前生命值为:"+super.getBlood());
     }
 }

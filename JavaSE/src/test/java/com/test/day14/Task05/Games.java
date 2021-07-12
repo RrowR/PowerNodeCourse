@@ -17,7 +17,20 @@ package com.test.day14.Task05;
  * 5)	定义名为mon的包存怪物类，蛇怪类，蜈蚣精类和测试类
  */
 public class Games {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Snake snake = new Snake("蛇怪",5,20,"我走S路线","攻击");
+        System.out.println("怪物"+snake.getName()+"展开"+snake.getAttackWays());
+        System.out.println("当前生命值为："+snake.getBlood());
+        System.out.println("攻击力是："+snake.getAggressivity());
+        snake.addBlood();
+        System.out.println("我是"+snake.getName()+","+snake.getMoveWay());
+        System.out.println("=======================================");
+        Thread.sleep(1234);
+        Centipede centipede = new Centipede("蜈蚣精", 60, 15, "御风飞行", "攻击");
+        System.out.println("怪物"+centipede.getName()+"展开"+centipede.getAttackWays());
+        System.out.println("当前生命值为："+centipede.getBlood());
+        System.out.println("攻击力是："+centipede.getAggressivity());
+        System.out.println("我是"+centipede.getName()+","+centipede.getMoveWay());
 
     }
 }
