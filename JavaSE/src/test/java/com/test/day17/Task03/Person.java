@@ -33,7 +33,7 @@ public class Person implements Comparable{
         }
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
-                // 这里面直接调用就好了，方法比比较的就是这两个对象的age属性,当为-1的时候，交换2个数，结果将是一个
+                // 这里面直接调用就好了，方法比比较的就是这两个对象的age属性,当为-1的时候，交换2个对象
                 // 如果是这样的冒泡排序，那么就是倒序
                 // 如果 j 是从 0 开始，那么就是普通的顺序
                 if (((Person)arr[i]).compareTo(((Person)arr[j])) == -1){
