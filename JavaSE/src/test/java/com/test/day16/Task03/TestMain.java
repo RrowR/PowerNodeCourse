@@ -1,4 +1,4 @@
-package com.test.day17.Task03;
+package com.test.day16.Task03;
 
 public class TestMain {
     public static void main(String[] args) {

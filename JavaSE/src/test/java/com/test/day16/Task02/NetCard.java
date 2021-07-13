@@ -1,4 +1,4 @@
-package com.test.day17.Task02;
+package com.test.day16.Task02;
 
 public class NetCard implements PCIE{
     @Override
