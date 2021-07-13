@@ -1,4 +1,4 @@
-package com.test.day17;
+package com.test.day17.Task01;
 
 /*
     这里的抽象类是不能被初始化的，所以构造方法几乎无用
