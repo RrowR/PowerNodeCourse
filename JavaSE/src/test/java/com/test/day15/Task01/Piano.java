@@ -1,7 +1,7 @@
 package com.test.day15.Task01;
 
 public class Piano extends Instrument{
-    public Piano(String musicalInstrument) {
-        super(musicalInstrument);
+    public Piano(String instrument) {
+        super(instrument);
     }
 }
