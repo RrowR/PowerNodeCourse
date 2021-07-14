@@ -1,13 +1,22 @@
 package com.test.day17.project.stringmethod;
 
+import java.util.Locale;
+
 public class StringClass {
     public static void main(String[] args) {
-        Stringcompare02();
-
+//        Stringcompare02();
+        StringUsuallyMethod03();
     }
 
     // String 的常用方法
     public static void StringUsuallyMethod03(){
+        String s = "abcdefghijk123456789";
+        System.out.println(s.length());
+        System.out.println(s.toUpperCase());
+        int i = s.indexOf("d");
+        System.out.println(i);
+        int i1 = s.lastIndexOf("8");
+        System.out.println(i1);
 
     }
 
