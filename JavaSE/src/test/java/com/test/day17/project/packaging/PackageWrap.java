@@ -20,7 +20,8 @@ public class PackageWrap {
     @Test
     public void essence(){
         Integer a = new Integer(213);
-//        a.valueof
+        int i = a.intValue();       // 拆箱
+        Integer integer = Integer.valueOf(i);   // 装箱
     }
 
 
