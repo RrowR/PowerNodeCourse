@@ -1,6 +1,6 @@
 package com.test.day03;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * 逻辑运算符

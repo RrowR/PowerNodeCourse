@@ -1,6 +1,7 @@
 package com.test.day11;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 public class DemoTest {
     @Test

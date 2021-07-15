@@ -1,8 +1,8 @@
 package com.test.day10;
 
-import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import org.junit.Test;
+
 import java.util.HashSet;
 import java.util.Iterator;
 
