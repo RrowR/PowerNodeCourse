@@ -8,10 +8,10 @@ import java.util.TreeSet;
 public class TestTreeSet {
     @Test
     public void CompareOuter(){
-        Trunk t2 = new Trunk("南", 200.0, new Date(2222), "second");
-        Trunk t1 = new Trunk("东", 100.0, new Date(1111), "first");
-        Trunk t3 = new Trunk("西", 300.0, new Date(4444), "third");
-        Trunk t4 = new Trunk("北", 400.0, new Date(3333), "forth");
+        Trunk t2 = new Trunk("南", 200.0, "2020-03-11", "second");
+        Trunk t1 = new Trunk("东", 100.0, "2020-03-10", "first");
+        Trunk t3 = new Trunk("西", 300.0, "2020-02-11", "third");
+        Trunk t4 = new Trunk("北", 400.0, "2019-05-11", "forth");
         // 在创建TreeSet的时候，传入自己编写的比较器
         TreeSet<Trunk> treeSet = new TreeSet<>(new Mycomparator());
         treeSet.add(t1);

@@ -3,7 +3,7 @@ package day19;
 import java.util.Date;
 import java.util.Objects;
 
-public class Car implements Comparable{
+public class Car implements Comparable<Car>{
     private String band;
     private Double price;
     private Date birDate;
@@ -77,11 +77,22 @@ public class Car implements Comparable{
         return Objects.hash(band, price, birDate, type);
     }
 
-    @Override
+/*    @Override
     public int compareTo(Object o) {
         if (this.price < ((Car) o).price){
             return -1;
         }else if (this.price > ((Car) o).price){
+            return 1;
+        }else {
+            return 0;
+        }
+    }*/
+
+    @Override
+    public int compareTo(Car o) {
+        if (this.price < o.price){
+            return -1;
+        }else if (this.price > o.price){
             return 1;
         }else {
             return 0;

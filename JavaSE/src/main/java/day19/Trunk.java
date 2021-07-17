@@ -32,7 +32,7 @@ public class Trunk{
         return "Trunk{" +
                 "band='" + band + '\'' +
                 ", price=" + price +
-                ", birDate=" + birDate +
+                ", birDate=" + DateUtils.DateConvertToString(birDate) +
                 ", type='" + type + '\'' +
                 '}';
     }
@@ -76,6 +76,13 @@ public class Trunk{
         this.band = band;
         this.price = price;
         this.birDate = birDate;
+        this.type = type;
+    }
+
+    public Trunk(String band, Double price, String birDate, String type) {
+        this.band = band;
+        this.price = price;
+        this.birDate = DateUtils.StringConvertToDate(birDate);
         this.type = type;
     }
 }
