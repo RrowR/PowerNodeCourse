@@ -1,7 +1,11 @@
 package com.test.day18.homework;
 
 import org.junit.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class HomeWork {
@@ -67,6 +71,23 @@ public class HomeWork {
         if (flag == false){
             System.out.println("您输入的数有效为："+next);
         }
+    }
 
+    @Test
+    public void Task02() throws ParseException {
+        /*
+            2.	接收从键盘输入的字符串格式的年龄，分数和入学时间，转换为整数、浮点数、日期类型，并在控制台输出。
+            提示：使用包装类Integer、Double和日期转换类DateFormat实现
+         */
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入年龄");
+        Integer age = input.nextInt();
+        System.out.println("请输入分数");
+        Double score = input.nextDouble();
+        System.out.println("请输入入学时间");
+        String schoolTime = input.next();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = simpleDateFormat.parse(schoolTime);
+        System.out.println(date);
     }
 }
