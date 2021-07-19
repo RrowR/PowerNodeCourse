@@ -110,6 +110,29 @@ public class HomeWork {
         }
     }
 
+    @Test
+    public void Task04(){
+        /*
+            4.	编写递归算法程序：一列数的规则如下: 1、1、2、3、5、8、13、21、34...... 求数列的第40位数是多少。
+         */
+        System.out.println(RecursionToSum(5));
+    }
+
+    @Test
+    public void Task05(){
+
+    }
+
+
+    private int RecursionToSum(int times){
+        if (1 <= times && times <= 2){
+            return 1;
+        }else {
+            // 这里我只管拆，能拆就拆，拆到if截止
+            return RecursionToSum(times - 1) + RecursionToSum(times - 2);
+        }
+    }
+
     private enum TrafficLight{
         RED,GREEN,YELLOW
     }
