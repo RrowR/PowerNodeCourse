@@ -42,22 +42,6 @@ public class HomeWork {
         private double price;
         private long no;
         private String publish;
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Book book = (Book) o;
-            return Double.compare(book.price, price) == 0 &&
-                    no == book.no &&
-                    Objects.equals(name, book.name) &&
-                    Objects.equals(publish, book.publish);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(name, price, no, publish);
-        }
     }
 
     @Test
@@ -77,12 +61,7 @@ public class HomeWork {
             System.out.println(iterator.next());
         }
         System.out.println("=====================分割线========================");
-        TreeSet<Book> treeSet = new TreeSet<>(new Comparator<Book>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                return ((int)(o1.no - o2.no));
-            }
-        });
+        TreeSet<Book> treeSet = new TreeSet<>(((o1, o2) -> (int) (o1.getNo() - o2.getNo())));
         treeSet.add(new Book("java", 222.2, 124, "东方出版社"));
         treeSet.add(new Book("C++", 222.2, 127, "北京出版社"));
         treeSet.add(new Book("C#", 222.2, 126, "明日出版社"));
@@ -97,7 +76,7 @@ public class HomeWork {
         /*
             3.	实现List和Map数据的转换。具体要求如下：
             功能1：定义方法public void listToMap( ){ }将List中Student元素封装到Map中
-            1)	使用构造方法Student(int id,String name,int age,String sex )创建多个学生信息并加入List
+            1)	使用构造方法Student(int id,String name,int age,String sex)创建多个学生信息并加入List
             2)	遍历List，输出每个Student信息
             3)	将List中数据放入Map，使用Student的id属性作为key，使用Student对象信息作为value
             4)	遍历Map，输出每个Entry的key和value
@@ -107,8 +86,61 @@ public class HomeWork {
             3)	创建List对象，每个元素类型是StudentEntry
             4)	将Map中每个Entry信息放入List对象
          */
-        listToMap();
+        ArrayList<Student> list = new ArrayList<>();
+        list.add(new Student(1,"镜华",12,"女"));
+        list.add(new Student(2,"美美",10,"女"));
+        list.add(new Student(3,"猫羽雫",16,"女"));
+        HashMap<Integer, Student> map = listToMap(list);
+        Set<Map.Entry<Integer, Student>> entries = map.entrySet();
+        for (Map.Entry<Integer, Student> entry : entries) {
+            System.out.println("id为："+entry.getKey()+"属性是："+entry.getValue());
+        }
+        System.out.println("=====================分割线========================");
+        HashMap<Integer, Student> hashMap = new HashMap<>();
+        Student s1 = new Student(1, "镜华", 12, "女");
+        Student s2 = new Student(2, "美美", 10, "女");
+        Student s3 = new Student(3, "猫羽雫", 16, "女");
+        hashMap.put(s1.getId(),s1);
+        hashMap.put(s2.getId(),s2);
+        hashMap.put(s3.getId(),s3);
+        ArrayList<StudentEntry> studentEntryArrayList = mapToList(hashMap);
+        for (StudentEntry studentEntry : studentEntryArrayList) {
+            System.out.println(studentEntry.getEntry().getKey()+":"+studentEntry.getEntry().getValue());
+        }
 
+    }
+
+    private ArrayList<StudentEntry> mapToList(HashMap<Integer, Student> hashMap) {
+        Set<Map.Entry<Integer, Student>> entries = hashMap.entrySet();
+        ArrayList<StudentEntry> list = new ArrayList<>();
+        for (Map.Entry<Integer, Student> entry : entries) {
+            list.add(new StudentEntry(entry));
+        }
+        return list;
+    }
+
+    class StudentEntry{
+        Map.Entry entry;
+
+        public Map.Entry getEntry() {
+            return entry;
+        }
+
+        public void setEntry(Map.Entry entry) {
+            this.entry = entry;
+        }
+
+        public StudentEntry(Map.Entry entry) {
+            this.entry = entry;
+        }
+    }
+
+    private HashMap<Integer,Student> listToMap(ArrayList<Student> list) {
+        HashMap<Integer, Student> hashMap = new HashMap<>();
+        for (Student student : list) {
+            hashMap.put(student.getId(),student);
+        }
+        return hashMap;
     }
 
     @Data
@@ -121,8 +153,5 @@ public class HomeWork {
         private String sex;
     }
 
-    private void listToMap(ArrayList<E> list) {
-
-    }
 
 }
