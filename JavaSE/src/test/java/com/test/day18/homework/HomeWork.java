@@ -1,7 +1,6 @@
 package com.test.day18.homework;
 
 import org.junit.Test;
-import org.junit.jupiter.api.RepeatedTest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,4 +89,29 @@ public class HomeWork {
         Date date = simpleDateFormat.parse(schoolTime);
         System.out.println(date);
     }
+
+    @Test
+    public void Task03(){
+        /*
+            3.	根据交通信号灯颜色决定汽车停车、行驶和慢行
+            提示：使用枚举实现
+         */
+        TrafficLight color = TrafficLight.RED;
+        switch (color){
+            case GREEN:
+                System.out.println("允许通行");
+                break;
+            case RED:
+                System.out.println("静止通行");
+                break;
+            case YELLOW:
+                System.out.println("马上禁止通行");
+                break;
+        }
+    }
+
+    private enum TrafficLight{
+        RED,GREEN,YELLOW
+    }
 }
+
