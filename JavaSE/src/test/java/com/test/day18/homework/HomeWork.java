@@ -2,6 +2,7 @@ package com.test.day18.homework;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -120,7 +121,23 @@ public class HomeWork {
 
     @Test
     public void Task05(){
+        /*
+            5.	以树状结构输出计算机某个指定文件夹下的所有的文件和子文件夹名称。
+            提示：使用File的方法，并结合递归实现
+         */
+        File file = new File("src");
+        getAllFiles(file);
+    }
 
+    private void getAllFiles(File file) {
+        File[] files = file.listFiles();
+        for (File f : files) {
+            if (f.isDirectory()){
+                getAllFiles(f);
+            }else {
+                System.out.println(f);
+            }
+        }
     }
 
 
