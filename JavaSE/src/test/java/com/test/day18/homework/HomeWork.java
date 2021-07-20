@@ -133,9 +133,10 @@ public class HomeWork {
         File[] files = file.listFiles();
         for (File f : files) {
             if (f.isDirectory()){
+                System.out.println("dir:"+f);
                 getAllFiles(f);
             }else {
-                System.out.println(f);
+                System.out.println("file:"+f);
             }
         }
     }
