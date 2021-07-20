@@ -21,4 +21,14 @@ public class TestFile {
         File file = new File("src\\test\\java\\com\\test\\day21\\a.txt");
         System.out.println(file.exists());
     }
+
+    @Test
+    public void Test03(){
+        File file = new File("src\\test\\java\\com\\test\\day21");
+        File[] files = file.listFiles((dir, name) -> new File(dir, name).getName().endsWith(".png"));
+        for (File f : files) {
+            System.out.println(f.getName());
+        }
+    }
+
 }
