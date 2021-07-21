@@ -171,7 +171,7 @@ public class HomeWork {
                         Clerk key = entry.getKey();
                         if (key.getUserId().equals(id)) {
                             LinkedList<CheckWorkingSituation> checkWorkingSituations = clerkTimeCard.get(key);
-                            checkWorkingSituations.add(new CheckWorkingSituation(true,false,false));
+                            checkWorkingSituations.addFirst(new CheckWorkingSituation(true,false,false));
                         }
                     }
                     System.out.println("签到中...");
@@ -186,7 +186,7 @@ public class HomeWork {
                         Clerk key = entry.getKey();
                         if (key.getUserId().equals(id2)) {
                             LinkedList<CheckWorkingSituation> checkWorkingSituations = clerkTimeCard.get(key);
-                            checkWorkingSituations.add(new CheckWorkingSituation(false,true,false));
+                            checkWorkingSituations.addFirst(new CheckWorkingSituation(false,true,false));
                         }
                     }
                     System.out.println("签退中...");
@@ -201,7 +201,7 @@ public class HomeWork {
                         Clerk key = entry.getKey();
                         if (key.getUserId().equals(id3)) {
                             LinkedList<CheckWorkingSituation> checkWorkingSituations = clerkTimeCard.get(key);
-                            checkWorkingSituations.add(new CheckWorkingSituation(false,false,true));
+                            checkWorkingSituations.addFirst(new CheckWorkingSituation(false,false,true));
                         }
                     }
                     System.out.println("补卡中...");
@@ -230,6 +230,9 @@ public class HomeWork {
                             }
                         }
                         System.out.println("打卡情况 "+ " 签到次数为："+ isArriveTimes + " 签退次数为 " + isLeaveTimes + " 补卡次数为 " + isMakeCardTimes);
+                        isArriveTimes = 0;
+                        isLeaveTimes = 0;
+                        isMakeCardTimes = 0;
                     }
                     break;
                 case 5:
