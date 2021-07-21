@@ -1,5 +1,6 @@
 package com.test.day21;
 
+import day14.com.study.C;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class HomeWork {
     @Test
@@ -143,13 +142,81 @@ public class HomeWork {
         /*
             3.完成考勤打卡功能
               2.1使用集合保存所有员工信息
-              2.2使用结合保存所有考勤信息
+              2.2使用集合保存所有考勤信息
                完成如下功能
-                1签到
+                1 签到
                 2 签退
                 3 补卡
                 4 统计本月考勤
          */
+        Scanner input = new Scanner(System.in);
+        HashMap<Clerk, LinkedList<CheckWorkingSituation>> clerkTimeCard = new HashMap<>();
+        // 先初始化3个员工方便查询
+        initializeClerk(clerkTimeCard);
+        do {
+            System.out.println("========================欢迎来到员工打卡系统=========================");
+            System.out.println("请输入要执行的操作");
+            System.out.println("1.签到");
+            System.out.println("2.签退");
+            System.out.println("3.补卡");
+            System.out.println("4.统计员工考勤");
+            int num = input.nextInt();
+            switch (num){
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    Set<Map.Entry<Clerk, LinkedList<CheckWorkingSituation>>> entries = clerkTimeCard.entrySet();
+                    for (Map.Entry<Clerk, LinkedList<CheckWorkingSituation>> entry : entries) {
+                        System.out.println(entry.getKey()+":"+entry.getValue());
+                    }
+                    break;
+            }
+        }while (true);
+
+
+    }
+
+    private void initializeClerk(HashMap<Clerk, LinkedList<CheckWorkingSituation>> map) {
+        Clerk c1 = new Clerk(1, "镜华", 12);
+        LinkedList<CheckWorkingSituation> l1 = new LinkedList<>();
+        CheckWorkingSituation situation1 = new CheckWorkingSituation();
+        l1.add(situation1);
+        Clerk c2 = new Clerk(2, "美美", 10);
+        LinkedList<CheckWorkingSituation> l2 = new LinkedList<>();
+        CheckWorkingSituation situation2 = new CheckWorkingSituation();
+        l2.add(situation2);
+        Clerk c3 = new Clerk(3, "猫羽雫", 16);
+        LinkedList<CheckWorkingSituation> l3 = new LinkedList<>();
+        CheckWorkingSituation situation3 = new CheckWorkingSituation();
+        l3.add(situation3);
+        // 注意这里不能一边new一边add，不然返回值将不会是一个LinkedList类型
+        map.put(c1,l1);
+        map.put(c2,l2);
+        map.put(c3,l3);
+    }
+
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    class CheckWorkingSituation{
+        private boolean isArrive;
+        private boolean isLeave;
+        private boolean isMakeCard;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    class Clerk{
+        private Integer userId;
+        private String name;
+        private Integer age;
     }
 
     private void studentAdd(ArrayList<Student> students) {
