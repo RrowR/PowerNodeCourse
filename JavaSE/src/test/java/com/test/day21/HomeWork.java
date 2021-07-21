@@ -138,7 +138,7 @@ public class HomeWork {
     }
 
     @Test
-    public void Task03(){
+    public void Task03() throws InterruptedException {
         /*
             3.完成考勤打卡功能
               2.1使用集合保存所有员工信息
@@ -160,21 +160,80 @@ public class HomeWork {
             System.out.println("2.签退");
             System.out.println("3.补卡");
             System.out.println("4.统计员工考勤");
+            System.out.println("5.退出");
             int num = input.nextInt();
             switch (num){
                 case 1:
-
+                    System.out.println("请输入签到人员id");
+                    int id = input.nextInt();
+                    Set<Map.Entry<Clerk, LinkedList<CheckWorkingSituation>>> entrySet = clerkTimeCard.entrySet();
+                    for (Map.Entry<Clerk, LinkedList<CheckWorkingSituation>> entry : entrySet) {
+                        Clerk key = entry.getKey();
+                        if (key.getUserId().equals(id)) {
+                            LinkedList<CheckWorkingSituation> checkWorkingSituations = clerkTimeCard.get(key);
+                            checkWorkingSituations.add(new CheckWorkingSituation(true,false,false));
+                        }
+                    }
+                    System.out.println("签到中...");
+                    Thread.sleep(3000);
+                    System.out.println("签到成功");
                     break;
                 case 2:
+                    System.out.println("请输入签到人员id");
+                    int id2 = input.nextInt();
+                    Set<Map.Entry<Clerk, LinkedList<CheckWorkingSituation>>> entrySet2 = clerkTimeCard.entrySet();
+                    for (Map.Entry<Clerk, LinkedList<CheckWorkingSituation>> entry : entrySet2) {
+                        Clerk key = entry.getKey();
+                        if (key.getUserId().equals(id2)) {
+                            LinkedList<CheckWorkingSituation> checkWorkingSituations = clerkTimeCard.get(key);
+                            checkWorkingSituations.add(new CheckWorkingSituation(false,true,false));
+                        }
+                    }
+                    System.out.println("签退中...");
+                    Thread.sleep(3000);
+                    System.out.println("签退成功");
                     break;
                 case 3:
+                    System.out.println("请输入签到人员id");
+                    int id3 = input.nextInt();
+                    Set<Map.Entry<Clerk, LinkedList<CheckWorkingSituation>>> entrySet3 = clerkTimeCard.entrySet();
+                    for (Map.Entry<Clerk, LinkedList<CheckWorkingSituation>> entry : entrySet3) {
+                        Clerk key = entry.getKey();
+                        if (key.getUserId().equals(id3)) {
+                            LinkedList<CheckWorkingSituation> checkWorkingSituations = clerkTimeCard.get(key);
+                            checkWorkingSituations.add(new CheckWorkingSituation(false,false,true));
+                        }
+                    }
+                    System.out.println("补卡中...");
+                    Thread.sleep(3000);
+                    System.out.println("补卡成功");
                     break;
                 case 4:
                     Set<Map.Entry<Clerk, LinkedList<CheckWorkingSituation>>> entries = clerkTimeCard.entrySet();
+                    int isArriveTimes = 0;
+                    int isLeaveTimes = 0;
+                    int isMakeCardTimes = 0;
                     for (Map.Entry<Clerk, LinkedList<CheckWorkingSituation>> entry : entries) {
-                        System.out.println(entry.getKey()+":"+entry.getValue());
+                        Clerk key = entry.getKey();
+                        LinkedList<CheckWorkingSituation> value = entry.getValue();
+                        int size = value.size();
+                        System.out.print("员工:"+key.getName()+"---id号:"+key.getUserId()+"------总次数为:"+size+"\t\t");
+                        for (CheckWorkingSituation checkWorkingSituation : value) {
+                            if (checkWorkingSituation.isArrive == true) {
+                                isArriveTimes++;
+                            }
+                            if (checkWorkingSituation.isLeave == true) {
+                                isLeaveTimes++;
+                            }
+                            if (checkWorkingSituation.isMakeCard == true) {
+                                isMakeCardTimes++;
+                            }
+                        }
+                        System.out.println("打卡情况 "+ " 签到次数为："+ isArriveTimes + " 签退次数为 " + isLeaveTimes + " 补卡次数为 " + isMakeCardTimes);
                     }
                     break;
+                case 5:
+                    return;
             }
         }while (true);
 
@@ -184,16 +243,16 @@ public class HomeWork {
     private void initializeClerk(HashMap<Clerk, LinkedList<CheckWorkingSituation>> map) {
         Clerk c1 = new Clerk(1, "镜华", 12);
         LinkedList<CheckWorkingSituation> l1 = new LinkedList<>();
-        CheckWorkingSituation situation1 = new CheckWorkingSituation();
-        l1.add(situation1);
+//        CheckWorkingSituation situation1 = new CheckWorkingSituation();
+//        l1.add(situation1);
         Clerk c2 = new Clerk(2, "美美", 10);
         LinkedList<CheckWorkingSituation> l2 = new LinkedList<>();
-        CheckWorkingSituation situation2 = new CheckWorkingSituation();
-        l2.add(situation2);
+//        CheckWorkingSituation situation2 = new CheckWorkingSituation();
+//        l2.add(situation2);
         Clerk c3 = new Clerk(3, "猫羽雫", 16);
         LinkedList<CheckWorkingSituation> l3 = new LinkedList<>();
-        CheckWorkingSituation situation3 = new CheckWorkingSituation();
-        l3.add(situation3);
+//        CheckWorkingSituation situation3 = new CheckWorkingSituation();
+//        l3.add(situation3);
         // 注意这里不能一边new一边add，不然返回值将不会是一个LinkedList类型
         map.put(c1,l1);
         map.put(c2,l2);

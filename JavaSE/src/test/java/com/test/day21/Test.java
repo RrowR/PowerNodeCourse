@@ -2,6 +2,8 @@ package com.test.day21;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Test {
     public static void main(String[] args) {
@@ -14,5 +16,6 @@ public class Test {
         students.add(s3);
         students.remove(s3);
         System.out.println(students);
+        HashMap<String, LinkedList> map = new HashMap<>();
     }
 }
