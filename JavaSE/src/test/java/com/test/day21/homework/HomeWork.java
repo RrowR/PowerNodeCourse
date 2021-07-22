@@ -1,4 +1,4 @@
-package com.test.day21;
+package com.test.day21.homework;
 
 import day14.com.study.C;
 import lombok.AllArgsConstructor;
