@@ -7,10 +7,11 @@ public class SumThread implements Runnable {
 
     @Override
     public void run() {
-        flag = (num+1000);
-        while (num <= 10000){
+        flag = (num + 1000);
+        while (num <= 10000) {
             sum += num++;
-            if (flag == num){
+            if (flag == num) {
+                System.out.println(num);
                 break;
             }
         }

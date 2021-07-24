@@ -4,6 +4,7 @@ public class SumThread implements Runnable {
     private int max;
     private int min;
     private int sum;
+    private int sum2;
 
     public SumThread() {
     }
@@ -15,7 +16,7 @@ public class SumThread implements Runnable {
 
     @Override
     public void run() {
-        for (int i = min; i < max; i++){
+        for (int i = min; i <= max; i++){
             sum += i;
         }
     }

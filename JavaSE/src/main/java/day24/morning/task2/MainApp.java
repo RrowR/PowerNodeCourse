@@ -9,6 +9,6 @@ public class MainApp {
             // 仔细分析这段代码，其实又是一个单线程了，不符合多线程 同时 执行的要求
             thread.join();
         }
-        System.out.println(sumThread.sum);
+//        System.out.println(sumThread.sum);
     }
 }
