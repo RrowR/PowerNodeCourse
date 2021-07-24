@@ -13,8 +13,7 @@ public class MainApp {
             Thread thread = new Thread(sumThread);
             thread.start();
             thread.join();
-            int result;
-                result = sumThread.getResult();
+            int result = sumThread.getResult();
             sumary += result;
 //            System.out.println(result);
         }
