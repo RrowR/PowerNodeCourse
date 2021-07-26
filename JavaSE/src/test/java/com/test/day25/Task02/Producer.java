@@ -24,8 +24,9 @@ public class Producer implements Runnable {
                            void signal() 唤醒一个等待线程。
                            void signalAll() 唤醒所有等待线程。
                      */
-                    // 当生产的数量到达10个时，停止生产者，唤醒所有消费者
-                    LockUtils.lock_consumer.signalAll();
+                    // 我这里已经有锁了，根本不需要进行线程之间的通信
+//                    LockUtils.lock_consumer.signalAll();
+                    // 我这里只需要单向上锁即可
                     LockUtils.lock_producer.await();
                 } else {
                     if (count++ % 2 == 0) {

@@ -20,8 +20,10 @@ public class Consumer implements Runnable {
                     System.out.println("吃了"+food.getType()+food.getName());
                     Thread.sleep(200);
                 }
+                // 这里的顺序一定不能反，在这种业务代码下，必须先唤醒别的线程，再让自己阻塞
+//                LockUtils.lock_consumer.await();
+                // 这里只需要单向唤醒即可（根据代码的业务来）
                 LockUtils.lock_producer.signalAll();
-                LockUtils.lock_consumer.await();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
