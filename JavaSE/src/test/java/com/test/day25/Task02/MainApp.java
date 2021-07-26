@@ -7,15 +7,8 @@ import java.util.concurrent.Executors;
 public class MainApp {
     public static void main(String[] args) {
         LinkedList<Food> foods = new LinkedList<>();
-        new Thread(new Producer(foods)).start();
-        new Thread(new Producer(foods)).start();
-        new Thread(new Producer(foods)).start();
-        new Thread(new Producer(foods)).start();
-        new Thread(new Producer(foods)).start();
-        new Thread(new Consumer(foods)).start();
-        new Thread(new Consumer(foods)).start();
-        new Thread(new Consumer(foods)).start();
-        new Thread(new Consumer(foods)).start();
-        new Thread(new Consumer(foods)).start();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        executorService.submit(new Thread(new Producer(foods)));
+        executorService.submit(new Thread(new Consumer(foods)));
     }
 }
