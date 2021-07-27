@@ -23,7 +23,7 @@ public class MainApp {
                 }).start();
 
         }
-        //  如果CountDownLatch不执行到0，那么主线程将不会被唤醒
+        //  如果CountDownLatch不执行到0，那么主线程将一直进入到阻塞状态
         System.out.println("主线程阻塞");
         countDownLatch.await();
         System.out.println("主线程被唤醒");
