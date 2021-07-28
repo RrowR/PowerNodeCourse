@@ -42,11 +42,13 @@ public class Exam {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    try {
-                        itemService.saveAnswer(chars);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    new Thread(() -> {
+                        try {
+                            itemService.saveAnswer(chars);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
                     break;
                 case 2:
                     break;

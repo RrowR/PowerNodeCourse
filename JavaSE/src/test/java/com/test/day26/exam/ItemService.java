@@ -90,8 +90,10 @@ public class ItemService {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
         */
+        // 这里有一个问题，程序不执行结束，文件不会写出，所以我这里使用多线程，好像也不太行
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("JavaSE/src/answer.dat"));
         oos.writeObject(answer);
+        oos.flush();
         oos.close();
     }
 
