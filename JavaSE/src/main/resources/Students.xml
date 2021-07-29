@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    XML声明之前不能有注释(xml声明必须放在文档第一行)
+    自定义xml语法
+-->
+<students>
+    <student>
+        <stuId>1001</stuId>
+        <stuname>张三</stuname>
+        <gender>男</gender>
+        <age>17</age>
+    </student>
+    <student>
+        <stuId>1001</stuId>
+        <stuname><![CDATA[张<三>]]></stuname>
+        <gender>男</gender>
+        <age>17</age>
+    </student>
+</students>
