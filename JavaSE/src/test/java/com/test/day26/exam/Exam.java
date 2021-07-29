@@ -39,16 +39,10 @@ public class Exam {
                     System.out.println("考试结束...正在收试卷");
                     try {
                         Thread.sleep(3000);
-                    } catch (InterruptedException e) {
+                        itemService.saveAnswer(chars);
+                    } catch (InterruptedException | IOException e) {
                         e.printStackTrace();
                     }
-                    new Thread(() -> {
-                        try {
-                            itemService.saveAnswer(chars);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }).start();
                     break;
                 case 2:
                     break;

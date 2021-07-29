@@ -95,6 +95,7 @@ public class ItemService {
         oos.writeObject(answer);
         oos.flush();
         oos.close();
+        System.out.println("保存完毕");
     }
 
 }

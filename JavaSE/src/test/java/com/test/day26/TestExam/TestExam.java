@@ -1,10 +1,8 @@
-package com.test.day26;
+package com.test.day26.TestExam;
 
 import com.test.day26.exam.Answers;
-import com.test.day26.exam.Item;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -15,7 +13,7 @@ public class TestExam {
         Answers answers = (Answers) o;
         char[] chars = answers.getChars();
         for (char c : chars) {
-            System.out.println(c);
+            System.out.print(" "+c);
         }
 
     }
