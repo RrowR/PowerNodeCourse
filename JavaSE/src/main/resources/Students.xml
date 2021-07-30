@@ -2,6 +2,25 @@
 <!--
     XML声明之前不能有注释(xml声明必须放在文档第一行)
     自定义xml语法
+
+    使用xml保存文件的3种写法，写在标签内、写在标签体、混合写
+    A 使用标签体保存数据
+       <book>
+           <isbn>100001</isbn>
+           <name>java从入门到精通</name>
+           <price>35.9</price>
+           <author>王勇</author>
+       </book>
+
+    B 使用属性保存数据
+      <book isbn="100001" name="java从入门到精通" price="35.9" author="王勇"/>
+
+    C 同时使用标签体和属性
+      <book isbn="100001">
+         <name>java从入门到精通</name>
+         <price>35.9</price>
+         <author>王勇</author>
+      </book>
 -->
 <students>
     <student>
@@ -10,6 +29,17 @@
         <gender>男</gender>
         <age>17</age>
     </student>
+    <!--
+        实体符号
+      >  &gt;
+      <  &lt;
+      "  &quot;
+      '  &apos;
+      &  &amp;
+        <stuName>张<三></stuName>
+        <stuName>张&lt;三&gt;</stuName>
+        <stuName><![CDATA[张<三>]]></stuName>
+    -->
     <student>
         <stuId>1001</stuId>
         <stuname><![CDATA[张<三>]]></stuname>
