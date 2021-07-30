@@ -6,7 +6,7 @@ public class Book {
     private String isbn;
     public String author;
 
-    @myDateFormate("yyyy/MM/dd")
+    @myDateFormate("yyyy年MM月dd日")
     private Date date;
 
     public Book() {
