@@ -8,6 +8,34 @@ import org.dom4j.io.SAXReader;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ *   xml文件的解析:
+ *     1. 下载dom4jxxx.xxx.jar
+ *     2. 将dom4j.jar复制到项目的lib目录中
+ *     3. 将dom4j.jar添加到当前模块的classPath中   右键  add as liberay
+ *     4. 在代码中使用dom4j 中的SAXReader类解析xml文件中的数据
+ *       4.1 使用SAXReader创建一个对象
+ *            SAXReader reader=new SAXReader();
+ *       4.2 调用reader.read(path) 获取Document对象
+ *           Document doc=reader.read(path|File|InputStream|Reader);
+ *       4.3 获取文档的根节点
+ *           Element students=doc.getRootElement();
+ *       4.4 获取根节点的子节点
+ *           Element element(String 子元素名称);  //适用于同名的子元素只有1个
+ *           List<Element> elements(String 子元素名称);  //适用于同名的子元素有多个
+ *           List<Element> elements();  //获取所有的子元素
+ *       4.5 获取标签体文本
+ *                getText()
+ *                getStringValue()
+ *                getTextTrim()
+ *       4.6 获取属性
+ *           Attribute a = element对象.attribute(索引);
+ *           Attribute a = element对象.attribute("属性名");
+ *            a.getName() 获取属性名
+ *            a.getValue() 获取属性值
+ *           List<Attribute> list=element对象.attributes(); //获取所有的属性
+ *           String value=element对象.attributeValue("属性名"); //通过属性名获取属性值
+ */
 public class XmlParse {
     public static void main(String[] args) throws DocumentException {
         // 创建dom4j的关键对象类，后续都是通过这个对象来调用方法
