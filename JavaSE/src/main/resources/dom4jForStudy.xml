@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Person>
+    <Student id="001" value="张三" school="咸宁高中">第一个studentElement</Student>
+    <Student>
+        <id>002</id>
+        <value>李四</value>
+        <school>青龙山高中</school>
+    </Student>
+    <Student>
+        <seat id="first"></seat>
+    </Student>
+    <Student>
+        <seat>second</seat>
+    </Student>
+</Person>
