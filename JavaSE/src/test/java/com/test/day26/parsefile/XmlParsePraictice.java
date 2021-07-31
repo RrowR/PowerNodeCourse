@@ -1,5 +1,6 @@
 package com.test.day26.parsefile;
 
+import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -48,9 +49,12 @@ public class XmlParsePraictice {
         System.out.println(element222.attribute(0).getName());
         System.out.println(element222.attribute(0).getValue());
         System.out.println(element222.getTextTrim());
-
         System.out.println("=================================上面是第一个StudentElement==========================================");
-
+        List<Attribute> attributes = element222.attributes();
+        for (Attribute attribute : attributes) {
+            System.out.println(attribute.getName());
+            System.out.println(element222.attributeValue(attribute.getName()));
+        }
 
     }
 }
