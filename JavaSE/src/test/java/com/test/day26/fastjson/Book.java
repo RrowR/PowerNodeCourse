@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Book {
     private String isbn;
+    @JSONField(serialize = false)    // FastJson里的注解，当标注字段的序列化值为false时，此对象的这个属性将不会序列化成json字符串
     private String name;
     private String author;
     @JSONField(format = "yyyy-MM-dd")
