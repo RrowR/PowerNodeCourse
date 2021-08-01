@@ -33,8 +33,8 @@ import java.util.List;
  * CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, Student.class);
  * List<Student> mylist = mapper.readValue(jsonstr, collectionType);
  *
- * @JsonIgnore 忽略某个属性
- * @JsonFormat(pattern = "yyyy-MM-dd") 指定日期的格式
+ * @ JsonIgnore 忽略某个属性
+ * @ JsonFormat(pattern = "yyyy-MM-dd") 指定日期的格式
  */
 public class JacksonDemo {
     @Test
