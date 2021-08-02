@@ -50,7 +50,8 @@ public class Task02 {
                 list.add(new TransRecord(Integer.parseInt(split[0]), split[1], split[2], sex, split[4], new Date(Long.parseLong(split[5])), Double.parseDouble(split[6])));
             }
         }
-        Collections.sort(list, (o1, o2) -> o1.getCreatetime().getTime() > o2.getCreatetime().getTime() ? 1 : -1);
+        Collections.sort(list, (o1, o2) -> o1.getMoney() > o2.getMoney() ? 1 : -1);
+        System.out.println(list);
         JSONObject jsonObject = new JSONObject();
         String jsonString = jsonObject.toJSONString(list);
         // 创建一个字符缓冲输出流
