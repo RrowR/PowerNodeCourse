@@ -51,7 +51,7 @@ public class Task02 {
             }
         }
         Collections.sort(list, (o1, o2) -> o1.getMoney() > o2.getMoney() ? 1 : -1);
-        System.out.println(list);
+//        list.forEach(System.out::println);
         JSONObject jsonObject = new JSONObject();
         String jsonString = jsonObject.toJSONString(list);
         // 创建一个字符缓冲输出流
