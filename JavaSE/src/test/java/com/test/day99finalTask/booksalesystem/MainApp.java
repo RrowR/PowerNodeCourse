@@ -1,7 +1,5 @@
 package com.test.day99finalTask.booksalesystem;
 
-import org.dom4j.DocumentException;
-
 /**
  * 二、	项目需求
  * 完成对动力节点书店图书的管理，包括：
@@ -12,7 +10,7 @@ import org.dom4j.DocumentException;
  * 5.	展示图书信息
  */
 public class MainApp {
-    public static void main(String[] args) throws DocumentException {
+    public static void main(String[] args) {
         BookSystem system = new BookSystem();
         system.start();
     }
