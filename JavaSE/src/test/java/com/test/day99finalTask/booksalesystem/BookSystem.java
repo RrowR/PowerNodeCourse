@@ -103,31 +103,18 @@ public class BookSystem {
         XMLWriter writer = new XMLWriter(new FileWriter("JavaSE/src/main/resources/book2.xml"),format);
         for (Book book : list) {
             Element b = books.addElement("book");
-
-            /*
-            Element bookId = b.addElement(book.getBookId());
-            Element bookName = b.addElement(book.getBookName());
-            Element author = b.addElement(book.getAuthor());
-            Element publishTime = b.addElement(sdf.format(book.getPublishTime()));
-            Element price = b.addElement(book.getPrice().toString());
-            Element num = b.addElement(book.getNum().toString());
-
-            <book>
-        <bookId>10005</bookId>
-        <bookName>宇宙奥秘</bookName>
-        <author>霍金</author>
-        <publishTime>2003-12-23</publishTime>
-        <price>67.3</price>
-        <num>14</num>
-    </book>
-            */
-
             Element bookId = b.addElement("bookId");
+            bookId.addText(book.getBookId());
             Element bookName = b.addElement("bookName");
+            bookName.addText(book.getBookName());
             Element author = b.addElement("author");
+            author.addText(book.getAuthor());
             Element publishTime = b.addElement("publishTime");
+            publishTime.addText(sdf.format(book.getPublishTime()));
             Element price = b.addElement("price");
+            price.addText(book.getPrice().toString());
             Element num = b.addElement("num");
+            num.addText(book.getNum().toString());
         }
         writer.write(document);
         writer.close();
