@@ -3,9 +3,14 @@ package com.test.day99finalTask.booksalesystem;
 import com.test.day99finalTask.booksalesystem.entity.Book;
 import com.test.day99finalTask.booksalesystem.entity.User;
 import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +40,8 @@ public class BookSystem {
             // 这个treeMap保存了xml文件里的book对象
             TreeMap<String, Book> stringBookTreeMap = new TreeMap<>((o1, o2) -> Integer.parseInt(o1) > Integer.parseInt(o2) ? 1 : -1);
             addBookMethod(stringBookTreeMap,bookArrayStr);
+            ArrayList<Book> books = new ArrayList<>();
+            treeMapConvertToArray(books,stringBookTreeMap);
             Scanner input = new Scanner(System.in);
             while (true){
                 System.out.println("欢迎来到图书售卖商店");
@@ -46,18 +53,23 @@ public class BookSystem {
                     System.out.println("登陆成功");
                     System.out.println("***********欢迎来到库存管理系统**************");
                     System.out.println("书号\t\t书名\t\t作者\t\t发布日期\t\t价格\t\t库存");
-                    findAll(stringBookTreeMap);
+                    findAll(books);
                     System.out.println("请选择进行的操作:1.图书入库 2.图书出库 3.查询全部图书 4.新增图书 5.退出");
                     int select = input.nextInt();
                     switch (select){
                         case 1:
-                            Book book = new Book();
-
+                            System.out.println("请输入ID");
+                            String id = input.next();
+                            System.out.println("请输入入库数量");
+                            int num = input.nextInt();
+                            insertNum(books,id,num);
+                            findAll(books);
+                            createXml(books);
                             break;
                         case 2:
                             break;
                         case 3:
-                            findAll(stringBookTreeMap);
+                            findAll(books);
                             break;
                         case 4:
                             break;
@@ -66,7 +78,7 @@ public class BookSystem {
                     }
                 }else {
                     System.out.println("用户名或者密码错误，请重新输入");
-                    break;
+                    continue;
                 }
 
             }
@@ -80,10 +92,69 @@ public class BookSystem {
         }
     }
 
-    private void findAll(TreeMap<String, Book> stringBookTreeMap) {
-        for (Map.Entry<String, Book> stringBookEntry : stringBookTreeMap.entrySet()) {
-            Book book = stringBookEntry.getValue();
-            System.out.println("\t" + stringBookEntry.getKey() + "\t\t" + book.getBookName() + "\t\t" + book.getAuthor() + "\t\t" + new SimpleDateFormat("yyyy-MM-dd").format(book.getPublishTime()) + "\t\t" + book.getPrice() + "\t\t" + book.getNum());
+    private void createXml(ArrayList<Book> list) throws IOException {
+        // 创建一个document对象
+        Document document = DocumentHelper.createDocument();
+        // 创建document对象的第一个节点
+        Element books = document.addElement("books");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        OutputFormat format = OutputFormat.createCompactFormat();
+        format.setEncoding("utf-8");
+        XMLWriter writer = new XMLWriter(new FileWriter("JavaSE/src/main/resources/book2.xml"),format);
+        for (Book book : list) {
+            Element b = books.addElement("book");
+
+            /*
+            Element bookId = b.addElement(book.getBookId());
+            Element bookName = b.addElement(book.getBookName());
+            Element author = b.addElement(book.getAuthor());
+            Element publishTime = b.addElement(sdf.format(book.getPublishTime()));
+            Element price = b.addElement(book.getPrice().toString());
+            Element num = b.addElement(book.getNum().toString());
+
+            <book>
+        <bookId>10005</bookId>
+        <bookName>宇宙奥秘</bookName>
+        <author>霍金</author>
+        <publishTime>2003-12-23</publishTime>
+        <price>67.3</price>
+        <num>14</num>
+    </book>
+            */
+
+            Element bookId = b.addElement("bookId");
+            Element bookName = b.addElement("bookName");
+            Element author = b.addElement("author");
+            Element publishTime = b.addElement("publishTime");
+            Element price = b.addElement("price");
+            Element num = b.addElement("num");
+        }
+        writer.write(document);
+        writer.close();
+        System.out.println("创建成功");
+    }
+
+    private void insertNum(ArrayList<Book> books, String id, int num) {
+        for (Book book : books) {
+            if (book.getBookId().equals(id)) {
+                book.setNum(book.getNum() + num);
+            }else {
+                System.out.println("您输入的id不存在,请重新输入");
+                break;
+            }
+        }
+    }
+
+    private void treeMapConvertToArray(ArrayList<Book> books, TreeMap<String, Book> stringBookTreeMap) {
+        Collection<Book> values = stringBookTreeMap.values();
+        for (Book book : values) {
+            books.add(book);
+        }
+    }
+
+    private void findAll(ArrayList<Book> books) {
+        for (Book book : books) {
+            System.out.println(book.getBookId() + "\t\t" + book.getBookName() + "\t\t" + book.getAuthor() + "\t\t" + new SimpleDateFormat("yyyy-MM-dd").format(book.getPublishTime()) + "\t\t" + book.getPrice() + "\t\t" + book.getNum());
         }
     }
 
