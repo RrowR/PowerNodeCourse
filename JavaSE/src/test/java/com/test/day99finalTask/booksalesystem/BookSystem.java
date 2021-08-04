@@ -39,48 +39,80 @@ public class BookSystem {
             user.setPassword(userSplit[1]);
             // 这个treeMap保存了xml文件里的book对象
             TreeMap<String, Book> stringBookTreeMap = new TreeMap<>((o1, o2) -> Integer.parseInt(o1) > Integer.parseInt(o2) ? 1 : -1);
-            addBookMethod(stringBookTreeMap,bookArrayStr);
+            addBookMethod(stringBookTreeMap, bookArrayStr);
             ArrayList<Book> books = new ArrayList<>();
-            treeMapConvertToArray(books,stringBookTreeMap);
+            treeMapConvertToArray(books, stringBookTreeMap);
             Scanner input = new Scanner(System.in);
-            while (true){
+            while (true) {
                 System.out.println("欢迎来到图书售卖商店");
                 System.out.print("请输入用户名:   ");
                 String username = input.next();
                 System.out.print("请输入密码:   ");
                 String password = input.next();
-                if (username.equals(user.getUsername()) && password.equals(user.getPassword())){
+                if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
                     System.out.println("登陆成功");
                     System.out.println("***********欢迎来到库存管理系统**************");
                     System.out.println("书号\t\t书名\t\t作者\t\t发布日期\t\t价格\t\t库存");
                     findAll(books);
                     System.out.println("请选择进行的操作:1.图书入库 2.图书出库 3.查询全部图书 4.新增图书 5.退出");
                     int select = input.nextInt();
-                    switch (select){
+                    switch (select) {
                         case 1:
                             System.out.println("请输入ID");
                             String id = input.next();
                             System.out.println("请输入入库数量");
                             int num = input.nextInt();
-                            if (insertNum(books,id,num)){
+                            if (insertNum(books, id, num)) {
                                 findAll(books);
                                 createXml(books);
-                            }else {
+                            } else {
                                 findAll(books);
                                 System.out.println("您的订单号不存在...");
                             }
                             break;
                         case 2:
+                            System.out.println("请输入ID");
+                            String id2 = input.next();
+                            System.out.println("请输出库数量");
+                            int num2 = input.nextInt();
+                            if (decreaseselectedBooks(books, id2, num2)) {
+                                findAll(books);
+                                createXml(books);
+                            } else {
+                                findAll(books);
+                                System.out.println("您的订单号不存在...");
+                            }
                             break;
                         case 3:
                             findAll(books);
                             break;
                         case 4:
+                            System.out.println("请输入要新增图书的id号");
+                            String id4 = input.next();
+                            System.out.println("请输入要新增图书的名字");
+                            String name4 = input.next();
+                            System.out.println("请输入图书的作者");
+                            String author = input.next();
+                            System.out.println("请输入图书的价格");
+                            double price = input.nextDouble();
+                            System.out.println("请输入图书的数量");
+                            int num4 = input.nextInt();
+                            Book book = new Book();
+                            book.setBookId(id4);
+                            book.setBookName(name4);
+                            book.setAuthor(author);
+                            book.setPublishTime(new Date());
+                            book.setPrice(price);
+                            book.setNum(num4);
+                            books.add(book);
+                            System.out.println("图书添加成功");
+                            findAll(books);
+                            createXml(books);
                             break;
                         case 5:
                             return;
                     }
-                }else {
+                } else {
                     System.out.println("用户名或者密码错误，请重新输入");
                     continue;
                 }
@@ -88,12 +120,19 @@ public class BookSystem {
             }
 
 
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean decreaseselectedBooks(ArrayList<Book> books, String id2, int num2) {
+        for (Book book : books) {
+            if (book.getBookId().equals(id2)) {
+                book.setNum(book.getNum() - num2);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void createXml(ArrayList<Book> list) throws IOException {
@@ -104,7 +143,7 @@ public class BookSystem {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         OutputFormat format = OutputFormat.createCompactFormat();
         format.setEncoding("utf-8");
-        XMLWriter writer = new XMLWriter(new FileWriter("JavaSE/src/main/resources/book2.xml"),format);
+        XMLWriter writer = new XMLWriter(new FileWriter("JavaSE/src/main/resources/book2.xml"), format);
         for (Book book : list) {
             Element b = books.addElement("book");
             Element bookId = b.addElement("bookId");
@@ -130,8 +169,6 @@ public class BookSystem {
             if (book.getBookId().equals(id)) {
                 book.setNum(book.getNum() + num);
                 return true;
-            }else {
-                return false;
             }
         }
         return false;
@@ -153,10 +190,11 @@ public class BookSystem {
     private void addBookMethod(TreeMap<String, Book> bookMap, String bookArrayStr) throws ParseException {
         String[] bookSplit = bookArrayStr.split(",");
         int i = 0;
-        while (i != bookSplit.length){
+        while (i != bookSplit.length) {
             Book book = new Book();
-            outer : for (; i < bookSplit.length; i++) {
-                switch (i % 6){
+            outer:
+            for (; i < bookSplit.length; i++) {
+                switch (i % 6) {
                     case 0:
                         book.setBookId(bookSplit[i]);
                         break;
@@ -178,7 +216,7 @@ public class BookSystem {
                         break outer;
                 }
             }
-            bookMap.put(book.getBookId(),book);
+            bookMap.put(book.getBookId(), book);
             i++;
         }
     }
