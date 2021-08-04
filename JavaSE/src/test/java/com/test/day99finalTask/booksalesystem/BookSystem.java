@@ -62,9 +62,13 @@ public class BookSystem {
                             String id = input.next();
                             System.out.println("请输入入库数量");
                             int num = input.nextInt();
-                            insertNum(books,id,num);
-                            findAll(books);
-                            createXml(books);
+                            if (insertNum(books,id,num)){
+                                findAll(books);
+                                createXml(books);
+                            }else {
+                                findAll(books);
+                                System.out.println("您的订单号不存在...");
+                            }
                             break;
                         case 2:
                             break;
@@ -121,15 +125,16 @@ public class BookSystem {
         System.out.println("创建成功");
     }
 
-    private void insertNum(ArrayList<Book> books, String id, int num) {
+    private boolean insertNum(ArrayList<Book> books, String id, int num) {
         for (Book book : books) {
             if (book.getBookId().equals(id)) {
                 book.setNum(book.getNum() + num);
+                return true;
             }else {
-                System.out.println("您输入的id不存在,请重新输入");
-                break;
+                return false;
             }
         }
+        return false;
     }
 
     private void treeMapConvertToArray(ArrayList<Book> books, TreeMap<String, Book> stringBookTreeMap) {
