@@ -1,4 +1,4 @@
-package com.study;
+package com.study.demo01;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class Demo01JDBCConnect {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        final String JDBC_URL="jdbc:mysql://127.0.0.1:3306/course?useUnicode=true&useSSL=false&characterEncoding=UTF8&serverTimezone=UTC";
+        final String JDBC_URL="jdbc:mysql://192.168.192.128:3306/course?useUnicode=true&useSSL=false&characterEncoding=UTF8&serverTimezone=UTC";
         // 加载驱动
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection(JDBC_URL,"root","123456");
