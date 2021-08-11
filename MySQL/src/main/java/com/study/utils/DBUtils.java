@@ -1,8 +1,6 @@
 package com.study.utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -47,11 +45,32 @@ public class DBUtils {
     }
 
     public static void close(AutoCloseable ...autoCloseables) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
         try {
             if (autoCloseables != null) {
-                for (AutoCloseable autoCloseable : autoCloseables) {
-                    autoCloseable.close();
+                for (int i = 0; i < autoCloseables.length; i++) {
+                    AutoCloseable autoCloseable = autoCloseables[i];
+                    if (autoCloseable instanceof Connection){
+                        connection = ((Connection) autoCloseable);
+                    }
+                    if (autoCloseable instanceof Statement){
+                        statement = ((Statement) autoCloseable);
+                    }
+                    if (autoCloseable instanceof ResultSet){
+                        resultSet = ((ResultSet) autoCloseable);
+                    }
                 }
+            }
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
