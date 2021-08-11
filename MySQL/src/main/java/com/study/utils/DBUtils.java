@@ -46,10 +46,12 @@ public class DBUtils {
         return null;
     }
 
-    public static void close(AutoCloseable autoCloseable) {
+    public static void close(AutoCloseable ...autoCloseables) {
         try {
-            if (autoCloseable != null) {
-                autoCloseable.close();
+            if (autoCloseables != null) {
+                for (AutoCloseable autoCloseable : autoCloseables) {
+                    autoCloseable.close();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -27,7 +27,6 @@ public class Demo01DBUtilsSelect {
             Date birth = resultSet.getDate(6);
             System.out.println("id=" + id + " name=" + name + " address=" + address +" age=" + age +" sex=" + sex + " birth=" + birth);
         }
-        DBUtils.close(statement);
-        DBUtils.close(conn);
+        DBUtils.close(resultSet,statement,conn);
     }
 }
