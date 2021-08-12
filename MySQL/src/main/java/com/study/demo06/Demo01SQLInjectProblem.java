@@ -18,6 +18,11 @@ public class Demo01SQLInjectProblem {
         System.out.println("请输入密码");
         String password = scanner.next().trim();
         // 此查询判断的是返回是否是一个ResultSet，如果是返回true如果不是返回false
+        /*
+            statement.execute()的返回值解释在源码中如下：
+            true if the first result is a ResultSet object;
+            false if the first result is an update count or there is no result；
+         */
         ResultSet hasResult = statement.executeQuery("select * from sys_user where username = '"+username+"' and password = '"+password+"'");
         /*
             这种写法存在一个非常严重的sql注入问题

@@ -4,6 +4,7 @@ import com.study.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -27,21 +28,23 @@ public class PrepareStatementUsagePosition {
         System.out.println("请输入密码");
         String password = scanner.next().trim();
         preparedStatement.setString(2,password);
-        // 此查询判断的是返回是否是一个ResultSet，如果是返回true如果不是返回false
-        boolean hasResult = preparedStatement.execute();
         /*
-            这种写法存在一个非常严重的sql注入问题
-            当用户密码输入成以下格式：
-            用户名:  aaa
-            密码:    aaa'or'1'='1
-            那么这种写法会被程序解析成一个sql语句
-            select * from sys_user where username = "aaa" and password = "aaa'or'1'='1";
-            在sql中返回是一个空值，但是确实有结果那么结果将会返回true
-         */
-        if (hasResult){
-            System.out.println("登陆成功");
+            这里不能使用execute,虽然查询不到结果，但是使用select查询不管有没有一定会有一个结果集，所以一定是会为true
+            boolean hasResult = preparedStatement.execute();
+            if (hasResult){
+                System.out.println("登陆成功");
+            }else {
+                System.out.println("登陆失败");
+            }
+        */
+        ResultSet resultSet = preparedStatement.executeQuery();
+        // 下一个指针的返回值,这个返回的是true或者false
+        if (resultSet.next()){
+            System.out.println("login access");
         }else {
-            System.out.println("登陆失败");
+            System.out.println("login fail");
         }
+        DBUtils.close(resultSet,preparedStatement,connection);
+
     }
 }
