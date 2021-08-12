@@ -10,6 +10,7 @@ public class Demo01Transaction {
     public static void main(String[] args){
         // 这里要定义到外面，不然在catch里将无法执行方法
         Connection connection = null;
+        Statement statement = null;
         try {
             connection = DBUtils.getConnection();
             // 注意这里的设置自动提交是connection里的方法
@@ -17,7 +18,7 @@ public class Demo01Transaction {
             /*
                 使用statement执行sql语句
              */
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             int a= statement.executeUpdate("update account set amount = amount - 1000 where aid = 1");
             System.out.println(a);
             /*
@@ -39,7 +40,7 @@ public class Demo01Transaction {
             }
             exception.printStackTrace();
         }
-
+        DBUtils.close(statement,connection);
 
     }
 }
