@@ -1,5 +1,6 @@
-package com.study.demo10;
+package com.study.demo10.dao;
 
+import com.study.demo10.common.PageInfo;
 import com.study.demo10.entity.Student;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface StudentDao {
     // 不需要Id查询所有学生，返回一个包含所有学生的学生集合
     List<Student> queryAllStudent();
 
+    // 分页查询，这里不能返回返回一个List集合，应该返回一个PageInfo对象，里面存储了数据
+    PageInfo<Student> queryPageStudent(PageInfo pageInfo,Student student);
 }

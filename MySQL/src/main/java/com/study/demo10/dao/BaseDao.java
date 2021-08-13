@@ -1,5 +1,6 @@
-package com.study.demo10;
+package com.study.demo10.dao;
 
+import com.study.demo10.common.PageInfo;
 import com.study.utils.DBUtils;
 
 import java.lang.reflect.Field;
@@ -106,13 +107,13 @@ public class BaseDao {
                     preparedStatement.setObject(i + 1, params[0]);
                 }
                 // 封装预执行sql之后，执行这条已经预执行的sql，得到一个结果集
-                ResultSet rs = preparedStatement.executeQuery();
+                resultSet = preparedStatement.executeQuery();
                 // 获取这个结果集里的元数据
-                ResultSetMetaData metaData = rs.getMetaData();
+                ResultSetMetaData metaData = resultSet.getMetaData();
                 // 获取这个元数据的个数(表头属性的个数)
                 int columnCount = metaData.getColumnCount();
                 // 遍历这个结果集，由于是id查询，结果集其实只有1个
-                while (rs.next()) {
+                while (resultSet.next()) {
                     // 反射创建这个对象
                     T obj = clazz.newInstance();
                     for (int i = 0; i < columnCount; i++) {
@@ -123,7 +124,7 @@ public class BaseDao {
                         // 由于这个对象字段都是private修饰的，需要开始访问权限
                         declaredField.setAccessible(true);
                         // 根据元数据的表头名字找到这个结果集里字段对应的值value
-                        Object value = rs.getObject(columnLabel);
+                        Object value = resultSet.getObject(columnLabel);
                         // 为这每一个字段设置值,传入需要设置值的对象，转入值object
                         /*
                             循环结束之后，整个obj对象的字段值已经全部设置好了
@@ -156,14 +157,44 @@ public class BaseDao {
             connection = DBUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             for (int i = 0; i < params.length; i++) {
-                preparedStatement.setObject(i + 1,params[i]);
+                preparedStatement.setObject(i + 1, params[i]);
             }
             effectRows = preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            DBUtils.close(preparedStatement,connection);
+        } finally {
+            DBUtils.close(preparedStatement, connection);
         }
         return effectRows;
+    }
+
+    // 定义分页查询的公用方法,这里应该返回一个封装的PageInfo对象，里面的集合其实有保存的结果
+    protected <T> PageInfo<T> queryForPage(String sql, Class<T> clazz, PageInfo<T> pageInfo, Object... params) {
+        List<T> data = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < params.length; i++) {
+                // 为预处理sql设置好占位符的值
+                preparedStatement.setObject(i+1,params[i]);
+            }
+            // 执行预处理sql，返回一个结果集
+            resultSet = preparedStatement.executeQuery();
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            for (int i = 0; i < columnCount; i++) {
+
+            }
+
+
+        } catch (Exception e) {
+
+        } finally {
+            DBUtils.close(resultSet, preparedStatement, connection);
+        }
+        return pageInfo;
     }
 }

@@ -1,6 +1,8 @@
 package com.study.demo10;
 
+import com.study.demo10.dao.StudentDao;
 import com.study.demo10.entity.Student;
+import com.study.demo10.impl.StudentDaoImpl;
 import org.junit.Test;
 
 import java.util.Date;
@@ -23,7 +25,7 @@ public class MainApp {
             根据id单个查询
          */
         StudentDao dao = new StudentDaoImpl();
-        Student student = dao.queryStudentById(1);
+        Student student = dao.queryStudentById(2);
         System.out.println(student);
     }
 
@@ -58,5 +60,13 @@ public class MainApp {
         Student student = new Student(2, "镜华", "jinghua@princess.com", 13, "女", new Date());
         int i = dao.updateStudent(student);
         System.out.println(i);
+    }
+
+    @Test
+    public void method06(){
+        /*
+            分页查询
+         */
+
     }
 }
