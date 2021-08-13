@@ -5,7 +5,7 @@ import com.study.demo10.entity.Student;
 import java.util.Date;
 import java.util.List;
 
-public class StudentDaoImpl extends BaseDao implements StudentDao{
+public class StudentDaoImpl extends BaseDao implements StudentDao {
     @Override
     public int addStudent(Student student) {
         // 这里只能写? 不能写 '?' 否则会报错
@@ -19,26 +19,35 @@ public class StudentDaoImpl extends BaseDao implements StudentDao{
         Integer age = student.getAge();
         String sex = student.getSex();
         Date birth = student.getBirth();
-        Object[] params = {name,address,age,sex,birth};
-        return super.executeUpdate(sql,params);
+        Object[] params = {name, address, age, sex, birth};
+        return super.executeUpdate(sql, params);
     }
 
     @Override
     public int deleteStudent(Integer id) {
-        return 0;
+        String sql = "delete from student where id = ?";
+        Object[] params = {id};
+        return super.executeUpdate(sql, params);
     }
 
     @Override
     public int updateStudent(Student student) {
-
-        return 0;
+        String sql = "update student set name = ?,address = ?,age = ?,sex = ?,birth = ? where id = ?";
+        String name = student.getName();
+        String address = student.getAddress();
+        Integer age = student.getAge();
+        String sex = student.getSex();
+        Date birth = student.getBirth();
+        Integer id = student.getId();
+        Object[] params = {name, address, age, sex, birth ,id};
+        return super.executeUpdate(sql,params);
     }
 
     @Override
     public Student queryStudentById(Integer id) {
         Object[] params = {id};
         String sql = "select * from student where id = ?";
-        return super.selectOne(sql,Student.class,params);
+        return super.selectOne(sql, Student.class, params);
     }
 
     /*
@@ -49,6 +58,6 @@ public class StudentDaoImpl extends BaseDao implements StudentDao{
         String sql = "select * from student";
         Object[] params = null;
         // 核心就是调用BaseDao里的（selectList方法）去查询数据库，这个方法
-        return super.selectList(sql,Student.class,params);      // 调用父类的selectList方法，返回一个List集合
+        return super.selectList(sql, Student.class, params);      // 调用父类的selectList方法，返回一个List集合
     }
 }

@@ -38,4 +38,25 @@ public class MainApp {
         int i = dao.addStudent(美美);
         System.out.println(i);
     }
+
+    @Test
+    public void method04(){
+        /*
+            根据id删除学生
+         */
+        StudentDao dao = new StudentDaoImpl();
+        int effectRow = dao.deleteStudent(1);
+        System.out.println(effectRow);
+    }
+
+    @Test
+    public void method05(){
+        /*
+            修改学生
+         */
+        StudentDao dao = new StudentDaoImpl();
+        Student student = new Student(2, "镜华", "jinghua@princess.com", 13, "女", new Date());
+        int i = dao.updateStudent(student);
+        System.out.println(i);
+    }
 }

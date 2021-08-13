@@ -159,7 +159,6 @@ public class BaseDao {
                 preparedStatement.setObject(i + 1,params[i]);
             }
             effectRows = preparedStatement.executeUpdate();
-
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
