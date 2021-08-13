@@ -90,7 +90,7 @@ public class BaseDao {
      * @param <T>
      * @return
      */
-    protected <T> T selectOne(String sql, Class<T> clazz, Object[] params) {
+    public <T> T selectOne(String sql, Class<T> clazz, Object[] params) {
         ArrayList<T> data = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -128,7 +128,7 @@ public class BaseDao {
                         /*
                             循环结束之后，整个obj对象的字段值已经全部设置好了
                          */
-                        declaredField.set(obj,value);
+                        declaredField.set(obj, value);
                     }
                     // 将这个对象添加到集合里面去
                     data.add(obj);
@@ -141,18 +141,30 @@ public class BaseDao {
         }
         // 先创建引用，否则上面将无法返回，由于这是一个通用的方法，返回值类型只能为T，否则扩展性就会很差
         T t = null;
-        if (data != null && data.size() != 0){
+        if (data != null && data.size() != 0) {
             t = data.get(0);
         }
         return t;
     }
 
-    protected int executeUpdate(String sql, Object[] params) {
 
-        String name = student.getName();
-        String address = student.getAddress();
-        Integer age = student.getAge();
-        String sex = student.getSex();
-        Date birth = student.getBirth();
+    protected int executeUpdate(String sql, Object[] params) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int effectRows = 0;
+        try {
+            connection = DBUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 1,params[i]);
+            }
+            effectRows = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtils.close(preparedStatement,connection);
+        }
+        return effectRows;
     }
 }
