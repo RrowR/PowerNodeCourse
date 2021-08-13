@@ -21,7 +21,7 @@ public class InsertData {
     public void createTable() throws SQLException {
         Connection connection = DBUtils.getConnection();
         Statement statement = connection.createStatement();
-        statement.execute("create table student(id int(11) primary key not null auto_increment,name varchar (10) ,address varchar (255) ,age varchar (255),sex char(1),birth date)");
+        statement.execute("create table student(id int(11) primary key not null auto_increment,name varchar (10) ,address varchar (255) ,age int (11),sex char(1),birth date)");
         DBUtils.close(statement,connection);
     }
 
