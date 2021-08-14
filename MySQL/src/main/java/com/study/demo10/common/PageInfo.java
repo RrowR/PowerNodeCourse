@@ -1,6 +1,7 @@
 package com.study.demo10.common;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -17,7 +18,8 @@ public class PageInfo<T> {
     private Long pageSize;
     private Long totalCount;
     private Long totalPage;
-    private List<T> data;
+    // 这个集合仪器室就先new出来，否则没有对象会报空指针异常
+    private List<T> data = new ArrayList<>();
 
     public PageInfo() {
     }
@@ -49,18 +51,14 @@ public class PageInfo<T> {
     }
 
     public void setTotalCount(Long totalCount) {
+        // 传入获取到的总个数
         this.totalCount = totalCount;
-    }
-
-    public void setTotalPage(Long totalPage) {
-        // 这里要先赋值
-        this.totalPage = totalPage;
-        // 然后再进行向上取整
+        // 执行这个方法执行总页数
         this.totalPage = ((long) Math.ceil((totalCount * 1.0 / pageSize)));
     }
 
-    public void setData(List<T> data) {
-        this.data = data;
+    public void setTotalPage(Long totalPage) {
+        this.totalPage = totalPage;
     }
 
     public Long getTotalPage() {
@@ -70,5 +68,9 @@ public class PageInfo<T> {
 
     public List<T> getData() {
         return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
     }
 }

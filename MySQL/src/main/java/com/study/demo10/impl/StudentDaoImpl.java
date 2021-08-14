@@ -65,6 +65,12 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
         return super.selectList(sql, Student.class, params);      // 调用父类的selectList方法，返回一个List集合
     }
 
+    /**
+     *
+     * @param pageInfo      这里面传入pageInfo，调用方法的时候只需要传入页码数和每页的页数
+     * @param student       这里的对象不一定需要传入所有属性，只需要传入自己想要传入的属性进行set进去即可
+     * @return
+     */
     @Override
     public PageInfo<Student> queryPageStudent(PageInfo pageInfo, Student student) {
         /*
@@ -78,11 +84,13 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
         ArrayList<String> list = new ArrayList<>();
         // 判断如果传入的对象的名字不为空
         if (student.getName() != null && !student.getName().equals("")) {
-            builder.append(" and name like %?%");
+            // '%?%' 这样的写法是错误的
+            builder.append(" and name like concat('%',?,'%') ");
             list.add(student.getName());
         }
         if (student.getAddress() != null && !student.getAddress().equals("")) {
-            builder.append(" and address like %?%");
+//            concat('%',?,'%')
+            builder.append(" and address like concat('%',?,'%') ");
             list.add(student.getAddress());
         }
         if (student.getSex() != null && !student.getSex().equals("")) {

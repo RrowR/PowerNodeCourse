@@ -1,5 +1,6 @@
 package com.study.demo10;
 
+import com.study.demo10.common.PageInfo;
 import com.study.demo10.dao.StudentDao;
 import com.study.demo10.entity.Student;
 import com.study.demo10.impl.StudentDaoImpl;
@@ -67,6 +68,11 @@ public class MainApp {
         /*
             分页查询
          */
-
+        StudentDao dao = new StudentDaoImpl();
+        Student student = new Student();
+        student.setName("用户");
+        PageInfo<Student> studentPageInfo = dao.queryPageStudent(new PageInfo(1L, 5L), student);
+        List<Student> data = studentPageInfo.getData();
+        data.forEach(System.out::println);
     }
 }

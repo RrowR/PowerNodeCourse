@@ -168,33 +168,88 @@ public class BaseDao {
         return effectRows;
     }
 
-    // 定义分页查询的公用方法,这里应该返回一个封装的PageInfo对象，里面的集合其实有保存的结果
+    /**
+     * 定义分页查询的公用方法,这里应该返回一个封装的PageInfo对象，里面的集合其实有保存的结果
+     *
+     * @param sql      子类传入的sql
+     * @param clazz    子类传入的对象类型
+     * @param pageInfo pageInfo对象，主方法里填写了页码数和显示的个数，在此方法里需要填装总个数，List<T> data 数据，总页数在Page中的set
+     * @param params   分页查询的占位符的值，其实就是模糊查询的值，根据什么来进行模糊查询
+     * @param <T>
+     * @return
+     */
     protected <T> PageInfo<T> queryForPage(String sql, Class<T> clazz, PageInfo<T> pageInfo, Object... params) {
-        List<T> data = new ArrayList<>();
+        // 这里不需要创建集合，只需要把数据放到PageInfo里面就好了
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = DBUtils.getConnection();
+            // 为PageInfo设置总个数
+            Long totalCount = queryTotalCount(sql, params);
+            pageInfo.setTotalCount(totalCount);
+            sql = sql + " limit " + (pageInfo.getPageNum() - 1) * pageInfo.getPageSize() + "," + pageInfo.getPageSize();
             preparedStatement = connection.prepareStatement(sql);
             for (int i = 0; i < params.length; i++) {
                 // 为预处理sql设置好占位符的值
-                preparedStatement.setObject(i+1,params[i]);
+                preparedStatement.setObject(i + 1, params[i]);
             }
             // 执行预处理sql，返回一个结果集
             resultSet = preparedStatement.executeQuery();
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
-            for (int i = 0; i < columnCount; i++) {
-
+            /*
+                ResultSet.next()指针指向下一条数据，如果有数据返回true，否则返回false
+                为每一条数据创建一个空值对象，准备将数据库中的一条数据填装到这个空值对象中去
+             */
+            while (resultSet.next()) {
+                T t = clazz.newInstance();
+                for (int i = 0; i < columnCount; i++) {
+                    // 遍历出每个metadata上的元数据名字，和sql的占位符一样都是从1开始
+                    String columnLabel = metaData.getColumnLabel(i + 1);
+                    // 反射根据名字获取反射对象的字段值（没有值）
+                    Field declaredField = t.getClass().getDeclaredField(columnLabel);
+                    // 获取这个表指针指向的这条数据对应字段的值
+                    Object object = resultSet.getObject(columnLabel);
+                    declaredField.setAccessible(true);
+                    declaredField.set(t, object);
+                }
+                // 将上面循环填装好的对象放到PageInfo<T>中的集合里去
+                pageInfo.getData().add(t);
             }
-
-
         } catch (Exception e) {
-
+            e.printStackTrace();
         } finally {
             DBUtils.close(resultSet, preparedStatement, connection);
         }
         return pageInfo;
+    }
+
+    // 根据最开始的sql条件来查询所有符合条件的数据
+    private Long queryTotalCount(String sql, Object[] params) {
+        Long totalCount = 0L;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBUtils.getConnection();
+            // 注意：这里的count(*) 必须写在一起
+            preparedStatement = connection.prepareStatement("select count(*) from (" + sql + ") t");
+            for (int i = 0; i < params.length; i++) {
+                preparedStatement.setObject(i + 1, params[i]);
+            }
+            // 这里只能使用有ResultSet作为返回值的方法，因为这个sql是一条查询语句，一定会有结果集
+            resultSet = preparedStatement.executeQuery();
+            // 在获取表中数据的时候一定要先执行next方法
+            if (resultSet.next()){
+                // 获取统计的结果个数
+                totalCount = resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtils.close(preparedStatement, connection,resultSet);
+        }
+        return totalCount;
     }
 }
