@@ -7,10 +7,12 @@
     <title>04FrameSet02</title>
 </head>
 <frameset rows = "30%,*,30%">
-    <frame>
-    </frame>
-    
-    <frame>
-    </frame>
+    <frame src="frame框架ref页面/index01.html"></frame>
+    <!-- 这种写法严重没提示，但是可以这样写 -->
+    <frameset cols="50%,50%">
+        <frame src="frame框架ref页面/index03.html"></frame>
+        <frame src="frame框架ref页面/index04.html"></frame>
+    </frameset>
+    <frame src="frame框架ref页面/index02.html"></frame>
 </frameset>
 </html>
