@@ -4,7 +4,23 @@
     <meta charset="UTF-8">
     <title>09关系选择器_交集选择器</title>
 </head>
+    <!--交集选择器，选择容器标签内的另一个标签，可以是类标签，可以是id标签-->
+<style>
+    div{
+        color: #C2BE9E;
+    }
+    div.tag{
+        color: pink;
+    }
+    div#title{
+        color: blue;
+    }
+</style>
 <body>
-
+    <h1 class="tag">我是标题</h1>
+    <div class="p1">我是一个div标签</div>
+    <p>我是一个p标签</p>
+    <div class="tag">我是第二个DIV标签</div>
+    <div id="title">我是第三个DIV标签</div>
 </body>
 </html>
