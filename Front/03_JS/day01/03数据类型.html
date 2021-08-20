@@ -28,6 +28,32 @@
     console.log(num2);  //NaN   Not a Number 不是一个数值型
     console.log(isNaN(num2))    // true
 
+    // 变量名在javascript中是可以重复的
+    var name = 123;
+    console.log(typeof name);       // 如果使用name作为变量名,那么这个变量一定是一个字符串类型
+
+    var num2 = "123";
+    console.log(typeof num2);
+
+    let a1 = 10 > 0;
+    let a2 = 10 < 0;
+    let b1 = true;
+    let b2 = false;
+    console.log(typeof a1);     // 这里如果a1已经进行比较了,那么这就是一个boolean类型
+    console.log(a2);
+    console.log(b1);
+    console.log(typeof b1);
+    console.log(b2);
+    console.log(typeof b2);
+
+    var ud;
+    console.log(ud);        // undefined
+    console.log(typeof ud);     // undefined类型只有一个值undefined,未定义数据类型
+
+    let nu = null;
+    console.log(nu);        //值为null时,那么打印出来的是null
+    console.log(typeof nu);     //但是数据类型是object
+
 
 
 
