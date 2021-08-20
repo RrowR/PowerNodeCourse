@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03数据类型.html</title>
+</head>
+<body>
+
+</body>
+<script>
+    var age = 10
+    console.log(age)
+    console.log(typeof age)
+    var f1 = 3.14
+    console.log(f1) // 即使是float数据类型，照样是显示number
+    console.log(typeof f1)
+    var name = "我的名字"
+    console.log(name)
+    console.log(typeof name)
+    var n1 = 10/0;
+    console.log(n1);    // Infinity 无限的，但是不会像java一样报错
+    console.log(typeof n1)  // 照样还是Number类型
+
+    var num = Number("123");    // 只有数字的字符串可以强转成Number类型
+    console.log(num);
+
+    var num2 = Number("a123");
+    console.log(num2);  //NaN   Not a Number 不是一个数值型
+    console.log(isNaN(num2))    // true
+
+
+
+
+
+
+</script>
+</html>
