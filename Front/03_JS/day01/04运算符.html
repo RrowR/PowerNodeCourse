@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04运算符.html</title>
+</head>
+<body>
+
+</body>
+<script>
+    let a = 10, b = 20;
+    /*加减乘除*/
+    console.log("a+b=" + (a + b));
+    console.log("a*b=" + a * b);
+    console.log("a-b=" + (a - b));
+    console.log("a/b=" + a / b);        // 由于是弱类型语言,这里除之后不会出现数据溢出的问题
+    /*赋值运算符*/
+    console.log(a += b);
+    console.log(a *= b);
+    /*条件运算符*/
+    a = 10, b = 20;
+    console.log(a > b);
+    console.log(a < b);
+    console.log(a != b);
+    let s1 = "hello";
+    let s2 = new String("hello");
+    console.log(s1 == s2);        // 比较的是值
+    console.log(s1 === s2);       // 比较的是地址和值
+    console.log(typeof s1);     //String
+    console.log(typeof s2);     //Object
+    /*字符串运算符*/
+    let h = "hello" + "world";      // +
+    console.log(h);
+    h += "您好,世界";                // +=
+    console.log(h);
+    /*逻辑运算符*/
+    a = 10, b = 20;
+    console.log(a > b && a < b);
+    console.log(a > b || a < b);
+    /*三元运算符*/
+    let m = a > 10 ? "是大于10" : "小于10";
+    console.log(m)
+
+</script>
+</html>
