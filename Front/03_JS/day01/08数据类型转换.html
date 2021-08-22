@@ -16,11 +16,21 @@
     console.log(Number(true))   // 1
     console.log(Number(false))  // 0
 
-    // 转Boolean
+    // 转Boolean (当为0、null、""、false、undefined、和NaN时，为false)
     console.log(Boolean(10));   // true
     console.log(Boolean(0));    // false
-    console.log(Boolean(Number("aaa")));    //false
+    console.log(Boolean(Number("aaa")));    //NaN  false
     console.log(Boolean(undefined));     //false
+    console.log(Boolean(""));
+    console.log(Boolean(false));
+
+    // 将数据类型转换成String类型(几乎任意数据类型都可以转换成String)
+    console.log(typeof String(123));    //String
+    console.log(typeof String(true));   //String
+    console.log(String(true));   //String
+    console.log(typeof String(false));
+    console.log(typeof String(undefined));
+
 
 
 </script>
