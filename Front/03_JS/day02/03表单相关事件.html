@@ -5,7 +5,55 @@
     <title>03表单相关事件.html</title>
 </head>
 <body>
-
+    <h1>用户注册</h1>
+                                                                                    <!-- this返回表单对象   -->
+    <form action="#" method="get" onsubmit="doSubmit(event,this)" onreset="testReset(event,this)">
+        用户名:<input type="text" value="admin" name="username" onblur="testOnblur(event,this)" onfocus="testOnfocus(event,this)"><br>
+                                <!--   这里监听要使用onchange     -->
+        爱好:<select name="hobby" onchange="doChange(this)">
+                <option>CSGO</option>
+                <option>CS1.6</option>
+                <option>300Heros</option>
+                <option>Youtube</option>
+            </select>
+        <br>
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+    </form>
 </body>
+<script>
+    // 这里的object是一个表单对象，event是事件，记录了到底做了什么
+    function doSubmit(event,obj){
+        // console.log(obj);
+        // console.log("do submit");
+    }
+    function testReset(event,obj){
+        // console.log(obj);
+        // console.log("do Reset");
+    }
 
+    // 这里返回的是input标签对象
+    function testOnblur(event,obj){
+        console.log(event);
+        console.log(obj);
+        console.log(obj.value);
+        console.log("on blur");
+        if (obj.value.length < 6){
+            alert("长度不能小于6");
+        }else {
+            alert("输入正确");
+        }
+    }
+    function testOnfocus(event,obj){
+        // console.log(event);
+        // console.log(obj);
+        // console.log(obj.value);
+        // console.log("on focus");
+    }
+
+    // 监听下拉框被选中
+    function doChange(obj){
+        // alert(obj.value);
+    }
+</script>
 </html>
