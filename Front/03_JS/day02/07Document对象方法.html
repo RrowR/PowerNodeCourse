@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07Document对象方法.html</title>
+</head>
+<body>
+    <input type="button" value="测试getElementById" onclick="testGetElementById()">
+    <input type="button" value="测试getElementsByName" onclick="testGetElementsByName()">
+    <input type="button" value="测试getElementsByTagName" onclick="testGetElementsByTagName()">
+    <input type="button" value="测试getElementsByClassName" onclick="testGetElementsByClassName()">
+    <hr>
+    <input type="button" value="创建图片对象放到imgDiv里面" onclick="createImg()">
+    <input type="button" value="创建图片对象和属性放到imgDiv里面" onclick="createImgAndAttr()">
+
+    <hr>
+    <input class="xd" type="text" id="username1" name="username">
+    <input class="xd" type="text" id="username2" name="username">
+    <input class="xd xx" type="text" id="username3" name="username">
+
+    <!--创建一个DIV去存放图片-->
+    <div id="imgDiv">
+        <img src="../../02_CSS/day01/img/1.jpg">
+    </div>
+
+    <div>
+        <input type="text" name="email" id="email">
+    </div>
+</body>
+<script>
+    function testGetElementById(){
+        let element = document.getElementById("username1");
+        console.log(element);
+        element.value = "testById";
+    }
+
+    function testGetElementsByName(){
+        let NodeList = document.getElementsByName("username");
+        for (let i = 0; i < NodeList.length; i++) {
+            NodeList[i].value = "testByName";       // 这一块是没有提示的哦
+        }
+    }
+
+    // 根据标签名查找标签
+    function testGetElementsByTagName(){
+        let list = document.getElementsByTagName("input");
+        console.log(list.length);
+    }
+
+    function testGetElementsByClassName(){
+        let list = document.getElementsByClassName("xd");
+        console.log(list.length);
+    }
+
+    function createImg(){
+        // 根据id获取这个div
+        let div = document.getElementById("imgDiv");
+        // 创建一个img标签
+        let img = document.createElement("img");
+        img.src = "../../02_CSS/day01/img/1.jpg";
+        // div.appendChild(img);
+        div.append(img);
+    }
+
+    function createImgAndAttr(){
+        /*  这是方式1
+            // 根据id获取这个div
+            let div = document.getElementById("imgDiv");
+            // 创建一个img标签
+            let img = document.createElement("img");
+            img.src = "../../02_CSS/day01/img/1.jpg";
+            img.title = "这是一张图片";
+            div.append(img);
+        */
+        // 方式2
+        let div = document.getElementById("imgDiv");
+        // 创建一个img标签
+        let img = document.createElement("img");            // 创建元素
+        let attr = document.createAttribute("src");         // 创建属性
+        attr.value = "../../02_CSS/day01/img/1.jpg";        // 设置属性值
+        // img.setAttribute(attr);  这里的方法调用错了
+        img.setAttributeNode(attr); //这里才对，给元素标签设置属性节点
+        div.append(img);            // 装载
+    }
+
+
+</script>
+</html>
