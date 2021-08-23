@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01时间选择器.html</title>
+    <link rel="stylesheet" href="../Resources/layui/css/layui.css">
+</head>
+<body>
+<h1>常规用法</h1>
+<div class="layui-form">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">中文版</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">国际版</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../Resources/layui/layui.js"></script>
+<script>
+    //加载laydate模块
+    layui.use(['laydate'],function () {
+        //取出laydate对象
+        let laydate = layui.laydate;
+        //给id="test1"的元素绑定日期选择器
+        laydate.render({
+            elem: "#test1",
+            theme:"molv"
+            // theme:"#ff0000"
+            // theme:"grid"
+        })
+    });
+</script>
+</html>
