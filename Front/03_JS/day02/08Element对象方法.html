@@ -5,11 +5,12 @@
     <title>08Element对象方法.html</title>
 </head>
 <body>
-    <input type="button" value="testAppendChild" onclick="testAppendChild()">
-    <input type="button" value="testGetAndSetAttribute" onclick="testGetAndSetAttribute()">
-    <input type="button" value="testRemove" onclick="testRemove()">
+    <input type="button" value="添加图片" onclick="testAppendChild()">
+    <input type="button" value="替换输入框里的value值" onclick="testGetAndSetAttribute()">
+    <input type="button" value="测试移除" onclick="testRemove()">
     <hr>
     <div id="imgDiv">
+        <img src="../../02_CSS/day01/img/3.jpg">
         <img src="../../02_CSS/day01/img/3.jpg">
     </div>
     <hr>
@@ -40,9 +41,20 @@
     }
 
     function testRemove() {
+        // 获得这个div
         let div = document.getElementById("imgDiv");
-        let childNodes = div.childNodes;
-        console.log(childNodes);
+        /*
+            childNodes	获取所有子节点	不推荐使用，如果有空格，会作为文本节点获取到
+            child	获取所有子节点	推荐使用
+            firstChild	获取首个子节点	推荐使用
+            lastChild	获取最后一个子节点	推荐使用
+         */
+        // let childNodes = div.childNodes;        // 使用这个方法原本只有1个img节点导致多了2个text节点
+        let children = div.children;        // 这里才只有1个
+        // console.log(children);
+        children[0].remove();       // 移除节点集合中的第一个节点
     }
+
+
 </script>
 </html>
