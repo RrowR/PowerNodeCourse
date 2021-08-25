@@ -5,3 +5,4 @@ public class Test {
         Double.valueOf("1.1");
     }
 }
+
