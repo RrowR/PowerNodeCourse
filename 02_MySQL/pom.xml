@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.study</groupId>
-    <artifactId>MySQL</artifactId>
+    <artifactId>02_MySQL</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
