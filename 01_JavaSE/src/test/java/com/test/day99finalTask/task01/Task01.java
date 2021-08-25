@@ -22,7 +22,7 @@ import java.util.Date;
  */
 public class Task01 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("JavaSE/src/message.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("01_JavaSE/src/message.txt"));
         ArrayList<WorldCup> list = new ArrayList<>();
         String line;
         while ((line = br.readLine()) != null) {
