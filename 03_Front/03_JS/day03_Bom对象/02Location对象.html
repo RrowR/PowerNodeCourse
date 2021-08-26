@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02Location对象.html</title>
+</head>
+<body>
+    <a href="01Windows对象.html">01Windows对象.html</a>
+    <button type="button" onclick="ref()">刷新</button>
+    <button type="button" onclick="setUrl()">修改URL为www.baidu.com</button>
+</body>
+<script>
+    function ref(){
+        // 重新刷新此页面
+        location.reload();
+    }
+    function setUrl(){
+        // 跳转到百度页面
+        location.href = "https://www.baidu.com";
+    }
+
+</script>
+</html>
