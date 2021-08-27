@@ -3,7 +3,7 @@
   <head>
     <title>jsp动作</title>
   </head>
-<%--  <jsp:forward page="hello.jsp"></jsp:forward>--%>
+  <jsp:forward page="hello.jsp"></jsp:forward>
   <body>
   </body>
 </html>
