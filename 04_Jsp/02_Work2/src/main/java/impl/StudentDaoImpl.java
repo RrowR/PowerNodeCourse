@@ -1,7 +1,5 @@
 package impl;
 
-
-
 import common.PageInfo;
 import dao.BaseDao;
 import dao.StudentDao;
@@ -23,8 +21,9 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
         String name = student.getName();
         String address = student.getAddress();
         Integer age = student.getAge();
+        Integer sex = student.getSex();
         Date birth = student.getBirth();
-        Object[] params = {name, address, age, birth};
+        Object[] params = {name, address, age, sex, birth};
         return super.executeUpdate(sql, params);
     }
 
@@ -41,9 +40,10 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
         String name = student.getName();
         String address = student.getAddress();
         Integer age = student.getAge();
+        Integer sex = student.getSex();
         Date birth = student.getBirth();
         Integer id = student.getId();
-        Object[] params = {name, address, age, birth, id};
+        Object[] params = {name, address, age, sex, birth, id};
         return super.executeUpdate(sql, params);
     }
 
@@ -92,6 +92,10 @@ public class StudentDaoImpl extends BaseDao implements StudentDao {
 //            concat('%',?,'%')
             builder.append(" and address like concat('%',?,'%') ");
             list.add(student.getAddress());
+        }
+        if (student.getSex() != null && !student.getSex().equals("")) {
+            builder.append(" and sex = ?");
+            list.add(student.getSex().toString());
         }
         Object[] params = list.toArray();
         String sql = builder.toString();
