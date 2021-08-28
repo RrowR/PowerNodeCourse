@@ -11,13 +11,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="common.jsp"%>
 <%
-    Integer id = Integer.parseInt(request.getParameter("id"));
     String name = request.getParameter("name");
     String address = request.getParameter("address");
     Integer age = Integer.valueOf(request.getParameter("age"));
     Integer sex = Integer.valueOf(request.getParameter("sex"));
     Date birth = sdf.parse(request.getParameter("birth"));
     StudentDao studentDao = new StudentDaoImpl();
-    studentDao.addStudent(new Student(id,name,address,age,sex,birth));
+    studentDao.addStudent(new Student(name,address,age,sex,birth));
     response.sendRedirect("index.jsp");
 %>
