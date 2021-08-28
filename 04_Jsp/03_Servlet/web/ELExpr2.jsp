@@ -44,8 +44,9 @@
         out.write(name.toString());
 
 //        out.write(session.getAttribute("name"));
-
     %>
+        ${requestScope.name};
+        ${sessionScope.name};
 
 <%--  1 = Student(name=2,age=3...)  --%>
 
