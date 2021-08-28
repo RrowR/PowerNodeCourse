@@ -13,6 +13,7 @@
         <module>01_Tomcat_work</module>
         <module>02_JspMotivate</module>
         <module>02_Work2</module>
+        <module>03_Servlet</module>
     </modules>
     <dependencies>
         <dependency>
