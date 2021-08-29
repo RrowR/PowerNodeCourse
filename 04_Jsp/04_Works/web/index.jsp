@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="impl.StudentDaoImpl" %>
-<%@ page import="dao.StudentDao" %>
+<%@ page imporout1ao.StudentDao" %>
 <%@ page import="entity.Student" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
@@ -40,7 +40,7 @@
 <%--    </c:forEach>--%>
     <%
         String[] students = request.getParameterValues("students");
-        System.out.println(Arrays.toString(students));
+        out.println(Arrays.toString(students));
     %>
 
 </table>

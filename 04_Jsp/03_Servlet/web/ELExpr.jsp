@@ -3,7 +3,7 @@
 <head>
     <title>EL表达式</title>
 </head>
-
+<%--EL表达式的好处就是不用写java代码--%>
 <body>
     <p><%=pageContext.getAttribute("pageContextAttr")%></p>
     <p><%=request.getAttribute("requestAttr")%></p>
