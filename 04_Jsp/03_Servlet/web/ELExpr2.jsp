@@ -14,7 +14,12 @@
     <title>ELExpr2.jsp</title>
 </head>
 <body>
-<%--  使用EL表达式来取值  --%>
+<%--
+    使用EL表达式来取值
+    通过直接数据存储的key来获得value，然后会有一个优先级，最小的优先级最高
+    想要取指定域里的值需要使用xxxScope
+
+  --%>
 <%
     request.setAttribute("name","zhangsan");
     request.setAttribute("student",new Student("李四",23));
