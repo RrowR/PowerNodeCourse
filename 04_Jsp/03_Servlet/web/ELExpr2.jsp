@@ -1,6 +1,6 @@
-<%@ page import="com.domain.Student" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Arrays" %>
+<%@ page import="com.domain.Student" %>
 <%--
   Created by IntelliJ IDEA.
   User: romantic

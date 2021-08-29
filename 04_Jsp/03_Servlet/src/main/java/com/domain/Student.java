@@ -11,6 +11,11 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public Student(String name, Integer age, Date birth) {
         this.name = name;
         this.age = age;
