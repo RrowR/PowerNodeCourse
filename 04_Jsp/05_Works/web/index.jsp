@@ -2,10 +2,14 @@
 <%@ page import="dao.StudentDao" %>
 <%@ page import="entity.Student" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Date" %><%--
+  Created by IntelliJ IDEA.
+  User: Atlantis
+  Date: 2021/8/27
+  Time: 20:50
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="common.jsp" %>
 <html>
 <head>
@@ -29,18 +33,41 @@
         <th>生日</th>
         <th>操作</th>
     </tr>
-    <c:forEach items="${students}" var="student">
-        <tr>
-            <th>${student.id}</th>
-            <th>${student.name}</th>
-            <th>${student.address}</th>
-            <th>${student.age}</th>
-            <th>${student.age}</th>
-            <th>${student.sex}</th>
-            <th>${student.id}</th>
-        </tr>
-    </c:forEach>
-
+    <%
+        StudentDao studentDao = new StudentDaoImpl();
+        List<Student> students = studentDao.queryAllStudent();
+        for (Student student : students) {
+            Integer id = student.getId();
+            String name = student.getName();
+            Integer sex = student.getSex();
+            String address = student.getAddress();
+            Integer age = student.getAge();
+            Date birth = student.getBirth();
+            out.write("<tr>");
+            out.write("<th>");
+            out.write(""+id);
+            out.write("</th>");
+            out.write("<th>");
+            out.write(name);
+            out.write("</th>");
+            out.write("<th>");
+            out.write(sex == 1 ? "男":"女");
+            out.write("</th>");
+            out.write("<th>");
+            out.write(address);
+            out.write("</th>");
+            out.write("<th>");
+            out.write(""+age);
+            out.write("</th>");
+            out.write("<th>");
+            out.write(birth.toString());
+            out.write("</th>");
+            out.write("<th>");
+            out.write("<input type='button' onclick='update("+id+")' value='修改' /> &nbsp <input type='button' onclick='del("+id+")' name='del' value='删除'>");
+            out.write("</th>");
+            out.write("</tr>");
+        }
+    %>
 </table>
 <script>
     function update(id){

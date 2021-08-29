@@ -18,6 +18,6 @@ public class getAllStudent extends HttpServlet {
         List<Student> students = studentDao.queryAllStudent();
         req.setAttribute("students",students);
         System.out.println("doServer执行...");
-        req.getRequestDispatcher("/index.jsp").forward(req,resp);
+        req.getRequestDispatcher("index.jsp").forward(req,resp);
     }
 }
