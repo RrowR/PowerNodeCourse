@@ -68,7 +68,7 @@
 </form>
 <script>
     function back(){
-        location.href = "index.jsp";
+        location.href = "xxx.jsp";
     }
 </script>
 </body>

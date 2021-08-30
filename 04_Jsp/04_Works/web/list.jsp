@@ -1,11 +1,17 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="impl.StudentDaoImpl" %>
-<%@ page import="dao.StudentDao" %>
+<%@ page imporout1ao.StudentDao" %>
 <%@ page import="entity.Student" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.Arrays" %><%--
+  Created by IntelliJ IDEA.
+  User: Atlantis
+  Date: 2021/8/27
+  Time: 20:50
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="common.jsp" %>
 <html>
 <head>
@@ -29,17 +35,13 @@
         <th>生日</th>
         <th>操作</th>
     </tr>
-    <c:forEach items="${students}" var="student">
-        <tr>
-            <th>${student.id}</th>
-            <th>${student.name}</th>
-            <th>${student.address}</th>
-            <th>${student.age}</th>
-            <th>${student.age}</th>
-            <th>${student.sex}</th>
-            <th>${student.id}</th>
-        </tr>
-    </c:forEach>
+<%--    <c:forEach items="${students}" var="stu">--%>
+<%--        --%>
+<%--    </c:forEach>--%>
+    <%
+        String[] students = request.getParameterValues("students");
+        out.println(Arrays.toString(students));
+    %>
 
 </table>
 <script>

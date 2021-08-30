@@ -104,7 +104,7 @@ public class BaseDao {
                 // 如果这个sql有多个?就不能使用增强for循环，否则占位符位置将无法设置
                 for (int i = 0; i < params.length; i++) {
                     // setObject(x,y) 一个是占位符?的位置(从1开始)，另一个是占位符的值，封装在params里
-                    preparedStatement.setObject(i + 1, params[0]);
+                    preparedStatement.setObject(i + 1, params[i]);
                 }
                 // 封装预执行sql之后，执行这条已经预执行的sql，得到一个结果集
                 resultSet = preparedStatement.executeQuery();
