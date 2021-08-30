@@ -1,18 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="impl.StudentDaoImpl" %>
-<%@ page imporout1ao.StudentDao" %>
-<%@ page import="entity.Student" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.util.Arrays" %><%--
-  Created by IntelliJ IDEA.
-  User: Atlantis
-  Date: 2021/8/27
-  Time: 20:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="common.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>人员管理系统</title>
@@ -35,22 +23,34 @@
         <th>生日</th>
         <th>操作</th>
     </tr>
-<%--    <c:forEach items="${students}" var="stu">--%>
-<%--        --%>
-<%--    </c:forEach>--%>
-    <%
-        String[] students = request.getParameterValues("students");
-        out.println(Arrays.toString(students));
-    %>
+    <c:forEach items="${students}" var="student">
+    <tr>
+        <th>${student.id}</th>
+        <th>${student.name}</th>
+        <th>
+            <c:if test="${student.sex == 1}">
+                男
+            </c:if>
+            <c:if test="${student.sex == 0}">
+                女
+            </c:if>
+        </th>
+        <th>${student.address}</th>
+        <th>${student.age}</th>
+        <th><fmt:formatDate value="${student.birth}" pattern="yyyy-MM-dd"></fmt:formatDate></th>
+        <th><input type='button' onclick='update()' value='修改' /> &nbsp <input type='button' onclick='del("+${student.id}+")' name='del' value='删除'></th>
+    </tr>
+</c:forEach>
 
 </table>
 <script>
-    function update(id){
-        location.href = "upDate.jsp?id="+id+"";
+    function update(){
+        <%--location.href = "UpdateStudent.do?id=+${student.id}";--%>
+        alert("update点击了")
     }
 
-    function del(id){
-        location.href = "delServer.jsp?id="+id+"";
+    function del(){
+        location.href = "delServer.jsp?id="+${student.id};
     }
 </script>
 </body>

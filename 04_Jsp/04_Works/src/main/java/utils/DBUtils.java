@@ -23,7 +23,7 @@ public class DBUtils {
         // 加载数据库驱动
         try {
             Properties properties = new Properties();
-            properties.load(DBUtils.class.getClassLoader().getResourceAsStream("application2.properties"));
+            properties.load(DBUtils.class.getClassLoader().getResourceAsStream("application.properties"));
             JDBC_DRIVER = properties.getProperty("JDBC_DRIVER");
             JDBC_URL = properties.getProperty("JDBC_URL");
             USERNAME = properties.getProperty("USERNAME");

@@ -23,17 +23,20 @@ public class LoginServlet extends HttpServlet {
         // 在request域里过去password
         String password = req.getParameter("password");
         String realCode = req.getParameter("code");
-        /*System.out.println(code);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(realCode);*/
-        // 从数据库里取查账户密码(实体字段一定要于数据库一致，否则BaseDao底层逻辑不对，参数可以不传满，对象属性一定要填满)
-        User user = userDao.login(username, password);
-        System.out.println(user);
         if (realCode.equalsIgnoreCase(code)){
-            req.getRequestDispatcher("queryAll.do").forward(req,resp);
+            // 从数据库里取查账户密码(实体字段一定要于数据库一致，否则BaseDao底层逻辑不对，参数可以不传满，对象属性一定要填满)
+            User user = userDao.login(username, password);
+            if (user != null){
+                System.out.println("登陆成功...");
+                req.getRequestDispatcher("queryAll.do").forward(req,resp);
+            }else {
+                System.out.println("登陆失败...");
+                // 下面有重定向，所以下面只能使用session
+                req.getSession().setAttribute("failcode","账号或密码错误");
+                resp.sendRedirect("index.jsp");
+            }
         }else {
-            req.getSession().setAttribute("failcode","登陆失败");
+            req.getSession().setAttribute("failcode","验证码错误");
             resp.sendRedirect("index.jsp");
         }
     }

@@ -11,7 +11,7 @@
     <title>添加学生</title>
 </head>
 <body>
-    <form action="addServer.jsp" method="post">
+    <form action="addStudentServlet.do" method="post">
         <table border="1" width="50%" align="center" cellpadding="1" cellspacing="0">
             <tr>
                 <td>姓名</td>

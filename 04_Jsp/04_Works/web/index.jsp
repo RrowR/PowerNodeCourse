@@ -21,7 +21,7 @@
                 <th><input type="text" name="code"></th>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="submit" value="登陆">${failcode}</td>
+                <td colspan="2" align="center"><input type="submit" value="登陆"><span style="color: red">${failcode}</span></td>
             </tr>
         </table>
     </form>
