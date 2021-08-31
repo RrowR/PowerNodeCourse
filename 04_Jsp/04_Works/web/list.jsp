@@ -52,7 +52,7 @@
     }
 
     function del(id){
-        location.href = "delServer.jsp?id="+id;
+        location.href = "deleteOneStudent.do?id="+id;
     }
 </script>
 </html>
