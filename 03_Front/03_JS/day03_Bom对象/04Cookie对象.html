@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04Cookie对象.html</title>
+</head>
+<body>
+    <button type="button" onclick="setCookie1()">默认创建一个会话结束的cookie</button>
+    <button type="button" onclick="setCookie2()">设置有过期时间cookie</button>
+    <button type="button" onclick="getCookie()">取cookie</button>
+    <button type="button" onclick="getCookieByKey('username')">取Username</button>
+</body>
+<script>
+    function setCookie1(){
+        // 默认创建一个会话结束的cookie
+        document.cookie = "username=hxd";
+    }
+    function setCookie2(){
+        document.cookie = "name=张三;"
+    }
+</script>
+</html>
