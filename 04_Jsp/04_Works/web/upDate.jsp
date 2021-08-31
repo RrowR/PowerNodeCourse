@@ -4,13 +4,14 @@
 <head>
     <title>人员修改</title>
 </head>
-<body>
+<form action="updateStudent.do" method="post">
+    <body>
     <input type="hidden" name="id" value="${student.id}">
     <table border="1" width="50%" align="center" cellpadding="1" cellspacing="0">
         <tr>
             <td>姓名</td>
             <%--这里需要带上 = 号 --%>
-            <td><input type="text" name="name" value="${student.name}" /></td>
+            <td><input type="text" name="name" value="${student.name}"/></td>
         </tr>
         <tr>
             <td>地址</td>
@@ -18,7 +19,7 @@
         </tr>
         <tr>
             <td>年龄</td>
-            <td><input type="text" name="age" value="${student.age}" /></td>
+            <td><input type="text" name="age" value="${student.age}"/></td>
         </tr>
         <tr>
             <td>性别</td>
@@ -28,7 +29,7 @@
                     <input type='radio' name='sex' value='0'/>女
                 </c:if>
                 <c:if test="${student.sex == 0}">
-                    <input type='radio' name='sex' value='1' />男
+                    <input type='radio' name='sex' value='1'/>男
                     <input type='radio' name='sex' value='0' checked/>女
                 </c:if>
             </td>
@@ -42,19 +43,15 @@
         </tr>
         <tr>
             <th colspan="2">
-                <button type="submit" onclick="toSubmit()">提交</button>
+                <button type="submit">提交</button>
                 <button type="button" onclick="back()">返回</button>
             </th>
         </tr>
     </table>
+</form>
 <script>
-    function toSubmit(){
-        alert("提交了");
-    }
-
-    function back(){
-        // location.href = "list.jsp";
-        alert("点击了返回");
+    function back() {
+        location.href = "list.jsp";
     }
 </script>
 </body>

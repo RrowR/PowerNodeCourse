@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/UpdateStudent.do")
-public class UpdateStudentServlet extends HttpServlet {
+@WebServlet("/queryStudent.do")
+public class queryOneStudentServlet extends HttpServlet {
     private StudentDao studentDao = new StudentDaoImpl();
 
     @Override
