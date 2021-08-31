@@ -4,8 +4,8 @@
 <head>
     <title>人员修改</title>
 </head>
+<body>
 <form action="Student.do?service=update" method="post">
-    <body>
     <input type="hidden" name="id" value="${student.id}">
     <table border="1" width="50%" align="center" cellpadding="1" cellspacing="0">
         <tr>
