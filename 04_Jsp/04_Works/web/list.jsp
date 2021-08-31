@@ -38,20 +38,21 @@
         <th>${student.address}</th>
         <th>${student.age}</th>
         <th><fmt:formatDate value="${student.birth}" pattern="yyyy-MM-dd"></fmt:formatDate></th>
-        <th><input type='button' onclick='update()' value='修改' /> &nbsp <input type='button' onclick='del("+${student.id}+")' name='del' value='删除'></th>
+        <%--这里的每个id都不一样，所以一定要传值--%>
+        <th><input type="button" onclick="update(${student.id})" value="修改" /><input type="button"  onclick="del(${student.id})" value="删除" /></th>
     </tr>
 </c:forEach>
 
 </table>
+
+</body>
 <script>
-    function update(){
-        <%--location.href = "UpdateStudent.do?id=+${student.id}";--%>
-        alert("update点击了")
+    function update(id){
+        location.href = "UpdateStudent.do?id="+id;
     }
 
-    function del(){
-        location.href = "delServer.jsp?id="+${student.id};
+    function del(id){
+        location.href = "delServer.jsp?id="+id;
     }
 </script>
-</body>
 </html>

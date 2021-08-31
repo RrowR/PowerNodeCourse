@@ -15,7 +15,6 @@
         <module>02_Work2</module>
         <module>03_Servlet</module>
         <module>04_Works</module>
-        <module>05_FilterAndListener</module>
     </modules>
     <dependencies>
         <dependency>

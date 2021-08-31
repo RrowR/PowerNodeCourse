@@ -23,8 +23,8 @@ public class UpdateStudentServlet extends HttpServlet {
         */
         String id = req.getParameter("id");
         Student student = studentDao.queryStudentById(Integer.parseInt(id));
-        // 这里也是从list跳转过来的，只是这里是先调用了这个接口而已，所以最好还是重定向(会有地址变化)
-        req.getSession().setAttribute("student",student);
-        resp.sendRedirect("upDate.jsp");
+        // 这里其实最好使用内部转发，我只需要跳转到查修改的页面，上面地址变不变无所谓，因为用户也不是开发人员
+        req.setAttribute("student",student);
+        req.getRequestDispatcher("upDate.jsp").forward(req,resp);
     }
 }

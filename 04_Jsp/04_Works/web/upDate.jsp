@@ -42,7 +42,7 @@
         </tr>
         <tr>
             <th colspan="2">
-                <button type="button" onclick="toSubmit()">提交</button>
+                <button type="submit" onclick="toSubmit()">提交</button>
                 <button type="button" onclick="back()">返回</button>
             </th>
         </tr>
