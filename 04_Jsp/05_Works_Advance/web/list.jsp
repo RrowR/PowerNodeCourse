@@ -48,7 +48,7 @@
 </body>
 <script>
     function update(id){
-        location.href = "Student.do?service=update&id="+id;
+        location.href = "Student.do?service=queryOne&id="+id;
     }
 
     function del(id){

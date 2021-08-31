@@ -60,7 +60,7 @@ public class StudentServlet extends HttpServlet {
         String id = req.getParameter("id");
         Student student = studentDao.queryStudentById(Integer.parseInt(id));
         req.setAttribute("student",student);
-        queryAll(req,resp);
+        req.getRequestDispatcher("upDate.jsp").forward(req,resp);
     }
 
     private void addOne(HttpServletRequest request, HttpServletResponse response) throws IOException {
