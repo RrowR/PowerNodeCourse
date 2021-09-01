@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02元素选择器.html</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>pp1p1p1p1p1pp1p1p1p1p1</p>
+    <p>p2p2p2p2p2p2p2p2p2pp2</p>
+    <p>p2p2p2p2pp2p2p3</p>
+    <div>div1div1</div>
+    <div>div2div2</div>
+    <div>div3div3</div>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+
+    <hr>
+    <input type="button" onclick="getAllP()" value="得到页面所有的P标签">
+    <input type="button" onclick="getAllDiv()" value="得到页面所有的Div标签">
+    <input type="button" onclick="getInput()" value="填入值到input里面">
+</body>
+<script>
+
+    function getAllP(){
+        let p = $("p");
+        console.log(p);     // S.fn.init(3)
+        console.log(typeof p);  // object
+        console.log(p.length);  // 3
+        p.css("color","red");   // 使用变量.css里面的格式是引号，键值对的方式
+    }
+
+    function getAllDiv(){
+        let divs = $("div");
+        divs.css("border","1px solid green");
+    }
+
+    function getInput(){
+        let inputs = $("input");
+        inputs.css("border","1px solid green");
+    }
+
+
+
+
+</script>
+</html>
