@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="d1">div1</div>
+    <div class="d2">div2</div>
+    <div class="d3">div3</div>
+    <div class="d1 d2">div4</div>
+    <div class="d2 d3">div5</div>
+    <div class="d1 d3">div6</div>
+    <hr>
+    <input type="button" onclick="getAllClassD1()" value="得到页面class里面有d1的标签">
+    <input type="button" id="bt1" value="得到页面class里面有d3的标签">
+</body>
+<script>
+    function getAllClassD1(){
+        let d1s = $(".d1");
+        console.log(d1s.length);
+        d1s.css("border","2px solid red");
+    }
+
+    // 嵌套Jquery
+    $("#bt1").click(function (){
+        $(".d3").css("border","3px solid blue");
+    });
+</script>
+</html>
