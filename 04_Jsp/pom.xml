@@ -16,6 +16,7 @@
         <module>03_Servlet</module>
         <module>04_Works</module>
         <module>05_Works_Advance</module>
+        <module>50_Recruitment_System</module>
     </modules>
     <dependencies>
         <dependency>
@@ -51,6 +52,12 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+
 
     </dependencies>
 
