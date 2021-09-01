@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class t_company {
+public class Tcompany {
     private Integer cid;
     private String cname;
     private String loc;

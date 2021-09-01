@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class t_position {
-    private Integer id;
+@AllArgsConstructor
+public class TcompanyPosition {
     private String pname;
+    private String cname;
     private Double minsal;
     private Double maxsal;
+    private String loc;
     private Date releasedate;
-    private Integer cid;
 }
