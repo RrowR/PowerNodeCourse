@@ -17,15 +17,18 @@
     }
 
     function m2(){
-
+        const name = localStorage.getItem("name");
+        const age = localStorage.getItem("age");
+        console.log(name);
+        console.log(age);
     }
 
     function m3(){
-
+        localStorage.removeItem("name");
     }
 
     function m4(){
-        
+        localStorage.clear();
     }
 </script>
 </html>
