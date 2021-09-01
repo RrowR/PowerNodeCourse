@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08事件触发.html</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <form action="01HellojQuery.html">
+        姓名：<input name="username" type="text">
+        密码：<input name="password" type="password">
+        <input type="submit" id="submit" value="提交">
+        <input type="button" id="btn" value="提交登录">
+    </form>
+    <a href="http://www.baidu.com" id="toBaidu">跳转到百度</a>
+    <input type="button" id="btn2" value="模拟点击【跳转到百度】">
+</body>
+<script>
+    // 监听id=submit的提交按钮
+    $("#submit").click(function (){
+        alert("表单按钮被提交");
+    })
+
+    // 模拟表单提交，通过别的按钮来触发另外一个元素事件
+    $("#btn").click(function (){
+        // $("#submit").click();   // 模拟点击submit按钮
+        // $("#submit").trigger("click");  // 使用trigger(触发)一个点击事件
+        $("#submit").triggerHandler("click");   // 只触发效果，不触发默认行为(例如提交表单)
+    })
+
+    // 给id=toBaidu添加一个点击事件，功能是alert到百度
+    $("#toBaidu").click(function (){
+        alert("跳转到百度");
+    })
+
+    $("#btn2").click(function (){
+        $("#toBaidu").click();  // 给别的按钮绑定一个点击事件来触发另一个按钮，不会触发另一个按钮的默认行为
+    })
+
+</script>
+</html>
