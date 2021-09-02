@@ -1,5 +1,6 @@
 package controller;
 
+import com.alibaba.fastjson.JSON;
 import dao.TcompanyPositionDao;
 import dao.impl.TcompanyPositionDaoImpl;
 import entity.TcompanyPosition;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -41,8 +43,14 @@ public class SearchAllServlet extends HttpServlet {
 
     }
 
-    private void queryAll(HttpServletRequest req, HttpServletResponse resp){
-        List<TcompanyPosition> tcompanyPositions = tcpDao.queryAll();
-
+    private void queryAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String input = req.getParameter("input").trim();
+        List<TcompanyPosition> tcompanyPositions = tcpDao.queryAll(input);
+        String jsonString = JSON.toJSONString(tcompanyPositions);
+//        req.setAttribute("tcompanyPositions",jsonString);
+        PrintWriter out = resp.getWriter();
+        out.write(jsonString);
+        out.flush();
+        out.close();
     }
 }
