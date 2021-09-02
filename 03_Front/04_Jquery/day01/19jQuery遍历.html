@@ -98,7 +98,8 @@
 
         // 方式2
         $.each(users,function (index,item){
-            $("#show").append(index + "=" + item + "<br>");
+            // $("#show").append(index + "=" + item + "<br>");      // 还需要取出对象
+            $("#show").append(item.id + " " + item.name + " " + item.age + " " + item.sex);         // 取出对象
         })
     })
 
