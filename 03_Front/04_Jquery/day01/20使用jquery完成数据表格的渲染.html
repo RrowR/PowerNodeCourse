@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20使用jquery完成数据表格的渲染.html</title>
+</head>
+<style>
+    table{
+        border: 1px solid blue;
+        width: 100%;
+        border-collapse: collapse;
+    }
+</style>
+<script src="../js/jquery-3.6.0.js"></script>
+<body>
+    <h2>添加用户</h2>
+    <form action="#" method="get" id="userFrm">
+        ID:<input type="number" name="id" placeholder="请输入编号">
+        NAME:<input type="text" name="name" placeholder="请输入名字">
+        SEX:<input type="radio" name="sex" value="男">男
+        <input type="radio" name="sex" value="女">女
+        SAL:<input type="number" name="sal" placeholder="请输入工资">
+        <input type="button" id="doSubmit" value="添加">
+        <input type="reset" value="重置">
+    </form>
+    <hr>
+    <h1 align="center">用户列表</h1>
+    <table border="1" id="userTable">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SEX</th>
+            <th>SAL</th>
+            <th>操作</th>
+        </tr>
+    </table>
+</body>
+<script>
+    //模拟一个数据源,json数据
+    let userData=[
+        {id: 1, name: "小明1", age: 12, sex: "男"},
+        {id: 2, name: "小明2", age: 15, sex: "男"},
+        {id: 3, name: "小明3", age: 22, sex: "男"},
+        {id: 4, name: "小明4", age: 25, sex: "男"},
+    ]
+    function loadUserData(){
+        let userTable = $("#userTable");
+        // 获取上面tb的第一个tr
+        let html = "<tr>\n" +
+            "            <th>ID</th>\n" +
+            "            <th>NAME</th>\n" +
+            "            <th>SEX</th>\n" +
+            "            <th>SAL</th>\n" +
+            "            <th>操作</th>\n" +
+            "        </tr>";
+        $(userData).each(function (index,user){
+            html += "<tr>\n" +
+                "            <th>user.id</th>\n" +
+                "            <th>user.name</th>\n" +
+                "            <th>user.sex</th>\n" +
+                "            <th>user.sex</th>\n" +
+                "            <th><input type='button' value='删除' onclick='del("+user.id+")'/></th>\n" +
+                "        </tr>";
+        })
+        userTable.html(html);
+    }
+    // 调用加载方法
+    loadUserData();
+
+    // 很妙
+    function del(id){
+        let flag = confirm("您确定要删除这条数吗");
+        if(flag){
+            $.each(userData,function (index,item){
+                if (item.id == id){
+                    userData.splice(index,1);
+                    loadUserData();     // 重新调用方法取渲染数据
+                    return;
+                }
+            })
+        }
+    }
+
+    // 监听元素点击方法
+    $("#doSubmit").click(function (){
+        // 获得表单对象
+        let usrFrm = $("#userFrm");
+        // 获取表单里的数据变成一个数组
+        let array = usrFrm.serializeArray();
+        let user = {};      // 这是一个空数据的json格式的数据
+        for (let i = 0;i < array.length; i++){
+            let obj = array[i]; // 获取数组里的对象
+            let key = obj.name;
+            let value = obj.value;
+            // 放到user对象中形成一个json
+            user[key] = value;
+        }
+        // 判断id是否存在
+        if (checkIdExists(user.id)){
+            // 把新添加的user放入userData里
+            userData.push(user);
+            // 刷新数据表格
+            loadUserData();
+        }else {
+            alert("id不能重置");
+        }
+    })
+
+    function checkIdExists(id){
+        let flag = true;
+        $(userData).each(function (index,user){
+            if (user.id == id){
+                flag = false;
+            }
+        })
+        return flag;
+    }
+
+</script>
+
+</html>
