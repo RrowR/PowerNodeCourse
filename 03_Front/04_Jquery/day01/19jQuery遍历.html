@@ -88,11 +88,22 @@
         })
     })
 
+    // 使用$.each遍历json对象
     $("#btn6").on("click",function (){
-        $(users).each(function (index,item){
+        /*
+            $(users).each(function (index,item){
+            $("#show").append(index + "=" + item + "<br>");
+            })
+        */
+
+        // 方式2
+        $.each(users,function (index,item){
             $("#show").append(index + "=" + item + "<br>");
         })
     })
+
+
+
 
 
 </script>
