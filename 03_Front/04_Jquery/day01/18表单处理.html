@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18表单处理.html</title>
+</head>
+    <script src="../js/jquery-3.6.0.js"></script>
+<body>
+    <h1>添加用户</h1>
+    <form action="#" method="get" id="frm">
+        ID:<input type="text" id="id" name="id"><br>
+        NAME:<input type="text" id="name" name="name"><br>
+        SEX:<input type="text" id="sex" name="sex"><br>
+        SAL:<input type="text" id="sal" name="sal"><br>
+        <!--如果给[提交按钮设置了事件]，想要不触发默认的行为，那么可以使用
+         event.preventDefault();
+         还可以直接把submit改成button
+        -->
+        <input type="button" id="doSubmit" value="提交">
+        <input type="button" id="doReset" value="重置">
+    </form>
+    <br>
+    <input type="button" id="btn1" value="first">
+</body>
+<script>
+    $("#doSubmit").click(function (){
+        // 这里不使用submit来进行提交,所以我在点击这个提交的button按钮的时候使用form里的方法来进行提交
+        let frm = $("#frm");
+        // frm.submit();
+
+        // 获取表单里的所有name的数据  id=dsadas&name=dasdsad&sex=dasdsa&sal=dasdsa
+        let frmData = frm.serialize();
+        console.log(frmData);
+
+        let frmArray = frm.serializeArray();
+        console.log(frmArray);
+        /*  结果是这种格式，不是json
+            [
+                {"name":"id","value":"1"},
+                {"name":"name","value":"admin"},
+                {"name":"sex","value":"男"},
+                {"name":"sal","value":"20000"}
+            ]
+        */
+        // 我们来转一下json
+        let json = {};
+        for (let i = 0; i < frmArray.length; i++) {
+            // 先获取到每一个对象
+            let obj = frmArray[i];
+            let key = obj.name;
+            let value = obj.value;
+            // 向json数组里面放
+            json[key] = value;
+        }
+        // 将frmArray数组转换成了json
+        console.log(json);
+    })
+
+
+    $("#doReset").click(function (){
+        let frm = $("#frm");
+        // reset是js对象的方法，需要将jquery对象转换成js对象
+        frm[0].reset();
+    })
+
+
+</script>
+</html>
