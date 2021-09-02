@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <!--引入layui的css-->
+    <link rel="stylesheet" href="../../lib/layui-v2.6.8/css/layui.css">
+</head>
+<body style="margin: 10px;">
+<!--查询条件开始-->
+<div>
+    <blockquote class="layui-elem-quote">
+        <form class="layui-form" action="#" method="get" id="searchFrm" lay-filter="searchFrm">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" placeholder="请输入用户名" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所在城市</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="city" placeholder="请输入所在城市" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-inline">
+                        <input type="radio" name="sex" value="1" title="男">
+                        <input type="radio" name="sex" value="0" title="女">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <input type="button" value="查询" class="layui-btn" id="doSearch" lay-submit lay-filter="doSearch">
+                    <input type="reset" value="重置" class="layui-btn layui-btn-danger">
+                </div>
+            </div>
+        </form>
+    </blockquote>
+</div>
+<!--查询条件结束-->
+
+<!--数据表格开始-->
+<div>
+    <table class="layui-hide" id="userTable" lay-filter="userTable"></table>
+    <!--声明一个表格的头部工具条-->
+    <div id="userTableHeadToolbar" style="display: none">
+        <input  type="button" class="layui-btn layui-btn-sm" lay-event="add" value="添加" >
+        <input  type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="batchDel" value="批量删除" >
+    </div>
+    <!--声明一个表格的行工具条-->
+    <div id="userTableRowToolbar" style="display: none">
+        <input  type="button" class="layui-btn layui-btn-sm" lay-event="update"  value="修改" >
+        <input  type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del" value="删除" >
+    </div>
+</div>
+<!--数据表格结束-->
+
+<!--添加和修改的弹出层内容开始-->
+<div id="addOrUpdateUserDiv" style="display: none;margin: 10px">
+    <form class="layui-form" action="#" method="get" id="dataFrm" lay-filter="dataFrm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">ID</label>
+            <div class="layui-input-block">
+                <input type="number" lay-verify="required" name="id" placeholder="请输入ID" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="required" name="username" placeholder="请输入用户名" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-block">
+                <input type="number" lay-verify="required|number" name="age" placeholder="请输入年龄" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工资</label>
+            <div class="layui-input-block">
+                <input type="number" lay-verify="required|number" name="sal" placeholder="请输入ID" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">城市</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="required" name="city" placeholder="请输入城市" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio"  name="sex" checked value="1" title="男">
+                <input type="radio" name="sex" value="0" title="女">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div style="text-align: center">
+                <input  type="button" lay-submit lay-filter="doSubmit" class="layui-btn" value="提交" >
+                <input  type="reset"  id="doReset" class="layui-btn layui-btn-danger" value="重置" >
+            </div>
+        </div>
+    </form>
+</div>
+<!--添加和修改的弹出层内容结束-->
+
+</body>
+<!--引入layui的核心JS-->
+<script type="text/javascript" src="../../lib/layui-v2.6.8/layui.js"></script>
+<script>
+    layui.use(['table','layer','jquery','form'], function() {
+        //引入表格模块
+        let table = layui.table;
+        let layer = layui.layer;
+        let $ = layui.jquery;
+        let form = layui.form;
+        //渲染数据表格
+        let userTable=table.render({
+            elem: '#userTable'//绑定最后表格数据组装好之后渲染的容器
+            ,url:'../../api/users.json'//数据源的url
+            ,toolbar:'#userTableHeadToolbar'//指向页面上的DOM的头部工具条
+            ,defaultToolbar: ["print",'exports',"filter"]//设置表格右上角的过滤 导出  打印的按钮
+            ,cellMinWidth:100//前提是所有列设置为自动宽度，当行内容放不下时，会限定表元格的最小宽度
+            ,page:true//是否开启分页
+            ,cols: [[//表格里面的数据列field对应的数据源json里面的data里面的key
+                {type:"checkbox"}
+                ,{field:'id', align:"center", title: 'ID'}
+                ,{field:'username',  title: '用户名', align:"center"}
+                ,{field:'sex',  title: '性别', align:"center",templet:function (d){
+                        //上面的d是指整行数据
+                        return d.sex=="0"?"男":"女";
+                    }}
+                ,{field:'age',  title: '年龄', align:"center"}
+                ,{field:'city', title: '城市',align:"center"}
+                ,{field:'sal', title: '工资', align:"center"}
+                ,{title: '操作',fixed:"right",toolbar:"#userTableRowToolbar", align:"center"}
+            ]]
+        });
+
+        //监听查询条件的查询按钮
+        form.on("submit(doSearch)",function (obj) {
+            let params=obj.field;//它是一个json的对象
+            //请求后台数据，刷新表格
+            userTable.reload({
+                where:params
+            })
+        })
+
+        //监听行工具条事件
+        table.on("tool(userTable)",function (obj) {
+            let event=obj.event;
+            let data=obj.data;
+            if(event=="update"){
+                openUpdateUserLayer(data);
+            }else if(event=="del"){
+                doDelete(data)
+            }
+        })
+        //监听头工具条事件
+        table.on("toolbar(userTable)",function (obj) {
+            let event=obj.event;
+            if(event=="add"){
+                openAddUserLayer();
+            }else if(event=="batchDel"){
+                doBatchDel();
+            }
+        })
+        //批量删除
+        function doBatchDel() {
+            // layer.msg("批量删除");
+            //得到选中行
+            let checkStatus = table.checkStatus('userTable'); //idTest 即为基础参数 id 对应的值
+            let count=checkStatus.data.length;
+            if(count==0){
+                layer.msg("请选中操作行");
+                return;
+            }
+            layer.confirm("你确定要删除选中的数据吗?",function () {
+                layer.msg(JSON.stringify(checkStatus.data))
+                //把所有ID取出来放传到后台
+                let ids=[];
+                $.each(checkStatus.data,function (i,item) {
+                    ids.push(item.id);
+                })
+                layer.msg(JSON.stringify(ids));
+                //使用AJAX把IDS传到后台
+            })
+
+        }
+        //声明一个全局的url
+        let url="";
+        //打开添加和弹出层
+        function openAddUserLayer() {
+            // layer.msg("添加");
+            let index=layer.open({
+                type:1,
+                title:"添加用户",
+                content:$("#addOrUpdateUserDiv"),
+                area:["400px","600px"],
+                success:function () {
+                    // layer.msg("添加页面弹出成功");
+                    //模拟点击重置
+                    $("#doReset").click();
+                    //设置提交地址为添加的地址
+                    url="user/addUser.do";
+                }
+            })
+        }
+        //打开修改的弹出层
+        function openUpdateUserLayer(data) {
+            // layer.msg("更新"+JSON.stringify(data))
+            let index=layer.open({
+                type:1,
+                title:"修改【"+data.username+"】用户",
+                content:$("#addOrUpdateUserDiv"),
+                area:["400px","600px"],
+                success:function () {
+                    // layer.msg("修改页面弹出成功");
+                    //载入把当前这一行的数据载入表单
+                    form.val("dataFrm",data);
+                    // 设置url为更新的地址
+                    url="user/updateUser.do";
+                }
+            })
+        }
+        //一个一个删除
+        function doDelete(data) {
+            layer.msg("删除"+JSON.stringify(data));
+            layer.confirm("你确定要删除【"+data.username+"】这个用户吗?",function () {
+                layer.msg(data.id+" ")
+                //使用AJAX发送请求到后台
+                //刷新表格
+            })
+        }
+
+        //监听提交数据表单按钮的事件
+        form.on("submit(doSubmit)",function (obj) {
+            layer.msg(url);
+        })
+    });
+</script>
+</html>
