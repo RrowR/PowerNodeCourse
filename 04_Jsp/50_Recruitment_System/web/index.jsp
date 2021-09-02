@@ -14,7 +14,7 @@
        按职位:<input type="text" id="input"> <input type="button" value="查询" id="search">
       </div>
     <hr>
-    <div align="right"><a href="#">发布招聘信息</a></div>
+    <div align="right" style="width: 80%"><a href="#">发布招聘信息</a></div>
     <table border="1px soild black" align="center" cellspacing="0" id="table">
       <tr>
         <td>职位名称</td>
@@ -30,25 +30,5 @@
     </table>
   </body>
 <script>
-  $("#search").click(function (){
-    console.log($("#input").val());
-    $.ajax({
-      url:"companyPosition.do?service=queryAll&input="+$("#input").val(),
-      type:"get",
-      dataType:'json',
-      success:function (res){ //服务器返回的数据
-        let html = $("#table").html();
-        console.log(html);
-        console.log(res)
-      },
-      error:function (){
-        console.log("传输失败...")
-      }
-    })
-  })
-
-  function renderTable(data){
-
-  }
 </script>
 </html>
