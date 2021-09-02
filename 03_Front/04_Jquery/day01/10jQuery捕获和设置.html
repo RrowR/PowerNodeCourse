@@ -80,8 +80,15 @@
     })
 
     $("#btn10").click(function (){
-        let checkBox = $("#hooby");
-        checkBox.attr("checked");
+        let hobby = $("#hobby");
+        // jQuery attr() 方法用于获取属性值。返回的是属性值 checked
+        alert(hobby.attr("checked")); // <input type="button" id="btn10" value="使用attr()得到id=hobby的checkbox添加一个checked属性">
+    })
+
+    $("#btn11").click(function (){
+        let hobby = $("#hobby");
+        // 获取属性，如果这个是checked返回true，如果没有被checked返回false
+        hobby.prop("checked");  // <input type="button" id="btn11" value="使用prop()得到id=hobby的checkbox添加一个checked属性">
     })
 </script>
 </html>
