@@ -9,7 +9,7 @@
     <input type="button" id="btn1" value="使用原生JS循环数组">
     <input type="button" id="btn2" value="使用原生JS循环元素">
     <input type="button" id="btn3" value="使用原生JS循环JSON">
-    |
+    <!--使用jQuery遍历-->
     <input type="button" id="btn4" value="使用$.each循环数组">
     <input type="button" id="btn5" value="使用$.each循环元素">
     <input type="button" id="btn6" value="使用$.each循环JSON">
@@ -68,7 +68,31 @@
         }
     })
 
+    // 使用$来遍历数组
+    $("#btn4").on("click",function (){  // 绑定事件
+        /*
+        $.each(arrayStr,function (index,item) {     // 要遍历的数据               对象和方法在一起
+            $("#show").append(index + item + "<br>");   // 获取id=show的容器标签并且把id和item给添加进去
+        })
+        */
+        // 方法二
+        $(arrayStr).each(function (index,item){     // 直接$(遍历的对象).each(callback(index,item){})  将对象和方法分开
+            $("#show").append(index + "-" + item + "<br>");
+        })
+    })
 
+
+    $("#btn5").on("click",function (){
+        $.each(musics,function (index,item){        // 传入要遍历的对象(typeof是一个object,实际上是一个数组)
+            $("#show").append(index + "=" + item + "<br>");
+        })
+    })
+
+    $("#btn6").on("click",function (){
+        $(users).each(function (index,item){
+            $("#show").append(index + "=" + item + "<br>");
+        })
+    })
 
 
 </script>
