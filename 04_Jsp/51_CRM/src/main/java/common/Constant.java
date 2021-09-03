@@ -1,7 +1,7 @@
 package common;
 
 /**
- * 所有的相关业务常量
+ * 所有的相关业务常量，使用接口默认自带 Public static final
  */
 public interface Constant {
     //用户角色--管理员
