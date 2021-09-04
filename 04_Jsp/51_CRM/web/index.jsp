@@ -75,7 +75,7 @@
 
         <div id="validatePanel" class="item" style="width: 137px;">
           <input type="text" name="captcha" placeholder="请输入验证码" maxlength="4">
-          <img id="refreshCaptcha" class="validateImg"  src="capcha.do?service=login" onclick="this.src=this.src+'?'">
+          <img id="refreshCaptcha" class="validateImg"  src="capcha.do?service=login" onclick="this.src=this.src+'&'">
         </div>
 
       </div>
