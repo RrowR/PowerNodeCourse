@@ -14,19 +14,23 @@
 <h1>常规用法</h1>
 <div class="layui-form">
     <div class="layui-form-item">
+
         <div class="layui-inline">
             <label class="layui-form-label">中文版</label>
             <div class="layui-input-inline">
                 <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
             </div>
         </div>
+
         <div class="layui-inline">
             <label class="layui-form-label">国际版</label>
             <div class="layui-input-inline">
                 <input type="text" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
             </div>
         </div>
+
         <div class="layui-form">
+
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">年选择器</label>
@@ -34,18 +38,21 @@
                         <input type="text" class="layui-input" id="test2" placeholder="yyyy">
                     </div>
                 </div>
+
                 <div class="layui-inline">
                     <label class="layui-form-label">年月选择器</label>
                     <div class="layui-input-inline">
                         <input type="text" class="layui-input" id="test3" placeholder="yyyy-MM">
                     </div>
                 </div>
+
                 <div class="layui-inline">
                     <label class="layui-form-label">时间选择器</label>
                     <div class="layui-input-inline">
                         <input type="text" class="layui-input" id="test4" placeholder="HH:mm:ss">
                     </div>
                 </div>
+
                 <div class="layui-inline">
                     <label class="layui-form-label">日期时间选择器</label>
                     <div class="layui-input-inline">
@@ -53,6 +60,94 @@
                     </div>
                 </div>
             </div>
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年日期范围</label>
+                        <div class="layui-inline" id="test6">
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-startDate-1" class="layui-input" placeholder="开始日期">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-endDate-1" class="layui-input" placeholder="结束日期">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">年范围</label>
+                        <div class="layui-inline" id="test7">
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-startDate-2" class="layui-input" placeholder="开始日期">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-endDate-2" class="layui-input" placeholder="结束日期">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">月范围</label>
+                        <div class="layui-inline" id="test8">
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-startDate-3" class="layui-input" placeholder="开始日期">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-endDate-3" class="layui-input" placeholder="结束日期">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">日期范围</label>
+                        <div class="layui-inline" id="test9">
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-startDate-4" class="layui-input" placeholder="开始日期">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-endDate-4" class="layui-input" placeholder="结束日期">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">时间范围</label>
+                        <div class="layui-inline" id="test10">
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-startDate-5" class="layui-input" placeholder="开始日期">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline">
+                                <input type="text" autocomplete="off" id="test-endDate-5" class="layui-input" placeholder="结束日期">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </div>
@@ -99,6 +194,38 @@
         laydate.render({
             elem:"#test5",
             type:"datetime"     // 时间日期选择器
+        })
+
+        // 日期范围选择器
+        laydate.render({
+            elem:"#test6",
+            range:["#test-startDate-1","#test-endDate-1"]
+            // 不写type默认就是日期类型
+        })
+
+        // 指定为年范围日期选择器
+        laydate.render({
+            elem:"#test7",
+            range: true,
+            type:"year"
+        })
+
+        laydate.render({
+            elem:"#test8",
+            range:"~",
+            type:"month"
+        })
+
+        laydate.render({
+            elem:"#test9",
+            range:"-",
+            type:"date"
+        })
+
+        laydate.render({
+            elem:"#test10",
+            range:"~",
+            type:"time"
         })
     })
 </script>
