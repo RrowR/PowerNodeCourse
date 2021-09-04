@@ -14,4 +14,6 @@ public interface Constant {
     Integer USER_DELETE_VALID = 1;
     //用户删除状态  2  无效
     Integer USER_DELETE_INVALID = 2;
+    //验证码
+    String SESSION_CODE_KEY = "code";
 }

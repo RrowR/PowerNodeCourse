@@ -21,15 +21,19 @@
 </head>
 <body class="layui-layout-body layuimini-all">
 <div class="layui-layout layui-layout-admin">
+
     <div class="layui-header header">
         <div class="layui-logo layuimini-logo"></div>
+
         <div class="layuimini-header-content">
             <a>
                 <div class="layuimini-tool"><i title="展开" class="fa fa-outdent" data-side-fold="1"></i></div>
             </a>
+
             <!--电脑端头部菜单-->
             <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-menu-header-pc layuimini-pc-show">
             </ul>
+
             <!--手机端头部菜单-->
             <ul class="layui-nav layui-layout-left layuimini-header-menu layuimini-mobile-show">
                 <li class="layui-nav-item">
@@ -38,7 +42,9 @@
                     </dl>
                 </li>
             </ul>
+
             <ul class="layui-nav layui-layout-right">
+
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
                 </li>
@@ -49,7 +55,7 @@
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>
                 <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">${user.realName}</a>
+                    <a href="javascript:;">admin</a>
                     <dl class="layui-nav-child">
                         <dd>
                             <a href="javascript:;" class="login-out">退出登录</a>
@@ -114,16 +120,16 @@
         let $ = layui.jquery,
             layer = layui.layer,
             miniAdmin = layui.miniAdmin;
-        //从session里面得到用户的role
-        let role=${user.role};
-        let iniUrl="";
-        if(role==1){
-            iniUrl="resources/layuimini/api/init-menu-admin.json"
-        }else{
-            iniUrl="resources/layuimini/api/init-menu-normal.json"
+        // 从session里获得session里存放的用户
+        let user = ${user.role};
+        let url = "";
+        if (user == 1){
+            url = "resources/layuimini/api/init-admin.json"
+        }else if (user == 2){
+            url = "resources/layuimini/api/init-normal.json"
         }
         let options = {
-            iniUrl: iniUrl,    // 初始化接口
+            iniUrl: url,    // 初始化接口,动态获取接口地址
             clearUrl: "resources/layuimini/api/clear.json", // 缓存清理接口
             urlHashLocation: true,      // 是否打开hash定位
             bgColorDefault: false,      // 主题默认配置
@@ -136,11 +142,9 @@
         miniAdmin.render(options);
 
         $('.login-out').on("click", function () {
-            $.post("login.do?service=logout",function (res) {
-                if(res.code==200){
-                    window.location = 'index.jsp';
-                }
-            })
+            layer.msg('退出登录成功', function () {
+                window.location = './login.html';
+            });
         });
     });
 </script>
