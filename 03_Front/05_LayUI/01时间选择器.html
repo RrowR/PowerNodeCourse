@@ -26,12 +26,49 @@
                 <input type="text" class="layui-input" id="test1-1" placeholder="yyyy-MM-dd">
             </div>
         </div>
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">年选择器</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="test2" placeholder="yyyy">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">年月选择器</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="test3" placeholder="yyyy-MM">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间选择器</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="test4" placeholder="HH:mm:ss">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">日期时间选择器</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 </body>
 <script type="text/javascript" src="layui/layui.js"></script>
 <script>
+    /**
+     *
+     type   可选值	名称	用途
+     year	年选择器	只提供年列表选择
+     month	年月选择器	只提供年、月选择
+     date	日期选择器	可选择：年、月、日。type默认值，一般可不填
+     time	时间选择器	只提供时、分、秒选择
+     datetime	日期时间选择器	可选择：年、月、日、时、分、秒
+     */
     // 引入laydate组件，回调方法
     layui.use(['laydate'],function (){
         // 获得laydate对象
@@ -46,6 +83,22 @@
             // 通过id找到要渲染的元素
             elem:"#test1-1",    // 绑定id为test1-1
             lang:"en"           // lang 绑定版本
+        })
+        laydate.render({
+            elem:"#test2",
+            type:"year"         // 绑定id = 2 为年选择器
+        })
+        laydate.render({
+            elem:"#test3",
+            type: "yeardate"        // 绑定年月选择器
+        })
+        laydate.render({
+            elem:"#test4",
+            type:"time"         // 时间选择器
+        })
+        laydate.render({
+            elem:"#test5",
+            type:"datetime"     // 时间日期选择器
         })
     })
 </script>
