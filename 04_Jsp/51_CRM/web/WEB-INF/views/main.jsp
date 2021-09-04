@@ -117,11 +117,19 @@
 <script src="resources/layuimini/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
     layui.use(['jquery', 'layer', 'miniAdmin'], function () {
-        var $ = layui.jquery,
+        let $ = layui.jquery,
             layer = layui.layer,
             miniAdmin = layui.miniAdmin;
-        var options = {
-            iniUrl: "resources/layuimini/api/init.json",    // 初始化接口
+        // 从session里获得session里存放的用户
+        let user = ${user.role};
+        let url = "";
+        if (user == 1){
+            url = "resources/layuimini/api/init-admin.json"
+        }else if (user == 2){
+            url = "resources/layuimini/api/init-normal.json"
+        }
+        let options = {
+            iniUrl: url,    // 初始化接口,动态获取接口地址
             clearUrl: "resources/layuimini/api/clear.json", // 缓存清理接口
             urlHashLocation: true,      // 是否打开hash定位
             bgColorDefault: false,      // 主题默认配置

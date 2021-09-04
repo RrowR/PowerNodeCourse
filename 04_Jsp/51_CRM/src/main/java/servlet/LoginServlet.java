@@ -38,7 +38,7 @@ public class LoginServlet extends BaseServlet {
         if (code != null && code.equals(captcha)){
             User user = userService.login(username, password);
             if (user != null) {
-                //放到session
+                // 将登陆的用户对象也放到session里
                 request.getSession().setAttribute(Constant.SESSION_CURRENT_USER_KEY, user);
                 //给用户响应登陆成功
                 RespUtils.writer(new Result(200, "登陆成功"), response);
