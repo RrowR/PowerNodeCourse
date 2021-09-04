@@ -146,7 +146,47 @@
                 </div>
             </div>
 
-
+            <h2>自定义时间范围选择器</h2>
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">请选择日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test11" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">请选择日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test12" placeholder="yyyy/MM/dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">请选择月份</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test13" placeholder="dd/MM-yyyy">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">请选择时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test14" placeholder="H点m分">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">请选择范围</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test15" placeholder=" ~ ">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">请选择范围</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test16" placeholder="开始 到 结束">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -206,6 +246,8 @@
         // 指定为年范围日期选择器
         laydate.render({
             elem:"#test7",
+            //设置开始日期、日期日期的 input 选择器
+            //数组格式为 2.6.6 开始新增，之前版本直接配置 true 或任意分割字符即可
             range: true,
             type:"year"
         })
@@ -227,6 +269,40 @@
             range:"~",
             type:"time"
         })
+
+        laydate.render({
+            elem:"#test11",
+            format:"yyyy-MM-dd"
+        })
+
+        laydate.render({
+            elem:"#test12",
+            format:"yyyy/MM/dd"
+        })
+
+        laydate.render({
+            elem:"#test13",
+            format:"dd/MM-yyyy"
+        })
+
+        laydate.render({
+            elem:"#test14",
+            format:"H点m分"
+        })
+
+        laydate.render({
+            elem:"#test15",
+            type:"month",
+            range:"~",          // 这个range是配合下面的格式化使用的
+            format:"yyyy-MM"
+        })
+
+        laydate.render({
+            elem:"#test16",
+            format:"yyyy到MM到dd",
+        })
+
+
     })
 </script>
 </html>
