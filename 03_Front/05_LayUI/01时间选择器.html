@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>01时间选择器.html</title>
-    <link rel="stylesheet" href="../Resources/layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
 </head>
+<!--
+    https://www.layui.com/demo/laydate.html 时间选择器访问url
+    layDate 是目前 layui 独立维护的三大组件之一。在 layui 2.0 的版本中，layDate 也完成了一次重写。
+    https://www.layui.com/laydate/  官网:https://www.layui.com/laydate/
+-->
 <body>
 <h1>常规用法</h1>
 <div class="layui-form">
@@ -23,20 +28,25 @@
         </div>
     </div>
 </div>
+
 </body>
-<script type="text/javascript" src="../Resources/layui/layui.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
 <script>
-    //加载laydate模块
-    layui.use(['laydate'],function () {
-        //取出laydate对象
+    // 引入laydate组件，回调方法
+    layui.use(['laydate'],function (){
+        // 获得laydate对象
         let laydate = layui.laydate;
-        //给id="test1"的元素绑定日期选择器
+        // 使用laydate去渲染元素
         laydate.render({
-            elem: "#test1",
-            theme:"molv"
-            // theme:"#ff0000"
-            // theme:"grid"
+            // 通过id找到要渲染的元素
+            elem:"#test1"
         })
-    });
+        // 给英文版本的元素绑定一个en版本的日期选择器
+        laydate.render({
+            // 通过id找到要渲染的元素
+            elem:"#test1-1",    // 绑定id为test1-1
+            lang:"en"           // lang 绑定版本
+        })
+    })
 </script>
 </html>
