@@ -16,9 +16,9 @@
         <module>03_Servlet</module>
         <module>04_Works</module>
         <module>05_Works_Advance</module>
+        <module>07_AJAX</module>
         <module>50_Recruitment_System</module>
         <module>51_CRM</module>
-        <module>53_AJAX</module>
     </modules>
     <dependencies>
         <dependency>

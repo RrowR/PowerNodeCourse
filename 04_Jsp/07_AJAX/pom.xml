@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>53_AJAX</artifactId>
+    <artifactId>07_AJAX</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
