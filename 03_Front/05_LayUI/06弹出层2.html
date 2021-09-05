@@ -6,7 +6,23 @@
     <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
-
+    <input type="button" value="弹出层弹出图片" class="layui-btn" id="btn1">
 </body>
 <script src="layui/layui.js"></script>
+<script>
+    layui.use(['layer'],function (){
+        let $ = layui.$;
+        let layer = layui.layer;
+        $("#btn1").click(function (){
+            layer.open({
+                type:2, // 当type=2的时候，弹出层可以弹出一个图片地址
+                title:"这是一个图片",
+                // area:['400px','800px'],
+                content:"../01_HTML/day01-front/001.jpeg",
+                // maxmin:true,     //出现最大最小选择框
+                anim:6
+            })
+        })
+    })
+</script>
 </html>
