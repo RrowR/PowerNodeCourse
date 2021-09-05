@@ -19,6 +19,7 @@
         <module>07_AJAX</module>
         <module>50_Recruitment_System</module>
         <module>51_CRM</module>
+        <module>06_FilterAndListner</module>
     </modules>
     <dependencies>
         <dependency>
