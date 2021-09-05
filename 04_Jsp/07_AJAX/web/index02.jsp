@@ -3,6 +3,7 @@
   <head>
     <title>$Title$</title>
   </head>
+  <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
   <body>
   <form action="#" method="post">
     <p>用户名:<input type="text" name="username" id="username">
@@ -20,7 +21,7 @@
           url:"check.do",
           type:"get",
           data:value,   // 也可以选择在url后面拼？
-          dataType:text,    // 希望返回数据类型
+          dataType:"text",    // 希望返回数据类型
           contentType:"application/x-www-form-urlencoded",    // 默认值适合大多数应用场合
           beforeSend:function (){
             console.log("发送前");
