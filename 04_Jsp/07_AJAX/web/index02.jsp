@@ -16,18 +16,19 @@
   <script>
       $("#username").on("blur",function (){
         // 获取当前这个元素对象的value值
-        let value = this.value;
+        let username = this.value;
         $.ajax({
-          url:"check.do",
-          type:"get",
-          data:value,   // 也可以选择在url后面拼？
+          url:"check.do", // 请求地址
+          type:"get",     // 请求方式
+          timeout:5000,   // 超时时间
+          data:"username="+username,   // 可以这样直接拼，而且必须这样拼，也可以选择在url后面拼？
           dataType:"text",    // 希望返回数据类型
           contentType:"application/x-www-form-urlencoded",    // 默认值适合大多数应用场合
           beforeSend:function (){
             console.log("发送前");
           },
           success:function (res){
-            console.log(res);
+            console.log("请求成功"+res);
           },
           error:function (){
             console.log("请求失败...");
