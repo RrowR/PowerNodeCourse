@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单校验</title>
+</head>
+<link rel="stylesheet" href="layui/css/layui.css">
+<body style="padding: 20px">
+    <h1>layui表单验证的初次使用</h1>
+    <form class="layui-form" action="#" method="get">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名:</label>
+            <div class="layui-input-block">
+                                    <!-- 添加验证 lay-verify="required" username在下面进行手动验证 -->
+                <input type="text" lay-verify="required|username" name="username" class="layui-input" placeholder="请输入用户名" value="张三">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号:</label>
+            <div class="layui-input-block">
+                <!--
+                    lay-verify 默认支持以下格式验证
+                    required phone、email、url、number、date、identify
+                -->
+
+                <!--这里手机号的验证很粗糙（只要长度为11即可）-->
+                <input type="text" lay-verify="phone" name="email" class="layui-input" placeholder="请输入手机号" value="11111111111">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">请输入邮箱:</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="email" name="email" class="layui-input" placeholder="请输入邮箱" value="atlantisloveddd@gmail.com">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">个人博客:</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="url" name="url" class="layui-input" placeholder="请输入url" value="http://www.baidu.com">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄:</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="age" name="age" class="layui-input" placeholder="请输入age">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <input type="button" lay-submit class="layui-btn" value="提交数据">
+        </div>
+    </form>
+</body>
+<script src="layui/layui.js"></script>
+</html>
+<script>
+    layui.use(['form'],function (){
+        /*
+            <input type="text" lay-verify="email">
+            还同时支持多条规则的验证，如下：
+            <input type="text" lay-verify="required|phone|number">
+         */
+        // 引入form模块
+        let form = layui.form;
+        /*  官方使用:
+            form.verify({
+              username: function(value, item){ //value：表单的值、item：表单的DOM对象(js对象)
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                  return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                  return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                  return '用户名不能全为数字';
+                }
+
+                //如果不想自动弹出默认提示框，可以直接返回 true，这时你可以通过其他任意方式提示（v2.5.7 新增）
+                if(value === 'xxx'){
+                  alert('用户名不能为敏感词');
+                  return true;
+                }
+              }
+
+              //我们既支持上述函数式的方式，也支持下述数组的形式
+              //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+              ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+              ]
+            });
+         */
+        // 自定义验证规则
+        form.verify({
+            username:function (value,item) {    // value：表单的值、item：表单的DOM对象(js对象)
+                if (value.length <= 6){
+                    return '用户名不能小于等于6';
+                }
+            },
+
+            age:function (value,item){
+                if (value > 120 || value <= 0){
+                    return "年龄不能大于120或者小于等于0"
+                }
+            }
+        })
+    })
+</script>

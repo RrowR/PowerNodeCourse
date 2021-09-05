@@ -188,6 +188,118 @@
                 </div>
             </div>
 
+            <h2>自定义重要日期</h2>
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">开启公历节日</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test17" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">自定义重要日</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test18" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">限定可选日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test-limit1" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">前后若干天可选</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test-limit2" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">限定可选时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test-limit3" placeholder="HH:mm:ss">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            这里以控制在9:30-17:30为例
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>其他功能案例</h2>
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">初始赋值</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test19" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">选中后的回调</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test20" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">日期切换的回调</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test21" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">不出现底部栏</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test22" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">只出现确定按钮</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test23" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">自定义事件</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test24" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label" id="test25-1">点我触发</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test25" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label" id="test26-1">双击我触发</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test26" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">日期只读</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="test27" readonly="" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">非input元素</label>
+                        <div class="layui-input-inline">
+                            <div id="test28" style="height: 38px; line-height: 38px; cursor: pointer; border-bottom: 1px solid #e2e2e2;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -211,7 +323,8 @@
         // 使用laydate去渲染元素
         laydate.render({
             // 通过id找到要渲染的元素
-            elem:"#test1"
+            elem:"#test1",
+            theme:"molv"        // 主题为墨绿色
         })
         // 给英文版本的元素绑定一个en版本的日期选择器
         laydate.render({
@@ -302,6 +415,62 @@
             format:"yyyy到MM到dd",
         })
 
+        laydate.render({
+            elem:"#test17",
+            calendar:true,      // 开启日历，自动给标注重要日子
+        })
+
+        laydate.render({
+            elem:"#test18",
+            calendar:true,      // 开启日历，自动给标注重要日子
+            mark:{
+                "0-11-11":"生日"
+            }
+        })
+
+        // 选择可选日期
+        laydate.render({
+            elem:"#test-limit1",
+            min:"2020-10-22",
+            max:"2020-11-11"
+        })
+
+        laydate.render({
+            elem:"#test-limit2",
+            min: -7,        // 这里不能为字符串
+            max: 7
+        })
+
+        // 限定选择的时间
+        laydate.render({
+            elem:"#test-limit3",
+            min:"09:30:00",
+            max:"18:00:00",
+            type:"time"
+        })
+
+        laydate.render({
+            elem:"#test19",
+            value:"2020-03-14"
+        })
+
+
+        laydate.render({
+            elem:"#test22",
+            value:"2020-03-14",
+            showBottom:false        // 就是在选择日期的时候弹出层不显示东西了  
+        })
+
+        laydate.render({
+            elem:"#test23",
+            // 类型：Array，默认值：['clear', 'now', 'confirm']
+            btns:['confirm']            // 只要confirm
+        })
+
+        laydate.render({
+            elem:"#test27",
+            trigger: 'click'        // 日期只读就是只能选择日期
+        })
 
     })
 </script>
