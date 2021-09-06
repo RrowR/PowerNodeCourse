@@ -18,18 +18,13 @@
         使用JSON相比传统的通过 GET、POST直接发送“裸体”数据，在结构上更为合理，也更为安全。
         至于jQuery的getJSON()函数，只是设置了JSON参数的 ajax()函数的一个简化版本。
         就是将预期的返回的数据类型设置为:JSON.语法为:
-
-
        */
-      let param = {username:"username"};
-      $("#btn4").on("click",function (){
-        $.getJSON(
-            "getJSON.do",       // 请求地址
-            param,              // 请求参数
-            function (res){     // rollback
-              console.log(res);
-            }
-        );
+      $("#btn4").click(function (){
+        $.getJSON("queryOneStudent.do",function (res){
+          console.log(res);     // res里返回的是一个json对象
+          console.log(res.name);  // 可以直接获得json里的值
+          console.log(res.age);
+        })
       })
 
 
