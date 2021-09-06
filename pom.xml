@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>01_JavaSE</module>
+        <module>05_SSM</module>
     </modules>
 
     <build>
