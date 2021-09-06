@@ -48,5 +48,13 @@
         });
 
       })
+
+      $("#btn3").on("click",function (){
+
+        $.post("get.do",{username:"username"},function (res){
+          console.log(res);
+        });
+
+      })
   </script>
 </html>
