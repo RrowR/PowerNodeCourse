@@ -21,7 +21,12 @@
             callback:载入成功时回调函数。
            */
           // 将ajax请求的结果放到id=div1中
-          $("#div1").load("check.do",{"username":"username"},function (){})
+          $("#div1").load("load.do",{"username":"zhangsan"},function (){})
+      })
+
+      $("#btn2").on("click",function (){
+        // 将ajax请求的响应结果放到div1中
+        $("#div1").load("load2.do")
       })
   </script>
 </html>
