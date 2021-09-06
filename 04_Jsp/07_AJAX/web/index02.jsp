@@ -3,7 +3,7 @@
   <head>
     <title>$Title$</title>
   </head>
-  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="resources/jquery/jquery-3.6.0.min.js"></script>
   <body>
   <form action="#" method="post">
     <p>用户名:<input type="text" name="username" id="username">
