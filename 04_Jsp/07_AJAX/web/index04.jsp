@@ -5,10 +5,10 @@
   </head>
   <script src="resources/jquery/jquery-3.6.0.min.js"></script>
   <body>
-    <input type="button" id="btn1" value="按钮1">
-    <input type="button" id="btn2" value="按钮2">
-    <input type="button" id="btn3" value="按钮3">
-    <input type="button" id="btn4" value="按钮4">
+    <input type="button" id="btn1" value="load">
+    <input type="button" id="btn2" value="load2">
+    <input type="button" id="btn3" value="get">
+    <input type="button" id="btn4" value="post">
 
     <div id="div1" style="border: red solid 2px;height: 200px"></div>
   </body>
