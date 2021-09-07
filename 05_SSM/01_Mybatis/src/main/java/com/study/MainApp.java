@@ -1,5 +1,6 @@
 package com.study;
 
+import com.study.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,7 +20,9 @@ public class MainApp {
         // 创建一个具体的SqlSession对象
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 进行数据库具体会话
-        Object o = sqlSession.selectOne("com.study.mapper.UserMapper.queryById1", 1);
-        System.out.println(o);
+        User user = sqlSession.selectOne("com.study.mapper.UserMapper.queryById1", 1);
+        System.out.println(user);
+        // 关闭会话
+        sqlSession.close();
     }
 }
