@@ -9,6 +9,7 @@
     <input type="button" id="btn2" value="get">
     <input type="button" id="btn3" value="post">
     <input type="button" id="btn4" value="getJSON">
+    <input type="button" id="btn5" value="getJSONArray">
 
     <div id="div1" style="border: red solid 2px;height: 200px"></div>
   </body>
@@ -24,6 +25,16 @@
           console.log(res);     // res里返回的是一个json对象
           console.log(res.name);  // 可以直接获得json里的值
           console.log(res.age);
+        })
+      })
+
+      // 获得一个json数组
+      $("#btn5").click(function (){
+        $.getJSON("students.do",function (res){
+          console.log(res);     // res里返回的是一个json对象
+          for (let i = 0; i < res.length; i++) {
+            console.log(res[i]);
+          }
         })
       })
 
