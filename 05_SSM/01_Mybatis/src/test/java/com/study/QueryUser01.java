@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-public class Test01 {
+public class QueryUser01 {
     @Test
     void Method01() throws IOException {
         // 引入配置文件
