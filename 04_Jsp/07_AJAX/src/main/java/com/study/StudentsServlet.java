@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @WebServlet("/students.do")
-public class StudentServlet extends HttpServlet {
+public class StudentsServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("utf-8");
-        resp.setContentType("html/json;charset=utf-8");
+        // 这里不要写错，必须是text/json 如果写成html/json就会变成下载文件
+        resp.setContentType("text/json;charset=utf-8");
         // 获得请求的提交方式
         String method = req.getMethod();
         System.out.println(method);
