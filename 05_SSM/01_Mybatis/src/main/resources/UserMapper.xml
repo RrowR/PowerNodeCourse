@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.mapper.UserMapper">
+    <!--这里是全局id配置-->
     <select id="queryById1" resultType="java.util.Map">
         select * from user where id = #{id}
     </select>

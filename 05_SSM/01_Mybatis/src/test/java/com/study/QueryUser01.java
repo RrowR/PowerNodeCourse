@@ -22,7 +22,7 @@ public class QueryUser01 {
         SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);
         // 创建一个具体的SqlSession对象
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        // 进行数据库具体会话
+        // 进行数据库具体会话(这里在进行查询的时候是根据这个当作唯一id来进行查询的)
         Map<String,Object> user= sqlSession.selectOne("com.study.mapper.UserMapper.queryById1", 1);
         // 这是一个map
         System.out.println(user);

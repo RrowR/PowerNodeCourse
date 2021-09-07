@@ -23,7 +23,7 @@ public class SqlSessionUtils {
         sqlSessionFactory = sqlSessionFactoryBuilder.build(in);
     }
 
-    public SqlSession getsqlSession(){
+    public static SqlSession getsqlSession(){
         return sqlSessionFactory.openSession();
     }
 }
