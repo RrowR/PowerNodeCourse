@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>01_Mybatis</module>
-        <module>02_Mybatis_02</module>
+        <module>01_Mybatis_02</module>
     </modules>
 
     <dependencies>
