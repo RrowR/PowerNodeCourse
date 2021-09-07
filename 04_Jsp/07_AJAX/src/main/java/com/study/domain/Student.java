@@ -1,5 +1,7 @@
 package com.study.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class Student {
@@ -8,6 +10,7 @@ public class Student {
     private String address;
     private Integer age;
     private Integer sex;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date birth;
 
     public Student() {
