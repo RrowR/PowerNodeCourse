@@ -12,14 +12,7 @@
     <input type="button" id="btn5" value="getJSONArray">
 
       <table id="StudentTable" border="1px solid" cellspacing="2px" cellpadding="2px" align="center" width="100%" >
-        <tr>
-          <th>ID</th>
-          <th>姓名</th>
-          <th>年龄</th>
-          <th>性别</th>
-          <th>地址</th>
-          <th>生日</th>
-        </tr>
+
       </table>
   </body>
   <script>
@@ -37,7 +30,7 @@
         })
       })
 
-      // 获得一个json数组
+      // 获得一个json数组,这种是更简便的写法
       $("#btn5").click(function (){
         $.getJSON("students.do",function (res){
           renderTable(res);
@@ -45,14 +38,15 @@
       })
 
       function renderTable(data){
-        // 使用jquery找到这个table
-        let studentTable = $("StudentTable");
-        let html =
-
-        $(data).each(function (index,item){
-          console.log(item)
+        // 使用jquery找到这个table,别忘记带#
+        let studentTable = $("#StudentTable");
+        let html = "<tr> <th>ID</th> <th>姓名</th> <th>年龄</th> <th>性别</th> <th>地址</th> <th>生日</th> </tr>"
+        $.each(data,function (index,item){
+          html += "<tr> <th>" + item.id + "</th> <th>"+ item.name +"</th> <th>" + item.age +"</th> <th>" + item.sex + "</th> <th> " + item.address + " </th> <th>" + item.birth + "</th> </tr>"
         })
+        // 把拼接好的HTML放到studentTable中
+        console.log(html);
+        studentTable.html(html);
       }
-
   </script>
 </html>

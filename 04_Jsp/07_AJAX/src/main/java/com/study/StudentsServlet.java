@@ -21,7 +21,7 @@ public class StudentsServlet extends HttpServlet {
         resp.setContentType("text/json;charset=utf-8");
         // 获得请求的提交方式
         String method = req.getMethod();
-        System.out.println(method);
+//        System.out.println(method);
         ArrayList<Student> students = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Student student = new Student(i, "猫羽雫" + i, "addr" + i, i, 0, new Date());
