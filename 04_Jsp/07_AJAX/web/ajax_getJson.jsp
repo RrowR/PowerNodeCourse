@@ -11,7 +11,16 @@
     <input type="button" id="btn4" value="getJSON">
     <input type="button" id="btn5" value="getJSONArray">
 
-    <div id="div1" style="border: red solid 2px;height: 200px"></div>
+      <table id="StudentTable" border="1px solid" cellspacing="2px" cellpadding="2px" align="center" width="100%" >
+        <tr>
+          <th>ID</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>地址</th>
+          <th>生日</th>
+        </tr>
+      </table>
   </body>
   <script>
       /*
@@ -31,13 +40,19 @@
       // 获得一个json数组
       $("#btn5").click(function (){
         $.getJSON("students.do",function (res){
-          console.log(res);     // res里返回的是一个json对象
-          for (let i = 0; i < res.length; i++) {
-            console.log(res[i]);
-          }
+          renderTable(res);
         })
       })
 
+      function renderTable(data){
+        // 使用jquery找到这个table
+        let studentTable = $("StudentTable");
+        let html =
+
+        $(data).each(function (index,item){
+          console.log(item)
+        })
+      }
 
   </script>
 </html>
