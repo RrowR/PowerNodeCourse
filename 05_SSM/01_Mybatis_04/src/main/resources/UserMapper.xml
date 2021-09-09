@@ -4,7 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.mapper.UserMapper">
 
+    <!--提取重复查询的字段-->
+    <sql id="five_column">
+        id, name, age, sex, address, birth
+    </sql>
+    
+    <!-- 推荐方式 -->
     <select id="selectByName" resultType="com.study.domain.User">
-        select name, age, sex, address, birth from user where name like concat('%',#{name},'%');
+        select <include refid="five_column">
+                </include>
+        from user where name like concat('%',#{name},'%');
+    </select>
+
+    <!-- 存在sql注入问题,而且这样拼接只能用$ ,否则就是这个样子'%?%',无法识别? -->
+    <select id="selectByName2" resultType="com.study.domain.User">
+        select <include refid="five_column">
+    </include>
+        from user where name like '%${name}%'
+    </select>
+
+    <select id="selectByName3" resultType="com.study.domain.User">
+        <!--使用bind的方式，mybatis推荐-->
+        <bind name="keyWord" value="new String('%'+name+'%')"/>
+        select <include refid="five_column">
+    </include>
+        from user where name like  #{keyWord}
     </select>
 </mapper>
