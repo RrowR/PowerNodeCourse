@@ -28,4 +28,9 @@ public interface UserMapper {
         批量添加，使用foreach来完成
      */
     public int insertMutipleUsers(@Param("users") List<User> users);
+
+    /*
+        批量删除
+     */
+    public int deleteMutipleUsers(@Param("ids") List<Integer> ids);
 }

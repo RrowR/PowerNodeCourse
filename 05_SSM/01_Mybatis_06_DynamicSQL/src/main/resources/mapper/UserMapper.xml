@@ -127,4 +127,13 @@
             #{user.birth})
         </foreach>
     </insert>
+
+    <!-- 批量删除用户 -->
+    <delete id="deleteMutipleUsers" parameterType="int">
+        delete from user where id in (
+        <foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
 </mapper>

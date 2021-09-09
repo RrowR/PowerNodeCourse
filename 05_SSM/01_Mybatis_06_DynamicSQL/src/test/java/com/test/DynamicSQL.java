@@ -75,6 +75,15 @@ public class DynamicSQL {
         users.forEach(System.out::println);
     }
 
+    @Test
+    void TestMutipleDeleteUsers(){
+        // 批量删除用户
+        int effectRows = mapper.deleteMutipleUsers(List.of(31, 32, 33, 34, 35));
+        System.out.println("effectRows = " + effectRows);
+        sqlSession.commit();
+        sqlSession.commit();
+    }
+
 
 
 }
