@@ -33,12 +33,12 @@ public interface UserMapper {
     /*
         argx 形式：arg 表示参数，x表示参数索引
      */
-    public User selectByMultiParams2(String name,Integer id);
+    public User selectByMultiParams2(String name, Integer id);
 
     /*
         paramX形式： param表示参数，x表示第几个参数
      */
-    public User selectByMultiParams3(String name,Integer id);
+    public User selectByMultiParams3(String name, Integer id);
 
     /*
         使用rowBounds来实现分页查询
@@ -49,4 +49,9 @@ public interface UserMapper {
         查询所有
      */
     public List<User> selectAll();
+
+    /*
+        向数据库中插入一条数据,这里还需要加上注解，不然xml文件检测不到
+     */
+    public int insertOneUser(@Param("user") User user);
 }
