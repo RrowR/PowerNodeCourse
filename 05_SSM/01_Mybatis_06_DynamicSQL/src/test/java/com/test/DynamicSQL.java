@@ -43,4 +43,15 @@ public class DynamicSQL {
         sqlSession.commit();        // 别忘了提交事务
         sqlSession.close();
     }
+
+    @Test
+    void TestSet2(){
+        /*
+            使用mybatis里的where动态sql来进行模糊查询
+         */
+        User user = new User(11, "naya2", 12, "女", "dream", new Date());
+        int effectRows = mapper.updateUserByUser2(user);
+        sqlSession.commit();        // 别忘了提交事务
+        sqlSession.close();
+    }
 }

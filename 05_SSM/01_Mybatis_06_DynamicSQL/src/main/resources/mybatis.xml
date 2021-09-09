@@ -5,7 +5,7 @@
 <configuration>
 
     <!--引入外部配置文件，动态读取数据库驱动地址账户密码-->
-    <properties resource="application2.properties"></properties>
+    <properties resource="application.properties"></properties>
     <!-- 这里必须在resource后面，而且也在environment前面 -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>

@@ -74,6 +74,9 @@
         </where>
     </select>
 
+    <!--
+        一般情况下的更新,而且没有使用set标签的情况下，后面的where是会报错的
+    -->
     <update id="updateUserByUser" parameterType="User">
         update user
             <if test="user.name != null and user.name != ''">
@@ -86,6 +89,20 @@
         where id = 10
     </update>
 
-
-
+    <!--
+        使用set标签来更新,可以帮我们去掉最后一个 ,(逗号)
+        注意：update table 后面要紧跟 set标签，嵌套在if里是不行的
+    -->
+    <update id="updateUserByUser2" parameterType="User">
+        update user
+        <set>
+            <if test="user.name != null and user.name != ''">
+                name = #{user.name},
+            </if>
+            <if test="user.address != null and user.address != ''">
+                address = #{user.address},
+            </if>
+        </set>
+        where id = 10
+    </update>
 </mapper>
