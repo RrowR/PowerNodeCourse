@@ -58,7 +58,7 @@
         from user
     </select>
 
-    <select id="selectAll" resultType="com.study.domain.User">
+    <select id="selectAll" resultType="com.study.domain.Student">
         select <include refid="five_column">
     </include>
         from user

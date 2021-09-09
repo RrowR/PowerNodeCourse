@@ -15,6 +15,7 @@
         <module>01_Mybatis_04</module>
         <module>01_Mybatis_05_PageHelper</module>
         <module>01_Mybatis_06_DynamicSQL</module>
+        <module>01_Mybatis_07_associated_search</module>
     </modules>
 
     <dependencies>
