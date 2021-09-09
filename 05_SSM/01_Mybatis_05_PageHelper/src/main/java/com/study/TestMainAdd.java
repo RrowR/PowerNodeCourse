@@ -11,7 +11,7 @@ public class TestMainAdd {
     public static void main(String[] args) {
         SqlSession sqlSession = SqlSessionUtils.getsqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        User user = new User("岛风", 16, "女", "岛风go", new Date());
+        User user = new User("kaili", 16, "女", "岛风go", new Date());
         mapper.insertOneUser(user);
         sqlSession.commit();
         sqlSession.close();

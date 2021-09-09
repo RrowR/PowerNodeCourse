@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.UserMapper">
+    <!--
+        resultMap:将数据库查出来的字段和实体类里的字段进行手动映射
+        -->
+    <resultMap id="BaseResultMap" type="User">
+        <!--
+            column:对应的是数据库里的字段
+            property:对应的是类里的字段
+        -->
+        <id column="id" property="id"></id>
+    </resultMap>
+    
+    <sql id="six_column">
+        id, name, age, sex, address, birth
+    </sql>
+
+    <sql id="five_column">
+        name, age, sex, address, birth
+    </sql>
+
+    <!--
+        动态SQL是指根据不同的参数，产生不同的SQL语句。这样的SQL就是动态SQL。
+        Mybatis提供了一下标签，用于动态SQL的生成:
+        1.	if
+        2.	foreach
+        3.	choose
+        4.	where
+        5.	set
+        6.	trim
+    -->
+
+    <!--
+        在if标签中，test属性是必须有，test属性值是一个表达式，如果表达式值为true,则if标签包裹的内容会拼接在当前sql上。
+        and 并且
+        or 或者 
+        == 等于
+        != 不等于
+    -->
+
+    <!--
+        tips:  在select语句中，是不能使用keyProperty和keyColumn的
+    -->
+    <select id="selectOneUserByFuzzy" resultType="User">
+        select <include refid="five_column">
+        </include>
+        from user where 1 = 1
+        <!-- if标签，可以不用写sql里的if判断语法了，直接使用mybatis里的 -->
+        <if test="name != null and name != '' ">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="address != null and address != ''">
+            and address like concat('%',#{address},'%')
+        </if>
+    </select>
+
+    <!--
+        使用where标签可以解决拼sql时必须要加一个1=1的问题，并且还可以解决拼sql时候前面的and问题
+    -->
+    <select id="selectOneUserByFuzzy2" resultType="User">
+        select <include refid="five_column">
+    </include>
+        from user
+        <where>
+            <if test="name != null and name != '' ">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="address != null and address != ''">
+                and address like concat('%',#{address},'%')
+            </if>
+        </where>
+    </select>
+
+    <update id="updateUserByUser" parameterType="User">
+        update user
+            <if test="user.name != null and user.name != ''">
+                set name = #{user.name},
+            </if>
+
+        <if test="user.address != null and user.address != ''">
+            address = #{user.address}
+        </if>
+        where id = 10
+    </update>
+
+
+
+</mapper>
