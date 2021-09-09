@@ -2,6 +2,7 @@ package com.study.mapper;
 
 import com.study.domain.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -38,4 +39,9 @@ public interface UserMapper {
         paramX形式： param表示参数，x表示第几个参数
      */
     public User selectByMultiParams3(String name,Integer id);
+
+    /*
+        使用rowBounds来实现分页查询
+     */
+    public List<User> selectPage(RowBounds rowBounds);
 }

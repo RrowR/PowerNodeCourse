@@ -51,4 +51,10 @@
         from user
         where name like concat('%',#{param1},'%') and id = #{param2}
     </select>
+
+    <select id="selectPage" resultType="com.study.domain.User">
+        select <include refid="five_column">
+    </include>
+        from user
+    </select>
 </mapper>
