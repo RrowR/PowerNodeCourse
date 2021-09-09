@@ -92,6 +92,7 @@
     <!--
         使用set标签来更新,可以帮我们去掉最后一个 ,(逗号)
         注意：update table 后面要紧跟 set标签，嵌套在if里是不行的
+        解决了每次set之后最后一个逗号的问题
     -->
     <update id="updateUserByUser2" parameterType="User">
         update user
@@ -118,6 +119,7 @@
                 4.	close 循环结束拼接字符串
                 5.	separator 每次循环之间拼接的字符串
                 6.	index 循环索引
+            解决了每次循环的最后一个逗号的问题
          -->
         <foreach collection="users" item="user" separator=",">
             (#{user.name},
@@ -128,7 +130,7 @@
         </foreach>
     </insert>
 
-    <!-- 批量删除用户 -->
+    <!-- 批量删除用户，解决了删除添加是循环的最后一个逗号问题 -->
     <delete id="deleteMutipleUsers" parameterType="int">
         delete from user where id in (
         <foreach collection="ids" item="id" separator=",">
