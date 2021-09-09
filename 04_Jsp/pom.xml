@@ -20,6 +20,7 @@
         <module>06_FilterAndListner</module>
         <module>50_Recruitment_System</module>
         <module>51_CRM</module>
+        <module>08_AJAX_LayUI</module>
     </modules>
 
     <properties>

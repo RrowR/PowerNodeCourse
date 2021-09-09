@@ -10,9 +10,9 @@ public interface UserMapper {
     /*
         模糊查询
      */
-    public List<User> selectOneUserByFuzzy(@Param("name") String name,@Param("address") String address);
+    public List<User> selectOneUserByFuzzy(@Param("name") String name, @Param("address") String address);
 
-    public List<User> selectOneUserByFuzzy2(@Param("name") String name,@Param("address") String address);
+    public List<User> selectOneUserByFuzzy2(@Param("name") String name, @Param("address") String address);
 
     /*
         根据User进行更新，正常版
@@ -23,4 +23,9 @@ public interface UserMapper {
         根据User进行更新，使用set标签
      */
     public int updateUserByUser2(@Param("user") User user);
+
+    /*
+        批量添加，使用foreach来完成
+     */
+    public int insertMutipleUsers(@Param("users") List<User> users);
 }

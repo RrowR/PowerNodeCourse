@@ -105,4 +105,17 @@
         </set>
         where id = 10
     </update>
+
+    <!-- 这里的list不需要导包，我并没有去扫描它 -->
+    <insert id="insertMutipleUsers" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into user(name, age, sex, address, birth) VALUES
+        <!-- 在每个对象之间加上一个逗号来分割，不是对象里的属性的逗号 -->
+        <foreach collection="users" item="user" separator=",">
+            (#{user.name},
+            #{user.age},
+            #{user.sex},
+            #{user.address},
+            #{user.birth})
+        </foreach>
+    </insert>
 </mapper>
