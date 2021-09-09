@@ -109,7 +109,16 @@
     <!-- 这里的list不需要导包，我并没有去扫描它 -->
     <insert id="insertMutipleUsers" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into user(name, age, sex, address, birth) VALUES
-        <!-- 在每个对象之间加上一个逗号来分割，不是对象里的属性的逗号 -->
+        <!-- 在每个对象之间加上一个逗号来分割，不是对象里的属性的逗号
+             这里foreach应该是foreach里面的value值，如果是这种写法就应该把insert放到外面
+             对应的参数讲解:
+                1.	collection 待循环的容器
+                2.	item 指代 每次循环容器中的元素
+                3.	open 开始循环时拼接字符串
+                4.	close 循环结束拼接字符串
+                5.	separator 每次循环之间拼接的字符串
+                6.	index 循环索引
+         -->
         <foreach collection="users" item="user" separator=",">
             (#{user.name},
             #{user.age},
