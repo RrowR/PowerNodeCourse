@@ -6,6 +6,9 @@ import com.study.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
+/*
+    测试3种模糊查询
+ */
 public class TestMethod {
     SqlSession sqlSession = SqlSessionUtils.getsqlSession();
     UserMapper mapper = sqlSession.getMapper(UserMapper.class);

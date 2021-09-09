@@ -30,4 +30,25 @@
     </include>
         from user where name like  #{keyWord}
     </select>
+
+    <select id="selectByMultiParams" resultType="com.study.domain.User">
+        select <include refid="five_column">
+    </include>
+        from user
+        where name like concat('%',#{name},'%') and id = #{id};
+    </select>
+
+    <select id="selectByMultiParams2" resultType="com.study.domain.User">
+        select <include refid="five_column">
+    </include>
+        from user
+        where name like concat('%',#{arg0},'%') and id = #{arg1}
+    </select>
+
+    <select id="selectByMultiParams3" resultType="com.study.domain.User">
+        select <include refid="five_column">
+    </include>
+        from user
+        where name like concat('%',#{param1},'%') and id = #{param2}
+    </select>
 </mapper>
