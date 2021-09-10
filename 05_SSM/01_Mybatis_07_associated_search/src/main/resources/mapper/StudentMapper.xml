@@ -36,4 +36,20 @@
   <select id="queryOneStudent3" resultMap="STUDENT_CLASSES_MAP">
     select s.id,s.sname,s.cid,c.cname from student s left join classes c on (s.cid = c.id) where s.id = #{id}
   </select>
+
+
+    <resultMap id="STUDENT_CLASSES_MAP2" type="Student">
+        <id property="id" column="id"></id>
+        <result property="sname" column="sname"></result>
+        <result property="cid" column="cid"></result>
+        <!--  剩余一个字段cls和cid进行关联，把cid传classes的方法里单独调用一次查询(级联查询)  -->
+        <association property="cls" javaType="com.study.domain.Classes"
+                     select="com.study.mapper.ClassesMapper.queryClassesById" column="cid">
+        </association>
+    </resultMap>
+
+    <!-- 这里就只查询student字段的内容 -->
+    <select id="queryOneStudent4" resultMap="STUDENT_CLASSES_MAP2">
+        select * from student where id = #{id}
+    </select>
 </mapper>

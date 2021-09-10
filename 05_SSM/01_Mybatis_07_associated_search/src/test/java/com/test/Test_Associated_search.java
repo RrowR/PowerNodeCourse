@@ -39,7 +39,18 @@ public class Test_Associated_search {
          */
         SqlSession sqlSession = SqlSessionUtils.getsqlSession();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        Student student = mapper.queryOneStudent3(1);
+        Student student = mapper.queryOneStudent3(4);
+        System.out.println(student);
+    }
+
+    @Test
+    void MethodSearchStudent4(){
+        /*
+            测试级联查询
+         */
+        SqlSession sqlSession = SqlSessionUtils.getsqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        Student student = mapper.queryOneStudent4(4);
         System.out.println(student);
     }
 }
