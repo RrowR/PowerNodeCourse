@@ -12,4 +12,20 @@
     select s.id,s.sname,s.cid,c.cname from student s left join classes c on (s.cid = c.id) where s.id = #{id}
   </select>
 
+  <!--
+      此时的Student里有一个Class对象，那么resultType此时没法写，我们需要使用resultMap来映射类型
+      property:代表类的属性 column:代表查询的数据库表头值
+    -->
+  <resultMap id="STUDENT_CLASSES_MAP" type="Student">
+
+        <id property="id" column="id"></id>
+        <result property="sname" column="sname"></result>
+        <result property="cid" column="cid"></result>
+
+
+  </resultMap>
+  
+  <select id="queryOneStudent3" resultMap="STUDENT_CLASSES_MAP">
+    select s.id,s.sname,s.cid,c.cname from student s left join classes c on (s.cid = c.id) where s.id = #{id}
+  </select>
 </mapper>

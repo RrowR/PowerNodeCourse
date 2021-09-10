@@ -13,4 +13,6 @@ public interface StudentMapper {
     Map<String, Object> queryOneStudent1(@Param("id") Integer id);
 
     Student queryOneStudent2(@Param("id") Integer id);
+
+    Student queryOneStudent3(@Param("id") Integer id);
 }

@@ -17,5 +17,10 @@ public class Student {
     /*
         方法一: 添加Class表里的课程字段
      */
-    private String cname;
+//    private String cname;
+
+    /*
+        方法二: 在Student类里添加Classes属性
+     */
+    private Classes cls;
 }
