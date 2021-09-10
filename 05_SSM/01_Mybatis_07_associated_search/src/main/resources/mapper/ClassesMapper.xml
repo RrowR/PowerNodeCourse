@@ -16,10 +16,15 @@
         此时就可以查询出学生对象
      -->
     <collection property="students" ofType="com.study.domain.Student"
-                select="com.study.mapper.StudentMapper.queryStudentByClassId" column="id"></collection>
+                select="com.study.mapper.StudentMapper.queryStudentByClassCid" column="id"></collection>
   </resultMap>
 
   <select id="queryClassesWithStudentsById" resultMap="CLASSES_STUDENT_MAP">
         select * from classes where id = #{id}
+  </select>
+
+  <!-- 直接先根据id查询所有的课程 -->
+  <select id="queryClassesWithStudents02ById" resultType="Classes">
+    select * from classes where id = #{id}
   </select>
 </mapper>

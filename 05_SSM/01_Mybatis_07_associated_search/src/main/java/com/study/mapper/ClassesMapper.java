@@ -8,4 +8,6 @@ public interface ClassesMapper {
     Classes queryClassesById(@Param("id") Integer id);
 
     Classes queryClassesWithStudentsById(@Param("id") Integer id);
+
+    Classes queryClassesWithStudents02ById(@Param("id") Integer id);
 }
