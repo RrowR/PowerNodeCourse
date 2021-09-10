@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.StudentMapper">
+
+  <!-- 这里返回值是一个Map的时候，那么这个查询结果将会自动的封装到map中 -->
+  <select id="queryOneStudent1" resultType="java.util.Map">
+    select s.id,s.sname,s.cid,c.cname from student s left join classes c on (s.cid = c.id) where s.id = #{id}
+  </select>
+
+  <!-- 将查询结果封装的到User中，但是User如果有cname那么就会封装，没有就会被丢弃 -->
+  <select id="queryOneStudent2" resultType="Student">
+    select s.id,s.sname,s.cid,c.cname from student s left join classes c on (s.cid = c.id) where s.id = #{id}
+  </select>
+
+</mapper>

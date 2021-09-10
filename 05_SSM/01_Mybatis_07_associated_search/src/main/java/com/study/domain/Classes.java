@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Classes {
     private Integer id;
+
     private String cname;
 }

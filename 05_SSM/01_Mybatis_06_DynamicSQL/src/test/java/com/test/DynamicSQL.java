@@ -6,7 +6,9 @@ import com.study.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -78,7 +80,7 @@ public class DynamicSQL {
     @Test
     void TestMutipleDeleteUsers(){
         // 批量删除用户
-        int effectRows = mapper.deleteMutipleUsers(List.of(31, 32, 33, 34, 35));
+        int effectRows = mapper.deleteMutipleUsers(Arrays.asList(34,35,36,37,38));
         System.out.println("effectRows = " + effectRows);
         sqlSession.commit();
         sqlSession.commit();
