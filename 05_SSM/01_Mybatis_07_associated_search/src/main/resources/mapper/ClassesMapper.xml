@@ -6,4 +6,20 @@
   <select id="queryClassesById" resultType="com.study.domain.Classes">
     select * from classes where id = #{id}
   </select>
+
+  <resultMap id="CLASSES_STUDENT_MAP" type="Classes">
+    <id property="id" column="id"></id>
+    <result property="cname" column="cname"></result>
+    <!--
+        第三个集合属性的类型是一个Student
+        还需要调用Classes里的根据Classes里的id查学生的cid，在StudentMapper里面有写
+        此时就可以查询出学生对象
+     -->
+    <collection property="students" ofType="com.study.domain.Student"
+                select="com.study.mapper.StudentMapper.queryStudentByClassId" column="id"></collection>
+  </resultMap>
+
+  <select id="queryClassesWithStudentsById" resultMap="CLASSES_STUDENT_MAP">
+        select * from classes where id = #{id}
+  </select>
 </mapper>

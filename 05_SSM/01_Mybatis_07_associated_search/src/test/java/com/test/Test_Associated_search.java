@@ -1,6 +1,8 @@
 package com.test;
 
+import com.study.domain.Classes;
 import com.study.domain.Student;
+import com.study.mapper.ClassesMapper;
 import com.study.mapper.StudentMapper;
 import com.study.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -52,5 +54,16 @@ public class Test_Associated_search {
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.queryOneStudent4(4);
         System.out.println(student);
+    }
+
+    @Test
+    void MethodSearchStudent5(){
+        /*
+            测试级联查询
+         */
+        SqlSession sqlSession = SqlSessionUtils.getsqlSession();
+        ClassesMapper mapper = sqlSession.getMapper(ClassesMapper.class);
+        Classes classes = mapper.queryClassesWithStudentsById(1);
+        System.out.println("classes = " + classes);
     }
 }

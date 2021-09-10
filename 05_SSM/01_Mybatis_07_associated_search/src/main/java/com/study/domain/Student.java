@@ -19,8 +19,14 @@ public class Student {
      */
 //    private String cname;
 
+    public Student(Integer id, String sname, Integer cid) {
+        this.id = id;
+        this.sname = sname;
+        this.cid = cid;
+    }
+
     /*
-        方法二: 在Student类里添加Classes属性
-     */
+            方法二: 在Student类里添加Classes属性
+         */
     private Classes cls;
 }
