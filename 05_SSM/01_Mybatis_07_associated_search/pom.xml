@@ -11,9 +11,6 @@
 
     <artifactId>01_Mybatis_07_associated_search</artifactId>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+
 
 </project>

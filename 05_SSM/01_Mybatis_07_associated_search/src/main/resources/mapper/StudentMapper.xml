@@ -17,12 +17,20 @@
       property:代表类的属性 column:代表查询的数据库表头值
     -->
   <resultMap id="STUDENT_CLASSES_MAP" type="Student">
-
         <id property="id" column="id"></id>
         <result property="sname" column="sname"></result>
         <result property="cid" column="cid"></result>
-
-
+        <!-- cname不是Student里的字段，但是Student里有一个Classes对象，这个字段是对象里的，所以我们需要把这个cname添加到Classes对象里去 -->
+        <!-- 关联选定这个字段(也就是这个类)，类型是一个Classes -->
+        <association property="cls" javaType="com.study.domain.Classes">
+            <!--
+                property:对应了 Classes 类的属性
+                column: 对应了关联的Student的cid属性(外键),其实这里更正确的是数据库表头属性column列
+                -->
+            <id property="id" column="cid"></id>
+            <!-- 将这个Classes对象的列cname和数据库查询出来的cname进行映射 -->
+            <result property="cname" column="cname"></result>
+        </association>
   </resultMap>
   
   <select id="queryOneStudent3" resultMap="STUDENT_CLASSES_MAP">

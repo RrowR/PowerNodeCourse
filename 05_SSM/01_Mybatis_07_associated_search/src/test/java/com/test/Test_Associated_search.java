@@ -31,4 +31,15 @@ public class Test_Associated_search {
         Student student = mapper.queryOneStudent2(1);
         System.out.println(student);
     }
+
+    @Test
+    void MethodSearchStudent3(){
+        /*
+            将查询的结果封装到Student对象中
+         */
+        SqlSession sqlSession = SqlSessionUtils.getsqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        Student student = mapper.queryOneStudent3(1);
+        System.out.println(student);
+    }
 }
