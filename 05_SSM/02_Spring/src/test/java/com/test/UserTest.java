@@ -11,7 +11,9 @@ public class UserTest {
         // 加载配置文件
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         // 从容器中获取对象,这里使用类名还是使用id都是可以的
-        Object user = context.getBean("userId");
-        System.out.println(user);
+        Object user = context.getBean("user");
+        Object user2 = context.getBean("user");
+        System.out.println(user.hashCode());
+        System.out.println(user2.hashCode());
     }
 }
