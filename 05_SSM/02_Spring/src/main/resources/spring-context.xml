@@ -10,7 +10,7 @@
     <bean id="user" name="person2" class="com.study.domain.User" scope="singleton" lazy-init="true" depends-on="stu" init-method="init" destroy-method="destroy"/>
 
     <!-- primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean -->
-    <bean id="stu" name="student " class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
+    <bean id="stu" name="student" class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
     <bean id="stu2" name="student" class="com.study.domain.Student" lazy-init="true"></bean>
     <!--
         id : bean的唯一标识  整个IOC容器不能重复。
@@ -30,8 +30,9 @@
         primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean
         !-->
 
-        <!--  -->
-        <bean id="user2" class="com.study.domain.User"></bean>
-
+        <!-- 构造方法的方式创建对象 -->
+<!--        <bean id="user2" class="com.study.domain.User"></bean>-->
+        <!-- 静态工厂创建 -->
+        <bean id="user3" class="com.study.factory.UserStaticFactory" factory-method="getObj" />
 
 </beans>
