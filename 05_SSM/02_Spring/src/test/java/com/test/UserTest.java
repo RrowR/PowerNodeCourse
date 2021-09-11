@@ -1,5 +1,6 @@
 package com.test;
 
+import com.study.domain.Human;
 import com.study.domain.Student;
 import com.study.domain.User;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,18 @@ public class UserTest {
         // 使用非静态工厂创建User对象给spring容器,使用非静态工厂的时候就不能使用类来调用了
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         User user = context.getBean(User.class);
+    }
+
+    @Test
+    void TestHuman5(){
+        /*
+            使用注解的方式向spring容器里添加对象
+            需要开启包扫描才可以  <context:component-scan base-package="com.study.domain.*" />
+         */
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+        Human human = context.getBean(Human.class);
+        System.out.println(human);
+
     }
 
 }
