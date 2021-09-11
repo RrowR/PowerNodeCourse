@@ -33,6 +33,8 @@
         <!-- 构造方法的方式创建对象 -->
 <!--        <bean id="user2" class="com.study.domain.User"></bean>-->
         <!-- 静态工厂创建 -->
-        <bean id="user3" class="com.study.factory.UserStaticFactory" factory-method="getObj" />
-
+<!--        <bean id="user3" class="com.study.factory.UserStaticFactory" factory-method="getObj" />-->
+        <bean id="getUser" class="com.study.factory.UserFactory"></bean>
+<!--                     这里必须使用factory-bean     这里调用的是工厂的方法，和上面的静态方法有一些不同 -->
+        <bean id="user4" factory-bean="getUser" factory-method="getObj"></bean>
 </beans>

@@ -28,6 +28,14 @@ public class UserTest {
 
     @Test
     void TestBean3(){
+        // 使用静态工厂创建的方式给spring容器添加对象
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+        User user = context.getBean(User.class);
+    }
+
+    @Test
+    void TestBean4(){
+        // 使用非静态工厂创建User对象给spring容器,使用非静态工厂的时候就不能使用类来调用了
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         User user = context.getBean(User.class);
     }
