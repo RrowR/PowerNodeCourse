@@ -7,11 +7,11 @@
     <!-- spring 核心配置文件 配置IOC容器中需要创建的bean
          depends-on在加载stu容器的时候，先去加载Spring容器里的id为stu 的对象
     -->
-    <bean id="user" name="person2" class="com.study.domain.User" scope="singleton" lazy-init="true" depends-on="stu" init-method="init" destroy-method="destroy"/>
+<!--    <bean id="user" name="person2" class="com.study.domain.User" scope="singleton" lazy-init="true" depends-on="stu" init-method="init" destroy-method="destroy"/>-->
 
     <!-- primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean -->
     <bean id="stu" name="student" class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
-    <bean id="stu2" name="student" class="com.study.domain.Student" lazy-init="true"></bean>
+<!--    <bean id="stu2" name="student" class="com.study.domain.Student" lazy-init="true"></bean>-->
     <!--
         id : bean的唯一标识  整个IOC容器不能重复。
         name : bean的key,多个name之间使用逗号,

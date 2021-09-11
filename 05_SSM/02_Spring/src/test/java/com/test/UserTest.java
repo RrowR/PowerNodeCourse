@@ -26,6 +26,10 @@ public class UserTest {
         Object user = context.getBean(Student.class);
     }
 
-
+    @Test
+    void TestBean3(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+        User user = context.getBean(User.class);
+    }
 
 }
