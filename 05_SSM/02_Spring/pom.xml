@@ -12,11 +12,9 @@
     <artifactId>02_Spring</artifactId>
 
     <dependencies>
-        <!--引入spring的context依赖，可以传递出aop beans core expression-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.3.4</version>
         </dependency>
     </dependencies>
 

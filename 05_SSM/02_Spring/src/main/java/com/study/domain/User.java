@@ -15,5 +15,15 @@ public class User {
     private Date birth;
 
     public User() {
+        System.out.println("我User被调用了...");
+    }
+
+    private void init() {
+        System.out.println("打印了初始化的方法...");
+    }
+
+
+    private void destroy() {
+        System.out.println("打印了销毁的方法");
     }
 }

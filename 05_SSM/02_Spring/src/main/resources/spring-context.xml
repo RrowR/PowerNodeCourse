@@ -4,7 +4,32 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="user" class="com.study.domain.User" scope="prototype" />
+    <!-- spring 核心配置文件 配置IOC容器中需要创建的bean
+         depends-on在加载stu容器的时候，先去加载Spring容器里的id为stu 的对象
+    -->
+    <bean id="user" name="person2" class="com.study.domain.User" scope="singleton" lazy-init="true" depends-on="stu" init-method="init" destroy-method="destroy"/>
+
+    <!-- primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean -->
+    <bean id="stu" class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
+    <bean id="stu2" class="com.study.domain.Student" lazy-init="true"></bean>
+    <!--
+        id : bean的唯一标识  整个IOC容器不能重复。
+        name : bean的key,多个name之间使用逗号,
+        class : 具体的bean的全路径
+        scope : bean的作用域
+                singleton 单例  默认
+                prototype 非单例
+        lazy-init="true" 获取时创建对象
+        depends-on="test" 默认自上而下创建  depends-on 会优先创建 depends-on 对应的bean
+        init-method : 对象创建后调用的方法
+        destroy-method :对象销毁时调用的方法， 容器调用close
+        autowire : 属性自动装配
+                    byName 根据属性名装配
+                    byType 根据属性类型装配
+
+        primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean
+        !-->
+
 
 
 </beans>
