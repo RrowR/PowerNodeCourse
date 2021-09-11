@@ -10,8 +10,8 @@
     <bean id="user" name="person2" class="com.study.domain.User" scope="singleton" lazy-init="true" depends-on="stu" init-method="init" destroy-method="destroy"/>
 
     <!-- primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean -->
-    <bean id="stu" class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
-    <bean id="stu2" class="com.study.domain.Student" lazy-init="true"></bean>
+    <bean id="stu" name="student " class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
+    <bean id="stu2" name="student" class="com.study.domain.Student" lazy-init="true"></bean>
     <!--
         id : bean的唯一标识  整个IOC容器不能重复。
         name : bean的key,多个name之间使用逗号,
@@ -30,6 +30,8 @@
         primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean
         !-->
 
+        <!--  -->
+        <bean id="user2" class="com.study.domain.User"></bean>
 
 
 </beans>

@@ -18,6 +18,9 @@ public class UserTest {
 
     @Test
     void TestBean2(){
+        /*
+            当获取容器为字节码的时候
+         */
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         Object user = context.getBean(Student.class);
 
