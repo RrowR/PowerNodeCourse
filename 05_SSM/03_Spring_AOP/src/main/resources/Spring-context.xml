@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 定义目标类对象 -->
+    <bean id="targetClass" class="com.study.interfaces.impl.ITargetClassImpl"></bean>
+    <bean class="com.study.PointedDomain"></bean>
+    <bean class="com.study.AroundPointedDomain"></bean>
+    <bean class="com.study.PointedExceptionDomain"></bean>
+    <!-- 定义前置增强类对象 -->
+    <bean id="myBeforeAdvice" class="com.study.advices.MyBeforeAdvice"></bean>
+    <!-- 定义后置增强对象 -->
+    <bean id="myAfterAdvice" class="com.study.advices.MyAfterAdvice"></bean>
+    <!-- 定义环绕增强对象 -->
+    <bean id="myRoundAdvice" class="com.study.advices.MyRoundAdvice"></bean>
+    <!-- 定义异常增强对象 -->
+    <bean id="myExceptionAdvice" class="com.study.advices.MyExceptionAdvice"></bean>
+
+    <!-- aop的配置 -->
+    <aop:config>
+        <!-- 声明一个切入点 -->
+        <!--
+            id : 连接点的唯一标识
+            expression : 连接点的表达式
+                execution(* 包名.类名.方法名(..))
+                * 指任意字符
+                .. 表示参数可以是任意个
+        -->
+        <!-- 这个类下的任意返回值的任意方法值的任意参数类型的方法作为切入点 -->
+        <aop:pointcut id="pointCut" expression="execution(* com.study.interfaces.impl.ITargetClassImpl.*(..))"/>
+        <aop:pointcut id="afterPoint" expression="execution(* com.study.PointedDomain.hawl(..))"/>
+        <aop:pointcut id="aroundPoint" expression="execution(* com.study.AroundPointedDomain.hawl())"/>
+        <aop:pointcut id="exceptionPoint" expression="execution(* com.study.PointedExceptionDomain.*(..))"/>
+        <!-- 织入操作 -->
+        <!-- 把前置通知切入到更改的那个切入点去，那么在调用这个类的方法之前会触发前置通知的方法 -->
+        <aop:advisor advice-ref="myBeforeAdvice" pointcut-ref="pointCut"></aop:advisor>
+        <aop:advisor advice-ref="myAfterAdvice" pointcut-ref="afterPoint"></aop:advisor>
+        <aop:advisor advice-ref="myRoundAdvice" pointcut-ref="aroundPoint"></aop:advisor>
+        <aop:advisor advice-ref="myExceptionAdvice" pointcut-ref="exceptionPoint"></aop:advisor>
+    </aop:config>
+
+
+
+</beans>
