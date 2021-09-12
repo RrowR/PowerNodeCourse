@@ -20,6 +20,7 @@
         <module>02_Spring_Proxy01_JDK</module>
         <module>02_Spring_Proxy02_Cglib</module>
         <module>03_Spring_AOP</module>
+        <module>03_Spring_AOP_Aspects</module>
     </modules>
 
         <properties>
