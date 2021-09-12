@@ -1,22 +1,23 @@
 package com.study.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class TestInjectUser03 {
+    private Integer id;
     private String name;
-    private int age;
+
+    // 使用AutoWired注解注入的时候，不需要写setter方法
+    @Autowired
+    private User user;
 
     @Override
     public String toString() {
-        return "TestInjectUser01{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
+        return "TestInjectUser03{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", user=" + user +
                 '}';
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 }

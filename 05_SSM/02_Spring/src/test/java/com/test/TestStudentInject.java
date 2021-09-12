@@ -2,6 +2,7 @@ package com.test;
 
 import com.study.domain.TestInjectUser01;
 import com.study.domain.TestInjectUser02;
+import com.study.domain.TestInjectUser03;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -30,6 +31,16 @@ public class TestStudentInject {
          */
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         TestInjectUser02 bean = context.getBean(TestInjectUser02.class);
+        System.out.println("bean = " + bean);
+    }
+
+    @Test
+    void Test03(){
+        /*
+            使用注解的方式来进行注入
+         */
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+        TestInjectUser03 bean = (TestInjectUser03) context.getBean("testInjectUser03");
         System.out.println("bean = " + bean);
     }
 }

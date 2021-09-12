@@ -50,7 +50,6 @@ public class UserTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         Human human = context.getBean(Human.class);
         System.out.println(human);
-
     }
 
 }
