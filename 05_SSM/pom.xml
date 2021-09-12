@@ -17,6 +17,7 @@
         <module>01_Mybatis_06_DynamicSQL</module>
         <module>01_Mybatis_07_associated_search</module>
         <module>02_Spring</module>
+        <module>02_Spring_Proxy_JDK</module>
     </modules>
 
         <dependencies>
