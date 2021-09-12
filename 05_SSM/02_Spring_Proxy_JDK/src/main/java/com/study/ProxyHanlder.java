@@ -24,6 +24,9 @@ public class ProxyHanlder implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 使用目标类中代理的方法去调用调用方法的目标，并且传递参数(反射)
-        return method.invoke(tarObj,args);
+        System.out.println("前置增强");
+        Object invoke = method.invoke(tarObj, args);
+        System.out.println("后置增强");
+        return invoke;
     }
 }
