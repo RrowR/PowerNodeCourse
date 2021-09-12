@@ -17,7 +17,8 @@
         <module>01_Mybatis_06_DynamicSQL</module>
         <module>01_Mybatis_07_associated_search</module>
         <module>02_Spring</module>
-        <module>02_Spring_Proxy_JDK</module>
+        <module>02_Spring_Proxy01_JDK</module>
+        <module>02_Spring_Proxy02_Cglib</module>
     </modules>
 
         <dependencies>
@@ -71,6 +72,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>5.3.4</version>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.3.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
