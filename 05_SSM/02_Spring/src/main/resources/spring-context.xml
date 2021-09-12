@@ -68,11 +68,69 @@
 
     <bean id="DateType" class="java.util.Date"></bean>
 
-    <bean id="userForTestInjectUser03" class="com.study.domain.User">
+    <bean id="userForTestInjectUser03" class="com.study.domain.User" lazy-init="true">
         <property name="name" value="猫羽雫"></property>
         <property name="age" value="16"></property>
         <property name="birth" ref="DateType"></property>
     </bean>
 
+    <bean id="person1" class="com.study.domain.Person">
+        <!--基本数据类型的注入-->
+        <property name="id" value="1"/>
+        <property name="name" value="rama"/>
+        <property name="sex" value="true"/>
+        <!--数组类型的注入-->
+        <property name="likes">
+            <!--里面先嵌套一个array标签-->
+            <array>
+                <!--再向数组里面写入内容-->
+                <value>lol</value>
+                <value>dnf</value>
+                <value>cf</value>
+            </array>
+        </property>
+<!--        <property name="dreams" ref="dreams"></property>-->
+        <!--另一种方式也可以，还是使用属性的方式，ref class都不写，内嵌标签的方法-->
+        <property name="dreams">
+
+            <list>
+                <bean class="com.study.domain.Dream">
+                    <property name="mx" value="旅游"></property>
+                </bean>
+                <bean class="com.study.domain.Dream">
+                    <property name="mx" value="旅游"></property>
+                </bean>
+                <ref bean="dreams"></ref>
+            </list>
+
+        </property>
+        <property name="girlFriends">
+            <!-- girlfread是一个set集合的基本数据类型 -->
+            <set>
+                <value>koko</value>
+                <value>rprp</value>
+                <value>rprp</value>
+            </set>
+        </property>
+        <property name="house">
+            <map>
+                <entry key="person1" value="house1"></entry>
+                <entry key="person2" value="house2"></entry>
+                <entry key="person3" value="house3"></entry>
+            </map>
+        </property>
+        <!-- properties的本质还是一个map -->
+        <property name="properties">
+            <map>
+                <entry key="k1k1" value="v1v1"></entry>
+                <entry key="k2k2" value="v2v2"></entry>
+                <entry key="k3k3" value="v3v3"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dreams" class="com.study.domain.Dream">
+        <property name="mx" value="睡觉"></property>
+    </bean>
 
 </beans>
