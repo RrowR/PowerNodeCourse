@@ -39,7 +39,11 @@
 <!--                     这里必须使用factory-bean     这里调用的是工厂的方法，和上面的静态方法有一些不同 -->
         <bean id="user4" factory-bean="getUser" factory-method="getObj" lazy-init="true"></bean>
 
-    <!-- 开启包扫描，这里需要自己打完才可以自动显示出来 -->
+    <!-- 开启组件扫描，这里需要自己打完才可以自动显示出来
+         开启组件扫描的目的是为了让spring知道我要让这个包下的类加载到容器里面去
+         从而可以对容器里的对象进行进一步操作
+         这里开启的组件扫描就是为了针对注解的方式，非注解可以不用扫描
+     -->
     <context:component-scan base-package="com.study.domain" />
 
     <!-- 注意这里是有参构造的方法，因为下面带了构造方法的参数 -->
@@ -61,4 +65,5 @@
         <property name="name" value="nya"></property>
         <property name="age" value="16"></property>
     </bean>
+
 </beans>
