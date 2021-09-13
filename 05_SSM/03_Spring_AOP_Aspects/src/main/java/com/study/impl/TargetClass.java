@@ -13,11 +13,6 @@ public class TargetClass implements ITargetClass {
         System.out.println("带增强的后置方法...");
     }
 
-    @Override
-    public String afterMethod2(String name) {
-        System.out.println("待增强的后置方法，但是我有返回值");
-        return "猫羽雫";
-    }
 
     @Override
     public void aroundMethod() {
