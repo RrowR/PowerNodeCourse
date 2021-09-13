@@ -18,5 +18,11 @@ public class TargetClass implements ITargetClass {
         System.out.println("我是一个环绕方法");
     }
 
+    @Override
+    public void excetionMethod() {
+        System.out.println("我是一个出现异常方法");
+        int a = 10/0;
+    }
+
 
 }

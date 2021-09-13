@@ -44,4 +44,14 @@ public class TestAspectJ {
         proxy.aroundMethod();
     }
 
+    /*
+        异常增强
+     */
+    @Test
+    void ExceptionAround(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
+        ITargetClass proxy = context.getBean(ITargetClass.class);
+        proxy.excetionMethod();
+    }
+
 }

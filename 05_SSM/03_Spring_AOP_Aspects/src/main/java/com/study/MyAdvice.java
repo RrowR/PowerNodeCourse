@@ -25,4 +25,8 @@ public class MyAdvice {
         }
         afterAdvice();
     }
+
+    public void exceptionAdvice(Exception e){
+        System.out.println("异常增强...");
+    }
 }

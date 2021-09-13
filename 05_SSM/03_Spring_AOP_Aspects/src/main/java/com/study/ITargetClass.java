@@ -7,4 +7,6 @@ public interface ITargetClass {
     void afterMethod();
     // 环绕增强的接口
     void aroundMethod();
+    // 异常增强的接口
+    void excetionMethod();
 }
