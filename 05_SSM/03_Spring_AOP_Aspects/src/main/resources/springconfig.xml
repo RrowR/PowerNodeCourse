@@ -13,7 +13,7 @@
             给某个需要增强的方法设置切点，id为后面的切入点方法使用
          -->
         <aop:pointcut id="beforePoint" expression="execution(* com.study.impl.TargetClass.beforeMethod())"/>
-
+        <aop:pointcut id="afterPoint" expression="execution(* com.study.impl.TargetClass.afterMethod())"/>
 
 
         <!--
@@ -25,6 +25,7 @@
                  pointcut-ref: 切入点的引入，引入要被切入的哪个方法
              -->
             <aop:before method="beforeAdvice" pointcut-ref="beforePoint" />
+            <aop:after method="afterAdvice" pointcut-ref="afterPoint" />
         </aop:aspect>
 
     </aop:config>
