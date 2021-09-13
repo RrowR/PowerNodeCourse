@@ -13,5 +13,10 @@ public class TargetClass implements ITargetClass {
         System.out.println("带增强的后置方法...");
     }
 
+    @Override
+    public void aroundMethod() {
+        System.out.println("我是一个环绕方法");
+    }
+
 
 }

@@ -23,6 +23,9 @@ public class TestAspectJ {
         proxy.beforeMethod();
     }
 
+    /*
+        后置增强
+     */
     @Test
     void MethodAfter(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
@@ -31,5 +34,14 @@ public class TestAspectJ {
         proxy.afterMethod();
     }
 
+    /*
+        环绕增强
+     */
+    @Test
+    void MethodAround(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
+        ITargetClass proxy = context.getBean(ITargetClass.class);
+        proxy.aroundMethod();
+    }
 
 }

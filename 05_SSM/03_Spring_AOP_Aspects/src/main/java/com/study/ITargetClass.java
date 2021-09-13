@@ -5,4 +5,6 @@ public interface ITargetClass {
     void beforeMethod();
     // 后置增强的接口
     void afterMethod();
+    // 环绕增强的接口
+    void aroundMethod();
 }
