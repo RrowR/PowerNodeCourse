@@ -22,19 +22,15 @@
         <module>03_Spring_AOP</module>
         <module>03_Spring_AOP_Aspects</module>
         <module>03_Spring_AOP_Aspects_Anotations</module>
+        <module>04_SpringMVC</module>
     </modules>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <spring.version>5.2.0.RELEASE</spring.version>
-    </properties>
+        <properties>
+            <maven.compiler.source>8</maven.compiler.source>
+            <maven.compiler.target>8</maven.compiler.target>
+            <spring.version>5.2.0.RELEASE</spring.version>
+        </properties>
 
-    <dependencies>
-
-    </dependencies>
-
-    <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -78,6 +74,10 @@
                 <artifactId>log4j</artifactId>
                 <version>1.2.17</version>
             </dependency>
+        </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
