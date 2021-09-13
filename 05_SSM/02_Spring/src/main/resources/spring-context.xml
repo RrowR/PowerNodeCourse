@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- spring 核心配置文件 配置IOC容器中需要创建的bean
+         depends-on在加载stu容器的时候，先去加载Spring容器里的id为stu 的对象
+    -->
+<!--    <bean id="user" name="person2" class="com.study.domain.User" scope="singleton" lazy-init="true" depends-on="stu" init-method="init" destroy-method="destroy"/>-->
+
+    <!-- primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean -->
+    <bean id="stu" name="student" class="com.study.domain.Student" lazy-init="true" primary="true"></bean>
+<!--    <bean id="stu2" name="student" class="com.study.domain.Student" lazy-init="true"></bean>-->
+    <!--
+        id : bean的唯一标识  整个IOC容器不能重复。
+        name : bean的key,多个name之间使用逗号,
+        class : 具体的bean的全路径
+        scope : bean的作用域
+                singleton 单例  默认
+                prototype 非单例
+        lazy-init="true" 获取时创建对象
+        depends-on="test" 默认自上而下创建  depends-on 会优先创建 depends-on 对应的bean
+        init-method : 对象创建后调用的方法
+        destroy-method :对象销毁时调用的方法， 容器调用close
+        autowire : 属性自动装配
+                    byName 根据属性名装配
+                    byType 根据属性类型装配
+
+        primary :  当存在多个同样的类型时， primary 为true 则优先使用该bean
+        !-->
+
+        <!-- 构造方法的方式创建对象 -->
+<!--        <bean id="user2" class="com.study.domain.User"></bean>-->
+        <!-- 静态工厂创建 -->
+<!--        <bean id="user3" class="com.study.factory.UserStaticFactory" factory-method="getObj" />-->
+<!--        <bean id="getUser" class="com.study.factory.UserFactory"></bean>-->
+<!--&lt;!&ndash;                     这里必须使用factory-bean     这里调用的是工厂的方法，和上面的静态方法有一些不同 &ndash;&gt;-->
+<!--        <bean id="user4" factory-bean="getUser" factory-method="getObj" lazy-init="true"></bean>-->
+
+    <!-- 开启组件扫描，这里需要自己打完才可以自动显示出来
+         开启组件扫描的目的是为了让spring知道我要让这个包下的类加载到容器里面去
+         从而可以对容器里的对象进行进一步操作
+         这里开启的组件扫描就是为了针对注解的方式，非注解可以不用扫描
+     -->
+    <context:component-scan base-package="com.study.domain" />
+
+    <!-- 注意这里是有参构造的方法，因为下面带了构造方法的参数 -->
+<!--    <bean id="testConstructorInject" class="com.study.domain.TestInjectUser01">-->
+<!--        <constructor-arg index="0" value="张三"></constructor-arg>-->
+<!--        &lt;!&ndash; 这里不写类型也是可以的 &ndash;&gt;-->
+<!--        <constructor-arg index="1" value="18" type="java.lang.Integer"></constructor-arg>-->
+<!--    </bean>-->
+
+    <bean id="testConstructorInject1_2" class="com.study.domain.TestInjectUser01">
+        <constructor-arg name="name" value="里斯"></constructor-arg>
+        <constructor-arg name="age" value="22"></constructor-arg>
+    </bean>
+
+    <!-- 使用set方法的时候这个类 必须 要 有set 方法，否则无法在进行注入（在property里也不会有参数提示）
+        注意:使用set进行注入的时候，一定 要有 无参构造 方法，和 有参构造 没有 关系
+    -->
+    <bean id="testConstructorInject2_1" class="com.study.domain.TestInjectUser02">
+        <property name="name" value="nya"></property>
+        <property name="age" value="16"></property>
+    </bean>
+
+    <bean id="DateType" class="java.util.Date"></bean>
+
+    <bean id="userForTestInjectUser03" class="com.study.domain.User" lazy-init="true">
+        <property name="name" value="猫羽雫"></property>
+        <property name="age" value="16"></property>
+        <property name="birth" ref="DateType"></property>
+    </bean>
+
+    <bean id="person1" class="com.study.domain.Person">
+        <!--基本数据类型的注入-->
+        <property name="id" value="1"/>
+        <property name="name" value="rama"/>
+        <property name="sex" value="true"/>
+        <!--数组类型的注入-->
+        <property name="likes">
+            <!--里面先嵌套一个array标签-->
+            <array>
+                <!--再向数组里面写入内容-->
+                <value>lol</value>
+                <value>dnf</value>
+                <value>cf</value>
+            </array>
+        </property>
+<!--        <property name="dreams" ref="dreams"></property>-->
+        <!--另一种方式也可以，还是使用属性的方式，ref class都不写，内嵌标签的方法-->
+        <property name="dreams">
+
+            <list>
+                <bean class="com.study.domain.Dream">
+                    <property name="mx" value="旅游"></property>
+                </bean>
+                <bean class="com.study.domain.Dream">
+                    <property name="mx" value="旅游"></property>
+                </bean>
+                <ref bean="dreams"></ref>
+            </list>
+
+        </property>
+        <property name="girlFriends">
+            <!-- girlfread是一个set集合的基本数据类型 -->
+            <set>
+                <value>koko</value>
+                <value>rprp</value>
+                <value>rprp</value>
+            </set>
+        </property>
+        <property name="house">
+            <map>
+                <entry key="person1" value="house1"></entry>
+                <entry key="person2" value="house2"></entry>
+                <entry key="person3" value="house3"></entry>
+            </map>
+        </property>
+        <!-- properties的本质还是一个map -->
+        <property name="properties">
+            <map>
+                <entry key="k1k1" value="v1v1"></entry>
+                <entry key="k2k2" value="v2v2"></entry>
+                <entry key="k3k3" value="v3v3"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dreams" class="com.study.domain.Dream">
+        <property name="mx" value="睡觉"></property>
+    </bean>
+
+</beans>
