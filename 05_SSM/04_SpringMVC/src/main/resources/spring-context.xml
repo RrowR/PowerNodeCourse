@@ -9,7 +9,7 @@
         name就是请求路径，前面前面还有一个 /
      -->
     <bean id="controller01" name="/controller01.do" class="com.study.controller.Controller01"></bean>
-    <bean id="controller02" class="com.study.controller.Controller02"></bean>
+    <bean id="controller02" name="/controller02.do" class="com.study.controller.Controller02"></bean>
 
 
 
