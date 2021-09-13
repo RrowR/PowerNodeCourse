@@ -3,6 +3,9 @@ import com.study.MyMethodInterceptor;
 import com.study.TargetClass;
 import net.sf.cglib.proxy.Enhancer;
 
+/*
+    Cglib是基于继承的方式来实现扩展
+ */
 public class TestCglib {
     public static void main(String[] args) {
         // 增强工具类，等下可以创建代理对象

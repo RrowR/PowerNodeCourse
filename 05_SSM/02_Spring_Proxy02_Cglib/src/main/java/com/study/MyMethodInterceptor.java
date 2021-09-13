@@ -16,7 +16,7 @@ public class MyMethodInterceptor implements MethodInterceptor {
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         System.out.println("前置增强");
-        // 注意这里是调用父类的方法
+        // 注意这里是调用父类的方法，这里的父类就是测试类里的TargetClass
         Object invoke = methodProxy.invokeSuper(o, objects);
         System.out.println("interceptor执行了");
         System.out.println("后置增强");

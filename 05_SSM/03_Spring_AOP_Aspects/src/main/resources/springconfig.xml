@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <bean id="targetClass" class="com.study.impl.TargetClass"></bean>
+    <bean id="myAdvice" class="com.study.MyAdvice"></bean>
+
+    <!-- 进行AOP的配置 -->
+    <aop:config>
+        <!-- 设置前置切点
+            给某个需要增强的方法设置切点，id为后面的切入点方法使用
+         -->
+        <aop:pointcut id="beforePoint" expression="execution(* com.study.impl.TargetClass.beforeMethod())"/>
+
+
+
+        <!--
+            ref: 引入切入方法，设定MyAdvice为增强的切入方法
+         -->
+        <aop:aspect ref="myAdvice">
+            <!-- 配置前置切入点
+                 method: aspectj里的切入方法的类型
+                 pointcut-ref: 切入点的引入，引入要被切入的哪个方法
+             -->
+            <aop:before method="beforeAdvice" pointcut-ref="beforePoint" />
+        </aop:aspect>
+
+    </aop:config>
+
+
+
+
+
+
+
+</beans>
