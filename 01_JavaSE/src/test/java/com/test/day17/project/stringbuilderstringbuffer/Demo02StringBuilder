@@ -1,4 +1,0 @@
-StringBuilder和StringBuffer差不多，只不过StringBuilder是多线程的，速度快，不过会出现线程安全问题
-StringBuilder 出现在JDK1.5
-StringBuffer 出现在JDK1.0
-在一般情况下，StringBuilder会更好，速度快

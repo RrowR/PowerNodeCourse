@@ -1,6 +1,0 @@
-<!ELEMENT 生物 (人+)>
-    <!ELEMENT 人 (姓名,年龄,爱好)>
-    <!ELEMENT 姓名 (#PCDATA)>
-    <!ELEMENT 年龄 (#PCDATA)>
-    <!ELEMENT 爱好 (#PCDATA)>
-    <!ATTLIST 人 身份证 ID #REQUIRED>
