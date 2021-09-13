@@ -8,10 +8,14 @@
     <!-- 配置处理器 -->
     <servlet>
         <servlet-name>nya</servlet-name>
+        <!--
+             DispatcherServlet 核心控制器，本质上就是一个Servlet，处理所有的客户端的请求。
+             根据请求的资源路径，在处理器映射器中查找对应的处理器。
+        -->
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:spring-context.xml</param-value>
+            <param-value>classpath:springmvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -20,7 +24,5 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
     
-
-
 
 </web-app>
