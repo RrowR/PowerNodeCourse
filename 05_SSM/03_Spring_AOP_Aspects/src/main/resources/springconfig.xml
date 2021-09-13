@@ -14,6 +14,7 @@
          -->
         <aop:pointcut id="beforePoint" expression="execution(* com.study.impl.TargetClass.beforeMethod())"/>
         <aop:pointcut id="afterPoint" expression="execution(* com.study.impl.TargetClass.afterMethod())"/>
+        <aop:pointcut id="afterPoint2" expression="execution(* com.study.impl.TargetClass.afterMethod2(..))"/>
         <aop:pointcut id="aroundPoint" expression="execution(* com.study.impl.TargetClass.aroundMethod(..))"/>
         <aop:pointcut id="exceptionPoint" expression="execution(* com.study.impl.TargetClass.excetionMethod(..))"/>
         <!--
@@ -26,6 +27,7 @@
              -->
             <aop:before method="beforeAdvice" pointcut-ref="beforePoint" />
             <aop:after method="afterAdvice" pointcut-ref="afterPoint" />
+            <aop:after-returning method="afterAdvice2" returning="rs" arg-names="name,rs" pointcut-ref="afterPoint2" />
             <aop:around method="aroundAdvice" pointcut-ref="aroundPoint" />
             <!--
                throwing : 接收异常参数的名称

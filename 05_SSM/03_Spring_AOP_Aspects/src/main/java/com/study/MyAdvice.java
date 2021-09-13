@@ -12,6 +12,10 @@ public class MyAdvice {
     public void afterAdvice(){
         System.out.println("后置增强!!!");
     }
+    public void afterAdvice2(String name , String rs){
+        System.out.println("后置增强方法2");
+    }
+
 
     /*
     *   这个增强的环绕方法需要有参数，否则不会执行被代理的方法

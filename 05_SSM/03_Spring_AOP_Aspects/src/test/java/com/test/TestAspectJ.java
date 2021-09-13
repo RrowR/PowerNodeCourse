@@ -34,6 +34,11 @@ public class TestAspectJ {
         proxy.afterMethod();
     }
 
+    @Test
+    void MethodAfter2(){
+
+    }
+
     /*
         环绕增强
      */

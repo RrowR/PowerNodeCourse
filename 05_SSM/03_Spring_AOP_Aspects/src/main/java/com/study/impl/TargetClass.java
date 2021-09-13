@@ -14,6 +14,12 @@ public class TargetClass implements ITargetClass {
     }
 
     @Override
+    public String afterMethod2(String name) {
+        System.out.println("待增强的后置方法，但是我有返回值");
+        return "猫羽雫";
+    }
+
+    @Override
     public void aroundMethod() {
         System.out.println("我是一个环绕方法");
     }
