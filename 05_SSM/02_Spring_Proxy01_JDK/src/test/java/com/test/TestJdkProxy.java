@@ -7,15 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;
 
+/**
+ * JDK动态代理的本质:
+ * 传入对象的接口的实现类，传入到自己创建的代理处理器
+ * 使用工具类创建一个代理对象，传入类加载器定位位置，这个接口实现类实现的接口数组,传入处理器
+ * 代理对象调用被增强类的方法
+ * 弊端:需要被代理的类需要有一个实现接口，自己需要为每个被增强的类创建一个处理器
+ */
 public class TestJdkProxy {
     @Test
     void TestJDKProxy(){
-        /*
-           JDK接口代理的本质:
-           自己创建一个处理器去实现InvocationHandler接口
-           这个接口需要传一个
-
-         */
 //        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
         // 创建目标对象，不使用多态也是可以的
         ItargetClass itargetClass = new TargetClass();

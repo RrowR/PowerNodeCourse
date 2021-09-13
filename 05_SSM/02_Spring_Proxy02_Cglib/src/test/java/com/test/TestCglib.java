@@ -5,6 +5,7 @@ import net.sf.cglib.proxy.Enhancer;
 
 /*
     Cglib是基于继承的方式来实现扩展
+    好处:不需要使用接口，但是需要为每个类创建一个拦截器
  */
 public class TestCglib {
     public static void main(String[] args) {
