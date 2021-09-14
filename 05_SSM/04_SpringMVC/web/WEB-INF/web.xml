@@ -5,7 +5,7 @@
          version="4.0">
 
     
-    <!-- 配置处理器 -->
+    <!-- 配置核心控制器 -->
     <servlet>
         <servlet-name>nya</servlet-name>
         <!--
