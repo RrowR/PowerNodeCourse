@@ -4,7 +4,6 @@ import com.study.domain.User;
 import com.study.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.Date;
 import java.util.List;
 
 /**
