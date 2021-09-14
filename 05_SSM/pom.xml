@@ -22,6 +22,7 @@
         <module>03_Spring_AOP</module>
         <module>03_Spring_AOP_Aspects</module>
         <module>03_Spring_AOP_Aspects_Anotations</module>
+        <module>03_Spring_Mybatis_01</module>
         <module>04_SpringMVC</module>
     </modules>
 
