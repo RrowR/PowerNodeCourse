@@ -45,9 +45,11 @@
                 <bean class="com.github.pagehelper.PageInterceptor"></bean>
             </array>
         </property>
+        <!-- 方法一 -->
 <!--        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>-->
         <!-- 方法二 -->
         <property name="mapperLocations">
+            <!-- 这样写的好处可以配置多个位置的xml文件 -->
             <array>
                 <value>classpath:mapper/*.xml</value>
             </array>
