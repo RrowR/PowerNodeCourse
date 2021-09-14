@@ -22,6 +22,7 @@
         <module>03_Spring_AOP</module>
         <module>03_Spring_AOP_Aspects</module>
         <module>03_Spring_AOP_Aspects_Anotations</module>
+        <module>03_Spring_Mybatis_01</module>
         <module>04_SpringMVC</module>
         <module>03_Spring_Mybatis_01</module>
     </modules>
@@ -34,6 +35,16 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>5.2.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>2.0.4</version>
+            </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
@@ -108,4 +119,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 </project>

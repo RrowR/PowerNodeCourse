@@ -19,8 +19,7 @@
 
     <!--引入mapper配置文件-->
     <mappers>
-        <mapper resource="mapper/StudentMapper.xml"></mapper>
-        <mapper resource="mapper/ClassesMapper.xml"></mapper>
+        <mapper resource="mapper/UserMapper.xml"></mapper>
     </mappers>
 
 

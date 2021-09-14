@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 解析数据源 -->
-    <context:property-placeholder location="application.properties"></context:property-placeholder>
+    <context:property-placeholder location="application2.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
     <!-- 加载数据库驱动 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"></property>
@@ -19,7 +19,7 @@
         <!-- 注入数据源 -->
         <property name="dataSource" ref="dataSource"></property>
         <!-- 注入mybatis的配置文件 -->
-        <property name="configLocation" value="classpath*:mybatis.xml"></property>
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
     </bean>
 
     <!-- 配置mapper扫描接口 -->

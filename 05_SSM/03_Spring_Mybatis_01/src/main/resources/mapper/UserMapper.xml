@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.domain.User">
+<mapper namespace="com.study.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.study.domain.User">
     <!--@mbg.generated-->
     <!--@Table `user`-->
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -27,14 +27,14 @@
     delete from `user`
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.domain.User" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.study.domain.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user` (`name`, age, sex, 
       address, birth)
     values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=CHAR}, 
       #{address,jdbcType=VARCHAR}, #{birth,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.domain.User" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.study.domain.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -72,7 +72,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.domain.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.domain.User">
     <!--@mbg.generated-->
     update `user`
     <set>
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.domain.User">
+  <update id="updateByPrimaryKey" parameterType="com.study.domain.User">
     <!--@mbg.generated-->
     update `user`
     set `name` = #{name,jdbcType=VARCHAR},

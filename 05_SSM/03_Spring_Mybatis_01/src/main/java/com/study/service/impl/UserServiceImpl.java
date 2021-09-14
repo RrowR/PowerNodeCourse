@@ -1,14 +1,14 @@
 package com.study.service.impl;
 
+import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
 import com.study.domain.User;
 import com.study.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.study.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
