@@ -3,12 +3,11 @@ package com.study.service;
 import com.study.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+@Transactional(readOnly = true)
 public interface UserService{
 
     int deleteByPrimaryKey(Integer id);
 
-    @Transactional(readOnly = true)
     User queryOneByKey(Integer id);
 
 }
