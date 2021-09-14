@@ -28,6 +28,7 @@
         <module>03_Spring_Mybatis_02</module>
         <module>03_Spring_Mybatis_03_Transaction_01</module>
         <module>03_Spring_Mybatis_03_Transaction_02_Anotation</module>
+        <module>03_Spring_Mybatis_03_Transaction_03_Isolation</module>
     </modules>
 
         <properties>
