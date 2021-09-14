@@ -25,6 +25,7 @@
         <module>03_Spring_Mybatis_01</module>
         <module>04_SpringMVC</module>
         <module>03_Spring_Mybatis_01</module>
+        <module>03_Spring_Mybatis_02</module>
     </modules>
 
         <properties>
