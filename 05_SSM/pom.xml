@@ -29,6 +29,7 @@
         <module>03_Spring_Mybatis_03_Transaction_02_Anotation</module>
         <module>03_Spring_Mybatis_03_Transaction_03_Isolation</module>
         <module>04_SpringMVC</module>
+        <module>04_SpringMVC_02</module>
     </modules>
 
         <properties>
@@ -125,6 +126,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>5.2.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>04_SpringMVC</artifactId>
+    <artifactId>04_SpringMVC_02</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,19 +18,12 @@
 
     <dependencies>
         <dependency>
-            <!-- springmvc的核心包 -->
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet.jsp</groupId>-->
-<!--            <artifactId>javax.servlet.jsp-api</artifactId>-->
-<!--            <version>2.3.3</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
     </dependencies>
-
 </project>
