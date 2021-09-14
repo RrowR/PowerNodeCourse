@@ -1,7 +1,6 @@
 package com.study.controller;
 
 import org.springframework.web.HttpRequestHandler;
-import org.springframework.web.servlet.mvc.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
