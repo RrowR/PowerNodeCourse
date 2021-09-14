@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06Document对象属性.html</title>
+</head>
+<body>
+    <input type="button" value="这是一个button" onclick="testObjProp()">
+    <input type="button" value="这是2个button" onclick="testObjProp2()">
+</body>
+<script>
+    function testObjProp(){
+        // 注意，这里设置bgcolor不能使用document.body来设置
+        document.bgColor = "red";       // 在console里会自动地给body加上bgcolor
+        console.log(document.domain);       // 获取ip
+        console.log(document.lastModified); // 最后一次编辑的时间
+        console.log(document.cookie);       // 返回所有cookie
+        console.log(document.referrer);     // 返回载入当前文档的文档的 URL
+        console.log(document.title);        // 返回标题
+        console.log(document.URL);          // 返回网址
+    }
+    function testObjProp2(){
+        console.log(document.body);     //访问整个body里的内容
+    }
+</script>
+</html>

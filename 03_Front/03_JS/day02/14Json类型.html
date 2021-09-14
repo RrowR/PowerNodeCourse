@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14Json类型.html</title>
+</head>
+<body>
+</body>
+<script>
+    let json = [1,2,3,4,5];
+    for (let i = 0; i < json.length; i++) {
+        console.log(json[i]);
+    }
+    // 定一个json格式的类型，可以直接调用这个json对象的属性来获取值
+    let obj1 = {id:1,name:"猫羽雫"};
+    console.log(obj1.id);
+    console.log(obj1.name);
+    console.log();
+
+    // 在json中，一个对象就是一个{},可以使用[]包起来就是多个对象了
+    let objArr = [{id:1,name:"猫羽雫"},{id:2,name:"美美"}];
+    for (let i = 0; i < objArr.length; i++) {
+        let obj = objArr[i];
+        console.log(obj.id);
+        console.log(obj.name);
+    }
+
+
+</script>
+</html>

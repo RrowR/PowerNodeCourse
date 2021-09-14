@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14jQuery祖先.html</title>
+    <script src="../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <div id="box1">
+        我是box1里面的内容
+        <div id="box2">
+            我是box2里面的内容
+            <div id="box3">我是box3里面的内容</div>
+        </div>
+    </div>
+    <br>
+    <input type="button" id="btn1" value="得到id=box3的直接父元素">
+    <input type="button" id="btn2" value="得到id=box3的所有父元素">
+    <input type="button" id="btn3" value="得到id=box3到body之间的所有父元素">
+</body>
+<script>
+    $("#btn1").click(function (){
+        alert($("#box3").parent().text());  // 获取box3的直接父元素以及子元素
+    })
+
+    $("#btn2").click(function (){
+        alert($("#btn2").parents().length);     // btn3的父元素有2个
+    })
+
+    $("#btn3").click(function (){
+        alert($("#box3").parentsUntil("body").length);  // 得到id=box3到body之间的所有父元素
+    })
+
+
+</script>
+</html>

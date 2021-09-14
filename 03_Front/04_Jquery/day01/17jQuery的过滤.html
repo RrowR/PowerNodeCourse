@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17jQuery的过滤.html</title>
+    <script src="../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <div>box1</div>
+    <div>box2</div>
+    <div class="box">box3</div>
+    <div>box4</div>
+    <div>box5</div>
+    <div class="box">box6</div>
+    <div>box7</div>
+    <br>
+    <input type="button" id="btn1" value="first">
+    <input type="button" id="btn2" value="last">
+    <input type="button" id="btn3" value="eq">
+    <input type="button" id="btn4" value="filter">
+    <input type="button" id="btn5" value="not">
+</body>
+<script>
+    $("#btn1").click(function (){
+        // $("div").first().css("border","2px solid red");     // 获取第一个div元素
+        $("div:first").css("border","2px solid red");       // 和上面的方法相同，都是获取第一个div元素
+    })
+
+    $("#btn2").click(function (){
+        $("div").last().css("border","2px solid red");      // 获取最后一个div元素
+    })
+
+    $("#btn3").click(function () {
+        $("div").eq(3).css("border","2px solid red");       // 获取第三个div元素（从0开始）
+    })
+
+    $("#btn4").click(function (){
+        $("div").filter(".box").css("border","2px solid red");  // 过滤出div种还有class = box的元素
+    })
+
+    $("#btn5").click(function (){
+        $("div").not(".box").css("border","2px solid red");     // 过滤出不包含class=box的div元素
+    })
+</script>
+</html>

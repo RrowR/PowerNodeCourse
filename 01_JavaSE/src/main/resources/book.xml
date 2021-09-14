@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+    <book>
+        <bookId>10001</bookId>
+        <bookName>鬼吹灯</bookName>
+        <author>天下霸唱</author>
+        <publishTime>2008-7-1</publishTime>
+        <price>27.8</price>
+        <num>87</num>
+    </book>
+    <book>
+        <bookId>10002</bookId>
+        <bookName>魔界</bookName>
+        <author>莫尔斯</author>
+        <publishTime>2005-3-4</publishTime>
+        <price>54.0</price>
+        <num>13</num>
+    </book>
+    <book>
+        <bookId>10003</bookId>
+        <bookName>时间机器</bookName>
+        <author>威尔</author>
+        <publishTime>1999-7-7</publishTime>
+        <price>21.3</price>
+        <num>75</num>
+    </book>
+    <book>
+        <bookId>10004</bookId>
+        <bookName>哈利波特</bookName>
+        <author>罗一梦</author>
+        <publishTime>2003-2-14</publishTime>
+        <price>43.5</price>
+        <num>99</num>
+    </book>
+    <book>
+        <bookId>10005</bookId>
+        <bookName>宇宙奥秘</bookName>
+        <author>霍金</author>
+        <publishTime>2003-12-23</publishTime>
+        <price>67.3</price>
+        <num>14</num>
+    </book>
+</books>

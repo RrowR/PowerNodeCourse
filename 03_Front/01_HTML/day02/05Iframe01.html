@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05Iframe</title>
+</head>
+<body>
+<!--iframe是body的子元素，和frameset不一样，它是于body平级-->
+<form action="http://www.sogou.com/web" target="iframe02">
+    <!-- 这里要格外注意，不同的搜索引擎这里的name和上面的提交地址不一样   -->
+    <input type="text" name="query" placeholder="请输入内容"/>
+    <input type="submit" value="提交" />
+</form>
+    <!-- 下面的这个地址只是为了让下面的iframe有一个显示   -->
+    <iframe src="" frameborder="1" height="500px" width="500px" name="iframe02"></iframe>
+</body>
+</html>

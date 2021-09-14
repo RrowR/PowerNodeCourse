@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10jQuery捕获和设置.html</title>
+</head>
+<script src="../js/jquery-3.6.0.js"></script>
+<body>
+<div id="myDiv">
+    你是一个<span>好人</span>
+</div>
+    <input type="button" id="btn1" value="得到上面DIV的HTML内容">
+    <input type="button" id="btn2" value="得到上面DIV的文本内容">
+    <input type="button" id="btn3" value="设置上面DIV的HTML内容">
+    <input type="button" id="btn4" value="设置上面DIV的文本内容">
+
+    <hr>
+    <div>
+        <input type="text" id="username">
+    </div>
+    <input type="button" id="btn5" value="得到id=username的输入框的值">
+    <input type="button" id="btn6" value="设置id=username的输入框的值">
+
+    <hr>
+    <input type="checkbox" id="hobby" value="DNF"> DNF<br>
+    <input type="button" id="btn7" value="给id=hobby的checkbox添加一个title属性">
+    <input type="button" id="btn8" value="给id=hobby的checkbox添加一个checked='true'属性">
+    <input type="button" id="btn9" value="给id=hobby的checkbox添加一个checked='false'属性">
+    <input type="button" id="btn10" value="使用attr()得到id=hobby的checkbox添加一个checked属性">
+    <input type="button" id="btn11" value="使用prop()得到id=hobby的checkbox添加一个checked属性">
+</body>
+<script>
+    // 给id=btn1绑定一个事件，作用是
+    $("#btn1").click(function (){
+        let myDiv = $("#myDiv");
+        alert(myDiv.text());    // jQuery中的text 等价于 innerText
+    })
+
+    $("#btn2").click(function (){
+        let myDiv = $("#myDiv");
+        alert(myDiv.html());    // 在jQuery中是html 等价于 innerHtml
+    })
+
+    // 给id=myDiv的容器标签添加html内容(jQuery)语法
+    $("#btn3").click(function (){
+        let myDiv = $("#myDiv");
+        myDiv.html("您好<input type='text'>")
+    })
+
+    // 给容器标签添加一个文本
+    $("#btn4").click(function (){
+        let myDiv = $("#myDiv");
+        myDiv.text("您好<input type='text'>");
+    })
+
+    $("#btn5").click(function (){
+        alert($("#username").val());        // jquery使用
+    })
+
+    $("#btn6").click(function (){
+        let username = $("#username");
+        username.val("使用jQuery填充值");
+    })
+
+    // 给这个hobby
+    $("#btn7").click(function (){
+        let hobby = $("#hobby");
+        // 给checkbox添加一个title属性
+        hobby.attr('title',"我是一个checkBox");
+    })
+
+    $("#btn8").click(function (){
+        let checkbox = $("#hobby");
+        checkbox.attr("checked",true);
+    });
+
+    $("#btn9").click(function (){
+        let checkBox = $("#hobby");
+        checkBox.attr("checked",false);
+    })
+
+    $("#btn10").click(function (){
+        let hobby = $("#hobby");
+        // jQuery attr() 方法用于获取属性值。返回的是属性值 checked
+        alert(hobby.attr("checked")); // <input type="button" id="btn10" value="使用attr()得到id=hobby的checkbox添加一个checked属性">
+    })
+
+    $("#btn11").click(function (){
+        let hobby = $("#hobby");
+        // 获取属性，如果这个是checked返回true，如果没有被checked返回false
+        hobby.prop("checked");  // <input type="button" id="btn11" value="使用prop()得到id=hobby的checkbox添加一个checked属性">
+    })
+</script>
+</html>

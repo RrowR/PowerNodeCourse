@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04Cookie对象.html</title>
+</head>
+<body>
+<button type="button" onclick="setCookie1()">默认创建一个会话结束的cookie</button>
+<button type="button" onclick="setCookie2()">设置有过期时间cookie</button>
+<button type="button" onclick="getCookie()">取cookie</button>
+<button type="button" onclick="getCookieByKey('username')">取Username</button>
+</body>
+<script>
+    function setCookie1(){
+        // 默认创建一个会话结束的cookie
+        document.cookie = "username=hxd";
+    }
+
+    function setCookie2(){
+        let date = new Date();
+        date.setDate(date.getTime()+5);
+        // 设置session的过期时间
+        document.cookie = "username=; expires=Thu, 01 Jan 2022 00:00:00 GMT"
+    }
+
+    function getCookie(){
+        // Bom对象获得cookie
+        let cookie = document.cookie;
+        // cookie是一个键值对，可以拆分
+        let splits = cookie.split("=");
+        for (let i = 0; i < splits.length; i++) {
+            console.log(splits[0]);
+            console.log(splits[1]);
+        }
+    }
+
+    function getCookieByKey(key){
+        // 就是根据上面的方法截取，然后比对key返回value，这里就不写了
+    }
+</script>
+</html>

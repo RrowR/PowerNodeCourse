@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12String类型.html</title>
+</head>
+<body>
+
+</body>
+<script>
+    let str = "这是一个String字符串一";
+    // 返回指定位置的字符,从0开始
+    console.log(str.charAt(2));
+    // 拼接字符串
+    console.log(str.concat("拼接"));
+    // 检索字符串位置
+    console.log(str.indexOf("S"));
+    // 向后检索字符串位置
+    console.log(str.lastIndexOf("一"));
+    // 替换字符串
+    console.log(str.replace("r","k"));
+    // 替换所有字符串
+    console.log(str.replaceAll("一","二"));
+    // 分割字符串
+    console.log(str.split("一").length);
+    // 截取字符串 从2开始截取5个
+    console.log(str.substr(2,5));
+    // 截取指定索引位置的字符串
+    console.log(str.substring(5,6));
+    // 转大写
+    console.log(str.toUpperCase());
+</script>
+</html>

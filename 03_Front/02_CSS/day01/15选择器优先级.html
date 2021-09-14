@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15选择器优先级.html</title>
+</head>
+<style>
+    /*
+        优先级规则：!important >id样式 > class样式 > 标签样式> 通配符样式
+	    在CSS中，通过对某一样式声明! important ，可以更改默认的CSS样式优先级规则，使该条样式属性声明具有最高优先级，也就是相当于写在最下面。
+    */
+    div{
+        color: #00FF00 !important;
+    }
+    div{
+        color: #FF00FF;
+    }
+</style>
+<body>
+    <div>我是第一个div</div>
+    <div>我是第2个div</div>
+    <div>我是第3个div</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02Location对象.html</title>
+</head>
+<body>
+    <a href="01Windows对象.html">01Windows对象.html</a>
+    <button type="button" onclick="ref()">刷新</button>
+    <button type="button" onclick="setUrl()">修改URL为www.baidu.com</button>
+</body>
+<script>
+    function ref(){
+        // 重新刷新此页面
+        location.reload();
+    }
+    function setUrl(){
+        // 跳转到百度页面
+        location.href = "https://www.baidu.com";
+    }
+
+    console.log(Location);      // ƒ Location()
+    // S/day03_Bom%E5…%B9%E8%B1%A1.html?_ijt=gdviikmojuqrkb3ofh2qqcc80r", origin: "http://localhost:63343", protocol: "http:", host: "localhost:63343"}
+
+    console.log(window.location.hash);  // hash  URL #后面的内容
+    console.log(location.host)  // 获得host+port
+    console.log(location.hostname)  // 获得host
+    console.log(location.href)  // 整个URL
+    console.log(location.pathname)  // 端口后面的所有内容
+    console.log(location.port)  // 端口号
+    console.log(location.protocol)  // 获得协议
+    console.log(location.search)    // ? 以及 ？后面带的搜索内容
+
+
+
+
+
+    
+</script>
+</html>

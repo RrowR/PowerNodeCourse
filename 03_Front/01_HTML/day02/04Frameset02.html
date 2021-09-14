@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04FrameSet02</title>
+</head>
+<frameset rows = "30%,*,30%">
+    <frame src="frame框架ref页面/index01.html"></frame>
+    <!-- 这种写法严重没提示，但是可以这样写 -->
+    <frameset cols="50%,50%">
+        <!-- frameborder是否有边框 -->
+        <frame frameborder="0" src="frame框架ref页面/index03.html"></frame>
+        <frame src="frame框架ref页面/index04.html"></frame>
+    </frameset>
+    <frame src="frame框架ref页面/index02.html"></frame>
+</frameset>
+</html>
