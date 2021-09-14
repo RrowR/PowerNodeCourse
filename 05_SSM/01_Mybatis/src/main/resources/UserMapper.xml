@@ -8,7 +8,11 @@
         select * from user where id = #{id}
     </select>
 
-    <select id="queryById2" resultType="com.study.domain.Student">
+    <select id="queryById2" resultType="com.study.domain.User">
         select * from user where id = 1
+    </select>
+
+    <select id="queryAll" resultType="com.study.domain.User">
+        select * from user;
     </select>
 </mapper>

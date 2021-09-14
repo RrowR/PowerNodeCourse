@@ -1,6 +1,7 @@
 package com.study;
 
 import com.study.domain.User;
+import com.study.utils.SqlSessionUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 public class QueryUser01 {
@@ -23,7 +25,7 @@ public class QueryUser01 {
         // 创建一个具体的SqlSession对象
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 进行数据库具体会话(这里在进行查询的时候是根据这个当作唯一id来进行查询的)
-        Map<String,Object> user= sqlSession.selectOne("com.study.mapper.UserMapper.queryById1", 1);
+        Map<String,Object> user= sqlSession.selectOne("com.study.mapper.UserMapper.queryById1", 2);
         // 这是一个map
         System.out.println(user);
         // 关闭会话
@@ -46,5 +48,19 @@ public class QueryUser01 {
         System.out.println(user);
         // 关闭会话
         sqlSession.close();
+    }
+
+    @Test
+    void SelectAll() throws IOException {
+        String config = "mybatis.xml";
+        InputStream is = Resources.getResourceAsStream(config);
+        // 解析配置文件，构建SqlSessionFactory对象
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);
+        // 创建一个具体的SqlSession对象
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 进行数据库具体会话(这里在进行查询的时候是根据这个当作唯一id来进行查询的)
+        List<User> list = sqlSession.selectList("com.study.mapper.UserMapper.queryAll");
+        list.forEach(System.out::println);
     }
 }

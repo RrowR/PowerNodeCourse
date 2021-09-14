@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface UserMapper {
 
-    Map<String,Object> queryById(Integer id);
-
-    User queryById(String id);
+//    Map<String,Object> queryById(Integer id);
+//
+//    User queryById(String id);
 }
