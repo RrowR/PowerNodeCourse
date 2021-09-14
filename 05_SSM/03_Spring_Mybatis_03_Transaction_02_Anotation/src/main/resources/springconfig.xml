@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 解析数据源 -->
+    <context:property-placeholder location="application2.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
+    <!-- 加载数据库驱动 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!-- 声明一个configuration对象,这个可以在源码里面看 -->
+    <bean id="configuration" class="org.apache.ibatis.session.Configuration">
+        <!--
+            源码: public void setLogImpl(Class<? extends Log> logImpl){...}
+            value为继承log类的一个子类的实现类，我们找到了 org.apache.ibatis.logging.stdout.StdOutImpl 作用是打印控制台
+         -->
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"></property>
+    </bean>
+
+    <!-- 声明sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--
+            注入mybatis的配置文件
+            源码 private Resource configLocation
+                public void setConfiguration(Configuration configuration) {
+                this.configuration = configuration;
+                }
+
+        -->
+<!--        <property name="configLocation" value="classpath:mybatis.xml"></property>-->
+        <property name="configuration" ref="configuration"></property>
+        <!-- 设置别名优化 -->
+        <property name="typeAliasesPackage" value="com.study.domain"></property>
+        <!-- 插件配置 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
+        <!-- 方法一 -->
+<!--        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>-->
+        <!-- 方法二 -->
+        <property name="mapperLocations">
+            <!-- 这样写的好处可以配置多个位置的xml文件 -->
+            <array>
+                <value>classpath:mapper/*.xml</value>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 配置mapper扫描配置 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 开启接口扫描 -->
+        <property name="basePackage" value="com.study.mapper"></property>
+        <!-- 注入sqlSession的名字 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!-- 包扫描 -->
+    <context:component-scan base-package="com.study.service"></context:component-scan>
+    <!-- 声明一个事务管理器
+        这个事务是spring自带的jdbc.datasource.DataSourceTransactionManager
+     -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 开启注解 传入上面的事务管理器 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
+
+
+
+
+
+
+</beans>
