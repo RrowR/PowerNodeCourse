@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -16,6 +18,18 @@ public class UsuallyDataTypeController {
     @RequestMapping("getMap.do")
     public String getMapData(@RequestParam Map<String,Object> map){
         System.out.println(map);
+        return "../success.jsp";
+    }
+
+    @RequestMapping("getArr.do")
+    public String getArrData(String[] list){
+        System.out.println(Arrays.toString(list));
+        return "../success.jsp";
+    }
+
+    @RequestMapping("getArr2.do")
+    public String getArrData2(@RequestParam("List") String[] list){
+        System.out.println(Arrays.toString(list));
         return "../success.jsp";
     }
 }

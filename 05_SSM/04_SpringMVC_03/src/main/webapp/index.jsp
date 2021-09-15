@@ -17,5 +17,30 @@
         <tr><td><input type="submit" value="提交"></td></tr>
     </form>
 </table>
+<hr>
+<table align="center">
+    <form action="user/getArr.do" method="get">
+        <div align="center">
+            <input name="list" type="checkbox" value="cs1.6">cs1.6
+            <input name="list" type="checkbox" value="cf">cf
+            <input name="list" type="checkbox" value="dnf">dnf
+            <input name="list" type="checkbox" value="csgo">csgo
+            <tr><td><input type="submit" value="提交"></td></tr>
+        </div>
+    </form>
+</table>
+
+<table align="center">
+    <form action="user/getArr2.do" method="get">
+        <div align="center">
+            <input name="List" type="checkbox" value="cs1.6">cs1.6
+            <input name="List" type="checkbox" value="cf">cf
+            <input name="List" type="checkbox" value="dnf">dnf
+            <input name="List" type="checkbox" value="csgo">csgo
+            <tr><td><input type="submit" value="提交"></td></tr>
+        </div>
+    </form>
+</table>
+
 </body>
 </html>
