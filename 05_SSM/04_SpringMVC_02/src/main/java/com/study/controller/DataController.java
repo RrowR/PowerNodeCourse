@@ -1,5 +1,6 @@
 package com.study.controller;
 
+import com.study.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,12 @@ public class DataController {
         System.out.println("username = " + username);
         System.out.println("age = " + age);
         System.out.println("address = " + address);
+        return "../success.jsp";
+    }
+
+    @RequestMapping("domain.do")
+    public String pakageDomain(User user){
+        System.out.println(user);
         return "../success.jsp";
     }
 }
