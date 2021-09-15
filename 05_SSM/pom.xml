@@ -33,6 +33,7 @@
         <module>04_SpringMVC_03</module>
         <module>05_SpringMVC_04_JUMP</module>
         <module>06_SpringMVC</module>
+        <module>07_SpringMvcObj</module>
     </modules>
 
         <properties>
