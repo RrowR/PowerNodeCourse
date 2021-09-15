@@ -30,6 +30,7 @@
         <module>03_Spring_Mybatis_03_Transaction_03_Isolation</module>
         <module>04_SpringMVC</module>
         <module>04_SpringMVC_02</module>
+        <module>04_SpringMVC_03</module>
     </modules>
 
         <properties>

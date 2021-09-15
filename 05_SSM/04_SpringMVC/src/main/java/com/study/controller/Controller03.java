@@ -19,7 +19,7 @@ public class Controller03 {
     public ModelAndView query2(){
         System.out.println("调用了查询的接口");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index.jsp");
+        modelAndView.setViewName("../index.jsp");
         return modelAndView;
     }
 
