@@ -31,6 +31,7 @@
         <module>04_SpringMVC</module>
         <module>04_SpringMVC_02</module>
         <module>04_SpringMVC_03</module>
+        <module>05_SpringMVC_04_JUMP</module>
     </modules>
 
         <properties>
