@@ -2,10 +2,12 @@ package com.study.controller;
 
 import com.study.service.UserService;
 import com.study.utils.MyWebUtils;
+import com.study.utils.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -69,16 +71,30 @@ public class ServletController {
         System.out.println("request.getAttribute(\"name\") = " + request.getAttribute("name"));
     }
 
-    @Resource
-    private MyWebUtils myWebUtils;
+
 
     @RequestMapping("obj4.do")
     public void obj4(){
         /*
             这里MyWebUtils必须添加到Spring容器，才可以获得DI注入的request对象，至于为什么稍后有其他案例
          */
-        System.out.println(myWebUtils.getRequest());
+        MyWebUtils myWebUtils = new MyWebUtils();
+        HttpServletRequest request2 = myWebUtils.getRequest();
+        System.out.println(request2);
     }
+
+    @RequestMapping("obj5.do")
+    public void obj5(){
+        HttpServletRequest request = WebUtils.getRequest();
+        System.out.println(request);
+    }
+
+    @RequestMapping("obj6.do")
+    public void obj6(){
+        ServletContext servletContext = WebUtils.getServletContext();
+        System.out.println(servletContext);
+    }
+
 
 
 
