@@ -6,40 +6,37 @@ import com.study.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
 
     @Resource
     private UserMapper userMapper;
 
+
     @Override
-    public int deleteByPrimaryKey(Integer id) {
-        return userMapper.deleteByPrimaryKey(id);
+    public List<User> queryAllUser() {
+        return userMapper.selectAllUser();
     }
 
     @Override
-    public int insert(User record) {
-        return userMapper.insert(record);
-    }
-
-    @Override
-    public int insertSelective(User record) {
-        return userMapper.insertSelective(record);
-    }
-
-    @Override
-    public User selectByPrimaryKey(Integer id) {
+    public User queryUserById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public int updateByPrimaryKeySelective(User record) {
-        return userMapper.updateByPrimaryKeySelective(record);
+    public int addUser(User user) {
+        return userMapper.insertSelective(user);
     }
 
     @Override
-    public int updateByPrimaryKey(User record) {
-        return userMapper.updateByPrimaryKey(record);
+    public int deleteById(Integer id) {
+        return userMapper.deleteByPrimaryKey(id);
     }
 
+    @Override
+    public int updateUser(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
 }

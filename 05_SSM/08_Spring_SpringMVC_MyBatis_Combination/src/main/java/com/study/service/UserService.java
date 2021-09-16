@@ -1,19 +1,34 @@
 package com.study.service;
 
 import com.study.domain.User;
+
+import java.util.List;
+
 public interface UserService{
+    /*
+        全查询
+     */
+    List<User> queryAllUser();
 
+    /*
+        根据id查询
+     */
+    User queryUserById(Integer id);
 
-    int deleteByPrimaryKey(Integer id);
+    /*
+        添加用户
+     */
+    int addUser(User user);
 
-    int insert(User record);
+    /*
+        删除（根据id）
+     */
+    int deleteById(Integer id);
 
-    int insertSelective(User record);
+    /*
+        修改
+     */
+    int updateUser(User user);
 
-    User selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
 
 }

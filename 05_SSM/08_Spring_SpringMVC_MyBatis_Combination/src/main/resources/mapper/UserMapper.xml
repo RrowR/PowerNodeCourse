@@ -104,4 +104,8 @@
       birth = #{birth,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select * from user
+  </select>
 </mapper>
