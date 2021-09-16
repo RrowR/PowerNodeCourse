@@ -9,7 +9,7 @@
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="birth" jdbcType="TIMESTAMP" property="bitrh" />
+    <result column="birth" jdbcType="DATE" property="birth" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -32,7 +32,7 @@
     insert into `user` (`name`, age, sex, 
       address, birth)
     values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{birth,jdbcType=TIMESTAMP})
+      #{address,jdbcType=VARCHAR}, #{birth,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.study.domain.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -68,7 +68,7 @@
         #{address,jdbcType=VARCHAR},
       </if>
       <if test="birth != null">
-        #{birth,jdbcType=TIMESTAMP},
+        #{birth,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -89,7 +89,7 @@
         address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="birth != null">
-        birth = #{birth,jdbcType=TIMESTAMP},
+        birth = #{birth,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -101,10 +101,7 @@
       age = #{age,jdbcType=INTEGER},
       sex = #{sex,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      birth = #{birth,jdbcType=TIMESTAMP}
+      birth = #{birth,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="queryAllUsers" resultType="com.study.domain.User">
-    select * from user
-  </select>
 </mapper>
