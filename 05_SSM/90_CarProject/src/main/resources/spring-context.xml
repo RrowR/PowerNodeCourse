@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--解析db.properties-->
+    <context:property-placeholder location="classpath:db.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
+    <!--配置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <!--声明一个配置-->
+    <bean id="configuration" class="org.apache.ibatis.session.Configuration">
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"></property>
+    </bean>
+    <!--声明sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--注入配置对象-->
+        <property name="configuration" ref="configuration"></property>
+        <!--配置插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
+        <!--配置XXXXMapper.xml-->
+        <property name="mapperLocations" value="classpath:mapper/*/*Mapper.xml"></property>
+    </bean>
+    <!--声明mapper接口的扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--设置扫描包
+            可以使用;  ,去处理多个包
+        -->
+        <property name="basePackage" >
+            <value>
+                com.whpowernode.system.mapper
+                com.whpowernode.business.mapper
+            </value>
+        </property>
+        <!--注入sqlSessionFactory的名字，目地是通过factory创建sqlSession-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+    <!--扫描service.impl-->
+    <context:component-scan base-package="com.study.system.service"></context:component-scan>
+    <context:component-scan base-package="com.study.business.service"></context:component-scan>
+
+    <!--开启事务注解-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>
