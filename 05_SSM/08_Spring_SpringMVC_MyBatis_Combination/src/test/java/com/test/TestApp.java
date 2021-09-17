@@ -13,7 +13,5 @@ public class TestApp {
         UserService service = context.getBean(UserService.class);
         User user = service.queryUserById(1);
         System.out.println(user);
-
-
     }
 }

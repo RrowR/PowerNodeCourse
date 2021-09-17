@@ -6,7 +6,7 @@
 
 
     <!-- 解析jdbc配置文件 -->
-    <context:property-placeholder location="application.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
+    <context:property-placeholder location="application2.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
     <!-- 解析数据源 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"></property>
