@@ -32,6 +32,19 @@
         <!--配置XXXXMapper.xml-->
         <property name="mapperLocations" value="classpath:mapper/*/*Mapper.xml"></property>
     </bean>
+
+    <!-- 将 homeInfo 和 logoInfo 添加到容器里去 -->
+    <bean id="homeInfo" class="com.study.system.common.HomeInfo">
+        <property name="title" value="首页"></property>
+        <property name="href" value="page/toWelcome.action"></property>
+    </bean>
+
+    <bean id="logoInfo" class="com.study.system.common.LogoInfo">
+        <property name="title" value="汽车出租"></property>
+        <property name="image" value="../resources/layuimini/images/logo.png"></property>
+        <property name="href" value=""></property>
+    </bean>
+
     <!--声明mapper接口的扫描-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--设置扫描包

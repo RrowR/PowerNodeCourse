@@ -130,11 +130,11 @@
             miniTongji = layui.miniTongji;
 
         var options = {
-            iniUrl: "${ctx}/resources/layuimini/api/init.json",    // 初始化接口
+            iniUrl: "${ctx}/index/getIndexLeftMenu.action",    // 初始化接口
             clearUrl: "${ctx}/resources/layuimini/api/clear.json", // 缓存清理接口
             urlHashLocation: true,      // 是否打开hash定位
             bgColorDefault: false,      // 主题默认配置
-            multiModule: true,          // 是否开启多模块
+            multiModule: false,          // 是否开启多模块
             menuChildOpen: false,       // 是否默认展开菜单
             loadingTime: 0,             // 初始化加载时间
             pageAnim: true,             // iframe窗口动画
