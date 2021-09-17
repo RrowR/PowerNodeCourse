@@ -1,6 +1,7 @@
 package com.study.system.controller;
 
 import cn.hutool.captcha.CircleCaptcha;
+import cn.hutool.captcha.LineCaptcha;
 import com.study.system.common.Constants;
 import com.study.system.utils.WebUtils;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ public class CaptchaController {
     @RequestMapping("captcha.action")
     public void captcha(HttpServletResponse response) throws IOException {
         // 创建一个 captcha 对象
-        CircleCaptcha captcha = new CircleCaptcha(100, 40, 1, 2);
+        LineCaptcha captcha = new LineCaptcha(100, 40, 1, 2);
         // 得到验证码
         String code = captcha.getCode();
         // 将验证码放到Session中,session是可以退出的，所以不建议放到request或者application中

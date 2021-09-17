@@ -24,6 +24,8 @@ public class IndexLeftController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("homeInfo",homeInfo);
         map.put("logoInfo",logoInfo);
+        
+
         map.put("menuInfo",new ArrayList<>());
         return map;
     }
