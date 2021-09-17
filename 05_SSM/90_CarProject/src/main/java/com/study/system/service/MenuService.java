@@ -1,6 +1,9 @@
 package com.study.system.service;
 
 import com.study.system.domain.Menu;
+
+import java.util.List;
+
 public interface MenuService{
 
 
@@ -16,4 +19,5 @@ public interface MenuService{
 
     int updateByPrimaryKey(Menu record);
 
+    List<Menu> queryAllAvailableMenus();
 }

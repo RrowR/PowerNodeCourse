@@ -117,4 +117,10 @@
       available = #{available,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="queryAllAvailableMenus" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List">
+  </include>
+    from sys_menu where available = 1
+  </select>
 </mapper>
