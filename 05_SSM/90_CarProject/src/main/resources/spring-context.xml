@@ -39,8 +39,8 @@
         -->
         <property name="basePackage" >
             <value>
-                com.whpowernode.system.mapper
-                com.whpowernode.business.mapper
+                com.study.system.mapper
+                com.study.system.mapper
             </value>
         </property>
         <!--注入sqlSessionFactory的名字，目地是通过factory创建sqlSession-->
@@ -48,7 +48,6 @@
     </bean>
     <!--扫描service.impl-->
     <context:component-scan base-package="com.study.system.service"></context:component-scan>
-    <context:component-scan base-package="com.study.business.service"></context:component-scan>
 
     <!--开启事务注解-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
