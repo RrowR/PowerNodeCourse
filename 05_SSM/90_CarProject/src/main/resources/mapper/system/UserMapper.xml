@@ -164,4 +164,13 @@
       available = #{available,jdbcType=INTEGER}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+
+  <select id="login" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List">
+  </include>
+    from sys_user
+    <where>
+      loginname = #{username} and pwd = #{password}
+    </where>
+  </select>
 </mapper>

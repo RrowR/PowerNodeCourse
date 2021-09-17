@@ -1,6 +1,7 @@
 package com.study.system.mapper;
 
 import com.study.system.domain.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -14,4 +15,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User login(@Param("username") String username, @Param("password") String password);
+
 }

@@ -16,4 +16,5 @@ public interface UserService{
 
     int updateByPrimaryKey(User record);
 
+    User login(String username, String pwd);
 }
