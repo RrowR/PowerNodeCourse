@@ -29,11 +29,16 @@ public class LoginController {
         // 密文不能解密，但是可以先加密然后再进行比对
         String pwd = DigestUtil.md5Hex(password.getBytes());
         User user = userService.login(username, pwd);
-        if (user != null){
-            WebUtils.getSession().setAttribute(Constants.CURRENT_SESSION_USER_KEY,user);
-            return new Result(200,"登录成功");
+        if (captcha.equalsIgnoreCase(WebUtils.getSession().getAttribute(Constants.CHECK_CODE_KEY).toString())){
+            if (user != null){
+                WebUtils.getSession().setAttribute(Constants.CURRENT_SESSION_USER_KEY,user);
+                return new Result(200,"登录成功");
+            }else {
+                return new Result(-1,"用户名或密码不正确");
+            }
+        }else {
+            return new Result(-1,"验证码不正确");
         }
-        return new Result(-1,"用户名或密码不正确");
     }
 
 
