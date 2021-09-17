@@ -8,4 +8,5 @@ public interface Constants {
         全局公共对象user(在Application里)
      */
     String CURRENT_SESSION_USER_KEY = "user";
+    String CHECK_CODE_KEY = "code";
 }
