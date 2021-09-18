@@ -6,6 +6,7 @@ import com.study.system.common.Node;
 import com.study.system.domain.Menu;
 import com.study.system.service.MenuService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,15 +33,23 @@ public class IndexLeftController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("homeInfo",homeInfo);
         map.put("logoInfo",logoInfo);
-        // 查询所有可用菜单
+        // 查询 sys_menu 里 available = 1 的全部数据
         List<Menu> menus = menuService.queryAllAvailableMenus();
-        // 创建一个nodes集合，里面的数据类型和
+
+        // 创建一个Node集合来存储所有Node
         List<Node> nodes = new ArrayList<>();
-        for (Menu menu : menus) {
+        // 遍历查出来的每个Menu数据
+        for (Menu m1 : menus) {
             Node node = new Node();
-            BeanUtils.copyProperties(menu,node);
-            nodes.add(node);
+            for (Menu m2 : menus) {
+                if (m1.getPid().equals(m2.getId())){
+
+                }
+            }
         }
+        
+
+
         
 
         map.put("menuInfo",new ArrayList<>());
