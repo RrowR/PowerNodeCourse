@@ -6,7 +6,6 @@ import com.study.system.common.Node;
 import com.study.system.domain.Menu;
 import com.study.system.service.MenuService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,24 +34,29 @@ public class IndexLeftController {
         map.put("logoInfo",logoInfo);
         // 查询 sys_menu 里 available = 1 的全部数据
         List<Menu> menus = menuService.queryAllAvailableMenus();
-
         // 创建一个Node集合来存储所有Node
         List<Node> nodes = new ArrayList<>();
         // 遍历查出来的每个Menu数据
-        for (Menu m1 : menus) {
+        for (Menu menu : menus) {
             Node node = new Node();
-            for (Menu m2 : menus) {
-                if (m1.getPid().equals(m2.getId())){
-
+            BeanUtils.copyProperties(menu,node);
+            nodes.add(node);
+        }
+        ArrayList<Node> resNode = new ArrayList<>();
+        for (Node n1 : nodes) {
+            // 这里只需要分两层，所以可以先把pid为1的最顶层放进去然后再进行child的添加
+            if (n1.getPid().equals(1)){
+                resNode.add(n1);
+            }
+            // 每放进去一个pid为1的对象，就为它添加所有属于它的child
+            for (Node n2 : nodes) {
+                // n1 的id等于 n2 的pid，可以找到所有的 n1 的子对象
+                if (n1.getId().equals(n2.getPid())){
+                    n1.getChild().add(n2);
                 }
             }
         }
-        
-
-
-        
-
-        map.put("menuInfo",new ArrayList<>());
+        map.put("menuInfo",resNode);
         return map;
     }
 }
