@@ -36,7 +36,7 @@
     <!-- 将 homeInfo 和 logoInfo 添加到容器里去 -->
     <bean id="homeInfo" class="com.study.system.common.HomeInfo">
         <property name="title" value="首页"></property>
-        <property name="href" value="page/toWelcome.action"></property>
+        <property name="href" value="../page/toWelcome.action"></property>
     </bean>
 
     <bean id="logoInfo" class="com.study.system.common.LogoInfo">
