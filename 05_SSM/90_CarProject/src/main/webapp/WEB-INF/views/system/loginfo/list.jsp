@@ -65,12 +65,23 @@
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
 <script src="${ctx}/resources/layuimini/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 <script>
-    layui.use(['table','layer','jquery','form'], function() {
+    layui.use(['table','layer','jquery','form','laydate'], function() {
         //引入表格模块
         let table = layui.table;
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
+        let laydate = layui.laydate;
+        // 给查询条件绑定时间选择器(给元素绑定时间的作用)
+        laydate.render({
+            elem: "#startTime",
+            type: "datetime"
+        })
+        laydate.render({
+            elem: "#endTime",
+            type: "datetime"
+        })
+
         //渲染数据表格
         let logLoginTable=table.render({
             elem: '#logLoginTable'//绑定最后表格数据组装好之后渲染的容器
