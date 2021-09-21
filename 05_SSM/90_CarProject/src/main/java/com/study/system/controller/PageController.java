@@ -30,4 +30,13 @@ public class PageController {
     public String toWelcome(){
         return "main/welcome";
     }
+
+    /*
+        日志管理
+     */
+    @RequestMapping("toLogInfoManager.action")
+    public String logInfoManager(){
+        return "system/loginfo/list";
+    }
+
 }
