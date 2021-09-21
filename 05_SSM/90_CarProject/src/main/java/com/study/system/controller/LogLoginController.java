@@ -1,9 +1,9 @@
 package com.study.system.controller;
 
 import com.github.pagehelper.Page;
-import com.study.system.common.LogLoginDto;
 import com.study.system.common.Result;
 import com.study.system.domain.LogLogin;
+import com.study.system.dto.LogLoginDto;
 import com.study.system.service.LogLoginService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

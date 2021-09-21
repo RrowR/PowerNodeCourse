@@ -1,4 +1,4 @@
-package com.study.system.common;
+package com.study.system.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
     提出了公共页面(分页数据BaseDto)
  */
 @Data
-public class LogLoginDto extends BaseDto{
+public class LogLoginDto extends BaseDto {
 
     private String loginname;
 

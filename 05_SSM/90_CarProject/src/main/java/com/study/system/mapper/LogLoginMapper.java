@@ -1,7 +1,7 @@
 package com.study.system.mapper;
 
-import com.study.system.common.LogLoginDto;
 import com.study.system.domain.LogLogin;
+import com.study.system.dto.LogLoginDto;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

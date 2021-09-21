@@ -39,4 +39,12 @@ public class PageController {
         return "system/loginfo/list";
     }
 
+    /*
+        跳转到公告管理
+     */
+    @RequestMapping("toNewsManager.action")
+    public String toLoginInfoManager(){
+        return "system/news/list";
+    }
+
 }

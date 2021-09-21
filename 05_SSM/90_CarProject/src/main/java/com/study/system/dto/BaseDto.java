@@ -1,4 +1,4 @@
-package com.study.system.common;
+package com.study.system.dto;
 
 import lombok.Data;
 

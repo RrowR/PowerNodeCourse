@@ -2,8 +2,8 @@ package com.study.system.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.study.system.common.LogLoginDto;
 import com.study.system.domain.LogLogin;
+import com.study.system.dto.LogLoginDto;
 import com.study.system.mapper.LogLoginMapper;
 import com.study.system.service.LogLoginService;
 import org.springframework.stereotype.Service;

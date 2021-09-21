@@ -1,8 +1,8 @@
 package com.study.system.service;
 
 import com.github.pagehelper.Page;
-import com.study.system.common.LogLoginDto;
 import com.study.system.domain.LogLogin;
+import com.study.system.dto.LogLoginDto;
 public interface LogLoginService{
 
     int deleteByPrimaryKey(Integer id);
