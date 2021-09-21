@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
+@RequestMapping("logLogin")
 public class LogLoginController {
 
     @Resource
@@ -41,7 +42,7 @@ public class LogLoginController {
     @RequestMapping("batchDel.action")
     public Result batchDel(Integer[] ids){
         logLoginService.batchDelete(ids);
-        return null;
+        return new Result(200,"删除成功");
     }
 
 }
