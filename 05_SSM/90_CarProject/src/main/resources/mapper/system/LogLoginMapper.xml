@@ -103,7 +103,7 @@
         and logintime &lt; #{logLoginDto.endTime}
       </if>
     </where>
-    order by logintime
+    order by logintime desc
   </select>
 
   <delete id="deleteBatch" parameterType="java.lang.Integer">
