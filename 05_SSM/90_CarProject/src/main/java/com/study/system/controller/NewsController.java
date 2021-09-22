@@ -1,15 +1,18 @@
 package com.study.system.controller;
 
 import com.github.pagehelper.Page;
+import com.study.system.common.Constants;
 import com.study.system.common.Result;
 import com.study.system.domain.News;
 import com.study.system.dto.NewsDto;
 import com.study.system.service.NewsService;
+import com.study.system.utils.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @RestController
 @RequestMapping("news")
@@ -44,5 +47,39 @@ public class NewsController {
     public Result batchDel(Integer[] ids){
         newsService.batchDelete(ids);
         return new Result(200,"删除成功");
+    }
+
+    /*
+        添加数据，传过来的只有title和content
+     */
+    @RequestMapping("add.action")
+    public Result add(News news){
+        // 设置发布时间
+        news.setCreatetime(new Date());
+        // 设置发布人
+        news.setOpername(WebUtils.getCurrentUserName());
+        int i = newsService.insertSelective(news);
+        if (i>0){
+            return new Result(200,"添加成功");
+        }else {
+            return new Result(-1,"添加失败");
+        }
+    }
+
+    /*
+        修改数据，传过来的只有title和content
+     */
+    @RequestMapping("update.action")
+    public Result update(News news){
+        // 设置发布时间
+        news.setCreatetime(new Date());
+        // 设置发布人
+        news.setOpername(WebUtils.getCurrentUserName());
+        int i = newsService.updateByPrimaryKeySelective(news);
+        if (i>0){
+            return new Result(200,"修改成功");
+        }else {
+            return new Result(-1,"修改失败");
+        }
     }
 }

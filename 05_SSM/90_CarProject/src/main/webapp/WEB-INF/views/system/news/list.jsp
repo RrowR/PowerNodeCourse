@@ -16,6 +16,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">公告标题</label>
                     <div class="layui-input-inline">
+                        <input type="hidden" name="id">
                         <input type="text" name="title" placeholder="请输入公告标题" class="layui-input">
                     </div>
                 </div>
@@ -53,7 +54,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">公告标题:</label>
             <div class="layui-input-block">     <%-- 块级元素 --%>
-                <input type="text" lay-verify="required" name="name" placeholder="请输入公告标题" class="layui-input">
+                <input type="text" lay-verify="required" name="title" placeholder="请输入公告标题" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -149,7 +150,7 @@
             if(event=="del"){
                 doDelete(data);
             }else if (event=="update"){
-                doUpdate(data);
+                openUpdate(data);
             }
 
         })
@@ -211,9 +212,10 @@
         }
         // 打开添加的弹出层
         function openAddLayer(){
+            $("#content").html("");     // 处理编辑器嵌套的问题
             mainIndex = layer.open({
                 type:1,
-                title:"新建系统广告",
+                title:"添加的系统公告",
                 content:$("#addOrUpdateDiv"),
                 area:['900px','600px'],
                 success:function (){
@@ -253,15 +255,68 @@
             })
         }
         // 打开修改的弹出层
-        function doUpdate(data){
-
+        function openUpdate(data){
+            $("#content").html("");     // 处理编辑器嵌套的问题
+            mainIndex = layer.open({
+                type:1,
+                title:"修改"+data.title+"的系统公告",
+                content:$("#addOrUpdateDiv"),
+                area:['900px','600px'],
+                success:function (){
+                    url="${ctx}/news/update.action";
+                    editor = new wangEditor('#content');
+                    editor.customConfig.uploadImgServer = "../api/upload.json";      // 配置上传图片的服务器地址
+                    editor.customConfig.uploadFileName = 'mf';
+                    /*
+                        图片上传到富文本编辑器的配置，在layui下载的html文件里直接复制下来的
+                        下面是图片上传成功或者失败时的回调
+                     */
+                    editor.customConfig.uploadImgHooks = {
+                        // 上传超时
+                        timeout: function (xhr, editor) {
+                            layer.msg('上传超时！')
+                        },
+                        // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+                        customInsert: function (insertImg, result, editor) {
+                            console.log(result);
+                            if (result.code == 1) {
+                                var url = result.data.url;
+                                url.forEach(function (e) {
+                                    insertImg(e);
+                                })
+                            } else {
+                                layer.msg(result.msg);
+                            }
+                        }
+                    };
+                    // 上传失败的弹出层
+                    editor.customConfig.customAlert = function (info) {
+                        layer.msg(info);
+                    };
+                    editor.create();    // 创建wangeditor
+                    // 填充数据
+                    form.val("dataFrm",data);
+                    // editor.txt.html('<p>用 JS 设置的内容</p>') 重新设置编辑器内容
+                    editor.txt.html(data.content);
+                }
+            })
         }
 
         // 监听弹出层的提交按钮
         form.on("submit(doSubmit)",function (obj){
-            console.log(obj.field);
+            let field = obj.field;
             let content = editor.txt.text();
-            console.log(content);
+            // 拼装文本域里的数据到field里
+            field.content = content;
+            console.log(field);
+            $.post(url,field,function (res){
+                if (res.code==200){
+                    // 刷新表格
+                    newsTable.reload();
+                }
+                layer.close(mainIndex);
+                layer.msg(res.msg);
+            })
         })
     });
 </script>
