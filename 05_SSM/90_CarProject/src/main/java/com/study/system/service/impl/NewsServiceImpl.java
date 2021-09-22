@@ -49,8 +49,10 @@ public class NewsServiceImpl implements NewsService{
 
     @Override
     public Page<News> queryForPage(NewsDto newsDto) {
+        // pagehleper会先进行切面
         Page<News> page = PageHelper.startPage(newsDto.getPage(), newsDto.getLimit());
-        List<News> newsList = newsMapper.queryForPage(newsDto);
+        // 这里直接查询所有即可
+        List<News> newsList = newsMapper.queryAllNews(newsDto);
         return page;
     }
 

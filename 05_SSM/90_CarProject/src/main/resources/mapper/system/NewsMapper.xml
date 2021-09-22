@@ -94,19 +94,20 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryForPage" resultMap="BaseResultMap">
+  <select id="queryAllNews" resultMap="BaseResultMap">
     select <include refid="Base_Column_List">
   </include>
     from sys_news
     <where>
-      <if test="newsDto.content != null and newsDto.content != ''">
+      <if test="newsDto.title != null and newsDto.title != ''">
         and title like concat('%',#{newsDto.title},'%')
       </if>
       <if test="newsDto.content != null and newsDto.content != ''">
         and content like concat('%',#{newsDto.content},'%')
       </if>
+
       <if test="newsDto.startTime != null">
-        and createtime > #{newsDto.startTime}
+        and createtime &gt; #{newsDto.startTime}
       </if>
       <if test="newsDto.endTime != null and newsDto.endTime != ''">
         <!-- 数据库登陆时间小于结束时间 -->
@@ -114,5 +115,6 @@
       </if>
     </where>
     order by createtime desc
+
   </select>
 </mapper>

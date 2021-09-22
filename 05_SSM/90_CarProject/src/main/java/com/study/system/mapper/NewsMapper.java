@@ -19,5 +19,5 @@ public interface NewsMapper {
 
     int updateByPrimaryKey(News record);
 
-    List<News> queryForPage(@Param("newsDto") NewsDto newsDto);
+    List<News> queryAllNews(@Param("newsDto") NewsDto newsDto);
 }

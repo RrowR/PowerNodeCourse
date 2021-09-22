@@ -89,7 +89,7 @@
     from sys_log_login
     <where>
       <if test="logLoginDto.loginname != null and logLoginDto.loginname != ''">
-        and loginname like concat('%',#{logLoginDto.loginip},'%')
+        and loginname like concat('%',#{logLoginDto.loginname},'%')
       </if>
       <if test="logLoginDto.loginip != null and logLoginDto.loginip != ''">
         and loginip like concat('%',#{logLoginDto.loginip},'%')

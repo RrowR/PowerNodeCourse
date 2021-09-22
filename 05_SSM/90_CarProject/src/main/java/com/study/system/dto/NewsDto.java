@@ -1,7 +1,9 @@
 package com.study.system.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
+@Data
 public class NewsDto extends BaseDto{
     private String title;
 
