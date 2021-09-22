@@ -169,33 +169,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="layui-col-md4">
-                <div class="layui-card">
-                    <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>系统公告</div>
-                    <div class="layui-card-body layui-text">
-                        <div class="layuimini-notice">
-                            <div class="layuimini-notice-title">修改选项卡样式</div>
-                            <div class="layuimini-notice-extra">2019-07-11 23:06</div>
-                            <div class="layuimini-notice-content layui-hide">
-                                界面足够简洁清爽。<br>
-                                一个接口几行代码而已直接初始化整个框架，无需复杂操作。<br>
-                                支持多tab，可以打开多窗口。<br>
-                                支持无限级菜单和对font-awesome图标库的完美支持。<br>
-                                失效以及报错菜单无法直接打开，并给出弹出层提示完美的线上用户体验。<br>
-                                url地址hash定位，可以清楚看到当前tab的地址信息。<br>
-                                刷新页面会保留当前的窗口，并且会定位当前窗口对应左侧菜单栏。<br>
-                                移动端的友好支持。<br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 <script src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
-<script src="${ctx}/resources/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>
 <script>
     layui.use(['layer', 'miniTab','echarts'], function () {
         var $ = layui.jquery,

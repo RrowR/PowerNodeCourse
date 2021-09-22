@@ -46,6 +46,30 @@
     </blockquote>
 </div>
 <!--查询条件结束-->
+
+<%-- 弹出层开始 --%>
+<div id="addOrUpdateDiv" style="display: none;padding: 10px">
+    <form class="layui-form" id="dataFrm" lay-filter="dataFrm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公告标题:</label>
+            <div class="layui-input-block">     <%-- 块级元素 --%>
+                <input type="text" lay-verify="required" name="name" placeholder="请输入公告标题" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公告内容:</label>
+            <div id="content" style="margin: 50px 0 50px 0"></div>
+        </div>
+        <div class="layui-form-item">
+            <div style="text-align: center">
+                <input  type="button" lay-submit lay-filter="doSubmit" class="layui-btn" value="提交" >
+                <input  type="reset"  id="doReset" class="layui-btn layui-btn-danger" value="重置" >
+            </div>
+        </div>
+    </form>
+</div>
+<%-- 弹出层结束 --%>
+
 <!--数据表格开始-->
 <div>
     <table class="layui-hide" id="newsTable" lay-filter="newsTable"></table>
@@ -65,15 +89,18 @@
 </body>
 <!--引入layui的核心JS-->
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
-<script src="${ctx}/resources/layuimini/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>
 <script>
-    layui.use(['table','layer','jquery','form','laydate'], function() {
+    layui.use(['table','layer','jquery','form','laydate','wangEditor'], function() {
         //引入表格模块
         let table = layui.table;
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
         let laydate = layui.laydate;
+        let wangEditor = layui.wangEditor;
+
+
         // 给查询条件绑定时间选择器(给元素绑定时间的作用)
         laydate.render({
             elem: "#startTime",
@@ -121,6 +148,8 @@
             let data=obj.data;
             if(event=="del"){
                 doDelete(data);
+            }else if (event=="update"){
+                doUpdate(data);
             }
 
         })
@@ -129,8 +158,17 @@
             let event=obj.event;
             if(event=="batchDel"){
                 doBatchDel();
+            }else if(event=="add"){
+                openAddLayer();
             }
         })
+
+        // 声明一个全局的url
+        let url = "";
+        // 声明一个弹出层索引
+        let mainIndex;
+        // 声明一个全局富文本对象
+        let editor;
 
         //删除一个
         function doDelete(data){
@@ -171,7 +209,60 @@
                 })
             })
         }
+        // 打开添加的弹出层
+        function openAddLayer(){
+            mainIndex = layer.open({
+                type:1,
+                title:"新建系统广告",
+                content:$("#addOrUpdateDiv"),
+                area:['900px','600px'],
+                success:function (){
+                    $("#doReset").click();
+                    url="${ctx}/news/add.action";
+                    editor = new wangEditor('#content');
+                    editor.customConfig.uploadImgServer = "../api/upload.json";      // 配置上传图片的服务器地址
+                    editor.customConfig.uploadFileName = 'mf';
+                    /*
+                        图片上传到富文本编辑器的配置，在layui下载的html文件里直接复制下来的
+                        下面是图片上传成功或者失败时的回调
+                     */
+                    editor.customConfig.uploadImgHooks = {
+                        // 上传超时
+                        timeout: function (xhr, editor) {
+                            layer.msg('上传超时！')
+                        },
+                        // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+                        customInsert: function (insertImg, result, editor) {
+                            console.log(result);
+                            if (result.code == 1) {
+                                var url = result.data.url;
+                                url.forEach(function (e) {
+                                    insertImg(e);
+                                })
+                            } else {
+                                layer.msg(result.msg);
+                            }
+                        }
+                    };
+                    // 上传失败的弹出层
+                    editor.customConfig.customAlert = function (info) {
+                        layer.msg(info);
+                    };
+                    editor.create();
+                }
+            })
+        }
+        // 打开修改的弹出层
+        function doUpdate(data){
 
+        }
+
+        // 监听弹出层的提交按钮
+        form.on("submit(doSubmit)",function (obj){
+            console.log(obj.field);
+            let content = editor.txt.text();
+            console.log(content);
+        })
     });
 </script>
 </html>

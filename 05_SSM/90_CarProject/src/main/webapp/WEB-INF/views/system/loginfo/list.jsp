@@ -63,7 +63,7 @@
 </body>
 <!--引入layui的核心JS-->
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
-<script src="${ctx}/resources/layuimini/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>
 <script>
     layui.use(['table','layer','jquery','form','laydate'], function() {
         //引入表格模块
