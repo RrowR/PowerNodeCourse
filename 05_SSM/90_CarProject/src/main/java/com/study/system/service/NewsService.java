@@ -20,4 +20,6 @@ public interface NewsService{
     int updateByPrimaryKey(News record);
 
     Page<News> queryForPage(NewsDto newsDto);
+
+    void batchDelete(Integer[] ids);
 }

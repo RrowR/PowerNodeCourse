@@ -52,6 +52,7 @@
     <!--声明一个表格的头部工具条-->
     <div id="newsTableHeadToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm" lay-event="add" value="添加" >
+        <input  type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel" value="批量删除" >
     </div>
 
     <!--声明一个表格的列工具条-->
@@ -93,7 +94,8 @@
             ,page:true//是否开启分页
             ,height:"full-200"
             ,cols: [[   //表格里面的数据列field对应的数据源json里面的data里面的key
-                {field:'id', align:"center", title: 'ID'}
+                {type:"checkbox"}
+                ,{field:'id', align:"center", title: 'ID'}
                 ,{field:'title',  title: '标题', align:"center"}
                 ,{field:'createtime',  title: '发布时间', align:"center"}
                 ,{field:'opername',  title: '发布人', align:"center"}
@@ -112,6 +114,63 @@
                 }
             })
         })
+
+        //监听行工具条事件
+        table.on("tool(newsTable)",function (obj) {
+            let event=obj.event;
+            let data=obj.data;
+            if(event=="del"){
+                doDelete(data);
+            }
+
+        })
+        //监听头工具条事件
+        table.on("toolbar(newsTable)",function (obj) {
+            let event=obj.event;
+            if(event=="batchDel"){
+                doBatchDel();
+            }
+        })
+
+        //删除一个
+        function doDelete(data){
+            layer.confirm("你确定要删除【"+data.title+"】这个公告吗?",function () {
+                //使用AJAX发送请求到后台
+                $.post("${ctx}/news/delete.action",{id:data.id},function (res) {
+                    if(res.code==200){
+                        newsTable.reload(); //刷新表格
+                    }
+                    layer.msg(res.msg);
+                })
+            })
+        }
+        //批量删除
+        function doBatchDel(){
+            //得到选中行
+            let checkStatus = table.checkStatus('newsTable'); //customerTable 即为基础参数 id 对应的值
+            let count=checkStatus.data.length;
+            if(count==0){
+                layer.msg("请选中操作行");
+                return;
+            }
+            layer.confirm("你确定要删除选中的这些公告吗?",function () {
+                let params="";
+                $.each(checkStatus.data,function (i,item) {
+                    if(i==0){
+                        params+="ids="+item.id;
+                    }else{
+                        params+="&ids="+item.id;
+                    }
+                })
+                //使用AJAX发送请求到后台
+                $.post("${ctx}/news/batchDel.action",params,function (res) {
+                    if(res.code==200){
+                        newsTable.reload(); //刷新表格
+                    }
+                    layer.msg(res.msg);
+                })
+            })
+        }
 
     });
 </script>

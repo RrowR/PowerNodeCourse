@@ -27,4 +27,22 @@ public class NewsController {
         Page<News> page = newsService.queryForPage(newsDto);
         return new Result("查询成功", (int) page.getTotal(),page.getResult());
     }
+
+    /*
+        根据id删除日志
+     */
+    @RequestMapping("delete.action")
+    public Result deleteById(Integer id){
+        int i = newsService.deleteByPrimaryKey(id);
+        if (i > 0){
+            return new Result(200,"删除成功");
+        }
+        return new Result(-1,"删除失败");
+    }
+
+    @RequestMapping("batchDel.action")
+    public Result batchDel(Integer[] ids){
+        newsService.batchDelete(ids);
+        return new Result(200,"删除成功");
+    }
 }

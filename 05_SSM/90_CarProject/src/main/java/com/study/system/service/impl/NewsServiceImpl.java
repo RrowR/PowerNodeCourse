@@ -56,4 +56,11 @@ public class NewsServiceImpl implements NewsService{
         return page;
     }
 
+    @Override
+    public void batchDelete(Integer[] ids) {
+        if (ids != null && ids.length > 0){
+            newsMapper.deleteBatch(ids);
+        }
+    }
+
 }

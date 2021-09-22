@@ -169,44 +169,6 @@
                 })
             })
         }
-
-
-        //离职
-        function doQuit(data) {
-            if(data.deleted==2){
-                layer.msg("【"+data.realname+"】这个员工已离职，不能再进行操作")
-                return;
-            }
-            layer.confirm("你确定要删除【"+data.username+"】这个登陆日志离职吗?",function () {
-                //使用AJAX发送请求到后台
-                $.post("${ctx}/user/quit.do",{id:data.id},function (res) {
-                    if(res.code==200){
-                        logLoginTable.reload(); //刷新表格
-                    }
-                    layer.msg(res.msg);
-                })
-            })
-        }
-        //重置密码
-        function doResetPwd(data) {
-            layer.confirm("你确定要重置【"+data.username+"】这个登陆日志的密码吗?",function () {
-                //使用AJAX发送请求到后台
-                $.post("${ctx}/user/resetPwd.do",{id:data.id},function (res) {
-                    layer.msg(res.msg);
-                })
-            })
-        }
-        //监听提交数据表单按钮的事件
-        form.on("submit(doSubmit)",function (obj) {
-            $.post(url,obj.field,function (res) {
-                if(res.code==200){
-                    //刷新表格
-                    logLoginTable.reload();
-                }
-                layer.close(mainIndex);
-                layer.msg(res.msg);
-            })
-        })
     });
 </script>
 </html>

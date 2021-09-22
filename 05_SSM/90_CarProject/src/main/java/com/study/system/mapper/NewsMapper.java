@@ -20,4 +20,6 @@ public interface NewsMapper {
     int updateByPrimaryKey(News record);
 
     List<News> queryAllNews(@Param("newsDto") NewsDto newsDto);
+
+    void deleteBatch(@Param("ids") Integer[] ids);
 }

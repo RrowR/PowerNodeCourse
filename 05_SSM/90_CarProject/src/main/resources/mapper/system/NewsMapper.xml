@@ -115,6 +115,12 @@
       </if>
     </where>
     order by createtime desc
-
   </select>
+
+  <delete id="deleteBatch">
+    delete from sys_news where id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>
