@@ -52,7 +52,6 @@
     <!--声明一个表格的头部工具条-->
     <div id="newsTableHeadToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm" lay-event="add" value="添加" >
-        <input  type="button" class="layui-btn layui-btn-danger layui-btn-sm" lay-event="batchDel" value="批量删除" >
     </div>
 
     <!--声明一个表格的列工具条-->
@@ -114,100 +113,6 @@
             })
         })
 
-        //监听行工具条事件
-        table.on("tool(newsTable)",function (obj) {
-            let event=obj.event;
-            let data=obj.data;
-            if(event=="del"){
-                doDelete(data);
-            }
-
-        })
-        //监听头工具条事件
-        table.on("toolbar(newsTable)",function (obj) {
-            let event=obj.event;
-            if(event=="batchDel"){
-                doBatchDel();
-            }
-        })
-
-        //删除一个
-        function  doDelete(data){
-            layer.confirm("你确定要删除【"+data.loginname+"】这个登陆日志吗?",function () {
-                //使用AJAX发送请求到后台
-                $.post("${ctx}/news/delete.action",{id:data.id},function (res) {
-                    if(res.code==200){
-                        newsTable.reload(); //刷新表格
-                    }
-                    layer.msg(res.msg);
-                })
-            })
-        }
-        //批量删除
-        function doBatchDel(){
-            //得到选中行
-            let checkStatus = table.checkStatus('newsTable'); //customerTable 即为基础参数 id 对应的值
-            let count=checkStatus.data.length;
-            if(count==0){
-                layer.msg("请选中操作行");
-                return;
-            }
-            layer.confirm("你确定要删除选中的这些登陆日志吗?",function () {
-                let params="";
-                $.each(checkStatus.data,function (i,item) {
-                    if(i==0){
-                        params+="ids="+item.id;
-                    }else{
-                        params+="&ids="+item.id;
-                    }
-                })
-                //使用AJAX发送请求到后台
-                $.post("${ctx}/news/batchDel.action",params,function (res) {
-                    if(res.code==200){
-                        newsTable.reload(); //刷新表格
-                    }
-                    layer.msg(res.msg);
-                })
-            })
-        }
-
-
-        //离职
-        function doQuit(data) {
-            if(data.deleted==2){
-                layer.msg("【"+data.realname+"】这个员工已离职，不能再进行操作")
-                return;
-            }
-            layer.confirm("你确定要删除【"+data.username+"】这个登陆日志离职吗?",function () {
-                //使用AJAX发送请求到后台
-                $.post("${ctx}/user/quit.do",{id:data.id},function (res) {
-                    if(res.code==200){
-                        newsTable.reload(); //刷新表格
-                    }
-                    layer.msg(res.msg);
-                })
-            })
-        }
-        //重置密码
-        function doResetPwd(data) {
-            layer.confirm("你确定要重置【"+data.username+"】这个登陆日志的密码吗?",function () {
-                //使用AJAX发送请求到后台
-                $.post("${ctx}/user/resetPwd.do",{id:data.id},function (res) {
-                    layer.msg(res.msg);
-                })
-            })
-        }
-        //监听提交数据表单按钮的事件
-        form.on("submit(doSubmit)",function (obj) {
-            $.post(url,obj.field,function (res) {
-                if(res.code==200){
-                    //刷新表格
-                    newsTable.reload();
-                }
-                layer.close(mainIndex);
-                layer.msg(res.msg);
-            })
-        })
     });
 </script>
 </html>
