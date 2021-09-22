@@ -16,7 +16,6 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">公告标题</label>
                     <div class="layui-input-inline">
-                        <input type="hidden" name="id">
                         <input type="text" name="title" placeholder="请输入公告标题" class="layui-input">
                     </div>
                 </div>
@@ -52,6 +51,7 @@
 <div id="addOrUpdateDiv" style="display: none;padding: 10px">
     <form class="layui-form" id="dataFrm" lay-filter="dataFrm">
         <div class="layui-form-item">
+            <input type="hidden" name="id">
             <label class="layui-form-label">公告标题:</label>
             <div class="layui-input-block">     <%-- 块级元素 --%>
                 <input type="text" lay-verify="required" name="title" placeholder="请输入公告标题" class="layui-input">
