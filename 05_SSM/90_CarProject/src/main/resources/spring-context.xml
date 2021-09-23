@@ -6,12 +6,27 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--解析db.properties-->
     <context:property-placeholder location="classpath:db.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
-    <!--配置数据源-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<!--    &lt;!&ndash;配置数据源&ndash;&gt;-->
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="${jdbc.driver}"></property>-->
+<!--        <property name="url" value="${jdbc.url}"></property>-->
+<!--        <property name="username" value="${jdbc.username}"></property>-->
+<!--        <property name="password" value="${jdbc.password}"></property>-->
+<!--    </bean>-->
+    <!-- 使用druid连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"></property>
         <property name="url" value="${jdbc.url}"></property>
         <property name="username" value="${jdbc.username}"></property>
         <property name="password" value="${jdbc.password}"></property>
+        <!--启动时在连接池里面初始化的连接的个数-->
+        <property name="initialSize" value="3"></property>
+        <!--最大的活动连接数据-->
+        <property name="maxActive" value="30"></property>
+        <!--最小的活动连接数据-->
+        <property name="minIdle" value="5"></property>
+        <!--过滤器  必须加，对sql监控有用-->
+        <property name="filters" value="stat"></property>
     </bean>
     <!--声明一个配置-->
     <bean id="configuration" class="org.apache.ibatis.session.Configuration">

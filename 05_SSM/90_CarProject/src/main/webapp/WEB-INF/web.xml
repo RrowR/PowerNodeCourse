@@ -48,6 +48,38 @@
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>
     <!--注册前端控制器 结束-->
-    <!--配置错误页面-->
+
+    <!-- 配置德鲁伊监控的Servlet -->
+    <servlet>
+        <servlet-name>StatViewServlet</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <!--配置用户名-->
+        <init-param>
+            <param-name>loginUsername</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <!--配置密码-->
+        <init-param>
+            <param-name>loginPassword</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+        <!--配置白名单-->
+        <init-param>
+            <param-name>allow</param-name>
+            <param-value>127.0.0.1</param-value>
+        </init-param>
+        <!--配置黑名单-->
+        <init-param>
+            <param-name>deny</param-name>
+            <param-value></param-value>
+        </init-param>
+        <!--启动时加载-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StatViewServlet</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
