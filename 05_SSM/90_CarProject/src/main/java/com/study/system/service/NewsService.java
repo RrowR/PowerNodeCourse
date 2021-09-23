@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import com.study.system.domain.News;
 import com.study.system.dto.NewsDto;
 
+import java.util.List;
+
 public interface NewsService{
 
 
@@ -22,4 +24,9 @@ public interface NewsService{
     Page<News> queryForPage(NewsDto newsDto);
 
     void batchDelete(Integer[] ids);
+
+    /*
+        查询所有的新闻
+     */
+    List<News> queryAllNews();
 }

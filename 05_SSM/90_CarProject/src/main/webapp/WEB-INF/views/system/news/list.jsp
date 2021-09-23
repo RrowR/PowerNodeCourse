@@ -83,6 +83,7 @@
     <!--声明一个表格的列工具条-->
     <div id="newsTableRowToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="update"  value="修改" >
+        <input type="button"  class="layui-btn layui-btn-sm" lay-event="show" value="查看">
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del"  value="删除" >
     </div>
 </div>
@@ -151,6 +152,8 @@
                 doDelete(data);
             }else if (event=="update"){
                 openUpdate(data);
+            }else if (event=="show"){
+                showNews(data);
             }
 
         })
@@ -308,6 +311,27 @@
                 layer.msg(res.msg);
             })
         })
+
+        function showNews(data){
+            var title = data.title,
+                noticeTime = data.createtime,
+                content = data.content;
+            var html = '<div style="padding:15px 20px; text-align:justify; line-height: 22px;border-bottom:1px solid #e2e2e2;background-color: #2f4056;color: #ffffff">\n' +
+                '<div style="text-align: center;margin-bottom: 20px;font-weight: bold;border-bottom:1px solid #718fb5;padding-bottom: 5px"><h4 class="text-danger">' + title + '</h4></div>\n' +
+                '<div style="font-size: 12px">' + content + '</div>\n' +
+                '</div>\n';
+            parent.layer.open({
+                type: 1,
+                title: '系统公告'+'<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">'+noticeTime+'</span>',
+                area: '500px;',
+                shade: 0.8,
+                id: 'layuimini-notice',
+                btn: ['取消'],
+                btnAlign: 'c',
+                moveType: 1,
+                content:html,
+            });
+        }
     });
 </script>
 </html>

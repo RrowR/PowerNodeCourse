@@ -166,6 +166,15 @@
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md4">
+                <div class="layui-card">
+                    <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>系统公告</div>
+                    <div class="layui-card-body layui-text" id="newsDiv">
                     </div>
                 </div>
             </div>
@@ -182,6 +191,24 @@
             echarts = layui.echarts;
 
         miniTab.listen();
+
+        function loadAllNews(){
+            $.get("${ctx}/news/loadAllNews.action",function (res){
+                let data = res.data;
+                let html = "";
+                $.each(data,function (index,item){
+                    html+="<div class=\"layuimini-notice\">"
+                    html+="<div class=\"layuimini-notice-title\">"+item.title+"</div>"
+                    html+="<div class=\"layuimini-notice-extra\">"+item.createtime+"</div>"
+                    html+="<div class=\"layuimini-notice-content layui-hide\">"
+                    html+=item.content;
+                    html+="</div></div>";
+                })
+                $("#newsDiv").html(html);
+            })
+        }
+
+        loadAllNews();
 
         /**
          * 查看公告信息
@@ -200,7 +227,7 @@
                 area: '300px;',
                 shade: 0.8,
                 id: 'layuimini-notice',
-                btn: ['查看', '取消'],
+                btn: ['取消'],
                 btnAlign: 'c',
                 moveType: 1,
                 content:html,

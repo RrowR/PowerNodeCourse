@@ -63,4 +63,9 @@ public class NewsServiceImpl implements NewsService{
         }
     }
 
+    @Override
+    public List<News> queryAllNews() {
+        return newsMapper.queryAllNews(new NewsDto());
+    }
+
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("news")
@@ -81,5 +82,11 @@ public class NewsController {
         }else {
             return new Result(-1,"修改失败");
         }
+    }
+
+    @RequestMapping("loadAllNews.action")
+    public Result loadAllNews(){
+        List<News> news = newsService.queryAllNews();
+        return new Result(200,"查询成功",news.size(),news);
     }
 }
