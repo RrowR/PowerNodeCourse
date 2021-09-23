@@ -1,6 +1,8 @@
 package com.study.system.service;
 
+import com.github.pagehelper.Page;
 import com.study.system.domain.Menu;
+import com.study.system.dto.MenuDto;
 
 import java.util.List;
 
@@ -20,4 +22,6 @@ public interface MenuService{
     int updateByPrimaryKey(Menu record);
 
     List<Menu> queryAllAvailableMenus();
+
+    Page<Menu> queryForPage(MenuDto menuDto);
 }

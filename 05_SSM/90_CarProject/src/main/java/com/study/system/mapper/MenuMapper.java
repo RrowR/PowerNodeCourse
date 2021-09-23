@@ -1,6 +1,9 @@
 package com.study.system.mapper;
 
+import com.github.pagehelper.Page;
 import com.study.system.domain.Menu;
+import com.study.system.dto.MenuDto;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +22,6 @@ public interface MenuMapper {
 
     // 查询所有可用的菜单
     List<Menu> queryAllAvailableMenus();
+
+    List<Menu> queryAllMenu(@Param("menuDto") MenuDto menuDto);
 }

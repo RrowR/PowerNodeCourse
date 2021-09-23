@@ -123,4 +123,15 @@
   </include>
     from sys_menu where available = 1
   </select>
+
+  <select id="queryAllMenu" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List">
+  </include>
+    from sys_menu
+    <where>
+      <if test="menuDto.title != null and menuDto.title != ''">
+        and title like concat('%',#{menuDto.title},'%')
+      </if>
+    </where>
+  </select>
 </mapper>

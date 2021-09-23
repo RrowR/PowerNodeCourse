@@ -47,4 +47,29 @@ public class PageController {
         return "system/news/list";
     }
 
+    /*
+        菜单管理
+     */
+    @RequestMapping("toMenuManager.action")
+    public String toMenuManager(){
+        return "system/menu/manager";
+    }
+
+    /*
+        左侧菜单管理
+     */
+    @RequestMapping("toLeftMenuManager.action")
+    public String toLeftMenuManager(){
+        return "system/menu/managerLeftManager";
+    }
+
+    /*
+        右侧菜单管理
+     */
+    @RequestMapping("toRightMenuManager.action")
+    public String toRightMenuManager(){
+        return "system/menu/managerRightManager";
+    }
+
+
 }
