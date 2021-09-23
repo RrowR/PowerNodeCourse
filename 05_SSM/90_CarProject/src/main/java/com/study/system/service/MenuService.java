@@ -24,4 +24,6 @@ public interface MenuService{
     List<Menu> queryAllAvailableMenus();
 
     Page<Menu> queryForPage(MenuDto menuDto);
+
+    List<Menu> queryAllMenusForDtree(Menu menu);
 }

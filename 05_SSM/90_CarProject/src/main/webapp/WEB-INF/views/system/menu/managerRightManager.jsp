@@ -50,6 +50,8 @@
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
 <script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>
 <script>
+    let newsTable;
+
     layui.use(['table','layer','jquery','form','laydate'], function() {
         //引入表格模块
         let table = layui.table;
@@ -60,7 +62,7 @@
 
 
         //渲染数据表格
-        let newsTable=table.render({
+        newsTable = table.render({
             elem: '#newsTable'//绑定最后表格数据组装好之后渲染的容器
             ,url:'${ctx}/menu/queryForPage.action'//数据源的url
             ,toolbar:'#newsTableHeadToolbar'//指向页面上的DOM的头部工具条
@@ -127,5 +129,14 @@
 
 
     });
+
+    function reloadMenuTable(id){
+        // layer.msg(id);
+        // 重新去加载左边页面传过来的id
+        newsTable.reload({
+            where: {id:id}
+        })
+    }
+
 </script>
 </html>

@@ -132,6 +132,23 @@
       <if test="menuDto.title != null and menuDto.title != ''">
         and title like concat('%',#{menuDto.title},'%')
       </if>
+      <if test="menuDto.id != null">
+        and (id = (#{menuDto.id}) or pid = (#{menuDto.id}))
+      </if>
+    </where>
+  </select>
+
+  <select id="queryAllMenusForDtree" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List">
+  </include>
+    from sys_menu
+    <where>
+      <if test="menu.title != null and menu.title != ''">
+        and title like concat('%',#{menu.title},'%')
+      </if>
+      <if test="menu.available != null">
+        and available = #{menu.available}
+      </if>
     </where>
   </select>
 </mapper>

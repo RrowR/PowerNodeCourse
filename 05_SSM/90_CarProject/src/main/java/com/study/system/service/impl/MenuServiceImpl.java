@@ -59,4 +59,10 @@ public class MenuServiceImpl implements MenuService{
         return page;
     }
 
+    @Override
+    public List<Menu> queryAllMenusForDtree(Menu menu) {
+        List<Menu> list = menuMapper.queryAllMenusForDtree(menu);
+        return list;
+    }
+
 }

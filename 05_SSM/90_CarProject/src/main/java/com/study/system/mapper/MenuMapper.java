@@ -1,6 +1,5 @@
 package com.study.system.mapper;
 
-import com.github.pagehelper.Page;
 import com.study.system.domain.Menu;
 import com.study.system.dto.MenuDto;
 import org.apache.ibatis.annotations.Param;
@@ -24,4 +23,9 @@ public interface MenuMapper {
     List<Menu> queryAllAvailableMenus();
 
     List<Menu> queryAllMenu(@Param("menuDto") MenuDto menuDto);
+
+    /*
+    *  这里在使用id查询的时候不仅要根据主id进行查询，还需要查询子节点
+    *  */
+    List<Menu> queryAllMenusForDtree(@Param("menu") Menu menu);
 }
