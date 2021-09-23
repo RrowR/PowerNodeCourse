@@ -260,7 +260,7 @@
                 success:function (){
                     url="${ctx}/news/update.action";
                     editor = new wangEditor('#content');
-                    editor.customConfig.uploadImgServer = "../api/upload.json";      // 配置上传图片的服务器地址
+                    editor.customConfig.uploadImgServer = "${ctx}/upload/uploadImgForWangEditor.action";      // 配置上传图片的服务器地址
                     editor.customConfig.uploadFileName = 'mf';
                     /*
                         图片上传到富文本编辑器的配置，在layui下载的html文件里直接复制下来的
