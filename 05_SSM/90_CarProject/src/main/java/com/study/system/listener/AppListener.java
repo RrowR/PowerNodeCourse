@@ -15,7 +15,7 @@ public class AppListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         // 在容器加载的时候就把地址放到全局作用域里(application)
         ServletContext servletContext = servletContextEvent.getServletContext();
-        // 放入地址
+        // 放入当前项目路径地址到最大的Application中去
         servletContext.setAttribute("ctx",servletContext.getContextPath());
     }
 

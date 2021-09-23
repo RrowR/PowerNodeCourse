@@ -236,13 +236,8 @@
                         // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
                         customInsert: function (insertImg, result, editor) {
                             console.log(result);
-                            if (result.code == 1) {
-                                var url = result.data.url;
-                                url.forEach(function (e) {
-                                    insertImg(e);
-                                })
-                            } else {
-                                layer.msg(result.msg);
+                            if (result.errno == 0) {
+                                insertImg(result.data[0]);
                             }
                         }
                     };
@@ -279,13 +274,8 @@
                         // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
                         customInsert: function (insertImg, result, editor) {
                             console.log(result);
-                            if (result.code == 1) {
-                                var url = result.data.url;
-                                url.forEach(function (e) {
-                                    insertImg(e);
-                                })
-                            } else {
-                                layer.msg(result.msg);
+                            if (result.errno == 0) {
+                                insertImg(result.data[0]);
                             }
                         }
                     };
@@ -305,7 +295,7 @@
         // 监听弹出层的提交按钮
         form.on("submit(doSubmit)",function (obj){
             let field = obj.field;
-            let content = editor.txt.text();
+            let content = editor.txt.html();
             // 拼装文本域里的数据到field里
             field.content = content;
             console.log(field);

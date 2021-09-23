@@ -5,7 +5,7 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--解析db.properties-->
-    <context:property-placeholder location="classpath:db2.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
+    <context:property-placeholder location="classpath:db.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
     <!--配置数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"></property>
@@ -64,4 +64,15 @@
 
     <!--开启事务注解-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+    <!-- 根据构造方法添加文件上传的路径 -->
+    <bean id="uploadFileRootPath" class="java.lang.String">
+        <constructor-arg name="original" value="D:/upload/"></constructor-arg>
+    </bean>
+    <!-- 设置文件下载时的前缀路径 -->
+    <bean id="fileDownLoadPrefix" class="java.lang.String">
+        <constructor-arg name="original" value="http://127.0.0.1:8080/Car/"></constructor-arg>
+    </bean>
+
 </beans>
