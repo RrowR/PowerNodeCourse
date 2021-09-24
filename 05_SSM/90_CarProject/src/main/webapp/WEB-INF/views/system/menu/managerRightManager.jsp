@@ -137,6 +137,10 @@
             response:{message:"msg",statusCode:0},  //修改response中返回数据的定义
             url: "${ctx}/menu/loadMenuTreeJson.action", // 使用url加载
             icon:"4",
+            selectInputName: {
+                nodeId: "pid",      // 获得当前节点的id
+                context: "node_title"
+            }
         });
 
 
@@ -153,6 +157,7 @@
             limit: 12,
             // 点击回调
             click: function (data) {
+                $("#iconPicker").val("fa "+data.icon);      // 选中图标按钮，在点击的时候给图标重新赋值
                 console.log(data);
             },
             // 渲染成功后的回调
@@ -197,6 +202,22 @@
             })
         })
 
+       let url;
+
+        // 监听弹出层的提交按钮
+        form.on("submit(doSubmit)",function (obj){
+            // console.log(obj);
+            let field = obj.field;
+            $.post(url,field,function (res){
+                if (res.code == 200){
+                    newsTable.reload(); //刷新表格
+                    window.parent.left.menuTree.reload();   // 刷新frameset左边的menuTree
+                    menuTree.reload();      // 刷新自己这个页面的menuTree
+                }
+                layer.msg(res.msg);
+            })
+        })
+
         //监听行工具条事件
         table.on("tool(newsTable)",function (obj) {
             let event=obj.event;
@@ -229,6 +250,7 @@
             }
         })
 
+        // 上面调用打开弹出层的方法
         function openAddMenuLayer(){
             mainIndex = layer.open({
                 type:1,
