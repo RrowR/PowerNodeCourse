@@ -14,6 +14,7 @@
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
 <%--<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>--%>
 <script>
+    var menuTree;
     layui.extend({
         dtree: '${ctx}/resources/layuimini/lib/layui_ext/dtree/dtree'   // {/}的意思即代表采用自有路径，即不跟随 base 路径
     }).use(['form',"layer","table","jquery",'dtree'],function () {
@@ -21,7 +22,7 @@
         let layer = layui.layer;
         let $ = layui.jquery;
         //使用list+layui的格式
-        let menuTree = dtree.render({
+        menuTree = dtree.render({
             elem: "#menuTree",
             dataStyle: "layuiStyle",  //使用layui风格的数据格式
             dataFormat: "list",

@@ -6,6 +6,11 @@
     <title>菜单管理-右侧</title>
     <!--引入layui的css-->
     <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/layui-v2.6.3/css/layui.css">
+    <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="${ctx}/resources/layuimini/css/public.css" media="all">
+    <%-- 引入detree --%>
+    <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/layui_ext/dtree/dtree.css">
+    <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/layui_ext/dtree/font/dtreefont.css">
 </head>
 <body style="margin: 10px;">
 <!--查询条件开始-->
@@ -37,7 +42,6 @@
     <div id="newsTableHeadToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm" lay-event="add" value="添加" >
     </div>
-
     <!--声明一个表格的列工具条-->
     <div id="newsTableRowToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="update"  value="修改" >
@@ -45,20 +49,117 @@
     </div>
 </div>
 <!--数据表格结束-->
+
+<!--添加和修改的弹出层开始-->
+<div id="addOrUpdateDiv" style="display: none;padding: 5px">
+    <form class="layui-form layui-form-pane" id="dataFrm" lay-filter="dataFrm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">父级菜单</label>
+            <div class="layui-input-block">
+                <ul id="pid" name="pid" class="dtree" data-id="0" ></ul>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单名称</label>
+            <div class="layui-input-block">
+                <input type="hidden" name="id">
+                <input type="text" class="layui-input" name="title" placeholder="请输入菜单名称">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单地址</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="href" placeholder="请输入菜单地址">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">菜单图标</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="iconPicker" name="icon" lay-filter="iconPicker" class="hide">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">TARGET</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="target" placeholder="请输入TARGET">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+
+            <div class="layui-inline">
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-inline" style="width: auto">
+                    <input type="radio"  name="available" title="可用" checked value="1">
+                    <input type="radio"  name="available" title="不可用" value="0">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div style="text-align: center">
+                <input  type="button" lay-submit lay-filter="doSubmit" class="layui-btn" value="提交" >
+                <input  type="reset"  id="doReset" class="layui-btn layui-btn-danger" value="重置" >
+            </div>
+        </div>
+    </form>
+</div>
+<!--添加和修改的弹出层结束-->
+
+
 </body>
 <!--引入layui的核心JS-->
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
-<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>
+<%--<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>--%>
 <script>
-    let newsTable;
 
-    layui.use(['table','layer','jquery','form','laydate'], function() {
+    let newsTable;
+    layui.extend({
+        dtree: '${ctx}/resources/layuimini/lib/layui_ext/dtree/dtree',   // {/}的意思即代表采用自有路径，即不跟随 base 路径
+        iconPickerFa:'${ctx}/resources/layuimini/js/lay-module/iconPicker/iconPickerFa'
+    }).use(['table','layer','jquery','form','laydate','iconPickerFa','dtree'], function() {
         //引入表格模块
         let table = layui.table;
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
         let laydate = layui.laydate;
+        // 引入图标
+        let iconPickerFa = layui.iconPickerFa;
+        // 引入dtree
+        let dtree = layui.dtree;
+
+        //使用list+layui的格式
+        menuTree = dtree.renderSelect({
+            elem: "#pid",
+            dataStyle: "layuiStyle",  //使用layui风格的数据格式
+            dataFormat: "list",
+            response:{message:"msg",statusCode:0},  //修改response中返回数据的定义
+            url: "${ctx}/menu/loadMenuTreeJson.action", // 使用url加载
+            icon:"4",
+        });
+
+
+        iconPickerFa.render({
+            // 选择器，推荐使用input
+            elem: '#iconPicker',
+            // fa 图标接口
+            url: "${ctx}/resources/layuimini/lib/font-awesome-4.7.0/less/variables.less",
+            // 是否开启搜索：true/false，默认true
+            search: true,
+            // 是否开启分页：true/false，默认true
+            page: true,
+            // 每页显示数量，默认12
+            limit: 12,
+            // 点击回调
+            click: function (data) {
+                console.log(data);
+            },
+            // 渲染成功后的回调
+            success: function (d) {
+                console.log(d);
+            }
+        });
 
 
         //渲染数据表格
@@ -102,6 +203,8 @@
             let data=obj.data;
             if(event=="del"){
                 doDelete(data);
+            }else if (event=="update"){
+                openUpdateLayer(data);
             }
         })
 
@@ -122,10 +225,22 @@
         table.on("toolbar(newsTable)",function (obj) {
             let event=obj.event;
             if(event=="add"){
-
+                openAddMenuLayer();         // 打开头工具条的添加弹出层
             }
         })
 
+        function openAddMenuLayer(){
+            mainIndex = layer.open({
+                type:1,
+                title:"创建菜单",
+                content:$("#addOrUpdateDiv"),
+                area:["700px","600px"],
+                success:function (){
+                    $("#doReset").click();
+                    url="${ctx}/menu/add.action";
+                }
+            })
+        }
 
 
     });

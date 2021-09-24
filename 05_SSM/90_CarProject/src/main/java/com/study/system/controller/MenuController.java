@@ -42,4 +42,24 @@ public class MenuController {
         return new Result("查询成功",treeNodes.size(),treeNodes);
     }
 
+    @RequestMapping("add.action")
+    public Result add(Menu menu){
+        int i = menuService.insertSelective(menu);
+        if (i > 0){
+            return new Result(200,"插入成功");
+        }else {
+            return new Result(200,"插入失败");
+        }
+    }
+
+    @RequestMapping("update.action")
+    public Result update(Menu menu){
+        int i = menuService.updateByPrimaryKeySelective(menu);
+        if (i > 0){
+            return new Result(200,"插入成功");
+        }else {
+            return new Result(200,"插入失败");
+        }
+    }
+
 }
