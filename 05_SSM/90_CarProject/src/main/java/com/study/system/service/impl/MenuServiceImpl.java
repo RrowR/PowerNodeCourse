@@ -19,6 +19,7 @@ public class MenuServiceImpl implements MenuService{
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
+        menuMapper.deleteMenuRoleByMid(id);     // 在删除的时候先删除 sys_role_menu 表，目前还没有关联
         return menuMapper.deleteByPrimaryKey(id);
     }
 
@@ -63,6 +64,11 @@ public class MenuServiceImpl implements MenuService{
     public List<Menu> queryAllMenusForDtree(Menu menu) {
         List<Menu> list = menuMapper.queryAllMenusForDtree(menu);
         return list;
+    }
+
+    @Override
+    public int queryMenuCountByPid(Integer id) {
+        return menuMapper.queryMenuCountByPid(id);
     }
 
 }

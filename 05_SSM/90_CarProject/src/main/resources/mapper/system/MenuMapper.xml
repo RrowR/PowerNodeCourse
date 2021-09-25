@@ -151,4 +151,12 @@
       </if>
     </where>
   </select>
+
+  <select id="queryMenuCountByPid" resultType="int">
+        select count(*) from sys_menu where pid = #{id}
+  </select>
+
+  <delete id="deleteMenuRoleByMid">
+    delete from sys_role_menu where mid=#{id}
+  </delete>
 </mapper>

@@ -28,4 +28,8 @@ public interface MenuMapper {
     *  这里在使用id查询的时候不仅要根据主id进行查询，还需要查询子节点
     *  */
     List<Menu> queryAllMenusForDtree(@Param("menu") Menu menu);
+
+    int queryMenuCountByPid(@Param("id") Integer id);
+
+    void deleteMenuRoleByMid(@Param("id") Integer id);
 }

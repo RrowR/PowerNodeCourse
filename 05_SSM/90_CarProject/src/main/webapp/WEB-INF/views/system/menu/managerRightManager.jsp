@@ -177,13 +177,13 @@
             ,page:true//是否开启分页
             ,height:"full-200"
             ,cols: [[   //表格里面的数据列field对应的数据源json里面的data里面的key
-                {field:'id', align:"center", title: 'ID'}
-                ,{field:'pid', align:"center", title: 'pid'}
+                {field:'id', title: '编号',align:"center"}
+                ,{field:'pid', title: '父级编号', align:"center"}
                 ,{field:'title',  title: '标题', align:"center"}
-                ,{field:'href',  title: '菜单地址', align:"href"}
-                ,{field:'target',  title: '目标地址', align:"target"}
-                ,{field:'icon',  title: '图标', align:"icon"}
-                ,{field:'available',  title: '是否可用', align:"available",templet:function (d){
+                ,{field:'href',  title: '菜单地址', align:"center"}
+                ,{field:'target',  title: '目标地址', align:"center"}
+                ,{field:'icon',  title: '图标', align:"center"}
+                ,{field:'available',  title: '是否可用', align:"center",templet:function (d){
                         return d.available == 1 ? "可用":"不可用";
                     }}
                 ,{title: '操作',fixed:"right",toolbar:"#newsTableRowToolbar", align:"center"}
@@ -224,6 +224,7 @@
             let data=obj.data;
             if(event=="del"){
                 doDelete(data);
+                // console.log(data);
             }else if (event=="update"){
                 openUpdateLayer(data);
             }
@@ -231,7 +232,7 @@
 
         //删除一个
         function doDelete(data){
-            layer.confirm("你确定要删除【"+data.title+"】这个公告吗?",function () {
+            layer.confirm("你确定要删除【"+data.title+"】这个菜单吗?",function () {
                 //使用AJAX发送请求到后台
                 $.post("${ctx}/menu/delete.action",{id:data.id},function (res) {
                     if(res.code==200){

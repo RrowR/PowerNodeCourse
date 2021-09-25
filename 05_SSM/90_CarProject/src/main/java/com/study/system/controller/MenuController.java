@@ -46,9 +46,9 @@ public class MenuController {
     public Result add(Menu menu){
         int i = menuService.insertSelective(menu);
         if (i > 0){
-            return new Result(200,"插入成功");
+            return new Result(200,"添加成功");
         }else {
-            return new Result(200,"插入失败");
+            return new Result(200,"添加失败");
         }
     }
 
@@ -62,8 +62,17 @@ public class MenuController {
         }
     }
 
+    /*
+        删除菜单
+     */
     @RequestMapping("delete.action")
     public Result delete(Integer id){
+        // 当一个菜单下有子菜单时，那么这个id就会出现在pid里
+        int count = menuService.queryMenuCountByPid(id);
+        if (count > 0){
+            return new Result(-1,"请先删除子菜单");
+        }
+        // 当子菜单不存在时才执行删除操作
         int i = menuService.deleteByPrimaryKey(id);
         if (i > 0){
             return new Result(200,"删除成功");

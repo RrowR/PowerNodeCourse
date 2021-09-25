@@ -26,4 +26,6 @@ public interface MenuService{
     Page<Menu> queryForPage(MenuDto menuDto);
 
     List<Menu> queryAllMenusForDtree(Menu menu);
+
+    int queryMenuCountByPid(Integer id);
 }
