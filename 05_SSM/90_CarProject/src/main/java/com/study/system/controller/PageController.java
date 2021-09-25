@@ -71,5 +71,8 @@ public class PageController {
         return "system/menu/managerRightManager";
     }
 
-
+    @RequestMapping("toRoleManager.action")
+    public String toRoleController(){
+        return "system/role/list";
+    }
 }

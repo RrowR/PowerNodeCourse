@@ -203,6 +203,7 @@
         })
 
        let url;
+       let mainIndex;
 
         // 监听弹出层的提交按钮
         form.on("submit(doSubmit)",function (obj){

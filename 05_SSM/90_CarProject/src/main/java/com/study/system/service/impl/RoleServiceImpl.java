@@ -1,10 +1,16 @@
 package com.study.system.service.impl;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import com.study.system.mapper.RoleMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.study.system.domain.Role;
+import com.study.system.dto.RoleDto;
+import com.study.system.mapper.RoleMapper;
 import com.study.system.service.RoleService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService{
 
@@ -39,6 +45,13 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public int updateByPrimaryKey(Role record) {
         return roleMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public Page<Role> queryForPage(RoleDto roleDto) {
+        Page<Role> page = PageHelper.startPage(roleDto.getPage(), roleDto.getLimit());
+        List<Role> list = roleMapper.queryAllRole(roleDto);
+        return  page;
     }
 
 }

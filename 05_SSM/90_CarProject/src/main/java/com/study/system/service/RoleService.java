@@ -1,6 +1,9 @@
 package com.study.system.service;
 
+import com.github.pagehelper.Page;
 import com.study.system.domain.Role;
+import com.study.system.dto.RoleDto;
+
 public interface RoleService{
 
 
@@ -16,4 +19,5 @@ public interface RoleService{
 
     int updateByPrimaryKey(Role record);
 
+    Page<Role> queryForPage(RoleDto roleDto);
 }
