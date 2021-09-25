@@ -26,7 +26,7 @@
                 </div>
                 <div class="layui-inline">
                     <input type="button" value="查询" class="layui-btn" id="doSearch" lay-submit lay-filter="doSearch">
-                    <input type="reset" value="重置" class="layui-btn layui-btn-danger">
+                    <input type="reset" value="重置" id="doReset2" class="layui-btn layui-btn-danger">
                 </div>
             </div>
         </form>
@@ -144,7 +144,7 @@
         });
 
 
-        iconPickerFa.render({
+        let menuIconPicker = iconPickerFa.render({
             // 选择器，推荐使用input
             elem: '#iconPicker',
             // fa 图标接口
@@ -158,11 +158,11 @@
             // 点击回调
             click: function (data) {
                 $("#iconPicker").val("fa "+data.icon);      // 选中图标按钮，在点击的时候给图标重新赋值
-                console.log(data);
+                // console.log(data);
             },
             // 渲染成功后的回调
             success: function (d) {
-                console.log(d);
+                // console.log(d);
             }
         });
 
@@ -235,10 +235,31 @@
                 //使用AJAX发送请求到后台
                 $.post("${ctx}/menu/delete.action",{id:data.id},function (res) {
                     if(res.code==200){
-                        newsTable.reload(); //刷新表格
+                        newsTable.reload();     // 删除成功后刷新表格
+                        window.parent.left.menuTree.reload();       // 刷新左边的树
+                        menuTree.reload();      // 刷新自己这边的树
                     }
                     layer.msg(res.msg);
                 })
+            })
+        }
+
+        function openUpdateLayer(data){
+            mainIndex = layer.open({
+                type:1,
+                title:"修改["+data.title+"]菜单",
+                content: $("#addOrUpdateDiv"),
+                area: ["700px","600px"],
+                success:function (){            // 打开成功后的回调
+                    url = "${ctx}/menu/update.action";      // 设置提交的地址
+                    form.val("dataFrm",data);           // 给表单装载数据
+                    dtree.dataInit("pid", data.pid);    // 给dtree设置值
+                    // 也可以在这里指定，第二个参数如果不填，则会自动返显当前选中的数据(官方文档里的内容)
+                    dtree.selectVal("pid");
+                    let icon = data.icon;           // "fa fa-adjust"
+                    icon.replace("fa ","");         // "fa-adjust"
+                    menuIconPicker.checkIcon('iconPicker', icon);
+                }
             })
         }
 

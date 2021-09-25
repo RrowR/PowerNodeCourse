@@ -56,10 +56,22 @@ public class MenuController {
     public Result update(Menu menu){
         int i = menuService.updateByPrimaryKeySelective(menu);
         if (i > 0){
-            return new Result(200,"插入成功");
+            return new Result(200,"更新成功");
         }else {
-            return new Result(200,"插入失败");
+            return new Result(200,"更新失败");
         }
     }
+
+    @RequestMapping("delete.action")
+    public Result delete(Integer id){
+        int i = menuService.deleteByPrimaryKey(id);
+        if (i > 0){
+            return new Result(200,"删除成功");
+        }else {
+            return new Result(200,"删除失败");
+        }
+    }
+
+
 
 }
