@@ -89,10 +89,13 @@
     from sys_role
     <where>
       <if test="roleDto.rolename != null and roleDto.rolename != ''">
-        and rolename like concat('?',#{roleDto.rolename},'?')
+        and rolename like concat('%',#{roleDto.rolename},'%')
       </if>
       <if test="roleDto.roledesc != null and roleDto.roledesc != ''">
-        and roledesc like concat('?',#{roleDto.roledesc},'?')
+        and roledesc like concat('%',#{roleDto.roledesc},'%')
+      </if>
+      <if test="roleDto.available != null">
+        and available like concat('%',#{roleDto.available},'%')
       </if>
     </where>
     order by roleid

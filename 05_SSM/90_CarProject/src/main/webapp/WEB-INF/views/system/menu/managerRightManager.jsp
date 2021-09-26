@@ -87,7 +87,6 @@
             </div>
         </div>
         <div class="layui-form-item">
-
             <div class="layui-inline">
                 <label class="layui-form-label">是否可用</label>
                 <div class="layui-input-inline" style="width: auto">
