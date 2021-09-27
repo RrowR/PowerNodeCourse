@@ -6,6 +6,9 @@
     <title>角色管理</title>
     <!--引入layui的css-->
     <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/layui-v2.6.3/css/layui.css">
+    <%-- 引入dtree样式 --%>
+    <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/layui_ext/dtree/dtree.css">
+    <link rel="stylesheet" href="${ctx}/resources/layuimini/lib/layui_ext/dtree/font/dtreefont.css">
 </head>
 <body style="margin: 10px;">
 <!--查询条件开始-->
