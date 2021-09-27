@@ -45,6 +45,7 @@
     <!--声明一个表格的列工具条-->
     <div id="newsTableRowToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="update"  value="修改" >
+        <input  type="button" class="layui-btn layui-btn-sm" lay-event="selectMenu"  value="分配菜单" >
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del"  value="删除" >
     </div>
 </div>
@@ -109,7 +110,6 @@
 </body>
 <!--引入layui的核心JS-->
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
-<%--<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>--%>
 <script>
 
     let newsTable;
@@ -132,7 +132,7 @@
         menuTree = dtree.renderSelect({
             elem: "#pid",
             dataStyle: "layuiStyle",  //使用layui风格的数据格式
-            dataFormat: "list",
+            dataFormat: "list",         // 这里是layui+list风格的数据格式
             response:{message:"msg",statusCode:0},  //修改response中返回数据的定义
             url: "${ctx}/menu/loadMenuTreeJson.action", // 使用url加载
             icon:"4",
@@ -227,6 +227,8 @@
                 // console.log(data);
             }else if (event=="update"){
                 openUpdateLayer(data);
+            }else if (event=="selectMenu"){
+                openMenuLayer(data);
             }
         })
 

@@ -87,6 +87,7 @@
     <!--声明一个表格的列工具条-->
     <div id="roleTableRowToolbar" style="display: none">
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="update"  value="修改" >
+        <input  type="button" class="layui-btn layui-btn-sm" lay-event="selectMenu"  value="分配菜单" >
         <input  type="button" class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del"  value="删除" >
     </div>
 </div>
@@ -94,14 +95,16 @@
 </body>
 <!--引入layui的核心JS-->
 <script type="text/javascript" src="${ctx}/resources/layuimini/lib/layui-v2.6.3/layui.js"></script>
-<script src="${ctx}/resources/layuimini/js/lay-config.js" charset="utf-8"></script>
 <script>
-    layui.use(['table','layer','jquery','form'], function() {
+    layui.extend({
+        dtree: '${ctx}/resources/layuimini/lib/layui_ext/dtree/dtree',   // {/}的意思即代表采用自有路径，即不跟随 base 路径
+    }).use(['table','layer','jquery','form','dtree'], function() {
         //引入表格模块
         let table = layui.table;
         let layer = layui.layer;
         let $ = layui.jquery;
         let form = layui.form;
+        let dtree = layui.dtree;
 
         //渲染数据表格
         let roleTable=table.render({
@@ -144,6 +147,8 @@
                 doDelete(data);
             }else if (event=="update"){
                 openUpdate(data);
+            }else if (event=="selectMenu"){
+                openSelectMenuLayer(data);
             }
 
         })
@@ -187,6 +192,30 @@
                 }
             })
         }
+
+        function openSelectMenuLayer(data){
+            mainIndex = layer.open({
+                type:1,
+                title:"分配["+ data.rolename +"]角色的权限",
+                content: "<ul id='menuTree' class='dtree'></ul>",   // 官网文档上可以直接渲染一段html代码,可以不去使用添加和修改的弹出层
+                area:['900px','600px'],             // 弹出层大小
+                btn:['确定分配','取消分配'],           // 弹出层按钮
+                btnAlign:"c",                       // 弹出层居中
+                success:function (){
+                    dtree.render({
+                        elem: "#menuTree",      // 直接渲染content里上面这段代码
+                        dataStyle: "layuiStyle",        //使用layui风格的数据格式
+                        dataFormat: "list",     // layui+list风格
+                        response:{message:"msg",statusCode:0},  //修改response中返回数据的定义
+                        checkbar:true //开启复选框
+
+
+                    })
+                }
+
+            })
+        }
+
         // 打开修改的弹出层
         function openUpdate(data){
             mainIndex = layer.open({
