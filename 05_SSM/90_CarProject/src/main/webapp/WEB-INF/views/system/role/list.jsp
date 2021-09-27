@@ -197,7 +197,7 @@
             mainIndex = layer.open({
                 type:1,
                 title:"分配["+ data.rolename +"]角色的权限",
-                content: "<ul id='menuTree' class='dtree'></ul>",   // 官网文档上可以直接渲染一段html代码,可以不去使用添加和修改的弹出层
+                content: "<ul id='menuTree' class='dtree' data-id='0'></ul>",   // 官网文档上可以直接渲染一段html代码,可以不去使用添加和修改的弹出层
                 area:['900px','600px'],             // 弹出层大小
                 btn:['确定分配','取消分配'],           // 弹出层按钮
                 btnAlign:"c",                       // 弹出层居中
@@ -207,9 +207,13 @@
                         dataStyle: "layuiStyle",        //使用layui风格的数据格式
                         dataFormat: "list",     // layui+list风格
                         response:{message:"msg",statusCode:0},  //修改response中返回数据的定义
-                        checkbar:true //开启复选框
-
-
+                        checkbar:true, //开启复选框
+                        icon:"4",
+                        url:"${ctx}/menu/loadMenuTreeJson.action",
+                        selectInputName:{
+                            nodeId:"pid",
+                            context:"parent_title"
+                        }
                     })
                 }
 
