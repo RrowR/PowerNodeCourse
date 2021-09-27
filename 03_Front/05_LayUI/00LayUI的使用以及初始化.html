@@ -27,5 +27,13 @@
 
 </body>
 <script src="layui/layui.js"></script>
-
+<script>
+    // 从 layui 2.6 开始，如果你引入的是构建后的 layui.js，里面即包含了 layui 所有的内置模块，无需再指定内置模块。
+    layui.define(function () {
+        var layer = layui.layer
+            ,form = layui.form
+            ,table = layui.table;
+        layer.msg("hello world");
+    })
+</script>
 </html>
