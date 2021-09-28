@@ -17,7 +17,7 @@ hero:
     k2: v2
     k3: v3
   users:
-    - username: 美美
+    - username: ${data.config.username}
       age: ${data.age}
 
     - username: 美美2
