@@ -6,11 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Data
-@Component      // 标记为spring的一个组件
-@ConfigurationProperties(prefix = "user") // 使用user前缀去ioc容器里面读取配置文件
+@Component              // 必须加入到spring容器里之后才可以使用spring的注解
 public class User {
     @Value("${user.username}")
     private String username;
-    @Value("${username.age}")
+    @Value("${user.age}")
     private Integer age;
 }
