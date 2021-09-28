@@ -21,5 +21,6 @@ public class Hero {
     private List<String> list;
     private Set<String> set;
     private Map<String, String> map;
-
+    
+    private List<User> users;
 }
