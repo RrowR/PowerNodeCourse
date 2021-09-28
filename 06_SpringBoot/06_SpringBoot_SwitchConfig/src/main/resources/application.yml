@@ -1,3 +1,3 @@
 spring:
   profiles:
-    active: pro       # 指向开发配置文件
+    active: dev       # 指向开发配置文件
