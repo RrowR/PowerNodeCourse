@@ -1,0 +1,8 @@
+# Hero
+hero:
+  id: 0001
+  age: 101
+  name: 猫羽雫
+  birth: 2005/12/1
+  hobby: 吃,喝,睡
+#  email: dsadasd2dsaas      // 后端验证 不是一个合法的电子邮件地址
