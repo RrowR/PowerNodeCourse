@@ -38,7 +38,7 @@ public class LoginController {
             if (user != null){
                 WebUtils.getSession().setAttribute(Constants.CURRENT_SESSION_USER_KEY,user);
                 // 在登陆成功的时候记录日志
-                logLoginService.insert(new LogLogin(user.getUserid(),user.getRealname(),user.getAddress(),new Date()));
+                logLoginService.insert(new LogLogin(user.getUserid(),user.getRealname()+"-"+user.getLoginname(),WebUtils.getRequest().getRemoteAddr(),new Date()));
                 return new Result(200,"登录成功");
             }else {
                 return new Result(-1,"用户名或密码不正确");
