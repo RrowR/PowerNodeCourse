@@ -1,0 +1,6 @@
+#spring:
+#  web:
+#    resources:
+#      static-locations:
+#        - classpath:/public
+#        - classpath:/templates
