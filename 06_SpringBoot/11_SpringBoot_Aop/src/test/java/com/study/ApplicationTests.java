@@ -14,7 +14,7 @@ class ApplicationTests {
     private Man man;
 
     @Autowired
-    private Eat user;
+    private Eat user;       // 注意: JDK代理注入的是接口
 
     @Test
     void contextLoads() {
