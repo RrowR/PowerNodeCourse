@@ -9,12 +9,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.study</groupId>
-    <artifactId>autoconfig</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>09_SpringBoot_AutoConfig</name>
-    <description>09_SpringBoot_AutoConfig</description>
+    <artifactId>logback</artifactId>
+    <version>1.0.0.Version</version>
+    <name>10_SpringBoot_Lokback</name>
+    <description>logback的配置</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
