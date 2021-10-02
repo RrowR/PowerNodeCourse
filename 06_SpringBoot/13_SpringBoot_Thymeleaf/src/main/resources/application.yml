@@ -1,0 +1,3 @@
+spring:
+  thymeleaf:
+    cache: false    # \u5173\u95ED\u5F00\u542F\u7F13\u5B58\uFF0C\u9ED8\u8BA4\u662F\u5F00\u542F\u72B6\u6001

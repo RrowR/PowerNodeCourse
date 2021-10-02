@@ -11,7 +11,7 @@
     <groupId>com.study</groupId>
     <artifactId>thymeleaf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>thymeleaf</name>
+    <name>13_SpringBoot_Thymeleaf</name>
     <description>使用Thymeleaf模版引擎</description>
     <properties>
         <java.version>11</java.version>
@@ -54,7 +54,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.5</version>
                 <configuration>
                     <excludes>
                         <exclude>

@@ -11,7 +11,7 @@
     <groupId>com.study</groupId>
     <artifactId>dynamicresources</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dynamicresources</name>
+    <name>12_SpringBoot_StaticResources</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>

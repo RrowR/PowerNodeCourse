@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- 这里需要添加thymeleaf的依赖 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>user数据</title>
+</head>
+<body>
+<span th:text="${user.id}"></span></br>
+<span th:text="${user.name}"></span></br>
+<span th:text="${user.sex}"></span></br>
+<!-- 改为定点数 minIntegerDigits 最小整数个数 decimalDigits 最小小数个数 -->
+<span th:text="${#numbers.formatDecimal(user.age,0,2)}"></span></br>
+<span th:text="${user.country}"></span></br>
+<span th:text="${user.phone}"></span></br>
+<!-- 使用日期格式化，这里的dates是没有再有一个大括号的，只要不写错就会有提示 -->
+<span th:text="${#dates.format(user.birth,'yyyy-MM-dd hh:mm:ss')}"></span></br>
+<span th:text="${user.salary}"></span></br>
+</body>
+</html>

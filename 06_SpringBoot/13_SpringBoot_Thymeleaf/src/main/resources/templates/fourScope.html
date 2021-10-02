@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>从4个容器里取值</title>
+</head>
+<body>
+    <!-- 默认取的就是model里的对象 -->
+    <div th:text="${name}"></div>
+    <div th:text="${#httpServletRequest.getAttribute('sex')}"></div>
+    <div th:text="${#session.getAttribute('age')}"></div>
+    <div th:text="${#servletContext.getAttribute('phone')}"></div>
+</body>
+</html>
