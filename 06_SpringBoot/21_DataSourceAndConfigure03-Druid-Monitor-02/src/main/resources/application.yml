@@ -1,0 +1,18 @@
+my:
+  druid:
+    url: jdbc:mysql://rrow.xyz:3307/springboot?serverTimezone=GMT%2B8
+    username: root
+    password: huangxiaodong
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 2
+    max-active: 10
+    min-idle: 3
+    validation-query: select 'x'
+    stat-view:
+      login-username: admin
+      login-password: admin
+      allow:
+      deny:
+      url-mapping:
+        - /druid/*
+        - /druid2/*
