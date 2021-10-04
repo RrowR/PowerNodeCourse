@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rrow.xyz:3307/springboot?serverTimezone=GMT%2B8
+    username: root
+    password: huangxiaodong
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      max-active: 10
+      min-idle: 2
+      validation-query: select count(1) from user
+      stat-view-servlet:
+        login-username: admin
+        enabled: true  #启用监控页
+        login-password: admin
+        allow:
+        deny:
+        url-pattern: /druid/*
