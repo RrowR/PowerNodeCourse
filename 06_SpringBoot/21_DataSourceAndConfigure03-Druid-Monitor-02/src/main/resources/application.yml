@@ -7,7 +7,7 @@ my:
     initial-size: 2
     max-active: 10
     min-idle: 3
-    validation-query: select 'x'
+    validation-query: select count(1) from user
     stat-view:
       login-username: admin
       login-password: admin
