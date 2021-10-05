@@ -3,7 +3,7 @@ package com.study.mapper;
 import com.study.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+//@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 

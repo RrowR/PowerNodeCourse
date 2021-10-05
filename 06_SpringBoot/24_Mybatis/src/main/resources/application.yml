@@ -11,10 +11,13 @@ spring:
       validation-query: select count(1) from user
       stat-view-servlet:
         login-username: admin
-        enabled: true  #\u542F\u7528\u76D1\u63A7\u9875
+        enabled: true  # 开始监控视图的Servlet
         login-password: admin
         allow:
         deny:
         url-pattern: /druid/*
 mybatis:
-  config-location: classpath:mybatis-cfg.xml
+#  mapper-locations: mapper/*.xml    # 直接扫描mapper,不需要加classpath
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  config-location: classpath:mybatis-cfg.xml   # 也可以使用配置文件的方式，但是不能与上面的共存 Property 'configuration' and 'configLocation' can not specified with together

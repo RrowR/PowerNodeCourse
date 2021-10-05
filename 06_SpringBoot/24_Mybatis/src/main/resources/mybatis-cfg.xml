@@ -9,4 +9,7 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"></mapper>
     </mappers>
+<!--    <plugins>-->
+<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>-->
+<!--    </plugins>-->
 </configuration>
