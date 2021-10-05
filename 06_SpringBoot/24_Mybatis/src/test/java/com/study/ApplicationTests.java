@@ -25,8 +25,8 @@ class ApplicationTests {
      */
     @Test
     void TestPageHelper(){
-        Page<User> page = userService.queryForPage(1,2);
-        System.out.println(page);
+        Page<User> page = userService.queryForPage(1,3);
+        System.out.println(page.getResult());
     }
 
 }

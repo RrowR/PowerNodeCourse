@@ -17,7 +17,7 @@ spring:
         deny:
         url-pattern: /druid/*
 mybatis:
-#  mapper-locations: mapper/*.xml    # 直接扫描mapper,不需要加classpath
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  config-location: classpath:mybatis-cfg.xml   # 也可以使用配置文件的方式，但是不能与上面的共存 Property 'configuration' and 'configLocation' can not specified with together
+  mapper-locations: mapper/*.xml    # 直接扫描mapper,不需要加classpath
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  config-location: classpath:mybatis-cfg.xml   # 也可以使用配置文件的方式，但是不能与上面的共存 Property 'configuration' and 'configLocation' can not specified with together
