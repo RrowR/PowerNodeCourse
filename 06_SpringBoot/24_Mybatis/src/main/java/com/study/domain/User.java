@@ -18,4 +18,11 @@ public class User {
     private String sex;
 
     private Date birth;
+
+    public User(String name, Integer age, String sex, Date birth) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.birth = birth;
+    }
 }

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
+
 @SpringBootTest
 class ApplicationTests {
 
@@ -27,6 +29,12 @@ class ApplicationTests {
     void TestPageHelper(){
         Page<User> page = userService.queryForPage(1,3);
         System.out.println(page.getResult());
+    }
+
+    @Test
+    void TestTransactional(){
+        int count = userService.insert(new User("nachaco2", 15, "女", new Date()));
+        System.out.println(count);
     }
 
 }

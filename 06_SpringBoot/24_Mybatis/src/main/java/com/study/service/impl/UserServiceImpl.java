@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import com.study.domain.User;
 import com.study.mapper.UserMapper;
 import com.study.service.UserService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,8 +24,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional(rollbackFor = {RuntimeException.class},propagation = Propagation.REQUIRED) // propagation = Propagation.REQUIRED 事务的传播特性
     public int insert(User record) {
-        return userMapper.insert(record);
+        int insert = userMapper.insert(record);
+        int j = 10 / 0;
+        return insert;
     }
 
     @Override
