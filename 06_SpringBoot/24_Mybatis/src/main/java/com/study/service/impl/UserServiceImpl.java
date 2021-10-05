@@ -1,10 +1,15 @@
 package com.study.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.study.domain.User;
 import com.study.mapper.UserMapper;
 import com.study.service.UserService;
+
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -39,6 +44,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public int updateByPrimaryKey(User record) {
         return userMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public Page<User> queryForPage(int i, int i1) {
+        Page<User> page = PageHelper.startPage(i, i1);
+        List<User> userList = userMapper.queryAll();
+        return page;
     }
 
 }
