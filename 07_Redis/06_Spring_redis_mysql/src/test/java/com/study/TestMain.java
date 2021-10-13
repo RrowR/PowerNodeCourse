@@ -42,8 +42,8 @@ public class TestMain {
     @Test
     void TestInsert(){
         service.insert(User.builder()
-                .name("猫羽雫")
-                .address("yotube")
+                .name("nachaco")
+                .address("pisiv")
                 .birth(new Date())
                 .flag(1)
                 .build()
