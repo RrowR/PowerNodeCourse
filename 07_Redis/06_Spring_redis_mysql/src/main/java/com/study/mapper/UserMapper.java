@@ -2,6 +2,9 @@ package com.study.mapper;
 
 import com.study.domain.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 
 public interface UserMapper {
@@ -16,4 +19,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    @Select("select * from user")
+    List<User> selectAll();
 }
