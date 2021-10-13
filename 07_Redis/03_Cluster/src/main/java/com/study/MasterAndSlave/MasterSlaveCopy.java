@@ -10,5 +10,6 @@ public class MasterSlaveCopy {
         jedis_02.slaveof("192.168.72.128",6379);
         jedis_01.set("kora","kora is mine");
         System.out.println(jedis_02.get("kora"));
+
     }
 }
