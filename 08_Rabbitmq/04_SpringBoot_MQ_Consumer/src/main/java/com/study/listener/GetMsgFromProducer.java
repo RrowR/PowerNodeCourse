@@ -2,6 +2,7 @@ package com.study.listener;
 
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -15,8 +16,14 @@ public class GetMsgFromProducer {
 ////        System.out.println(channel);
 //    }
 //
-    @RabbitListener(queues = {"spring.boot.queue"})
-    public void handlerHelloMsg2(Message message, Channel channel,String data){
+//    @RabbitListener(queues = {"spring.boot.queue"})
+//    public void handlerHelloMsg2(Message message, Channel channel,String data){
+////        System.out.println("我是第二个消费者"+message);
+//        System.out.println("我是第二个消费者"+data);
+//    }
+
+    @RabbitListener(queuesToDeclare = {@Queue("spring.boot.queue")})
+    public void handlerHelloMsg4(Message message, Channel channel,String data){
 //        System.out.println("我是第二个消费者"+message);
         System.out.println("我是第二个消费者"+data);
     }
