@@ -33,4 +33,13 @@ class ApplicationTests {
         }
     }
 
+    /*
+        路由直连模式，根据匹配的key规则来进行广播
+     */
+    @Test
+    void Test04(){
+        rabbitTemplate.convertAndSend("DirectEx","vip1","这是vip1才能接收到的内容");
+        rabbitTemplate.convertAndSend("DirectEx","vip2","这是vip2才能接收到的内容");
+
+    }
 }
