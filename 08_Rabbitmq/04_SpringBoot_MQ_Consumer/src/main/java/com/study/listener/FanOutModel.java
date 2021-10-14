@@ -10,17 +10,17 @@ import org.springframework.stereotype.Component;
 public class FanOutModel {
 
 
-    @RabbitListener(queuesToDeclare = {@Queue("fan.out.01"),@Queue("fan.out.02"),@Queue("fan.out.03")})
+    @RabbitListener(queuesToDeclare = {@Queue("fan.out.01")})
     public void FanOutModelReceive(String data){
         System.out.println("我是消费者1，监听" + data);
     }
 
-    @RabbitListener(queuesToDeclare = {@Queue("fan.out.01"),@Queue("fan.out.03")})
+    @RabbitListener(queuesToDeclare = {@Queue("fan.out.02")})
     public void FanOutModelReceive2(String data){
-        System.out.println("我是消费者2，监听3" + data);
+        System.out.println("我是消费者2，监听" + data);
     }
 
-    @RabbitListener(queuesToDeclare = {@Queue("fan.out.02"),@Queue("fan.out.03")})
+    @RabbitListener(queuesToDeclare = {@Queue("fan.out.03")})
     public void FanOutModelReceive3(String data){
         System.out.println("我是消费者3，监听" + data);
     }

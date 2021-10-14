@@ -23,12 +23,13 @@ class ApplicationTests {
         }
     }
 
+    /*
+        fanout广播模式
+     */
     @Test
     void test03(){
         for (int i = 1; i <= 2; i++) {
-            rabbitTemplate.convertAndSend("fan.out.01","fan.out.01 这是我发过来的10条消息的其中"+i+"条");
-            rabbitTemplate.convertAndSend("fan.out.02","fan.out.02 这是我发过来的10条消息的其中"+i+"条");
-            rabbitTemplate.convertAndSend("fan.out.03","fan.out.03 这是我发过来的10条消息的其中"+i+"条");
+            rabbitTemplate.convertAndSend("fanoutEx.boot","","这是我路由器发出的广播");
         }
     }
 
