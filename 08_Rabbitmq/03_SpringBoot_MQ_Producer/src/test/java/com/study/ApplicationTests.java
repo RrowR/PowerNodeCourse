@@ -52,4 +52,12 @@ class ApplicationTests {
         rabbitTemplate.convertAndSend("toPicEx","com.study","这个是com.study内容");
         rabbitTemplate.convertAndSend("toPicEx","com.kora","这个是com.kora内容");
     }
+
+    /*
+        测试进入路由后的回调,这里我们就拿fanout(广播)来进行测试
+     */
+    @Test
+    void WatchTest(){
+        rabbitTemplate.convertAndSend("fanoutEx.boot","这是fanout的路由");
+    }
 }
