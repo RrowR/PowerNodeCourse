@@ -1,11 +1,13 @@
 package com.study;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @SpringBootTest
 class ApplicationTests {
@@ -60,23 +62,32 @@ class ApplicationTests {
      */
     @Test
     public void WatchTest() throws Exception {
-        // 消息到达路由器的回调，一定会进去
-        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
-            System.out.println(correlationData);
-            // 成功进入交换机返回true，否则返回false
-            System.out.println(ack);
-            // 失败的原因
-            System.out.println(cause);
-        });
-        // 消息没有到达队列的回调
-        rabbitTemplate.setReturnsCallback(returnedMessage -> {
-            System.out.println(new String(returnedMessage.getMessage().getBody()));
-            System.out.println(returnedMessage.getExchange());
-            System.out.println(returnedMessage.getRoutingKey());
-            System.out.println(returnedMessage.getReplyText());
-            System.out.println(returnedMessage.getReplyCode());
-        });
-        rabbitTemplate.convertAndSend("DirectEx","vip2","这是Direct的路由");
+//        // 消息到达路由器的回调，一定会进去
+//        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
+//            System.out.println(correlationData);
+//            // 成功进入交换机返回true，否则返回false
+//            System.out.println(ack);
+//            // 失败的原因
+//            System.out.println(cause);
+//        });
+//        // 消息没有到达队列的回调
+//        rabbitTemplate.setReturnsCallback(returnedMessage -> {
+//            System.out.println(new String(returnedMessage.getMessage().getBody()));
+//            System.out.println(returnedMessage.getExchange());
+//            System.out.println(returnedMessage.getRoutingKey());
+//            System.out.println(returnedMessage.getReplyText());
+//            System.out.println(returnedMessage.getReplyCode());
+//        });
+        try {
+            rabbitTemplate.convertAndSend("DirectEx","vip2","这是Direct的路由",message -> {
+                // 设置message的后置增强的方法，我们可以在里面设置一个唯一的标识符，然后在发生进不去queue里面去取到这个值
+                message.getMessageProperties().setAppId(UUID.randomUUID().toString());
+                return message;
+            });
+        } catch (AmqpException e) {
+            // 出现异常的时候我们可以进行持久化
+            // 记录到mysql 并设置status=1
+        }
         System.in.read();
     }
 }
