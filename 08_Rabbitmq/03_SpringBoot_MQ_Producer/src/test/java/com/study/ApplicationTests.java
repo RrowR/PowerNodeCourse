@@ -16,4 +16,11 @@ class ApplicationTests {
         rabbitTemplate.convertAndSend("spring.boot.queue","这里Producer发过来的信息");
     }
 
+    @Test
+    void test02(){
+        for (int i = 1; i <= 10; i++) {
+            rabbitTemplate.convertAndSend("spring.boot.queue","这是我发过来的10条消息的其中"+i+"条");
+        }
+    }
+
 }
