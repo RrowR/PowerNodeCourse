@@ -5,6 +5,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
+
 @SpringBootTest
 class ApplicationTests {
 
@@ -54,10 +56,27 @@ class ApplicationTests {
     }
 
     /*
-        测试进入路由后的回调,这里我们就拿fanout(广播)来进行测试
+        测试进入路由后的回调,这里我们就拿Direct来进行测试
      */
     @Test
-    void WatchTest(){
-        rabbitTemplate.convertAndSend("fanoutEx.boot","这是fanout的路由");
+    public void WatchTest() throws Exception {
+        // 消息到达路由器的回调，一定会进去
+        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
+            System.out.println(correlationData);
+            // 成功进入交换机返回true，否则返回false
+            System.out.println(ack);
+            // 失败的原因
+            System.out.println(cause);
+        });
+        // 消息没有到达队列的回调
+        rabbitTemplate.setReturnsCallback(returnedMessage -> {
+            System.out.println(new String(returnedMessage.getMessage().getBody()));
+            System.out.println(returnedMessage.getExchange());
+            System.out.println(returnedMessage.getRoutingKey());
+            System.out.println(returnedMessage.getReplyText());
+            System.out.println(returnedMessage.getReplyCode());
+        });
+        rabbitTemplate.convertAndSend("DirectEx","vip2","这是Direct的路由");
+        System.in.read();
     }
 }

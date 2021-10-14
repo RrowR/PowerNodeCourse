@@ -21,11 +21,11 @@ public class TopicListener {
 
     @RabbitListener(queues = "topic.Q1")
     public void getTopic01(Message msg){
-        System.out.println("我是消费者1监听"+ Arrays.toString(msg.getBody()));
+        System.out.println("我是消费者1监听"+ new String(msg.getBody()));
     }
 
     @RabbitListener(queues = "topic.Q2")
     public void getTopic02(Message msg){
-        System.out.println("我是消费者2监听"+ Arrays.toString(msg.getBody()));
+        System.out.println("我是消费者2监听"+ new String(msg.getBody()));
     }
 }
