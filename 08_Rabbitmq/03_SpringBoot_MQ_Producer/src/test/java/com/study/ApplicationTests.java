@@ -40,6 +40,16 @@ class ApplicationTests {
     void Test04(){
         rabbitTemplate.convertAndSend("DirectEx","vip1","这是vip1才能接收到的内容");
         rabbitTemplate.convertAndSend("DirectEx","vip2","这是vip2才能接收到的内容");
+    }
 
+    /*
+        Topic 智能模式(通配符匹配模式)
+     */
+    @Test
+    void Test05(){
+        rabbitTemplate.convertAndSend("toPicEx","com.study.do","这个是com.study.do内容");
+        rabbitTemplate.convertAndSend("toPicEx","com.quo.do","这个是com.quo.do内容");
+        rabbitTemplate.convertAndSend("toPicEx","com.study","这个是com.study内容");
+        rabbitTemplate.convertAndSend("toPicEx","com.kora","这个是com.kora内容");
     }
 }
