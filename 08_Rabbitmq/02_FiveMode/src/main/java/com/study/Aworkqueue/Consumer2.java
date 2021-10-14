@@ -1,4 +1,4 @@
-package com.study.demo;
+package com.study.Aworkqueue;
 
 import com.rabbitmq.client.*;
 import com.study.utils.RabbitUtils;
