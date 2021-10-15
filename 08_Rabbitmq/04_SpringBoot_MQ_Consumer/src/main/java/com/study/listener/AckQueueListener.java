@@ -1,6 +1,7 @@
 package com.study.listener;
 
 import com.rabbitmq.client.Channel;
+import com.study.utils.BloomFilter;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,19 +97,32 @@ public class AckQueueListener {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Autowired
+    private BloomFilter bloomFilter;
+
     // 方式2 ,使用redis来记录
     @RabbitListener(queues = "ack.queue.04")
     public void RetryAckCode05(Message message, Channel channel) {
         System.out.println("我是消费者4，看到了" + new String(message.getBody()));
-        System.out.println("唯一报文id=" + message.getMessageProperties().getMessageId());
+        String messageId = message.getMessageProperties().getMessageId();
+        System.out.println("唯一报文id=" + messageId);
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         System.out.println(deliveryTag);
+        // 如果消息已经存在，则不允许消费
+        if (bloomFilter.isExist(messageId)){
+            try {
+                channel.basicNack(deliveryTag,false,true);
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         try {
             toSaveUser();
             // 成功了就签收
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+            bloomFilter.addBloom(messageId);
         } catch (Exception e) {
-            String messageId = message.getMessageProperties().getMessageId();
             // 把这个唯一id传到redis里面去,这里不需要设置值再进行赋值的操作
             Long increment = redisTemplate.opsForValue().increment(messageId);
             if (increment < 3L){
@@ -124,6 +138,8 @@ public class AckQueueListener {
             try {
                 // 如果所有的其他队列加起来已经操作3次了，那么我们直接签收
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+                // 这里倒是没有存位图，而且messageID的value在redis里已经+3了，有一些问题，我这里还是存吧，可是这样会找不到这个消息
+                bloomFilter.addBloom(messageId);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
