@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    addresses: localhost
+    addresses: 192.168.72.128
     port: 5672
     username: admin
     password: 123456
@@ -8,3 +8,13 @@ spring:
     cache:
       channel:
         checkout-timeout: 5000
+    listener:
+      simple:
+        acknowledge-mode: manual    # 开启手动签收
+      direct:
+        acknowledge-mode: manual    # 设置直连模式手动签收
+  redis:
+    port: 6379
+    host: 192.168.72.128
+    database: 15
+    connect-timeout: 5000
