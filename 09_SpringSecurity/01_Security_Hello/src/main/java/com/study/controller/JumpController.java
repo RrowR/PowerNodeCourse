@@ -10,11 +10,6 @@ public class JumpController {
         return "jumped to welcome";
     }
 
-    @RequestMapping("login")
-    public String login(){
-        return "jumped to login";
-    }
-
     @RequestMapping("free")
     public String free(){
         return "jumped to free";

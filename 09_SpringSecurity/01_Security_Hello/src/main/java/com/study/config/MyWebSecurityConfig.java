@@ -33,9 +33,10 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 登录成功跳转到成功页面
         http.formLogin()
                 .successForwardUrl("/welcome")
-                .failureForwardUrl("/fail");
+                .failureForwardUrl("/login");
 
         // 对接口进行权限控制
         http.authorizeRequests()
