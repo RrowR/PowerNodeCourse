@@ -15,10 +15,12 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("hxd")
                 .password(passwordEncoder().encode("hxd"))          // 这里只能加密不能解密，然后进行输入验证
                 .roles("ADMIN")
+                .authorities("sys:add","sys:del","sys:update","sys:query")      // 设置权限
                 .and()
                 .withUser("hxh")
                 .password(passwordEncoder().encode("hxh"))
-                .roles("TEST");
+                .roles("TEST")
+                .authorities("sys:query");
     }
 
     @Bean
