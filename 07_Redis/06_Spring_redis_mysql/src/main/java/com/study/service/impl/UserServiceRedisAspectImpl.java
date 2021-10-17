@@ -23,7 +23,9 @@ public class UserServiceRedisAspectImpl implements UserService{
     @Autowired
     private JedisPool jedisPool;
 
-    private final String userAllPrefix = "user:all";
+    private final String userAllPrefix = "user:";
+
+    private final String userPrefix = "user:";
 
     @Override
     public User selectByPrimaryKey(Integer id) {
