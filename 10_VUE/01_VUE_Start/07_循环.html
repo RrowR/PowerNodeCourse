@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(item,index) in nums">
+            {{item}}  ------> {{index}}
+        </div>
+
+        <button @click="addnum">点击我添加</button>
+        <button @click="delnum">点击我删除</button>
+        <button @click="delnum2">点击我删除2</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            nums: [1,2,3,4,5,6,7]
+        },
+        methods:{
+            addnum(){
+                this.nums.push(Math.random());
+            },
+            delnum(){
+                this.nums.pop();
+            },
+            delnum2(){
+                this.nums.splice(1,2);
+            }
+        }
+    })
+</script>
+</html>

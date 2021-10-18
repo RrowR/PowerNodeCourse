@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<style>
+    .red{
+        color: red;
+    }
+    .blue{
+        color: blue;
+    }
+    .pink{
+        color: pink;
+    }
+
+</style>
+<body>
+    <div id="app">
+        <span v-bind:class="yanse">我是字体</span>
+        <span :class="yanse">我是字体</span>
+        <span :class="flag ? 'red' : 'blue' ">我是字体2</span>
+        <button v-on:click="clickToChangeColor">点击变色</button>
+        <button v-on:click="clickToChangeColor2">点击变色2</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            yanse: "pink",
+            flag: "flag"
+        },
+        methods:{
+            clickToChangeColor() {
+                this.yanse = "blue"
+            },
+            clickToChangeColor2() {
+                this.flag = !(this.flag)
+            }
+        }
+    })
+</script>
+</html>

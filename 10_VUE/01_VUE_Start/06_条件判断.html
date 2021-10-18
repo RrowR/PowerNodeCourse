@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if="status">
+        显示 true
+    </div>
+    <div v-else="status">
+        显示false
+    </div>
+    <div v-show="flag==1">
+        显示
+    </div>
+</div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            status: true,
+            flag:1
+        }
+    })
+</script>
+</html>

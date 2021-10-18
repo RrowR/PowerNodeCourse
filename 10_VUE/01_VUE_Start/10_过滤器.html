@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+        <span v-for="(user,index) in users">
+            {{user.id}} ===> {{user.name}} ===> {{user.sal|handlerMoney}} ---> {{user.birth|handerDate}} ---> {{index}}
+        <br>
+    </span>
+</div>
+</body>
+<script>
+
+    Vue.filter("handerDate",function (value) {
+        return value.getFullYear() + "年" + (value.getMonth()+1) + "月" + value.getDate() + "日"
+    })
+
+    new Vue({
+        el: "#app",
+        data: {
+            users: [
+                {id: 1, name: "猫羽雫", sal: 155.555512, birth: new Date()},
+                {id: 2, name: "美美", sal: 155231.555512, birth: new Date()},
+                {id: 3, name: "镜华", sal: 1155.5125512, birth: new Date()},
+                {id: 4, name: "angel", sal: 15215.551125512, birth: new Date()}
+            ]
+        },
+        filters: {
+            handlerMoney(value) {
+                return value.toFixed(5);
+            }
+        }
+    })
+</script>
+</html>

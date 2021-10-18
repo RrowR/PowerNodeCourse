@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="num1">
+    <select v-model="operation">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" v-model="num2">
+    <button @click="culc">=</button>
+    <input type="text" readonly v-model="num3">
+</div>
+</body>
+<script>
+    new Vue({
+        el: "#app"
+        , data: {
+            num1: 0,
+            num2: 0,
+            operation: "+",
+            num3: 0
+        },
+        methods: {
+            culc() {
+                switch (this.operation){
+                    case "+":
+                        this.num3 = parseInt(this.num1) + parseInt(this.num2);
+                        break;
+                    case "-":
+                        this.num3 = parseInt(this.num1) - parseInt(this.num2);
+                        break;
+                    case "*":
+                        this.num3 = parseInt(this.num1) * parseInt(this.num2);
+                        break;
+                    case "/":
+                        let num2 = parseInt(this.num2)
+                        if (num2 === 0){
+                            alert("除数不能为0");
+                            break;
+                        }
+                        this.num3 = parseInt(this.num1) / parseInt(num2);
+                        break;
+                }
+            }
+        }
+
+    })
+</script>
+</html>

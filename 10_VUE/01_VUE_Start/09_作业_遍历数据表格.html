@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/layui.css">
+</head>
+<body>
+    <div id="app">
+        <div class="layui-inline">
+            <label class="layui-form-label">ID</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="id" v-model="id" class="layui-input" placeholder="ID">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="username" v-model="username" class="layui-input" placeholder="用户名">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="address" v-model="address" class="layui-input" placeholder="地址">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="sex" v-model="sex" class="layui-input" placeholder="性别">
+            </div>
+            <button class="layui-btn layui-btn-warm" @click="doAdd">添加</button>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">搜索</label>
+            <div class="layui-input-inline" style="width: 150px">
+                <input type="text" name="search" v-model="search" class="layui-input" placeholder="根据名称搜索">
+
+            </div>
+            <button class="layui-btn layui-btn-warm" @click="doSearch">搜索</button>
+        </div>
+        <!-- 表格-->
+        <table class="layui-table">
+            <tr>
+                <th>编号</th>
+                <th>用户名</th>
+                <th>地址</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(user,index) in users">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.sex}}</td>
+                <td>
+                    <button class="layui-btn layui-btn-warm" @click="infoUser(index)">去修改</button>
+                    <button class="layui-btn layui-btn-danger" @click="delUser(user.id)">删除</button>
+                </td>
+            </tr>
+        </table>
+        <!-- 回显-->
+        <h1>修改用户</h1>
+        <div class="layui-inline">
+            <label class="layui-form-label">ID</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="id" v-model="updateUser.id" READONLY class="layui-input" placeholder="ID">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="username" v-model="updateUser.username" class="layui-input" placeholder="用户名">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="address" v-model="updateUser.address" class="layui-input" placeholder="地址">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline" style="width: 100px">
+                <input type="text" name="sex" v-model="updateUser.sex" class="layui-input" placeholder="性别">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-warm" @click="doUpdate">做修改</button>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            id: undefined,
+            username: "",
+            address: "",
+            sex: "",
+            search: "",
+            users: [
+                {id: 1, username: "刘备", address: "蜀国", sex: "男"},
+                {id: 2, username: "孙权", address: "吴国", sex: "男"},
+                {id: 3, username: "曹操", address: "魏国", sex: "男"},
+                {id: 4, username: "吕布", address: "群", sex: "男"}
+            ],
+            updateUser: {
+                id: undefined,
+                username: "",
+                address: "",
+                sex: ""
+            }
+        },
+        methods: {
+            doAdd() {
+                let newUser = {
+                    id: this.id,
+                    username: this.username,
+                    address: this.address,
+                    sex: this.sex
+                }
+                // 插入到数组中去
+                this.users.push(newUser);
+            },
+            infoUser(index) {
+                let user = this.users[index];
+                this.updateUser.id = user.id;
+                this.updateUser.username = user.username;
+                this.updateUser.address = user.address;
+                this.updateUser.sex = user.sex;
+            },
+            delUser(id) {
+                // this.users.splice(index,1);
+                // ES6  findIndex 断言  就是一个布尔表示
+                let index = this.users.findIndex(user => {
+                    if (user.id === id) {
+                        return true;
+                    }
+                })
+                this.users.splice(index, 1)
+            },
+            doSearch() {
+                let search = this.search;
+                console.log(search)
+                let newArr = [];
+                // 循环数组 判断名字中包含刘的
+                this.users.filter(user => {
+                    console.log(user.username)
+                    if (user.username.indexOf(search) > -1) {
+                        newArr.push(user)
+                    }
+                })
+                // 重新渲染
+                this.users = newArr;
+            },
+            doUpdate() {
+                // 循环找到id想同
+                this.users.forEach(user => {
+                    if (user.id === this.updateUser.id) {
+                        user.username = this.updateUser.username;
+                        user.address = this.updateUser.address;
+                        user.sex = this.updateUser.sex;
+                    }
+                })
+            }
+
+        }
+
+    })
+</script>
+</html>

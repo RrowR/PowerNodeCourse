@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <span v-for="(user,index) in users">
+        {{user.id}} ===> {{user.name}} ===> {{user.age}} ---> {{user.hobby}} ---> {{index}}
+        <br>
+    </span>
+    <input type="text" placeholder="请输入id" v-model="id">
+    <input type="text" placeholder="请输入name" v-model="name">
+    <input type="text" placeholder="请输入age" v-model="age">
+    <input type="text" placeholder="请输入hobby" v-model="hobby">
+    <button v-on:click="toadd">舔我添加</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            users:[
+                {id:1,name:"猫羽雫",age:16,hobby:"adorable1"},
+                {id:2,name:"美美",age:10,hobby:"adorable2"},
+                {id:3,name:"镜华",age:8,hobby:"adorable3"},
+                {id:4,name:"angel",age:17,hobby:"adorable4"}
+            ],
+            id:undefined,
+            name:undefined,
+            age:undefined,
+            hobby:undefined
+
+        },
+        methods:{
+            toadd(){
+                this.users.push({id : this.id,name : this.name,age : this.age,hobby : this.hobby})
+            }
+        }
+    })
+</script>
+</html>

@@ -1,6 +1,5 @@
 package com.study;
 
-import com.study.domain.User;
 import com.study.service.UserService;
 import com.study.service.impl.UserServiceRedisAspectImpl;
 import org.junit.jupiter.api.Test;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="div1">
+        {{ msg }}
+        <button @click="clickMe">点击我</button>
+    </div>
+
+    <div id="div2">
+        {{ msg }}
+        <button v-on:click="clickMe">点击我</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#div1",
+        data:{
+            msg:"hello vue",
+        },
+        methods:{
+            clickMe(){
+                alert("我被点击了")
+            },
+        }
+    })
+
+    new Vue({
+        el: "#div2",
+        data:{
+            msg:"hello vue",
+        },
+        methods:{
+            clickMe(){
+                alert("我被点击了")
+            },
+        }
+    })
+</script>
+</html>

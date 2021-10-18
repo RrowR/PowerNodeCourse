@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <h1>属性绑定</h1>
+    <div id="app" align="center">
+        <img v-bind:src="src" v-bind:alt="alt" v-bind:title="title" height="200px" width="auto" >
+        <br>
+        <a v-bind:href="href">click me to baidu</a><br>
+        <a :href="href">click me to baidu</a><br>
+    <h1>事件绑定</h1>
+        <input type="text" v-on:click="oneclick" >
+        <input type="text" v-on:dblclick="twoclick" >
+        <div v-on:click="clickPic" @mousedown="mouthisDown" @mouseup="mouthisUp" @mouseenter="mouthisEnter" @mouseout="mouseIsOut">
+            <img src="./pic/3.png" alt="图裂了..." title="这是一张图片" style="width: 500px;height: auto">
+        </div>
+        <h1>双向绑定</h1>
+        <input type="text" v-model="name">
+        <br>
+        {{name}}
+        <button @click="clickToChange">点击变换值</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app"
+        ,data:{
+            src:"./pic/1.jpg",
+            alt:"图看不见了",
+            title:"碧蓝航线",
+            href:"http://www.baidu.com",
+            name:"Mr.san"
+        },
+        methods:{
+            oneclick(){
+                alert("我被单击了...")
+            },
+            twoclick(){
+                alert("我被双击了...")
+            },
+            clickPic(){
+                console.log("图片被点击了")
+            },
+            mouthisDown(){
+                console.log("鼠标按下")
+            },
+            mouthisUp(){
+                console.log("鼠标抬起")
+            },
+            mouthisEnter(){
+                console.log("鼠标进入")
+            },
+            mouseIsOut(){
+                console.log("鼠标移出")
+            },
+            clickToChange(){
+                this.name = "这是新的值"
+            }
+        }
+    })
+</script>
+</html>

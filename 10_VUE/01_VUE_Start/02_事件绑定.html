@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02_事件绑定</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 胡子语法可以直接取值 -->
+        {{t}}<br>
+        <span v-text="t"></span><br>
+        <span v-html="h"></span>
+        {{name}}
+        <hr/>
+        <span>
+            {{name}}
+            <!-- v-pre将不会编译 -->
+            <span v-pre>{{name}}</span>
+        </span>
+        <hr>
+        {{hobby}}
+        <br>
+        <span v-once>
+            {{hobby}}
+            <br>
+            {{hobby}}
+        </span>
+        <button v-on:click="clickMe">点击我</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            t:"<i style='color: red'>i am message</i>",
+            h:"<i style='color: red'>i am message</i>",
+            name:"hxd",
+            hobby:"entertain"
+        },
+        methods:{
+            clickMe(){
+                this.hobby = "play";
+            }
+        }
+    })
+</script>
+</html>
