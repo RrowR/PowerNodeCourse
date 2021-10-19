@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-Vue的生命周期</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{username}}
+        <button @click="changeVal">点击我改变值</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            username:"zhangsan"
+        },
+        beforeCreate(){
+            console.log("beforeCreate==>"+this.username)
+        },
+        created(){
+            console.log("created===>"+this.username)
+        },
+        beforeMount(){
+            console.log("beforeMount===>"+this.username)
+        },
+        mounted(){
+            console.log("mounted===>"+this.username)
+        },
+        beforeUpdate(){
+            console.log("beforeUpdate===>"+this.username)
+        },
+        updated(){
+            console.log("updated===>"+this.username)
+        },
+        beforeDestroy(){
+            console.log("beforeDestroy===>"+this.username)
+        },
+        destroyed(){
+            console.log("destroyed===>"+this.username);
+        },
+        methods:{
+            changeVal(){
+                this.username = "hxd";
+            }
+        }
+
+    })
+</script>
+</html>
