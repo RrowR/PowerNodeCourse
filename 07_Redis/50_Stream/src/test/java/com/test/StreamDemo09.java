@@ -36,5 +36,7 @@ public class StreamDemo09 {
          */
         Map<String, List<Person>> userMap = personList.stream().collect(Collectors.groupingBy(Person::getSex));
         System.out.println(userMap);
+        Map<String, Map<String, List<Person>>> collect1 = personList.stream().collect(Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getArea)));
+        System.out.println(collect1);
     }
 }
