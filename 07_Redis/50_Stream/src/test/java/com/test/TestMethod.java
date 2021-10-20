@@ -3,12 +3,13 @@ package com.test;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class TestDemo {
+public class TestMethod {
     @Test
     void MethodTest() {
         for (int i = 0; i < 10; i++) {
@@ -48,5 +49,22 @@ public class TestDemo {
                 System.out.println(value);
             }
         });
+    }
+
+    @Test
+    void StudyParallelStreamToSum() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        Integer reduce = list.parallelStream().reduce(0, (a, b) -> {
+            System.out.println("a = " + a);
+            System.out.println("b = " + b);
+            return a + b;
+        }, (c1, c2) -> {
+            System.out.println("我执行了....");
+            System.out.println("c1 = " + c1);
+            System.out.println("c2 = " + c2);
+            return c1 + c2;
+        });
+
+        System.out.println(reduce);
     }
 }

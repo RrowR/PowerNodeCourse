@@ -52,6 +52,5 @@ public class StreamDemo {
         Stream<Integer> stream1 = stream.parallel().filter(a -> a > 11);
         stream1.forEach(System.out::println);
         System.out.println(optional.get());
-
     }
 }
