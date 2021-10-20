@@ -55,7 +55,7 @@ public class User {
         BigDecimal sum = User.users.stream().map(User::getScore).reduce(BigDecimal::add).get();
         System.out.println(sum);
         // 7. 找出爱好中包含睡觉的英雄，跳过第一个，并且计算他们的平均价格
-        Double sumprice = User.users.stream().filter(x -> x.getHobby().contains("睡觉")).skip(0).collect(Collectors.averagingDouble(User::getPrice));
+        Double sumprice = User.users.stream().filter(x -> x.getHobby().contains("睡觉")).skip(1).collect(Collectors.averagingDouble(User::getPrice));
         System.out.println(sumprice);
     }
 }
