@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    I am outer
+    <mycomponent02></mycomponent02>
+    <mycomponent02></mycomponent02>
+    <mycomponent02></mycomponent02>
+    <mycomponent02></mycomponent02>
+</div>
+</body>
+<script>
+    Vue.component("mycomponent02", {
+        template: "<div>this is my 02component</div>"
+    })
+
+    new Vue({
+        el: "#app",
+        data:{}
+    })
+</script>
+</html>

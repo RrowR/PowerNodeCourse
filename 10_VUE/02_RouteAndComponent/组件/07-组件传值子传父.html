@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    I am father and I have {{house}} waiting for son buy car to send me as gift
+    <h2 style="color: red">but ! I have {{mycar}}</h2>
+    <child></child>
+</div>
+<template id="children">
+    <div>
+        I am son And I prepare a {{car}} to gift to my father
+    </div>
+</template>
+</body>
+<script>
+
+    let child = {
+        template: "#children",
+        data() {
+            return {
+                car: "保时捷"
+            }
+        }
+    }
+
+    Vue.component("child", child);
+
+    new Vue({
+        el: "#app",
+        data: {
+            house: "汤臣一品",
+            mycar: "劳斯莱斯"
+        }
+    })
+</script>
+</html>

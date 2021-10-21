@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    I am father component and I has money
+    <!-- 一旦标签设置成驼峰，那么将会被解析成小写前面加一个-的模式 -->
+    <!-- 父组件给子标签一个自定义属性 parent-moneys -->
+    <b-children :parent-moneys="moneyk"></b-children>
+</div>
+
+<template id="children">
+    <div>
+        <h2>
+            I am children my name is {{childname}} has money {{childmoney}}
+        </h2>
+        <button @click="getMoneyByFather">点击从父亲那里获得金钱</button>
+    </div>
+</template>
+</body>
+
+
+<script>
+
+
+    let children = {
+        template: "#children",
+        data() {
+            return {
+                childname: "猫羽雫",
+                childmoney: 0
+            }
+        },
+        props: {
+            parentMoneys: {
+                type: Number,
+                default: 0
+            }
+        },
+        methods: {
+            getMoneyByFather(){
+                this.childmoney = this.parentMoneys;
+            }
+        }
+    }
+
+    Vue.component("bChildren", children);
+
+    new Vue({
+        el: "#app",
+        data: {
+            moneyk: 999
+        }
+    })
+
+
+</script>
+</html>

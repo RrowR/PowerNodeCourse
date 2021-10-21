@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app1">
+    I am app1 outer
+    <app1-compo></app1-compo>       <!-- 只能在app1里生效 -->
+</div>
+<div id="app2">
+    I am app2 outer
+    <my-temp></my-temp>
+</div>
+
+
+</body>
+<template id="ownTemp">
+    <div>
+        <h1>第三种</h1>
+        <h1>{{name}} -- {{age}}</h1>
+        <button @click="innerMethod">组件里的按钮</button>
+    </div>
+</template>
+<script>
+
+    let templateDemo = {
+        template: "#ownTemp",
+        data() {
+            return {
+                name: "aaa",
+                age: 16
+            }
+        },
+        methods: {
+            innerMethod() {
+                alert("老铁666");
+            }
+        }
+
+    }
+
+    // 注册成一个全局组件
+    Vue.component("my-temp", templateDemo);
+
+    new Vue({
+        el: "#app1",
+        // 这是一个局部组件，只能给app1用
+        components: {
+            "app1-compo": templateDemo
+        }
+    })
+
+    // 必须要有vue实例才可以将自定义组件放到vue实例里去
+    new Vue({
+        el: "#app2",
+
+    })
+
+</script>
+</html>

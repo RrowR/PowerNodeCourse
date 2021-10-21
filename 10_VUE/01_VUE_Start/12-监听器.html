@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <hr>
+    {{user.username}}---{{user.age}}
+    <button @click="changeId">点我改变id的值</button>
+    <button @click="changeAge">点我改变user的年龄</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            id:1,
+            user: {
+                username: "超人",
+                age: 100
+            }
+        },
+        watch:{
+            id(newVal,oldVal){
+                console.log(newVal);
+                console.log(oldVal);
+            },
+            'user.age'(newVal,oldVal){
+                console.log(newVal);
+                console.log(oldVal);
+            }
+        },
+        methods:{
+            changeId(){
+                this.id = this.id + 1;
+            },
+            changeAge(){
+                this.user.age = this.user.age + 1;
+            }
+        }
+    })
+</script>
+</html>

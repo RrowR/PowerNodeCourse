@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <component :is="componentName"></component>
+    </div>
+<template id="login">
+   <div>
+       <h1>登录</h1>
+   </div>
+</template>
+
+    <template id="register">
+        <div>
+            <h1>
+                我是注册的组件
+            </h1>
+        </div>
+    </template>
+
+    <template id="phone">
+        <div>
+            <h1>手机短信登录</h1>
+        </div>
+    </template>
+</body>
+<script>
+    let loginb = {
+        template: "#login",
+        data() {
+            return {
+                status: 1
+            }
+        },
+        methods: {}
+    }
+
+    let registerb = {
+        template: "#register",
+        data() {
+            return {}
+        },
+        methods: {}
+    }
+
+    let phoneb  = {
+        template: "#phone",
+        data() {
+            return {}
+        },
+        methods: {}
+    }
+
+    Vue.component("alogin", loginb);
+    Vue.component("aregister", registerb);
+    Vue.component("aphone", phoneb);
+
+    new Vue({
+        el:"#app",
+        data:{
+            componentName:"aregister"
+        },
+        methods:{
+
+        }
+    })
+</script>
+</html>

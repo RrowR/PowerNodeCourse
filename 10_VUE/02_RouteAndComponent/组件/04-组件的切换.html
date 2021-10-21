@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="flag=1">去登录</button>
+    <button @click="flag=2">去注册</button>
+    <login v-if="flag==1"></login>
+    <register v-else></register>
+</div>
+</body>
+<template id="login">
+    <div>
+        <h1>我是login template</h1>
+        <!-- 组件最外层必须要有有一层div套着 -->
+        <button @click="status=1">手机验证码登录</button>
+        <button @click="status=2">密码登录</button>
+        <phone v-if="status==1"></phone>
+        <secret v-else></secret>
+    </div>
+</template>
+
+<template id="register">
+    <div>
+        <h1>
+            我是注册的组件
+        </h1>
+    </div>
+</template>
+
+<template id="phone">
+    <div>
+        <h1>手机短信登录</h1>
+    </div>
+</template>
+
+<template id="secret">
+    <div>
+        <h1>密码登录</h1>
+    </div>
+</template>
+
+<script>
+    let login = {
+        template: "#login",
+        data() {
+            return {
+                status: 1
+            }
+        },
+        methods: {}
+    }
+
+    let register = {
+        template: "#register",
+        data() {
+            return {
+            }
+        },
+        methods: {}
+    }
+
+
+    let phone = {
+        template: "#phone",
+        data() {
+            return {
+            }
+        },
+        methods: {}
+    }
+
+    let secret = {
+        template: "#secret",
+        data() {
+            return {
+            }
+        },
+        methods: {}
+    }
+
+    // 注册全局组件
+    Vue.component("login", login);
+    Vue.component("register", register);
+    Vue.component("phone", phone);
+    Vue.component("secret", secret);
+
+    new Vue({
+        el: "#app",
+        data: {
+            flag: 1,
+        },
+        methods: {}
+    })
+</script>
+</html>

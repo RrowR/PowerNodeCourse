@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    我是div里的内容
+    <mycomponent></mycomponent>
+</div>
+</body>
+<script>
+    let mycomponent = Vue.extend({
+        template: "<div>this is my component <h2>hello h2</h2></div>"
+    })
+    Vue.component("mycomponent", mycomponent);
+    new Vue({
+        el: "#app",
+        data: {}
+    })
+</script>
+</html>
