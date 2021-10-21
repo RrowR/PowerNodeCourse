@@ -9,11 +9,13 @@
 <div id="app">
     I am father and I have {{house}} waiting for son buy car to send me as gift
     <h2 style="color: red">but ! I have {{mycar}}</h2>
-    <child></child>
+    <child @change="getCar"></child>
 </div>
 <template id="children">
     <div>
         I am son And I prepare a {{car}} to gift to my father
+        <br>
+        <button @click="sendGift">孝敬老人</button>
     </div>
 </template>
 </body>
@@ -25,6 +27,12 @@
             return {
                 car: "保时捷"
             }
+        },
+        methods: {
+            sendGift(){
+                // 子传父 是用事件机制来进行推送
+                this.$emit('change',this.car);
+            }
         }
     }
 
@@ -35,6 +43,12 @@
         data: {
             house: "汤臣一品",
             mycar: "劳斯莱斯"
+        },
+        methods:{
+            getCar(val){
+                console.log("father receive " + val);
+                this.mycar = val;
+            }
         }
     })
 </script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to="/toLogin?username=hxd&password=123456" tag="button">去登陆</router-link>
+    <router-link to="/toRegister" tag="button">去注册</router-link>
+    <router-view/>
+</div>
+</body>
+<template id="login">
+    <div>
+        <h1>LoginDash</h1>
+        用户名:<input type="text" name="username">
+        密码:<input type="text" name="password">
+    </div>
+</template>
+<template id="register">
+    <div>
+        <h1>这是一个注册的界面</h1>
+    </div>
+</template>
+<script>
+    let login = {
+        template: "#login",
+        data() {
+            return {
+                username: "",
+                password: ""
+            }
+        },
+        created(){
+            this.username = this.$route.query.username;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>主方法</h1>
+    <hr>
+    <router-link to="/toFirst" tag="button">去第一个</router-link>
+    <router-link to="/toSecond" tag="button">去第二个</router-link>
+    <hr>
+    <!--一个路由的占位符，当中由进行切换的时候，在路由中匹配到对应的组件，就显示在这个位置 -->
+    <router-view/>
+</div>
+<template id="first">
+    <div>这是我的第一个组件</div>
+</template>
+<template id="second">
+    <div>这是我的第二个组件</div>
+</template>
+</body>
+<script>
+    let first = {
+        template: "#first",
+        data() {
+            return {}
+        }
+    }
+
+    let second = {
+        template: "#second",
+        data() {
+            return {}
+        }
+    }
+
+    var myRouter = new VueRouter({
+        routes: [
+            {path: "/", "redirect": "/toSecond"},
+            {path: "/toFirst", component: first},
+            {path: "/toSecond", component: second},
+        ]
+    });
+
+    new Vue({
+        el: "#app",
+        router: myRouter,  // 将路由映射到实例中去
+        data: {}
+    })
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    我是父组件
+    <button @click="toSunDo">点击叫儿子做饭</button>
+    <sun ref="childRef"></sun>
+</div>
+</body>
+<template id="sunTemp">
+    <div>我是儿子</div>
+</template>
+<script>
+
+    let sun = {
+        template:"#sunTemp",
+        data(){
+            return {}
+        },
+        methods: {
+            showTime(){
+                alert("儿子来做饭了....")
+            }
+        }
+    }
+
+    // 全局引入组件 必须放到引入组件的下面才可以
+    Vue.component("sun",sun);
+
+
+
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            toSunDo(){
+                this.$refs.childRef.showTime();
+            }
+        }
+    })
+</script>
+</html>
