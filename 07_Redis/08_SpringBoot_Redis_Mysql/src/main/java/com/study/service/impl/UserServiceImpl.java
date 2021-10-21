@@ -1,23 +1,28 @@
 package com.study.service.impl;
 
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.study.domain.User;
 import com.study.mapper.UserMapper;
 import com.study.service.UserService;
 
+import java.util.List;
+
 @Service
-@CacheConfig(cacheNames = "com.study.service.impl.UserServiceImpl")
+@CacheConfig(cacheNames = "com.study.service.impl.UserServiceImpl")    // 分割
 public class UserServiceImpl implements UserService{
 
     @Resource
     private UserMapper userMapper;
 
     @Override
-    @CacheEvict("#id")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "#id"),
+                    @CacheEvict(key = "'user-all'")
+            }
+    )
     public int deleteByPrimaryKey(Integer id) {
         return userMapper.deleteByPrimaryKey(id);
     }
@@ -29,8 +34,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int insertSelective(User record) {
-        return userMapper.insertSelective(record);
+//    @CacheEvict(key = "'user-all'")
+//    @Cacheable
+    @Caching(evict = {
+            @CacheEvict(key = "'user-all'")
+    }//,cacheable = {
+//            @Cacheable(key = "#record.id")
+//    }
+            ,put = {@CachePut(key = "#record.id")}          // 先添加，在存，不然没有id(有是因为有mybatis的回调)
+    )
+    public User insertSelective(User record) {
+        int i = userMapper.insertSelective(record);
+        return record;
     }
 
     /*
@@ -45,14 +60,32 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    @Cacheable(key = "#record.id")
-    public int updateByPrimaryKeySelective(User record) {
-        return userMapper.updateByPrimaryKeySelective(record);
+//    @Cacheable(key = "#record.id")
+    @Caching(evict = {
+//            @CacheEvict(key = "#record.id"),
+            @CacheEvict(key = "'user-all'")
+    }
+//            cacheable = {
+//                @Cacheable(key = "#record.id")
+//            }
+            ,put = {
+            @CachePut(key = "#record.id")       // 先删除自己，再存到redis里去
+    }
+    )
+    public User updateByPrimaryKeySelective(User record) {
+        int i = userMapper.updateByPrimaryKeySelective(record);
+        return record;
     }
 
     @Override
     public int updateByPrimaryKey(User record) {
         return userMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    @Cacheable(key = "'user-all'")
+    public List<User> selectAll() {
+        return userMapper.selectAll();
     }
 
 }

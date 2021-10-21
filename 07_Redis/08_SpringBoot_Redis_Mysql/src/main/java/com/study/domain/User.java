@@ -1,5 +1,6 @@
 package com.study.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.*;
@@ -8,7 +9,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User implements Serializable {
     private Integer id;
 
     private String name;

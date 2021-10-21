@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://rrow.xyz:3307/redisstudy?serverTimezone=GMT%2B8
   redis:
-    host: rrow.xyz
+    host: 47.110.255.68
     port: 8000
     database: 0
     connect-timeout: 10000

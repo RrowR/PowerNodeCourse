@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @MapperScan(basePackages = {"com.study.mapper"})
-@EnableCaching      // 开启注解缓存
+@EnableCaching      // 开启注解缓存，使用的是序列化的方式
 public class Application {
 
     public static void main(String[] args) {
