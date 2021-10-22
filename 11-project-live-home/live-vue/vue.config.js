@@ -7,7 +7,7 @@ module.exports = {
                 target: 'http://localhost:8080',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': ''             // 会将 http://localhost8081/api/getBanner 替换成 http://ip:port/getBanner
+                    '^/api': ''    // 会将 http://localhost8081/api/getBanner 替换成 http://ip:port/getBanner
                 }
             }
         }

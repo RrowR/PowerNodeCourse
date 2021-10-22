@@ -3,11 +3,8 @@ package com.study.service.impl;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
-import com.study.domain.User;
-import com.study.mapper.UserMapper;
 import com.study.service.UserService;
 
-import java.util.List;
 
 @Service
 @CacheConfig(cacheNames = "com.study.service.impl.UserServiceImpl")    // 分割
