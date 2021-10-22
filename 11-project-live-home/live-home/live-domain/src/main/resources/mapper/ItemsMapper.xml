@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.ItemsMapper">
+  <resultMap id="BaseResultMap" type="com.study.domain.Items">
+    <!--@mbg.generated-->
+    <!--@Table items-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="sales" jdbcType="BIGINT" property="sales" />
+    <result column="recommendation" jdbcType="BOOLEAN" property="recommendation" />
+    <result column="recommendation_sort" jdbcType="INTEGER" property="recommendationSort" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, title, img, sales, recommendation, recommendation_sort, city
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from items
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from items
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.study.domain.Items" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into items (title, img, sales, 
+      recommendation, recommendation_sort, city
+      )
+    values (#{title,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{sales,jdbcType=BIGINT}, 
+      #{recommendation,jdbcType=BOOLEAN}, #{recommendationSort,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.study.domain.Items" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="sales != null">
+        sales,
+      </if>
+      <if test="recommendation != null">
+        recommendation,
+      </if>
+      <if test="recommendationSort != null">
+        recommendation_sort,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null">
+        #{sales,jdbcType=BIGINT},
+      </if>
+      <if test="recommendation != null">
+        #{recommendation,jdbcType=BOOLEAN},
+      </if>
+      <if test="recommendationSort != null">
+        #{recommendationSort,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.domain.Items">
+    <!--@mbg.generated-->
+    update items
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null">
+        sales = #{sales,jdbcType=BIGINT},
+      </if>
+      <if test="recommendation != null">
+        recommendation = #{recommendation,jdbcType=BOOLEAN},
+      </if>
+      <if test="recommendationSort != null">
+        recommendation_sort = #{recommendationSort,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.domain.Items">
+    <!--@mbg.generated-->
+    update items
+    set title = #{title,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=BIGINT},
+      recommendation = #{recommendation,jdbcType=BOOLEAN},
+      recommendation_sort = #{recommendationSort,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
