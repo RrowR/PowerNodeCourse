@@ -16,8 +16,8 @@
 <template id="login">
     <div>
         <h1>LoginDash</h1>
-        用户名:<input type="text" name="username">
-        密码:<input type="text" name="password">
+        用户名:<input type="text" v-model="username">
+        密码:<input type="text" v-model="password">
     </div>
 </template>
 <template id="register">
@@ -34,9 +34,21 @@
                 password: ""
             }
         },
-        created(){
+        created() {
             this.username = this.$route.query.username;
+            this.password = this.$route.query.password;
         }
     }
+
+    let register = {
+        template: "#register",
+        data() {
+            return {}
+        }
+    }
+
+    new VueRouter({
+
+    })
 </script>
 </html>
