@@ -1,44 +1,31 @@
 package com.study.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.study.domain.Banner;
 import com.study.mapper.BannerMapper;
 import com.study.service.BannerService;
-@Service
-public class BannerServiceImpl implements BannerService{
 
-    @Resource
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> implements BannerService{
+
+    @Autowired
     private BannerMapper bannerMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer id) {
-        return bannerMapper.deleteByPrimaryKey(id);
+    public List<String> getBanner() {
+//        List<String> paths = bannerMapper.selectBanner();
+        // 另一种写法,给LambdaQueryWrapper设置条件从而单表不需要写sql
+        List<Banner> banners = bannerMapper.selectList(new LambdaQueryWrapper<Banner>()
+                .orderByDesc(Banner::getBeginTime)
+                .last("limit 5")        // last是最后的语句
+        );
+        List<String> paths = banners.stream().map(Banner::getPath).collect(Collectors.toList());
+        return paths;
     }
-
-    @Override
-    public int insert(Banner record) {
-        return bannerMapper.insert(record);
-    }
-
-    @Override
-    public int insertSelective(Banner record) {
-        return bannerMapper.insertSelective(record);
-    }
-
-    @Override
-    public Banner selectByPrimaryKey(Integer id) {
-        return bannerMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(Banner record) {
-        return bannerMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKey(Banner record) {
-        return bannerMapper.updateByPrimaryKey(record);
-    }
-
 }

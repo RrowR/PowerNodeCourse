@@ -1,19 +1,8 @@
 package com.study.service;
 
 import com.study.domain.Order;
-public interface OrderService{
+import com.baomidou.mybatisplus.extension.service.IService;
+public interface OrderService extends IService<Order>{
 
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Order record);
-
-    int insertSelective(Order record);
-
-    Order selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Order record);
-
-    int updateByPrimaryKey(Order record);
 
 }

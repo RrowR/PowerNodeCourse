@@ -1,19 +1,8 @@
 package com.study.service;
 
 import com.study.domain.User;
-public interface UserService{
+import com.baomidou.mybatisplus.extension.service.IService;
+public interface UserService extends IService<User>{
 
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
 
 }

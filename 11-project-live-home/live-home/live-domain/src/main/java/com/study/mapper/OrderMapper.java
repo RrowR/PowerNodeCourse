@@ -1,19 +1,9 @@
 package com.study.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.study.domain.Order;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface OrderMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Order record);
-
-    int insertSelective(Order record);
-
-    Order selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Order record);
-
-    int updateByPrimaryKey(Order record);
+public interface OrderMapper extends BaseMapper<Order> {
 }

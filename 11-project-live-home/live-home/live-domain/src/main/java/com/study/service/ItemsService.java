@@ -1,19 +1,8 @@
 package com.study.service;
 
 import com.study.domain.Items;
-public interface ItemsService{
+import com.baomidou.mybatisplus.extension.service.IService;
+public interface ItemsService extends IService<Items>{
 
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Items record);
-
-    int insertSelective(Items record);
-
-    Items selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Items record);
-
-    int updateByPrimaryKey(Items record);
 
 }
