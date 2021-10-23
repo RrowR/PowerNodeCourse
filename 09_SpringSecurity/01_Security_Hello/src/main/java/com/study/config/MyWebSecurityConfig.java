@@ -16,16 +16,15 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("hxd")
                 .password(passwordEncoder().encode("hxd"))          // 这里只能加密不能解密，然后进行输入验证
                 .roles("ADMIN")
-                .authorities("sys:add","sys:del","sys:update","sys:query")      // 设置权限
-                .and()
-                .withUser("hxh")
-                .password(passwordEncoder().encode("hxh"))
-                .roles("TEST")
-                .authorities("sys:query")
+                .authorities("sys:add", "sys:del", "sys:update", "sys:query")      // 设置权限
                 .and()
                 .withUser("admin")
                 .password(passwordEncoder().encode("123456"))
-                .roles("ADMINdasdasdas");           // 一旦给角色设置权限，那么角色就消失了
+                .roles("TEST")
+                .and()
+                .withUser("hhh")
+                .password(passwordEncoder().encode("hhh"))
+                .roles("ADMINsdadada");           // 一旦给角色设置权限，那么角色就消失了
     }
 
     /*
@@ -46,7 +45,6 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/query").hasAnyAuthority("sys:query");
 
 
-
         // 放行控制
         http.authorizeRequests()
                 .antMatchers("/free")
@@ -59,7 +57,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

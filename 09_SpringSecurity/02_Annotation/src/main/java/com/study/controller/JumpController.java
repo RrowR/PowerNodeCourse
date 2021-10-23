@@ -1,5 +1,6 @@
 package com.study.controller;
 
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,56 +10,58 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class JumpController {
 
     @RequestMapping("welcome")
-    public String welcome(){
+    public String welcome() {
         return "welcome";
     }
 
     @RequestMapping("fail")
-    public String fail(){
+    public String fail() {
         return "fail";
     }
 
     @RequestMapping("free")
     @ResponseBody
-    public String free(){
+    public String free() {
         return "jumped to free";
     }
 
 
+    /*
+        @PreAuthorize("hasAuthority('sec:add')")  在执行这个方法之前就要进行权限的校验
+        @PostAuthorize("hasAnyAuthority('sec:add')")  在这个方法执行后进行校验
+     */
     @RequestMapping("add")
     @ResponseBody
     @PreAuthorize("hasAuthority('sec:add')")
-    public String add(){
+    public String add() {
         return "jumped to add";
     }
 
     @PreAuthorize("hasAuthority('sec:del')")
     @ResponseBody
     @RequestMapping("del")
-    public String del(){
+    public String del() {
         return "jumped to del";
     }
 
     @PreAuthorize("hasAuthority('sec:update')")
     @ResponseBody
     @RequestMapping("update")
-    public String update(){
+    public String update() {
         return "jumped to update";
     }
 
     @PreAuthorize("hasAuthority('sec:query')")
     @ResponseBody
     @RequestMapping("query")
-    public String query(){
+    public String query() {
         return "jumped to query";
     }
 
 
     @RequestMapping("other")
     @ResponseBody
-    public String other(){
+    public String other() {
         return "anywhere pages is me";
     }
-
-
 }

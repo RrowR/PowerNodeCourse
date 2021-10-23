@@ -13,13 +13,13 @@ import java.security.Principal;
 @RestController
 public class GerUserInfoController {
     @RequestMapping("userinfo")
-    public Principal getUserInfo(Principal principal){
+    public Principal getUserInfo(Principal principal) {
         // 从 Principal 对象中进行获取
         return principal;
     }
 
     @RequestMapping("userinfo2")
-    public Principal getUserInfo2(){
+    public Principal getUserInfo2() {
         // 获取SecurityContextHolder 上下文的方式
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication;

@@ -4,13 +4,18 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.common.Result;
 import com.study.constant.LoginConstant;
+import com.study.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -24,29 +29,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         // 忽略拦截的请求路径
-        web.ignoring().mvcMatchers("/swagger-ui/**",
-                "/druid/**"
-
-        );
+        web.ignoring().antMatchers(
+                "/swagger-ui/*",
+                "/swagger-resources/**",
+                "/v2/api-docs",
+                "/v3/api-docs",
+                "/webjars/**",
+                "/druid/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 关闭跨域请求伪造
         http.csrf().disable();
+        // 在进入项目的时候需要进行登录
         http.formLogin()
                 .loginProcessingUrl("/doLogin")
                 .successHandler(successHandler())
                 .failureHandler(failHandler())
-                .permitAll();       // 其余的直接放行
+                .permitAll();       // 允许上面的请求
 
         // 设置放行的请求地址
         http.authorizeRequests()
@@ -90,5 +102,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-
+    // 设置密码解析器
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }

@@ -5,38 +5,38 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)          // 开启方法级别的校验(就是开启注解)
-public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    // 进行权限配置
+@EnableGlobalMethodSecurity(prePostEnabled = true)      // 开启方法级别的校验
+public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // 设置内存级别的权限账号
         auth.inMemoryAuthentication()
                 .withUser("hxd")
-                .password(passwordEncoder().encode("hxd"))
-                .authorities("sec:add", "sec:del", "sec:update", "sec:query")
+                .password(passwordEncoder().encode("123456"))
+                .authorities("auth:add", "auth:del")
                 .and()
                 .withUser("admin")
                 .password(passwordEncoder().encode("123456"))
-                .authorities("sec:query");
+                .roles("admin");
     }
 
-    // 配置http请求成功或者失败之后的跳转地址，这里还是去的controller来请求的
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 登录成功和失败后跳转的页面
-        http.formLogin().successForwardUrl("/welcome")
-                .failureForwardUrl("/fail");
+        http.csrf().disable();
 
-        // 使用注解的方式让任意的请求需要登录才可以
+        http.formLogin()
+                .successForwardUrl("/success")
+                .failureForwardUrl("/fail")
+                .permitAll();
+
+        // 其他任意请求都需要登录
         http.authorizeRequests().anyRequest().authenticated();
-
-
     }
 
     @Bean

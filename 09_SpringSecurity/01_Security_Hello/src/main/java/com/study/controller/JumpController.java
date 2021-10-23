@@ -6,42 +6,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JumpController {
     @RequestMapping("welcome")
-    public String welcome(){
+    public String welcome() {
         return "jumped to welcome";
     }
 
     @RequestMapping("free")
-    public String free(){
+    public String free() {
         return "jumped to free";
     }
 
     @RequestMapping("add")
-    public String add(){
+    public String add() {
         return "jumped to add";
     }
 
     @RequestMapping("del")
-    public String del(){
+    public String del() {
         return "jumped to del";
     }
 
     @RequestMapping("update")
-    public String update(){
+    public String update() {
         return "jumped to update";
     }
 
     @RequestMapping("query")
-    public String query(){
+    public String query() {
         return "jumped to query";
     }
 
     @RequestMapping("fail")
-    public String fail(){
+    public String fail() {
         return "this is fail page";
     }
 
     @RequestMapping("other")
-    public String other(){
+    public String other() {
         return "anywhere pages is me";
     }
 

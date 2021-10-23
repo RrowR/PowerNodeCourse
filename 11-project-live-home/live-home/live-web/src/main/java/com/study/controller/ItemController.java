@@ -1,5 +1,6 @@
 package com.study.controller;
 
+
 import com.study.common.Result;
 import com.study.domain.Items;
 import com.study.service.ItemsService;
@@ -24,7 +25,7 @@ public class ItemController {
             @ApiImplicitParam(name = "city",value = "城市",dataType = "String",paramType = "query"),
             @ApiImplicitParam(name = "type",value = "类型",dataType = "Integer",paramType = "query")
     })
-    public Result<List<Items>> getHotProductOrRecommendation(String city,Integer type){
+    public Result<List<Items>> getHotProductOrRecommendation(String city, Integer type){
         List<Items> itemsList = itemsService.findHotProductOrRecommendation(city,type);
         return Result.success("ok",itemsList);
     }

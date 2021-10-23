@@ -7,22 +7,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-/*
-    获取当前用户信息的2种方式
- */
 @RestController
-public class GerUserInfoController {
-    @RequestMapping("userinfo")
-    public Principal getUserInfo(Principal principal) {
-        // 从 Principal 对象中进行获取
+public class GetUserInfo {
+    @RequestMapping("getUserInfo")
+    public Principal getPrincipal(Principal principal) {
         return principal;
     }
 
-    @RequestMapping("userinfo2")
-    public Principal getUserInfo2() {
-        // 获取SecurityContextHolder 上下文的方式
+    @RequestMapping("getUserInfo2")
+    public Principal getPrincipal2() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication;
     }
-
 }

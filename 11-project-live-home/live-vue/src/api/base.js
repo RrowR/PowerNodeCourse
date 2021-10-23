@@ -8,7 +8,7 @@ const base = {
     comment:"/comment",
     order:"/order",
     feelback:"/feelback",
-    login:'/login',
+    login:'/doLogin',
     buytime:'/buytime',
     buyaction:"/buyaction",
     sendyzm:'/sendyzm'

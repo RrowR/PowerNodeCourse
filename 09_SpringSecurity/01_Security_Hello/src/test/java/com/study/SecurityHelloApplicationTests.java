@@ -19,9 +19,9 @@ class SecurityHelloApplicationTests {
 
 
         // 查看密码是否匹配，这里不需要配置盐值
-        System.out.println(passwordEncoder.matches("123","$2a$10$ncR1XFq4fHQRA1ouy/sHBemLE887KuMIZzsxHLFO/iKcLMTyY.8vK"));
-        System.out.println(passwordEncoder.matches("123","$2a$10$1xQrsPGPQN35V92dTUefdua6LZs12sIIGwViDCIyTAsbuhvjpYv5i"));
-        System.out.println(passwordEncoder.matches("123","$2a$10$CLyKej7T2iHRC0yluDt6nO.M0XInIQqhecAKO7iZ7h5Dhj8Szom/2"));
+        System.out.println(passwordEncoder.matches("123", "$2a$10$ncR1XFq4fHQRA1ouy/sHBemLE887KuMIZzsxHLFO/iKcLMTyY.8vK"));
+        System.out.println(passwordEncoder.matches("123", "$2a$10$1xQrsPGPQN35V92dTUefdua6LZs12sIIGwViDCIyTAsbuhvjpYv5i"));
+        System.out.println(passwordEncoder.matches("123", "$2a$10$CLyKej7T2iHRC0yluDt6nO.M0XInIQqhecAKO7iZ7h5Dhj8Szom/2"));
     }
 
 }
