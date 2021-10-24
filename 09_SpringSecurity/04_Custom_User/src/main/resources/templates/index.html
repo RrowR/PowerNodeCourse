@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+                                                    <!-- 这个是extras和security的整合标签 -->
+<head>
+    <meta charset="UTF-8">
+    <title>系统首页</title>
+</head>
+<body>
+<h1 align="center">系统首页</h1>
+<a href="/toQuery" sec:authorize="hasAuthority('user:query')">查询用户</a>
+<br>
+<a href="/toAdd" sec:authorize="hasAuthority('user:save')">添加用户</a>
+<br>
+<a href="/toUpdate" sec:authorize="hasAuthority('user:update')">更新用户</a>
+<br>
+<a href="/toDel" sec:authorize="hasAuthority('user:delete')">删除用户</a>
+<br>
+<a href="/toExport" sec:authorize="hasAuthority('user:export')">导出用户</a>
+<br>
+<br><br><br>
+<h2><a href="/doLogout">退出</a></h2>
+<br>
+</body>
+</html>
