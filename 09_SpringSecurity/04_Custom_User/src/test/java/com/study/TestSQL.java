@@ -1,6 +1,5 @@
 package com.study;
 
-import com.study.domain.SysUser;
 import com.study.mapper.SysUserMapper;
 import com.study.service.SysUserService;
 import org.junit.jupiter.api.Test;
@@ -23,8 +22,7 @@ public class TestSQL {
 
     @Test
     void Test02(){
-        SysUser sysUser = userMapper.findUserByusername("zhangsan");
-        System.out.println(sysUser);
+        System.out.println(userMapper.findUserByusername("zhangsan"));
     }
 
 }

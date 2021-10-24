@@ -1,15 +1,3 @@
 spring:
-  datasource:
-    url: jdbc:mysql://rrow.xyz:3307/customuser?serverTimezone=GMT%2B8
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: huangxiaodong
-
-  thymeleaf:
-    cache: false
-
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true
+  profiles:
+    active: win
