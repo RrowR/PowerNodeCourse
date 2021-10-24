@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
     @RequestMapping("success")
     public String toLogin() {
-        return "success.html";
+        return "success";
     }
 
     @RequestMapping("fail")
     public String fail() {
-        return "fail.html";
+        return "fail";
     }
 }
