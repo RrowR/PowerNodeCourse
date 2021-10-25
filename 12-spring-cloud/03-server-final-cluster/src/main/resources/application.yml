@@ -1,0 +1,17 @@
+server:
+    port: 8761
+spring:
+    application:
+        name: eruka-server
+eureka:
+    client:
+        service-url:
+            defaultZone: http://peer1:8761/eureka,http://peer2:8762/eureka,http://peer3:8763/eureka
+    server:
+        enable-self-preservation: true      # 开启集群保护机制
+    instance:
+        hostname: finalCluster
+        instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 30            # 发送心跳包
+

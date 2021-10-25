@@ -9,7 +9,7 @@ eureka:
         renewal-percent-threshold: 0.85             # 续约百分比  遵从 AP原则  avaliable persistant
     client:         # eureka.server会自己注册自己
         service-url:
-            defalutZone: http://localhost:8761/eureka
+            defaultZone: http://localhost:8761/eureka
         register-with-eureka: true     # 往eureka注册
     instance:
         hostname: localhost

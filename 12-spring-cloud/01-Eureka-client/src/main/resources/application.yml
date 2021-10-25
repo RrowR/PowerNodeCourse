@@ -6,7 +6,7 @@ spring:
 eureka:
     client:
         service-url:
-            defalutZone : http://localhost:8761/eureka/
+            defaultZone : http://localhost:8761/eureka/
         register-with-eureka: true     # 往eureka注册
         fetch-registry: true        # 拉去服务器列表到本地
         registry-fetch-interval-seconds: 5      # 拉取间隔

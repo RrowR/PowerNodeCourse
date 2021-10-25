@@ -6,7 +6,7 @@ spring:
 eureka:
     client: # eureka.server会自己注册自己
         service-url:
-            defalutZone: http://peer2:8762/eureka,http://peer3:8763/eureka
+            defaultZone: http://peer2:8762/eureka,http://peer3:8763/eureka
         fetch-registry: true
         register-with-eureka: true
     instance:
