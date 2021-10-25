@@ -1,0 +1,5 @@
+server:
+    port: 8761      # \u6E90\u7801\u5B9A\u6B7B\u4E86
+spring:
+    application:
+        name: eruka-server
