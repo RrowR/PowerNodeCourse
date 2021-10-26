@@ -34,7 +34,7 @@ public class FindMsg {
         int port = instance.getPort();
         System.out.println(port);
         // 在这里发送一个http请求
-        String url = "http://" + ip + ":" + port + "/info";
+        String url = "http://" + ip + ":" + port + "/clientmsg";
         String result = restTemplate.getForObject(url, String.class);
 
         System.out.println(result);
