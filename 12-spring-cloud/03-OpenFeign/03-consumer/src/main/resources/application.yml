@@ -10,3 +10,9 @@ eureka:
     instance:
         instance-id: ${spring.application.name}:${server.port}
         prefer-ip-address: true
+ribbon: #feign默认调用1s超时
+    ReadTimeout: 5000   #修改调用时长为5s
+    ConnectTimeout: 5000    #修改连接时长为5s
+logging:
+    level:
+        com.study.feign.ConsumerFeign: debug
