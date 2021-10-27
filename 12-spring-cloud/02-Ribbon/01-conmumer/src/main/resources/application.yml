@@ -11,3 +11,24 @@ eureka:
         hostname: localhost
         prefer-ip-address: true
         instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+#provider:   #提供者的服务名称,(spring.application.name)那么访问该服务的时候就会按照自定义的负载均衡算法
+#    ribbon:
+#        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule    #几种算法的全限定类名
+#car-service:   #提供者的服务名称,(spring.application.name)那么访问该服务的时候就会按照自定义的负载均衡算法
+#    ribbon:
+#        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule    #几种算法的全限定类名
+ribbon:     #全局的设置
+    eager-load:
+        enabled: false # ribbon 一启动不会主动去拉取服务列表， 懒加载模式 当实际使用时才去拉取 是否立即加载
+    http:   # httpClient  okHttp（移动端用的比较多） 也是关于发网络请求的工具包
+        client:
+            enabled: false # 在ribbon 最后要发起Http的调用调用，我们认为是RestTemplate 完成的，其实最后是HttpURLConnection 来完成的，这里面设置为true ，可以把HttpUrlConnection->HttpClient
+    okhttp:
+        enabled: false #HttpUrlConnection 来完成的，这里面设置为true ，可以把HttpUrlConnection->OkHttpClient(也是发http请求的，它在移动端的开发用的多)
+#provider:   #提供者的服务名称,那么访问该服务的时候就会按照自定义的负载均衡算法，什么都不写默认是轮询
+#    ribbon:
+#        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule    #修改默认负载均衡算法，几种算法的全限定类名
+#        NFLoadBalancerClassName:       #loadBalance策略
+#        NFLoadBalancerPingClassName:   #ping机制策略
+#        NIWSServerListClassName:       #服务列表策略
+#        NIWSServerListFilterClassName: #服务列表过滤策略 ZonePreferenceServerListFilter 默认是优先过滤非一个区的服务列表
