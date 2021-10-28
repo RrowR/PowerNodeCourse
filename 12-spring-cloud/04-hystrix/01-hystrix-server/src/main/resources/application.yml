@@ -1,0 +1,18 @@
+server:
+    port: 8761
+spring:
+    application:
+        name: hytrix-server
+eureka:
+    server:
+        eviction-interval-timer-in-ms: 10000        # 服务器定期剔除时间
+        renewal-percent-threshold: 0.85             # 续约百分比  遵从 AP原则  avaliable persistant
+    client:         # eureka.server会自己注册自己
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+        register-with-eureka: true     # 往eureka注册
+    instance:
+        hostname: localhost
+        instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 5   # 实例续约的周期
