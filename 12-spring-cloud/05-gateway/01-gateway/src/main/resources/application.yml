@@ -7,11 +7,11 @@ spring:
         gateway:
             enabled: true
             routes:
-                - id: search-service-router
-                  uri: http://localhost:8080
+                - id: 11232search-service-router
+                  uri: http://localhost:8080            # 当网关访问80端口下的gossip路径帮我跳转到  http://localhost:8080/gossip
                   predicates:
                       - Path=/gossip
 #                - id: search-service-router
 #                  uri: http://localhost:8080
 #                  predicates:
-#                      - Path=/doSearch
+#                      - Path=/doSearch             # 这里配置2个并不能达到负载均衡的效果，只能生效第一个
