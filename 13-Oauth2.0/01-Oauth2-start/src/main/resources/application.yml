@@ -1,0 +1,7 @@
+server:
+    port: 9999
+spring:
+    application:
+        name: auth-server
+    redis:
+        host: 192.168.72.128
