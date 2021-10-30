@@ -41,3 +41,8 @@ spring:
                 locator:
                     enabled: true           #  开启动态路由,根据服务名称来做服务发现  需要在请求地址上添加服务名称
                     lower-case-service-id: true             # 大写转小写
+            routes:
+                -   id: 11232search-service-router
+                        uri: lb://service            # loadbalance协议 根据应用id来进行跳转
+                        predicates: # 断言匹配
+                            - Path=/gossip           #  设置请求的路径
