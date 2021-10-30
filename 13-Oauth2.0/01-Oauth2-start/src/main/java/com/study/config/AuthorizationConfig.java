@@ -19,6 +19,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
     private RedisConnectionFactory redisConnectionFactory;
 
 
+    // 创建一个RedisTokenStore对象添加到IOC容器里，里面传入Redis的连接对象
     @Bean
     public TokenStore tokenStore(){
         return new RedisTokenStore(redisConnectionFactory);
@@ -30,10 +31,11 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 .withClient("wx")
                 .secret(passwordEncoder().encode("wx-secret"))      // 使用方法来加密不需要注入
                 .scopes("read")
-                .authorizedGrantTypes("authorization_code")
+                .authorizedGrantTypes("authorization_code")         // 验证码授权
                 .accessTokenValiditySeconds(7200)
                 .redirectUris("https://www.baidu.com");
     }
+
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
