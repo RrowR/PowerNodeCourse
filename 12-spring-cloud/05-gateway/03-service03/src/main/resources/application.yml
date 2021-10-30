@@ -1,13 +1,13 @@
 server:
-    port: 8081
+    port: 8082
 spring:
     application:
-        name: service
+        name: loginservice
 eureka:
     client:
         service-url:
             defaultZone: http://rrow.xyz:8761/eureka
     instance:
-        hostname: service2
+        hostname: service3
         prefer-ip-address: true
         instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}

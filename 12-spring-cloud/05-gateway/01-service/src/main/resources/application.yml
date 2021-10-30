@@ -3,3 +3,11 @@ server:
 spring:
     application:
         name: service
+eureka:
+    client:
+        service-url:
+            defaultZone: http://rrow.xyz:8761/eureka
+    instance:
+        hostname: service1
+        prefer-ip-address: true
+        instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
