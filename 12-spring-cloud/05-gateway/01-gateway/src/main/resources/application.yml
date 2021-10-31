@@ -48,3 +48,10 @@ spring:
                         - Path=/gossip           #  设置请求的路径
                         - After=2021-10-31T11:14:03.735148+08:00[Asia/Shanghai]     # 更改断言时间，在指定时间之后才可以访问
 #                        - Query=name,hxd.           # 请求时必须带参数 . 为匹配任意一个字符
+                  filters:
+                      - name: RequestRateLimiter   # 这个不能瞎写
+                        args:
+                            key-resolver: '#{@apiLimitResolver}'        # 根据那种规则来限流 spring EL 表达式，可以取IOC里的值，从自己的配置文件里拿
+                            redis-rate-limiter.replenishRate: 1     # 令牌的生产速度
+                            redis-rate-limiter.burstCapacity: 3     # 桶的大小
+
