@@ -10,4 +10,5 @@ spring:
                     uri: https://gitee.com/rrow/globleconfig.git
                     username: Rrow
                     password: dong4297084
-                    basedir: ./config
+                    search-paths: /config
+                    basedir: ../../../local-config      # 根项目路径的同级路径
