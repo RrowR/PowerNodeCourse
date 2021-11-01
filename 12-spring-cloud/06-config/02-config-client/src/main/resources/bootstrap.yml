@@ -1,0 +1,25 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: config-client
+    cloud:
+      config:
+          uri: http://localhost:8888
+          profile: dev
+          name: config
+          label: master
+    rabbitmq:
+        host: rrow.xyz
+        port: 5672
+        username: admin
+        password: 123456
+        virtual-host: /
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'   # \u66B4\u9732\u76D1\u542C\u7684\u7AEF\u53E3
+
+

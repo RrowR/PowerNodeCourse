@@ -12,3 +12,14 @@ spring:
                     password: dong4297084
                     search-paths: /config
                     basedir: ../../../local-config      # 根项目路径的同级路径
+    rabbitmq:
+        host: rrow.xyz
+        port: 5672
+        username: admin
+        password: 123456
+        virtual-host: /
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'   # 暴露监听的端口
