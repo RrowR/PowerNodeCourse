@@ -2,7 +2,7 @@ server:
     port: 8081
 spring:
     application:
-        name: config-client
+        name: config-client2
     cloud:
       config:
           uri: http://localhost:8888
