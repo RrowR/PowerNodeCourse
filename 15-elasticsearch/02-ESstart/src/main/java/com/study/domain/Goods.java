@@ -34,7 +34,7 @@ public class Goods {
      * analyzer 导入分词
      */
     @Field(name = "goodsName", type = FieldType.Text, searchAnalyzer = "ik_smart", analyzer = "ik_smart")
-    private String GoodsName;
+    private String goodsName;
     @Field(name = "goodsDesc", type = FieldType.Text, searchAnalyzer = "ik_smart", analyzer = "ik_smart")
     private String goodsDesc;
     @Field(name = "goodsPrice", type = FieldType.Double)
