@@ -2,7 +2,10 @@ package com.study;
 
 import com.study.dao.GoodsDao;
 import com.study.domain.Goods;
+import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
 import org.elasticsearch.index.query.*;
+import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
+import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
@@ -51,7 +54,7 @@ class EsstartApplicationTests {
     }
 
     @Test
-    void testDocument(){
+    void testDocument() {
         ArrayList<Goods> goods = new ArrayList<>();
         for (int i = 1; i < 200; i++) {
             goods.add(new Goods(
@@ -70,7 +73,7 @@ class EsstartApplicationTests {
     }
 
     @Test
-    void testFindAllById(){
+    void testFindAllById() {
         Iterable<Goods> allById = goodsDao.findAllById(Arrays.asList(1, 2, 3));
         allById.forEach(goods -> {
             System.out.println(goods.getGoodsName());
@@ -78,14 +81,14 @@ class EsstartApplicationTests {
     }
 
     @Test
-    void testFindById(){
+    void testFindById() {
         Goods goods = goodsDao.findById(1).get();
         System.out.println(goods.getGoodsName());
     }
 
 
     @Test
-    void testUpdate(){
+    void testUpdate() {
         Goods goods = goodsDao.findById(6).get();
         goods.setGoodsName("猫羽雫");
         // es没有修改，只能先查再修改
@@ -99,15 +102,15 @@ class EsstartApplicationTests {
         模糊匹配 match 会对查询的词进行分词
      */
     @Test
-    void matchQuery(){
+    void matchQuery() {
         // 构建一个条件构造器
-        MatchQueryBuilder matchQuery = QueryBuilders.matchQuery("goodsName","猫羽雫");
+        MatchQueryBuilder matchQuery = QueryBuilders.matchQuery("goodsName", "猫羽雫");
         // 构建一个条件组合器
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         // 填装查询条件
         nativeSearchQueryBuilder.withQuery(matchQuery);
         // 设置分页
-        nativeSearchQueryBuilder.withPageable(PageRequest.of(0,2));
+        nativeSearchQueryBuilder.withPageable(PageRequest.of(0, 2));
         // 根据指定字段进行降序排序
         nativeSearchQueryBuilder.withSort(SortBuilders.fieldSort("goodsPrice").order(SortOrder.DESC));
         // 执行查询结果
@@ -120,7 +123,7 @@ class EsstartApplicationTests {
         term 精准匹配   只能全匹配keyword的类型属性
      */
     @Test
-    void termQuery(){
+    void termQuery() {
         TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("id", "3");
         NativeSearchQuery build = new NativeSearchQueryBuilder()
                 .withQuery(termQueryBuilder)
@@ -135,7 +138,7 @@ class EsstartApplicationTests {
      * 查找全称  全称不会分词  可以用text修饰
      */
     @Test
-    void matchPhraseQuery(){
+    void matchPhraseQuery() {
         MatchPhraseQueryBuilder matchPhraseQueryBuilder = QueryBuilders.matchPhraseQuery("goodsName", "猫羽雫");
         NativeSearchQuery query = new NativeSearchQueryBuilder().withQuery(matchPhraseQueryBuilder).build();
         SearchHits<Goods> goods = elasticsearchRestTemplate.search(query, Goods.class);
@@ -148,7 +151,7 @@ class EsstartApplicationTests {
      * match + range
      */
     @Test
-    void matchAndRangeQuery(){
+    void matchAndRangeQuery() {
         // 匹配名字
         MatchQueryBuilder matchQuery = QueryBuilders.matchQuery("goodsName", "笔记本电脑");
         // 匹配价格范围
@@ -166,8 +169,8 @@ class EsstartApplicationTests {
         高亮查询
      */
     @Test
-    void heigtLightQuery(){
-        MatchQueryBuilder matchQuery = QueryBuilders.matchQuery("goodsName", "猫羽雫");
+    void heigtLightQuery() {
+        MatchQueryBuilder matchQuery = QueryBuilders.matchQuery("goodsName", "华为");
         // 设置高亮字段
         HighlightBuilder.Field field = new HighlightBuilder.Field("goodsName");
         field.preTags("<i style='color:red'>");
@@ -186,22 +189,31 @@ class EsstartApplicationTests {
         list.forEach(System.out::println);
     }
 
+    /*
+        设置权重
+     */
+    @Test
+    void quanzhongQuery() {
+        String keyWords = "华为高色域";
+        // 创建权重数组
+        FunctionScoreQueryBuilder.FilterFunctionBuilder[] functionBuilders = new FunctionScoreQueryBuilder.FilterFunctionBuilder[2];
+        // 给名字设置权重为 4
+        functionBuilders[0] = (new FunctionScoreQueryBuilder.FilterFunctionBuilder(QueryBuilders.matchQuery("goodsName", keyWords), ScoreFunctionBuilders.weightFactorFunction(10)));
+        // 设置描述的权限为10
+        functionBuilders[1] = (new FunctionScoreQueryBuilder.FilterFunctionBuilder(QueryBuilders.matchQuery("goodsDesc",keyWords),ScoreFunctionBuilders.weightFactorFunction(4)));
+        // 给方法分数执行器传入方法构建数组
+        FunctionScoreQueryBuilder functionScoreQueryBuilder = new FunctionScoreQueryBuilder(functionBuilders);
+        functionScoreQueryBuilder.setMinScore(2)    // 设置最小分数
+            .scoreMode(FunctionScoreQuery.ScoreMode.FIRST);      // 设置计分方式
+
+        NativeSearchQuery query = new NativeSearchQueryBuilder().withQuery(functionScoreQueryBuilder).build();
+        SearchHits<Goods> goodsSearchHits = elasticsearchRestTemplate.search(query, Goods.class);
+        goodsSearchHits.forEach(goodsSearchHit -> {
+            System.out.println(goodsSearchHit.getContent());
+        });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }
