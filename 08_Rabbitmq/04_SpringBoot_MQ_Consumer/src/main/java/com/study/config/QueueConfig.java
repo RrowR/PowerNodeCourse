@@ -13,4 +13,7 @@ public class QueueConfig {
     public Queue helloQueue(){
         return new Queue("spring-boot");
     }
+
+
+
 }

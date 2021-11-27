@@ -1,10 +1,15 @@
 package com.study.utils;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+/**
+ * bloom过滤器
+ * 1.设置一个范围
+ * 2.设置一组质数
+ * 3.设置一个特征函数数组
+ */
 @Component
 public class BloomFilter {
 
@@ -36,7 +41,7 @@ public class BloomFilter {
             // 打印每次的位置
             System.out.println(pos);
             // 将每次存储的值存到位图里去
-            // key 标识 pos 值  value 是否存储
+            // key 标识 pos 值  value 是否存储，设置到位图里
             redisTemplate.opsForValue().setBit("ddd",pos,true);
         }
     }
@@ -44,7 +49,7 @@ public class BloomFilter {
     public Boolean isExist(String str){
         for (HashFun hashFun : hashFuns) {
             int pos = hashFun.getPos(str);
-            // 判断在redis里的位图里是否存在
+            // 判断在redis里的位图里是否存在，设置了一个种子key
             Boolean flag = redisTemplate.opsForValue().getBit("ddd", pos);
             if (!flag){
                 return false;
