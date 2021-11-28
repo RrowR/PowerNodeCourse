@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.Channel;
 import com.study.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RedissonClient;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ public class SpikeListener {
 
     @Autowired
     private OrderService orderService;
-
 
     /**
      * 监听消息，开始消费
