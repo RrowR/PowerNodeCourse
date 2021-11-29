@@ -7,6 +7,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Component
 //@RabbitListener(queues = {"spring.boot.queue"})
 public class GetMsgFromProducer {
@@ -24,8 +26,13 @@ public class GetMsgFromProducer {
 
     @RabbitListener(queuesToDeclare = {@Queue("spring.boot.queue")})
     public void handlerHelloMsg4(Message message, Channel channel,String data){
-//        System.out.println("我是第二个消费者"+message);
-        System.out.println("我是第二个消费者"+data);
+        System.out.println("我是第二个消费者"+new String(message.getBody()));
+        try {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        System.out.println("我是第二个消费者"+data);
     }
 
     // 使用 @RabbitHandler 时，参数类型必须是String类型
