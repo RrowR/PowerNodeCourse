@@ -10,7 +10,7 @@ spring:
     datasource:
         username: root
         password: huangxiaodong
-        url: jdbc:mysql://rrow.xyz:3307/live?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://rrow.icu:3306/live?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
             max-active: 20
@@ -26,8 +26,10 @@ spring:
                 url-pattern: /druid/*
                 enabled: true  #启用数据源监控
     redis:
-        host: rrow.xyz
-        port: 8000
+        host: rrow.icu
+        port: 6379
+        password: fuckyouredis01
+        database: 15
 
 # 配置mybatisplus，这里即使不配置也会自动帮我们扫包
 mybatis-plus:

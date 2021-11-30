@@ -11,7 +11,7 @@ const api = {
         return axios.get(base.baseUrl + base.banner)
     },
     /**
-     * hotProduct 的接口
+     *  hotProduct 的接口
      */
 
     hotProduct(params) { // { city:'beijing' }
