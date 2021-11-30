@@ -79,12 +79,14 @@
                 })
                     .then(data => {
                         console.log(data)
-                        // 登录后把用户信息存放Vuex 并且把token存在cookie里面 每次请求带上
-                        this.$cookie.set('token', "bearer " + data.data.token);
-                        console.log(data)
                         if (data.data.code === 200) {
+                          console.log("我进来了");
+                          // 登录后把用户信息存放Vuex 并且把token存在cookie里面 每次请求带上
+                          this.$cookie.set('token', "bearer " + data.data.data);
+                          console.log(data.data.data)
                             this.setUserAction({data: this.msg})
                             window.history.back();
+                          console.log("我结束了")
                         } else {
                             this.disableclick = true;
                             alert(data.data.msg)

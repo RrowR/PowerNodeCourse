@@ -8,6 +8,8 @@ import com.study.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import sun.security.util.Password;
 
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class WebTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Test
     void TestMapperNoScanner(){
@@ -36,5 +41,10 @@ public class WebTest {
     void TestQueryByUsername(){
         User user = userService.findUserByUserName("hxd");
         System.out.println(user);
+    }
+
+    @Test
+    void TestEncode(){
+        System.out.println(passwordEncoder.encode("123"));
     }
 }
