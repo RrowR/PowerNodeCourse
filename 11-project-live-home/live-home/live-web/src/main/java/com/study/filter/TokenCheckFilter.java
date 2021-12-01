@@ -62,7 +62,7 @@ public class TokenCheckFilter extends OncePerRequestFilter {
             String token = authorization.replaceAll("bearer ", "");
             // 拿到token去查询redis
             String token_res = stringRedisTemplate.opsForValue().get(LoginConstant.LOGIN_PREFIX + token);
-            if (!StringUtils.hasText(token_res)) {
+            if (StringUtils.hasText(token_res)) {
                 UsernamePasswordAuthenticationToken authenticationToken = JSON.parseObject(token_res, UsernamePasswordAuthenticationToken.class);
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 // 如果拿到的token不为空，就放行
