@@ -73,7 +73,7 @@ const api = {
      * 是否预订成功
      */
     buyaction(params) {
-        return axios.get(base.baseUrl + base.buyaction + "?" + qs.stringify(params));
+        return axios.post(base.baseUrl + base.buyaction, params);
     },
 
     // 发送验证码

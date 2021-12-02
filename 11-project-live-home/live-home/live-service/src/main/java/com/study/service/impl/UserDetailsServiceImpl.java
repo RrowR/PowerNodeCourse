@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 因为在项目中 使用id特别多  所以我们建议把用户的身份 换成用户的id
         // 就是将登录成功的对象交给springSecurity
         org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(
-                dbUser.getId().toString(),
+                dbUser.getId().toString(),          // 这个用户身份设置的是用户的id
                 dbUser.getPassword(),
                 new HashSet<>()
         );

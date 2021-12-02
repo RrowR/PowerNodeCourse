@@ -30,6 +30,15 @@ spring:
         port: 6379
         password: fuckyouredis01
         database: 15
+    rabbitmq:
+        host: rrow.xyz
+        port: 5672
+        username: admin
+        password: 123456
+        virtual-host: /
+        listener:
+          simple:
+              acknowledge-mode: manual          # 手动签收
 
 # 配置mybatisplus，这里即使不配置也会自动帮我们扫包
 mybatis-plus:

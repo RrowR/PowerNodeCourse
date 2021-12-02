@@ -6,13 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @ApiModel(value="com-study-domain-Houses")
 @Data
@@ -88,25 +89,22 @@ public class Houses implements Serializable {
     @ApiModelProperty(value="数量")
     private Integer nums;
 
-    private static final long serialVersionUID = 1L;
+    @TableField(exist = false)
+    @ApiModelProperty(value="房屋对象信息")
+    private HouseInfo houseInfo;
 
-    public static final String COL_ID = "id";
-
-    public static final String COL_TITLE = "title";
-
-    public static final String COL_HOUSE_TYPE = "house_type";
-
-    public static final String COL_RENT_TYPE = "rent_type";
-
-    public static final String COL_PRICE = "price";
-
-    public static final String COL_CITY = "city";
-
-    public static final String COL_IMGS = "imgs";
-
-    public static final String COL_INFO = "info";
-
-    public static final String COL_BUY_TIME = "buy_time";
-
-    public static final String COL_NUMS = "nums";
+    @Data
+    @ApiModel("房屋信息对象")
+    public static class HouseInfo{
+        @ApiModelProperty("年份")
+        private String years;
+        @ApiModelProperty("类型")
+        private String type;
+        @ApiModelProperty("级别")
+        private String level;
+        @ApiModelProperty("风格")
+        private String style;
+        @ApiModelProperty("朝向")
+        private String orientation;
+    }
 }

@@ -3,13 +3,14 @@ package com.study;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import com.study.domain.User;
+import com.study.enums.HouseEnums;
+import com.study.enums.QueueEnums;
 import com.study.service.BannerService;
 import com.study.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import sun.security.util.Password;
 
 import java.util.List;
 
@@ -46,5 +47,15 @@ public class WebTest {
     @Test
     void TestEncode(){
         System.out.println(passwordEncoder.encode("123"));
+    }
+
+    @Test
+    void TestEmues(){
+        System.out.println(HouseEnums.HOUSE_PREFIX.getPrefix());
+    }
+
+    @Test
+    void TestEmues2(){
+        System.out.println(QueueEnums.RENT_HOUSE_EX);
     }
 }
