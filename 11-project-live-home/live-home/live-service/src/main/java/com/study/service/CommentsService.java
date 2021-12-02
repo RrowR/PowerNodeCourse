@@ -8,4 +8,6 @@ public interface CommentsService extends IService<Comments>{
 
 
     Page<Comments> getComment(Integer id, Integer page);
+
+    void saveComm(String rate, String feelback, String orderId);
 }

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api("房屋搜索接口")
+@Api(tags = "房屋搜索接口")
 public class HouseController {
 
     @Autowired
