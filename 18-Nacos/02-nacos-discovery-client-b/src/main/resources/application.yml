@@ -5,7 +5,7 @@ spring:
         name: nacos-discovery-client-b
     cloud:
         nacos:
-            server-addr: rrow.icu:8848      # \u5F80\u54EA\u91CC\u6CE8\u518C\u81EA\u5DF1
+            server-addr: rrow.xyz:8848      # \u5F80\u54EA\u91CC\u6CE8\u518C\u81EA\u5DF1
             discovery:
                 username: nacos
                 password: nacos
