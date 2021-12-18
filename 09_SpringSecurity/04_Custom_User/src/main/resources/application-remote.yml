@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://rrow.xyz:3307/customuser?serverTimezone=GMT%2B8
+    url: jdbc:mysql://rrow.xyz:3306/customuser?serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: huangxiaodong

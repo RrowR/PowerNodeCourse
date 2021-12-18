@@ -1,13 +1,15 @@
 package com.study;
 
-import org.junit.jupiter..Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.lang.Nullable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootTest
 class SecurityHelloApplicationTests {
 
     @Test
+    @Nullable
     void contextLoads() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encode1 = passwordEncoder.encode("123");

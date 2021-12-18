@@ -8,7 +8,6 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,6 +36,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 关闭跨域请求伪造
         http.csrf().disable();
 
 //        // 前后端不分离可以这么写
@@ -50,15 +50,20 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedHandler(isDenied());       // 处理异常的处理器，这样就会覆盖掉跳转到默认的error的静态资源页面
 
+        // 前后端分离的情况，编写请求成功的处理器和请求失败的处理器
         http.formLogin()
-                .successHandler(isSuccess())       // 登陆成功的处理器，返回一组数据
-                .failureHandler(isFail())          // 登陆失败的处理器
-                .permitAll();
+                .successHandler(isSuccess()) // 登陆成功的处理器(需要AuthenticationSuccessHandler)，返回一组数据
+                .failureHandler(isFail())    // 登陆失败的处理器(需要AuthenticationFailureHandler)
+                .permitAll();                // 这2个方法都在下面的地方写好，并且都被允许了
 
         // 其他任意请求都需要登录
         http.authorizeRequests().anyRequest().authenticated();
     }
 
+    /**
+     * 出现权限异常的处理器
+     * @return
+     */
     private AccessDeniedHandler isDenied() {
         return (request, response, accessDeniedException) -> {
             response.setContentType("application/json;charset=utf-8");
@@ -74,11 +79,18 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    /**
+     * 登录失败的处理器
+     * @return
+     */
     private AuthenticationFailureHandler isFail() {
         return (request, response, exception) -> {
             response.setContentType("application/json;charset=utf-8");
             HashMap<String, Object> map = new HashMap<>(4);
-            map.put("code", HttpStatus.UNAUTHORIZED);
+            map.put("code", HttpStatus.UNAUTHORIZED.value());
+            /* 根据为拒绝身份验证请求而抛出的异常来指定写出的信息
+               (exception – the exception which was thrown to reject the authentication request)
+            */
             if (exception instanceof LockedException) {
                 map.put("msg", "账户被锁定，登陆失败！");
             } else if (exception instanceof BadCredentialsException) {
@@ -98,11 +110,13 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
             writer.write(s);
             writer.flush();
             writer.close();
-
-
         };
     }
 
+    /**
+     * 登录成功的处理器
+     * @return
+     */
     private AuthenticationSuccessHandler isSuccess() {
         // 这个方法实现了  onAuthenticationSuccess 方法
         return (request, response, authentication) -> {
@@ -122,6 +136,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    /**
+     * 加密方式
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
