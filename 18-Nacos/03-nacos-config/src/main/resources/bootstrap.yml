@@ -1,0 +1,36 @@
+#server:
+#    port: 8082
+#spring:
+#    application:
+#        name: nacos-config
+#    cloud:
+#        nacos:
+#            config:
+#                server-addr: rrow.xyz:8848
+#                username: nacos
+#                password: nacos
+#                namespace: bacfdfb1-18ea-471f-8c2d-a01ee82e82ab
+#                group: DEFAULT_GROUP
+#                prefix: config
+#                file-extension: yml
+#    profiles:
+#        active: dev
+
+server:
+    port: 8082
+spring:
+    application:
+        name: nacos-config
+    cloud:
+        nacos:
+            config:
+                server-addr: rrow.xyz:8848
+                namespace: bacfdfb1-18ea-471f-8c2d-a01ee82e82ab
+                extension-configs:      # 读取多个配置文件
+                    - dataId: config-dev.yml
+                      group: DEFAULT_GROUP
+                      refresh: true
+                    - dataId: config-pro.yml
+                      group: bbbb
+                      refresh: true
+

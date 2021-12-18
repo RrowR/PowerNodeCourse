@@ -21,18 +21,21 @@ public class RabbitListner {
 
     /**
      * 开始消费
+     *
      * @param message
      * @param channel
      */
-    @RabbitListener(queues = "rent.house.queue")
-    public void listenerMsg(Message message, Channel channel){
+    @RabbitListener(queues = "rent.house.queue", concurrency = "3-5")
+    public void listenerMsg(Message message, Channel channel) {
         log.info("我消息进来了");
         RentHouse rentHouse = JSON.parseObject(new String(message.getBody()), RentHouse.class);
-        System.out.println(rentHouse);
+        // 操作数据库
+        housesService.rentHouse(rentHouse);
         try {
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (IOException e) {
             e.printStackTrace();
+            log.error("用户租房出错了...");
         }
     }
 
