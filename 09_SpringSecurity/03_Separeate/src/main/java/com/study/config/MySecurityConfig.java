@@ -46,9 +46,11 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll();
 //
 
-        // 异常处理器
+        /* 异常处理器(这里指的是权限异常...等等等，如果这里不设置出现异常的处理器，如果出现403)
+           那么就会自动跳转到static/error/403.html页面
+         */
         http.exceptionHandling()
-                .accessDeniedHandler(isDenied());       // 处理异常的处理器，这样就会覆盖掉跳转到默认的error的静态资源页面
+                .accessDeniedHandler(isDenied()); // 访问被拒绝的处理器，这样就会覆盖掉跳转到默认的error的静态资源页面
 
         // 前后端分离的情况，编写请求成功的处理器和请求失败的处理器
         http.formLogin()
@@ -66,7 +68,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private AccessDeniedHandler isDenied() {
         return (request, response, accessDeniedException) -> {
+            // 设置响应的编码格式(前端用什么来看)
             response.setContentType("application/json;charset=utf-8");
+            // 设置字符串编码格式
+            response.setCharacterEncoding("utf-8");
             HashMap<String, Object> map = new HashMap<>();
             map.put("code",HttpStatus.FORBIDDEN.value());
             map.put("msg","您的权限不够");
