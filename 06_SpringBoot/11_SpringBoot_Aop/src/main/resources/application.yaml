@@ -1,0 +1,4 @@
+debug: true
+#spring:
+#  aop:
+#    proxy-target-class: false   # false表示使用JDK代理  true表示使用CGLIB代理，SpringBoot2.x以后默认使用CGLIB代理

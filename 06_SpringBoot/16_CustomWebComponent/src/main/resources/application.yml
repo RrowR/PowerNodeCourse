@@ -1,0 +1,4 @@
+servlet:
+  servlet01-mappings:
+    - /own.do
+    - /own2.action

@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rrow.xyz:3307/springboot?serverTimezone=GMT%2B8
+    username: root
+    password: huangxiaodong
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      max-active: 10
+      min-idle: 2
+      validation-query: select count(1) from user
+      stat-view-servlet:
+        login-username: admin
+        enabled: true  # 开始监控视图的Servlet
+        login-password: admin
+        allow:
+        deny:
+        url-pattern: /druid/*
+mybatis:
+  mapper-locations: mapper/*.xml    # 直接扫描mapper,不需要加classpath
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  config-location: classpath:mybatis-cfg.xml   # 也可以使用配置文件的方式，但是不能与上面的共存 Property 'configuration' and 'configLocation' can not specified with together

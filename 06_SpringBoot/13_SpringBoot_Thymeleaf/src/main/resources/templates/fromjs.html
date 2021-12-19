@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf从js中取值</title>
+</head>
+<body>
+
+</body>
+<script>
+    let name = "[[${name}]]"
+    console.log(name);
+    // 数字类型不需要引号
+    let age = [[${age}]]
+    console.log(age);
+    // request对象也是可以取到的，只是写代码的时候没有提示
+    let phone = "[[${#httpServletRequest.getAttribute('phone')}]]"
+    console.log(phone);
+</script>
+</html>

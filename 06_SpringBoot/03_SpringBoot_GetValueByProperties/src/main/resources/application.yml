@@ -1,0 +1,33 @@
+
+# Hero
+hero:
+  id: 0001
+  age: 16
+  name: 猫羽雫
+  birth: 2005/12/1
+  hobby: 吃,喝,睡
+#  list:
+#    - nachaco
+#    - 琉璃
+#  set:
+#    - 吃
+#    - 吃
+#    - 睡
+  # 上面的方式不支持Value直接来取值
+  list: nachaco,琉璃
+  set: 吃,吃,睡
+  map:
+    k1: v1
+    k2: v2
+    k3: v3
+  users: [{username: aaa,age: 10},{username: bbb,age: 11}]
+
+# User
+user:
+  username: 美美
+  age: ${data.age}
+
+# config
+data:
+  age: 8
+

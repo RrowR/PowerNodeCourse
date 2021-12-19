@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rrow.xyz:3307/springboot?useUnicode=true&useSSL=false&characterEncoding=UTF8&serverTimezone=UTC
+    username: root
+    password: huangxiaodong
+#    type: org.springframework.jdbc.datasource.DriverManagerDataSource
