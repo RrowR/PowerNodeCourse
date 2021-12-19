@@ -35,6 +35,7 @@
         <module>06_SpringMVC</module>
         <module>07_SpringMvcObj</module>
         <module>08_Spring_SpringMVC_MyBatis_Combination</module>
+        <module>90_CarProject</module>
     </modules>
 
         <properties>
@@ -125,7 +126,7 @@
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
-                <version>2.0.4</version>
+                <version>2.0.6</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>

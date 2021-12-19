@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--解析db.properties-->
+    <context:property-placeholder location="classpath:db2.properties" system-properties-mode="FALLBACK"></context:property-placeholder>
+<!--    &lt;!&ndash;配置数据源&ndash;&gt;-->
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="${jdbc.driver}"></property>-->
+<!--        <property name="url" value="${jdbc.url}"></property>-->
+<!--        <property name="username" value="${jdbc.username}"></property>-->
+<!--        <property name="password" value="${jdbc.password}"></property>-->
+<!--    </bean>-->
+    <!-- 使用druid连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <!--启动时在连接池里面初始化的连接的个数-->
+        <property name="initialSize" value="3"></property>
+        <!--最大的活动连接数据-->
+        <property name="maxActive" value="30"></property>
+        <!--最小的活动连接数据-->
+        <property name="minIdle" value="5"></property>
+        <!--过滤器  必须加，对sql监控有用-->
+        <property name="filters" value="stat"></property>
+    </bean>
+    <!--声明一个配置-->
+    <bean id="configuration" class="org.apache.ibatis.session.Configuration">
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"></property>
+    </bean>
+    <!--声明sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--注入配置对象-->
+        <property name="configuration" ref="configuration"></property>
+        <!--配置插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
+        <!--配置XXXXMapper.xml-->
+        <property name="mapperLocations" value="classpath:mapper/*/*Mapper.xml"></property>
+    </bean>
+
+    <!-- 将 homeInfo 和 logoInfo 添加到容器里去 -->
+    <bean id="homeInfo" class="com.study.system.common.HomeInfo">
+        <property name="title" value="首页"></property>
+        <property name="href" value="../page/toWelcome.action"></property>
+    </bean>
+
+    <bean id="logoInfo" class="com.study.system.common.LogoInfo">
+        <property name="title" value="汽车出租"></property>
+        <property name="image" value="../resources/layuimini/images/logo.png"></property>
+        <property name="href" value=""></property>
+    </bean>
+
+    <!--声明mapper接口的扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--设置扫描包
+            可以使用;  ,去处理多个包
+        -->
+        <property name="basePackage" >
+            <value>
+                com.study.system.mapper
+                com.study.system.mapper
+            </value>
+        </property>
+        <!--注入sqlSessionFactory的名字，目地是通过factory创建sqlSession-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+    <!--扫描service.impl-->
+    <context:component-scan base-package="com.study.system.service"></context:component-scan>
+
+    <!--开启事务注解-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+    <!-- 根据构造方法添加文件上传的路径 -->
+    <bean id="uploadFileRootPath" class="java.lang.String">
+        <constructor-arg name="original" value="D:/upload/"></constructor-arg>
+    </bean>
+    <!-- 设置文件下载时的前缀路径 -->
+    <bean id="fileDownLoadPrefix" class="java.lang.String">
+        <constructor-arg name="original" value="http://127.0.0.1:8080/Car/"></constructor-arg>
+    </bean>
+
+</beans>
