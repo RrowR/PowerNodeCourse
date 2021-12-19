@@ -32,7 +32,7 @@ public class User {
         users.add(new User(3, "辛德拉", "艾欧尼亚", 26, 6300D, new BigDecimal(1300), Arrays.asList("保龄球", "奶茶")));
         users.add(new User(4, "赵信", "德玛西亚", 28, 3150D, new BigDecimal(1400), Arrays.asList("看书", "睡觉", "锻炼")));
         users.add(new User(5, "后裔", "华夏", 99, 7800D, new BigDecimal(1500), Arrays.asList("射箭", "晒太阳")));
-        users.add(new User(6, "马可波罗", "意大利", 48, 1350D, new BigDecimal(1600), Arrays.asList("旅游", "游泳")));
+        users.add(new User(6, "马可波 罗", "意大利", 48, 1350D, new BigDecimal(1600), Arrays.asList("旅游", "游泳")));
     }
 
     public static void main(String[] args) {
