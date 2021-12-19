@@ -55,8 +55,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         // 前后端分离的情况，编写请求成功的处理器和请求失败的处理器
         http.formLogin()
                 .successHandler(isSuccess()) // 登陆成功的处理器(需要AuthenticationSuccessHandler)，返回一组数据
-                .failureHandler(isFail())    // 登陆失败的处理器(需要AuthenticationFailureHandler)
-                .permitAll();                // 这2个方法都在下面的地方写好，并且都被允许了
+                .failureHandler(isFail());    // 登陆失败的处理器(需要AuthenticationFailureHandler)
+                               // 这2个方法都在下面的地方写好，并且都被允许了
 
         // 其他任意请求都需要登录
         http.authorizeRequests().anyRequest().authenticated();
