@@ -20,8 +20,10 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 通过名字查询出用户信息，包括用户名和密码，当然这里的密码肯定是被加密了存在数据库里
         SysUser sysUser = userMapper.findUserByusername(username);
         if (!ObjectUtils.isEmpty(sysUser)) {
+            // 业务代码、根据用户id查询到用户权限设置到用户对象里去
             List<String> auths = userMapper.findAuthsByUserId(sysUser.getUserid());
             if (!CollectionUtils.isEmpty(auths)){
 //                // 将查询出来的每一个权限通过new SimpleGrantedAuthority的方式放到集合里去

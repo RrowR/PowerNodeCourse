@@ -25,7 +25,7 @@ public class MyWebConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 告诉security auth对象去这个方法里找
+        // 告诉security从实现了UserDetails类去找用户认证信息(告诉security用户的住处)
         auth.userDetailsService(userService);
     }
 
@@ -35,7 +35,7 @@ public class MyWebConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) {
-        // 让resources下的页面不能够请求controller
+        // 这里是放行资源的，不归Security来管理
         web.ignoring().mvcMatchers("/resources/**");
     }
 
@@ -45,7 +45,10 @@ public class MyWebConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 关闭跨站请求伪造
+        /*
+            关闭跨站请求伪造,否则项目页面将无法进行跳转
+            因为Security认为这个页面不是我的页面，那么就可能出现关闭跨站请求伪造的可能，所以我们这里需要关闭才可以
+         */
         http.csrf().disable();
 
         // 登陆的请求
